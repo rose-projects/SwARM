@@ -1,0 +1,20 @@
+dist: trusty
+sudo: false
+
+branches:
+  except:
+  - pretest
+  - elec
+
+language: C
+
+script:
+    - make -C tests/imu/
+
+cache: ccache
+
+addons:
+    apt:
+        packages:
+        - gcc-arm-none-eabi
+        - libnewlib-arm-none-eabi

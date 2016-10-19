@@ -6,3 +6,7 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 *~
+
+# builds
+**/build/
+**/.dep/
