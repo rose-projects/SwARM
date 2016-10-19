@@ -1,0 +1,28 @@
+branches:
+  except:
+  - pretest
+  - elec
+
+variables:
+    CCACHE: ccache
+    CCACHE_DIR: $CI_PROJECT_DIR/.ccache
+
+sudo: required
+
+language: C
+
+script:
+    - cd tests/coding_wheels
+    - make
+
+cache:
+    key: all
+    paths:
+    - $CCACHE_DIR
+
+addons:
+    apt:
+        sources:
+        - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
+        packages:
+        - gcc-arm-embedded

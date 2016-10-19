@@ -6,3 +6,9 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 *~
+
+ChibiOS/
+
+# builds
+builds/
+.deps/
