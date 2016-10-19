@@ -8,5 +8,5 @@ Thumbs.db
 *~
 
 # builds
-builds/
-.deps/
+**/builds/
+**/.deps/

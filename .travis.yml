@@ -1,15 +1,15 @@
 branches:
-    except:
-    - pretest
-    - elec
+  except:
+  - pretest
+  - elec
 
 sudo: required
 
 language: C
 
 script:
-    - cd tests/blink/
-    - make
+    - make -C tests/blink/
+    - make -C tests/led/
 
 cache: ccache
 
