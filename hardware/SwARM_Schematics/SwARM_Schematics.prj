@@ -236,7 +236,7 @@ VALUE "IEEE"
 ENDLIST
 LIST VerilogSimulationLibraries
 ENDLIST
-KEY CentralLibrary "F:\mentor\Central_Libs\ENST.lmc"
+KEY CentralLibrary "F:\Central_Libs\ENST.lmc"
 KEY SearchPathScheme "(Default)"
 ENDSECTION
 SECTION IngrElecTechnologyInfo
