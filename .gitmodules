@@ -1,0 +1,3 @@
+[submodule "SwARM-Docs"]
+	path = SwARM-Docs
+	url = git@gitlab.enst.fr:ROSE_2017/SwARM-Docs.git
