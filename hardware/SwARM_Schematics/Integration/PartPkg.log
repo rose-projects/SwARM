@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                      10:07 AM Saturday, November 12, 2016
+                      05:03 PM Saturday, November 12, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
@@ -78,39 +78,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
 
-    WARNING: Block Schematic1, Page 2, Symbol XCMP455:
-     Reference designator removal.
-     The Reference Designator "J" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 1, Symbol XCMP419:
-     Reference designator removal.
-     The Reference Designator "U" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP457:
-     Reference designator removal.
-     The Reference Designator "J" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP459:
-     Reference designator removal.
-     The Reference Designator "U" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP460:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP503:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -118,15 +86,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 2, Symbol XCMP464:
-     Reference designator removal.
-     The Reference Designator "J" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP472:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP505:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -134,55 +94,15 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 2, Symbol XCMP487:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP508:
      Reference designator removal.
-     The Reference Designator "J" is being removed
+     The Reference Designator "QZ" is being removed
      from Symbol.  Such 'all alpha' designators that are
      not instance properties are usually built into symbols and are 
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 2, Symbol XCMP488:
-     Reference designator removal.
-     The Reference Designator "Q" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP490:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP491:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP436:
-     Reference designator removal.
-     The Reference Designator "U" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP438:
-     Reference designator removal.
-     The Reference Designator "U" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP439:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP509:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -190,47 +110,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 3, Symbol XCMP440:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP441:
-     Reference designator removal.
-     The Reference Designator "D" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP443:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP444:
-     Reference designator removal.
-     The Reference Designator "D" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP445:
-     Reference designator removal.
-     The Reference Designator "Q" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP446:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP510:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -238,15 +118,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 3, Symbol XCMP447:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP448:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP511:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -254,7 +126,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 3, Symbol XCMP449:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP513:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -262,55 +134,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 3, Symbol XCMP458:
-     Reference designator removal.
-     The Reference Designator "J" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP496:
-     Reference designator removal.
-     The Reference Designator "J" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 5, Symbol XCMP454:
-     Reference designator removal.
-     The Reference Designator "U" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 5, Symbol XCMP499:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 5, Symbol XCMP500:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 6, Symbol XCMP463:
-     Reference designator removal.
-     The Reference Designator "U" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 6, Symbol XCMP476:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP514:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -318,7 +142,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 6, Symbol XCMP480:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP515:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -326,7 +150,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 6, Symbol XCMP483:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP516:
      Reference designator removal.
      The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -334,17 +158,17 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 6, Symbol XCMP492:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP517:
      Reference designator removal.
-     The Reference Designator "R" is being removed
+     The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
      not instance properties are usually built into symbols and are 
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 6, Symbol XCMP493:
+    WARNING: Block Schematic1, Page 5, Symbol XCMP518:
      Reference designator removal.
-     The Reference Designator "R" is being removed
+     The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
      not instance properties are usually built into symbols and are 
      not intended as a request to be packaged in the same pack with 
@@ -354,7 +178,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 25
+     Number of Part Numbers: 27
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
@@ -362,6 +186,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
           Part Numb: 00-1090 -> Vend Part: 00-1090 
           Part Numb: 10-0001 -> Vend Part: 10-0001 
           Part Numb: 10-0014 -> Vend Part: 10-0014 
+          Part Numb: 10-0030 -> Vend Part: 10-0030 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0059 -> Vend Part: 10-0059 
           Part Numb: 10-0060 -> Vend Part: 10-0060 
@@ -380,6 +205,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0093 -> Vend Part: 70-0093 
           Part Numb: 80-0067 -> Vend Part: 80-0067 
+          Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
 
@@ -388,12 +214,6 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Checking for value differences between non-null symbol properties and PartsDB properties,
       but only for those properties checked off in the Property Definition Editor
-
-    WARNING: Block Schematic1, Page 3, Symbol XCMP438:
-      Symbol property changed to limited precision PartsDB value:
-                        Resolved PartNumber = 40-0287
-                        Symbol Property: Description = Simple LDO 300mA, 3.3V, MicrelMIC5504-3.3YM5-TR, case SOT23
-     Limited Precision PartsDB Property: Description = Simple LDO 300mA, 3.3V, Micrel MIC5504-3.3YM5-TR, case SOT23
 
      Checking the validity of the packaging of prepackaged schematic
       symbols.  Only the first error in symbols having the same
@@ -407,16 +227,16 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 34 Symbols:
-              34  *********************************
+     Clustering 46 Symbols:
+              46  *********************************************
      Clustering is Complete
 
      Packager Assignments successfully completed
 
 
 
-     42 nets were found containing 152 pins
-     34 components were found
+     44 nets were found containing 188 pins
+     46 components were found
 
      Parsed netlist - Augmenting..
 
@@ -426,14 +246,13 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Checking Pins....
 
-     Testing of Packaging has been completed with 35 warnings.
+     Testing of Packaging has been completed with 12 warnings.
       Erroneous results may occur if not fixed.
 
      Updating the Common DataBase
 
      A BAM WasIs List: Integration\CDBBackAnno.bam has been created.
-     There have been 34 reference designator changes and 1 pin
-      number changes.
+     There have been 12 reference designator changes.
      The BAM file will list all of the from-to changes.
 
 The Common DataBase has been successfully updated.
@@ -445,4 +264,4 @@ The Common DataBase has been successfully updated.
      An unused gate report for gates not in schematic has been written to Integration\UnusedGates.txt
      An augmented pin report has been written to Integration\AugmentedPins.txt.
 
-     There have been 35 warnings.
+     There have been 12 warnings.
