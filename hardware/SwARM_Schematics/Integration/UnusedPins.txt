@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  12-Nov-2016  17:03
+Schematic unused pins from : Packager  13-Nov-2016  18:55
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -7,18 +7,14 @@ Schematic unused pins from : Packager  12-Nov-2016  17:03
 ------------------------------------------------------------------------
  Part 00-0033                          |
  Part 00-0074                          |
+ Part 00-0090                          |
  Part 00-0098                          |
  Part 00-0122                          |
- Part 00-1090                          |
- Part 10-0001                          |
-  C16                                  | (P)  1
- Part 10-0014                          |
  Part 10-0030                          |
  Part 10-0057                          |
  Part 10-0059                          |
  Part 10-0060                          |
- Part 10-0075                          |
-  C3                                   | (P)  2
+ Part 10-0103                          |
  Part 20-0003                          |
  Part 20-0047                          |
  Part 30-0019                          |
@@ -29,14 +25,16 @@ Schematic unused pins from : Packager  12-Nov-2016  17:03
  Part 40-0292                          |
   U6                                   | (P)  14 20 21 22 41 42 43 27
                                        |  29 30 8 9 10 11 24 25 39 40 2
-                                       |  54 7 60 50 55 4 3 28
+                                       |  54 50 55 4 3 28
  Part 40-0301                          |
   U7                                   | (P)  22 21 7
+ Part 70-0002                          |
  Part 70-0028                          |
  Part 70-0065                          |
-  J5                                   | (P)  6 7 8 9 4
+  J5                                   | (P)  4
  Part 70-0081                          |
- Part 70-0093                          |
+ Part 70-0099                          |
+  J7                                   | (P)  2
  Part 80-0067                          |
   U1                                   | (P)  1 15 14 13 12 11 10 9 4
  Part 81-0013                          |
