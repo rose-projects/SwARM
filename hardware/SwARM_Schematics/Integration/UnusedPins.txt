@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  13-Nov-2016  18:55
+Schematic unused pins from : Packager  14-Nov-2016  09:12
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -17,6 +17,7 @@ Schematic unused pins from : Packager  13-Nov-2016  18:55
  Part 10-0103                          |
  Part 20-0003                          |
  Part 20-0047                          |
+ Part 30-0004                          |
  Part 30-0019                          |
  Part 30-0022                          |
  Part 40-0229                          |

@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                       06:55 PM Sunday, November 13, 2016
+                       09:12 AM Monday, November 14, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
@@ -78,9 +78,49 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
 
-    WARNING: Block Schematic1, Page 3, Symbol XCMP564:
+    WARNING: Block Schematic1, Page 2, Symbol XCMP565:
      Reference designator removal.
-     The Reference Designator "J" is being removed
+     The Reference Designator "Q" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 2, Symbol XCMP566:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 2, Symbol XCMP567:
+     Reference designator removal.
+     The Reference Designator "Q" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 2, Symbol XCMP568:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 2, Symbol XCMP569:
+     Reference designator removal.
+     The Reference Designator "Q" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 2, Symbol XCMP570:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
      from Symbol.  Such 'all alpha' designators that are
      not instance properties are usually built into symbols and are 
      not intended as a request to be packaged in the same pack with 
@@ -90,7 +130,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 26
+     Number of Part Numbers: 27
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
           Part Numb: 00-0090 -> Vend Part: 00-0090 
@@ -103,6 +143,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
           Part Numb: 10-0103 -> Vend Part: 10-0103 
           Part Numb: 20-0003 -> Vend Part: 20-0003 
           Part Numb: 20-0047 -> Vend Part: 20-0047 
+          Part Numb: 30-0004 -> Vend Part: 30-0004 
           Part Numb: 30-0019 -> Vend Part: 30-0019 
           Part Numb: 30-0022 -> Vend Part: 30-0022 
           Part Numb: 40-0229 -> Vend Part: 40-0229 
@@ -138,16 +179,17 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 50 Symbols:
-              50  *************************************************
+     Clustering 54 Symbols:
+              54  ***
+              50  **************************************************
      Clustering is Complete
 
      Packager Assignments successfully completed
 
 
 
-     46 nets were found containing 203 pins
-     50 components were found
+     49 nets were found containing 213 pins
+     54 components were found
 
      Parsed netlist - Augmenting..
 
@@ -157,13 +199,13 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Checking Pins....
 
-     Testing of Packaging has been completed with 1 warnings.
+     Testing of Packaging has been completed with 6 warnings.
       Erroneous results may occur if not fixed.
 
      Updating the Common DataBase
 
      A BAM WasIs List: Integration\CDBBackAnno.bam has been created.
-     There have been 1 reference designator changes.
+     There have been 6 reference designator changes.
      The BAM file will list all of the from-to changes.
 
 The Common DataBase has been successfully updated.
@@ -175,4 +217,4 @@ The Common DataBase has been successfully updated.
      An unused gate report for gates not in schematic has been written to Integration\UnusedGates.txt
      An augmented pin report has been written to Integration\AugmentedPins.txt.
 
-     There have been 1 warnings.
+     There have been 6 warnings.
