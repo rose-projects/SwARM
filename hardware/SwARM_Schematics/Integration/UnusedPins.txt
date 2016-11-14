@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  14-Nov-2016  09:12
+Schematic unused pins from : Packager  14-Nov-2016  18:23
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -10,6 +10,7 @@ Schematic unused pins from : Packager  14-Nov-2016  09:12
  Part 00-0090                          |
  Part 00-0098                          |
  Part 00-0122                          |
+  R7                                   | (P)  2
  Part 10-0030                          |
  Part 10-0057                          |
  Part 10-0059                          |

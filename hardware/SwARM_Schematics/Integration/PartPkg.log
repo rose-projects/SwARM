@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                       09:12 AM Monday, November 14, 2016
+                       06:23 PM Monday, November 14, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
@@ -78,47 +78,15 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
 
-    WARNING: Block Schematic1, Page 2, Symbol XCMP565:
+    WARNING: Block Schematic1, Page 3, Symbol XCMP575:
      Reference designator removal.
-     The Reference Designator "Q" is being removed
+     The Reference Designator "C" is being removed
      from Symbol.  Such 'all alpha' designators that are
      not instance properties are usually built into symbols and are 
      not intended as a request to be packaged in the same pack with 
      symbols of like designators.
 
-    WARNING: Block Schematic1, Page 2, Symbol XCMP566:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP567:
-     Reference designator removal.
-     The Reference Designator "Q" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP568:
-     Reference designator removal.
-     The Reference Designator "R" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP569:
-     Reference designator removal.
-     The Reference Designator "Q" is being removed
-     from Symbol.  Such 'all alpha' designators that are
-     not instance properties are usually built into symbols and are 
-     not intended as a request to be packaged in the same pack with 
-     symbols of like designators.
-
-    WARNING: Block Schematic1, Page 2, Symbol XCMP570:
+    WARNING: Block Schematic1, Page 3, Symbol XCMP576:
      Reference designator removal.
      The Reference Designator "R" is being removed
      from Symbol.  Such 'all alpha' designators that are
@@ -188,7 +156,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
 
-     49 nets were found containing 213 pins
+     49 nets were found containing 212 pins
      54 components were found
 
      Parsed netlist - Augmenting..
@@ -199,13 +167,13 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Checking Pins....
 
-     Testing of Packaging has been completed with 6 warnings.
+     Testing of Packaging has been completed with 2 warnings.
       Erroneous results may occur if not fixed.
 
      Updating the Common DataBase
 
      A BAM WasIs List: Integration\CDBBackAnno.bam has been created.
-     There have been 6 reference designator changes.
+     There have been 2 reference designator changes.
      The BAM file will list all of the from-to changes.
 
 The Common DataBase has been successfully updated.
@@ -217,4 +185,4 @@ The Common DataBase has been successfully updated.
      An unused gate report for gates not in schematic has been written to Integration\UnusedGates.txt
      An augmented pin report has been written to Integration\AugmentedPins.txt.
 
-     There have been 6 warnings.
+     There have been 2 warnings.

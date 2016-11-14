@@ -2,10 +2,10 @@
 ! change it at your own peril
 
 !
-! Created 10/11/16 19:16:37
+! Created 11/13/16 18:34:58
 !
 
-.Global_Constants 5 2
+.Global_Constants 49 2
     ..File_Type Graphics_Settings
     ..Version Version_1
     ..Num_Views 1
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(498, 132) (1920,788)	! ..rcNormalPosition
+	(236, 95) (1658,1040)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x001bc560	! RGB( 96,197, 27)
+    ..Cavity_Color 0x302d3031	! RGB( 49, 48, 45)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x00000086	! RGB(134,  0,  0)
+    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0xffe91ca0	! top     RGB(160, 28,233)
-	0xffe54c10	! bottom  RGB( 16, 76,229)
+	0x12410030	! top     RGB( 48,  0, 65)
+	0x00000002	! bottom  RGB(  2,  0,  0)
     )
     ..Bondwire_Color (
-	0xffe0b830	! top     RGB( 48,184,224)
-	0xffeced30	! bottom  RGB( 48,237,236)
+	0x12410030	! top     RGB( 48,  0, 65)
+	0x00000002	! bottom  RGB(  2,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1305,6 +1305,50 @@
 	"(Spacer_Net)"	! [3]
 	"GND"	! [4]
 	"VCC"	! [5]
+	"BAT_TO_ALIM_CIRCUIT"	! [6]
+	"DWM_IRQ"	! [7]
+	"DWM_RESETn"	! [8]
+	"DWM_SPI_CLK"	! [9]
+	"DWM_SPI_CSn"	! [10]
+	"DWM_SPI_MISO"	! [11]
+	"DWM_SPI_MOSI"	! [12]
+	"ENABLE_MTR_L"	! [13]
+	"ENABLE_MTR_R"	! [14]
+	"INFRA_LED_L"	! [15]
+	"INFRA_LED_R"	! [16]
+	"INFRA_TRA_L"	! [17]
+	"INFRA_TRA_R"	! [18]
+	"IR_LED"	! [19]
+	"MPU_INT"	! [20]
+	"MPU_I2C_SCL"	! [21]
+	"MPU_I2C_SDA"	! [22]
+	"MTR_ELEC_IN"	! [23]
+	"MTR_L_1"	! [24]
+	"MTR_L_2"	! [25]
+	"MTR_R_1"	! [26]
+	"MTR_R_2"	! [27]
+	"PHASE_MTR_L"	! [28]
+	"PHASE_MTR_R"	! [29]
+	"RSTn_MCU"	! [30]
+	"SPI_LED_CK"	! [31]
+	"SPI_LED_DO"	! [32]
+	"SWCLK"	! [33]
+	"SWDAT"	! [34]
+	"USB_DM"	! [35]
+	"USB_DP"	! [36]
+	"XSIG020110"	! [37]
+	"XSIG020112"	! [38]
+	"XSIG020140"	! [39]
+	"XSIG020142"	! [40]
+	"XSIG030001"	! [41]
+	"XSIG030002"	! [42]
+	"XSIG030005"	! [43]
+	"XSIG030025"	! [44]
+	"XSIG030039"	! [45]
+	"XSIG050074"	! [46]
+	"XSIG050075"	! [47]
+	"XSIG050117"	! [48]
+	"XSIG060006"	! [49]
     )
     ..Netclass_Names ( 
 	"(Default)"	! [1]
@@ -1319,36 +1363,58 @@
     ..Net_Color ( 
 	0x00ffffff 0x00ffffff	! [1-2] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00006699	! [3-4] RGB(255,255,255)  RGB(153,102,  0)
-	0x0033cc33		! [5] RGB( 51,204, 51)
+	0x0033cc33         -1	! [5-6] RGB( 51,204, 51)  undefined
+	        -1         -1	! [7-8] undefined  undefined
+	        -1         -1	! [9-10] undefined  undefined
+	        -1         -1	! [11-12] undefined  undefined
+	        -1         -1	! [13-14] undefined  undefined
+	        -1         -1	! [15-16] undefined  undefined
+	        -1         -1	! [17-18] undefined  undefined
+	        -1         -1	! [19-20] undefined  undefined
+	        -1         -1	! [21-22] undefined  undefined
+	        -1         -1	! [23-24] undefined  undefined
+	        -1         -1	! [25-26] undefined  undefined
+	        -1         -1	! [27-28] undefined  undefined
+	        -1         -1	! [29-30] undefined  undefined
+	        -1         -1	! [31-32] undefined  undefined
+	        -1         -1	! [33-34] undefined  undefined
+	        -1         -1	! [35-36] undefined  undefined
+	        -1         -1	! [37-38] undefined  undefined
+	        -1         -1	! [39-40] undefined  undefined
+	        -1         -1	! [41-42] undefined  undefined
+	        -1         -1	! [43-44] undefined  undefined
+	        -1         -1	! [45-46] undefined  undefined
+	        -1         -1	! [47-48] undefined  undefined
+	        -1		! [49] undefined
     )
     ..Net_Ptrnidx ( 
-	0 ![1]
-	0 ![2]
-	0 ![3]
-	0 ![4]
-	0 ![5]
-    )
+	0 0 0 0 0 0 0 0 0 0 	! [1 - 10]
+	0 0 0 0 0 0 0 0 0 0 	! [11 - 20]
+	0 0 0 0 0 0 0 0 0 0 	! [21 - 30]
+	0 0 0 0 0 0 0 0 0 0 	! [31 - 40]
+	0 0 0 0 0 0 0 0 0 ! [41 - 49]
+	)
     ..Net_Alpha ( 
-	100 ![1]
-	100 ![2]
-	100 ![3]
-	100 ![4]
-	100 ![5]
-    )
+	100 100 100 100 100 100 100 100 100 100 	! [1 - 10]
+	100 100 100 100 100 100 100 100 100 100 	! [11 - 20]
+	100 100 100 100 100 100 100 100 100 100 	! [21 - 30]
+	100 100 100 100 100 100 100 100 100 100 	! [31 - 40]
+	100 100 100 100 100 100 100 100 100 ! [41 - 49]
+	)
     ..Net_Nopaque ( 
-	False ![1]
-	False ![2]
-	False ![3]
-	False ![4]
-	False ![5]
-    )
+	F F F F F F F F F F 	! [1 - 10]
+	F F F F F F F F F F 	! [11 - 20]
+	F F F F F F F F F F 	! [21 - 30]
+	F F F F F F F F F F 	! [31 - 40]
+	F F F F F F F F F ! [41 - 49]
+	)
     ..Net_Outline ( 
-	True  ![1]
-	True  ![2]
-	False ![3]
-	True  ![4]
-	True  ![5]
-    )
+	T T F T T T T T T T 	! [1 - 10]
+	T T T T T T T T T T 	! [11 - 20]
+	T T T T T T T T T T 	! [21 - 30]
+	T T T T T T T T T T 	! [31 - 40]
+	T T T T T T T T T ! [41 - 49]
+	)
     ..Netclass_Color (
 	0x00ffffff	! top     RGB(255,255,255)
 	0x00ffffff	! bottom  RGB(255,255,255)
@@ -1384,12 +1450,12 @@
     ..Constraint_Outline                 True 	! top
                                          True 	! bottom
     ..Net_On ( 
-	False ![1]
-	False ![2]
-	False ![3]
-	True  ![4]
-	True  ![5]
-    )
+	F F F T T F F F F F 	! [1 - 10]
+	F F F F F F F F F F 	! [11 - 20]
+	F F F F F F F F F F 	! [21 - 30]
+	F F F F F F F F F F 	! [31 - 40]
+	F F F F F F F F F ! [41 - 49]
+	)
     ..Netclass_On                        False	! top
                                          False	! bottom
     ..Bus_On ( 
@@ -1695,13 +1761,13 @@
 
 .view "PCB"
     ..extrema
-	(-179231750,-72166723)		! (xmin, ymin)
-	(405311110,164274152)		! (xmax, ymax)
+	(15152436,47948334)		! (xmin, ymin)
+	(274949864,192913670)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
-	(-8, -31)	! ptMaxPosition
+	(-8, -30)	! ptMaxPosition
 	(0, 0) (776,331)	! ..rcNormalPosition
     ..Is_Float_View                      False
     ..Is_Detail_View                     False
