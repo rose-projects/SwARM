@@ -51,7 +51,7 @@ static uint8 rx_buffer[RX_BUF_LEN];
 #define UUS_TO_DWT_TIME 65536
 
 /* Delay between frames, in UWB microseconds.*/
-#define POLL_RX_TO_RESP_TX_DLY_UUS 700 // TODO : understand why this doesn't seem to be microseconds
+#define POLL_RX_TO_RESP_TX_DLY_UUS 1000 // TODO : understand why this doesn't seem to be microseconds
 
 /* Timestamps of frames transmission/reception.
  * As they are 40-bit wide, we need to define a 64-bit int type to handle them. */
@@ -120,7 +120,8 @@ int main(void) {
 
     /* Loop forever responding to ranging requests. */
     while (1) {
-        /* Activate reception immediately. */
+		chThdSleepMilliseconds(97);
+        // activate reception
         dwt_rxenable(DWT_START_RX_IMMEDIATE);
 
         /* Poll for reception of a frame or error/timeout.*/
@@ -171,10 +172,8 @@ int main(void) {
                 if (ret == DWT_SUCCESS) {
                     /* Poll DW1000 until TX frame sent event set.*/
                     while (!(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS));
-					chprintf(USBserial, "ACK\n");
                     /* Clear TXFRS event. */
                     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
-
                     /* Increment frame sequence number after transmission of the poll message (modulo 256). */
                     frame_seq_nb++;
                 }
