@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  14-Nov-2016  18:23
+Schematic unused pins from : Packager  16-Nov-2016  13:01
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -10,11 +10,11 @@ Schematic unused pins from : Packager  14-Nov-2016  18:23
  Part 00-0090                          |
  Part 00-0098                          |
  Part 00-0122                          |
-  R7                                   | (P)  2
  Part 10-0030                          |
  Part 10-0057                          |
  Part 10-0059                          |
  Part 10-0060                          |
+  C6                                   | (P)  1
  Part 10-0103                          |
  Part 20-0003                          |
  Part 20-0047                          |
@@ -25,12 +25,12 @@ Schematic unused pins from : Packager  14-Nov-2016  18:23
  Part 40-0287                          |
  Part 40-0291                          |
  Part 40-0292                          |
-  U6                                   | (P)  14 20 21 22 41 42 43 27
-                                       |  29 30 8 9 10 11 24 25 39 40 2
-                                       |  54 50 55 4 3 28
+  U6                                   | (P)  14 20 21 22 27 29 30 8 9
+                                       |  10 11 24 25 2 54 55 4 3 28
  Part 40-0301                          |
   U7                                   | (P)  22 21 7
  Part 70-0002                          |
+ Part 70-0014                          |
  Part 70-0028                          |
  Part 70-0065                          |
   J5                                   | (P)  4
@@ -38,5 +38,5 @@ Schematic unused pins from : Packager  14-Nov-2016  18:23
  Part 70-0099                          |
   J7                                   | (P)  2
  Part 80-0067                          |
-  U1                                   | (P)  1 15 14 13 12 11 10 9 4
+  U1                                   | (P)  1 11 10 9 4
  Part 81-0013                          |
