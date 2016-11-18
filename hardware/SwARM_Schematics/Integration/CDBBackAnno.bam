@@ -1,0 +1,261 @@
+
+/* Sym: 103498400  Path 1: Schematic1  Page 3: Schematic1(3) */
+CHANGE 'Schematic1(3)' 	INSTANCE
+  SELECT COMP XCMP602                 /* Reference Desig is U5 */
+    PARAM 'Part Name' = 'LT1946' 
+    PARAM 'Description' = '1.2MHz Boost DC/DC Converter with 1.5A Switch and Soft-Start, Linear  LT1946EMS8, case MS8' 
+    PARAM 'Part Label' = 'LT1946EMS8' 
+    PARAM 'Code Fournisseur' = 'Fa : 1273797' 
+    PARAM 'Cout HT' = '3.45' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'U5'         /* Reference Desig was (null) */
+  SELECT COMP XCMP604                 /* Reference Desig is C24 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '100nF' 
+    PARAM 'Tolerance' = '10%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 100nF / 16V / ±10% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 100nF X7R 16V' 
+    PARAM 'Code Fournisseur' = 'Fa : 4765837' 
+    PARAM 'Cout HT' = '0.014' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C24'         /* Reference Desig was (null) */
+  SELECT COMP XCMP603                 /* Reference Desig is U8 */
+    PARAM 'Part Name' = 'LTC3530' 
+    PARAM 'Description' = 'Wide input voltage buck-boost synchronous DC/DC converter, Vin=1.8V-5.5V, 2MHz, 600mA, Linear LTC3530EMS, case MS10' 
+    PARAM 'Part Label' = 'LTC3530EMS' 
+    PARAM 'Code Fournisseur' = 'Fa : 1329368' 
+    PARAM 'Cout HT' = '2.9' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'U8'         /* Reference Desig was (null) */
+  SELECT COMP XCMP606                 /* Reference Desig is C25 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '100nF' 
+    PARAM 'Tolerance' = '10%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 100nF / 16V / ±10% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 100nF X7R 16V' 
+    PARAM 'Code Fournisseur' = 'Fa : 4765837' 
+    PARAM 'Cout HT' = '0.014' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C25'         /* Reference Desig was (null) */
+  SELECT COMP XCMP605                 /* Reference Desig is R21 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '1 ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 1.0 ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_1.0_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R21'         /* Reference Desig was (null) */
+  SELECT COMP XCMP617                 /* Reference Desig is R25 */
+    PARAM 'Part Name' = 'RES_0603_E96' 
+    PARAM 'Value' = '340K ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 340k ohms / 1% / case 0603' 
+    PARAM 'Part Label' = 'RES_340k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R25'         /* Reference Desig was (null) */
+  SELECT COMP XCMP616                 /* Reference Desig is L2 */
+    PARAM 'Part Name' = 'SELF' 
+    PARAM 'Value' = '4,7uH' 
+    PARAM 'Tolerance' = '20%' 
+    PARAM 'Description' = 'Inductor 4.7uH 4A 33mOhms Vishay Dale IHLP2525CZER4R7M11' 
+    PARAM 'Part Label' = 'SELF 4.7uH' 
+    PARAM 'Code Fournisseur' = 'Fa : 1741364' 
+    PARAM 'Cout HT' = '2.31' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'L2'         /* Reference Desig was (null) */
+  SELECT COMP XCMP615                 /* Reference Desig is R19 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '100K ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 100k ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_100k_0603' 
+    PARAM 'Code Fournisseur' = 'RS : 322-9608' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R19'         /* Reference Desig was (null) */
+  SELECT COMP XCMP614                 /* Reference Desig is D3 */
+    PARAM 'Part Name' = 'SCHOTTKY' 
+    PARAM 'Description' = 'Diode Shottky 3A 0.5V OnSemi MBRS340 case SMC' 
+    PARAM 'Part Label' = 'MBRS340' 
+    PARAM 'Code Fournisseur' = 'Fa : 9557377' 
+    PARAM 'Cout HT' = '0.45' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'D3'         /* Reference Desig was (null) */
+  SELECT COMP XCMP613                 /* Reference Desig is R24 */
+    PARAM 'Part Name' = 'RES_0603_E96' 
+    PARAM 'Value' = '182K ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 182k ohms / 1% / case 0603' 
+    PARAM 'Part Label' = 'RES_182k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R24'         /* Reference Desig was (null) */
+  SELECT COMP XCMP612                 /* Reference Desig is R23 */
+    PARAM 'Part Name' = 'RES_0603_E96' 
+    PARAM 'Value' = '21K ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 21.0k ohms / 1% / case 0603' 
+    PARAM 'Part Label' = 'RES_21.0k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R23'         /* Reference Desig was (null) */
+  SELECT COMP XCMP611                 /* Reference Desig is R22 */
+    PARAM 'Part Name' = 'RES_0603_E96' 
+    PARAM 'Value' = '27,4K ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 27.4k ohms / 1% / case 0603' 
+    PARAM 'Part Label' = 'RES_27.4k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R22'         /* Reference Desig was (null) */
+  SELECT COMP XCMP610                 /* Reference Desig is L1 */
+    PARAM 'Part Name' = 'SELF' 
+    PARAM 'Value' = '2,2uH' 
+    PARAM 'Tolerance' = '20%' 
+    PARAM 'Description' = 'Inductor 2.2uH 5.7A 18mOhms Vishay Dale IHLP-2525CZ-01-2.2UH' 
+    PARAM 'Part Label' = 'SELF 2.2uH' 
+    PARAM 'Code Fournisseur' = 'Fa : 1187064' 
+    PARAM 'Cout HT' = '1.86' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'L1'         /* Reference Desig was (null) */
+  SELECT COMP XCMP609                 /* Reference Desig is C29 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '270pF' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Capacitor Ceramic 270pF / NPO / 50V / ±5% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 270pF NPO 50V' 
+    PARAM 'Code Fournisseur' = 'Fa : 3019500' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C29'         /* Reference Desig was (null) */
+  SELECT COMP XCMP608                 /* Reference Desig is C28 */
+    PARAM 'Part Name' = 'CAPCERAM1206' 
+    PARAM 'Value' = '2,2uF' 
+    PARAM 'Tolerance' = '80%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 2.2uF / 25V / ±80% / case 1206' 
+    PARAM 'Part Label' = 'CAP C1206 2.2uF X7R 25V' 
+    PARAM 'Dielectric' = 'X7R' 
+    PARAM 'Code Fournisseur' = 'Fa : 1301808' 
+    PARAM 'Cout HT' = '0.56' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C28'         /* Reference Desig was (null) */
+  SELECT COMP XCMP607                 /* Reference Desig is C27 */
+    PARAM 'Part Name' = 'CAPCERAM1206' 
+    PARAM 'Value' = '2,2uF' 
+    PARAM 'Tolerance' = '80%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 2.2uF / 25V / ±80% / case 1206' 
+    PARAM 'Part Label' = 'CAP C1206 2.2uF X7R 25V' 
+    PARAM 'Dielectric' = 'X7R' 
+    PARAM 'Code Fournisseur' = 'Fa : 1301808' 
+    PARAM 'Cout HT' = '0.56' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C27'         /* Reference Desig was (null) */
+  SELECT COMP XCMP629                 /* Reference Desig is R20 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '100K ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 100k ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_100k_0603' 
+    PARAM 'Code Fournisseur' = 'RS : 322-9608' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R20'         /* Reference Desig was (null) */
+  SELECT COMP XCMP628                 /* Reference Desig is C32 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '33pF' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Capacitor Ceramic 33pF / NPO / 50V / ±5% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 33pF NPO 50V' 
+    PARAM 'Code Fournisseur' = 'Fa : 722029' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C32'         /* Reference Desig was (null) */
+  SELECT COMP XCMP627                 /* Reference Desig is C23 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '10uF' 
+    PARAM 'Tolerance' = '20%' 
+    PARAM 'Description' = 'Capacitor Ceramic X5R / 10uF / 6.3V / ±20% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 10uF X5R 6.3V' 
+    PARAM 'Code Fournisseur' = 'Fa : 1759393 ' 
+    PARAM 'Cout HT' = '0.117' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C23'         /* Reference Desig was (null) */
+  SELECT COMP XCMP625                 /* Reference Desig is C31 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '220pF' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Capacitor Ceramic 220pF / NPO / 50V / ±5% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 220pF NPO 50V' 
+    PARAM 'Code Fournisseur' = 'Fa : 498579' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C31'         /* Reference Desig was (null) */
+  SELECT COMP XCMP624                 /* Reference Desig is C26 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '10nF' 
+    PARAM 'Tolerance' = '20%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 10nF / 50V / ±20% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 10nF X7R 50V' 
+    PARAM 'Code Fournisseur' = 'RS : 264-4595' 
+    PARAM 'Cout HT' = '0.04' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C26'         /* Reference Desig was (null) */
+  SELECT COMP XCMP623                 /* Reference Desig is C30 */
+    PARAM 'Part Name' = 'CAPCERAM1812' 
+    PARAM 'Value' = '4,7uF' 
+    PARAM 'Tolerance' = '80%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7S / 4.7uF / 100V case 1812' 
+    PARAM 'Part Label' = 'CAP C1812 4.7uF X7S 100V' 
+    PARAM 'Dielectric' = 'X7S' 
+    PARAM 'Code Fournisseur' = 'Fa : 1844446' 
+    PARAM 'Cout HT' = '1.12' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'C30'         /* Reference Desig was (null) */
+  SELECT COMP XCMP622                 /* Reference Desig is R29 */
+    PARAM 'Part Name' = 'RES_0603_E96' 
+    PARAM 'Value' = '12,1K ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 12.1k ohms / 1% / case 0603' 
+    PARAM 'Part Label' = 'RES_12.1k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R29'         /* Reference Desig was (null) */
+  SELECT COMP XCMP621                 /* Reference Desig is R18 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '1K ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 1.0k ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_1.0k_0603' 
+    PARAM 'Code Fournisseur' = 'RS : 322-9355' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R18'         /* Reference Desig was (null) */
+  SELECT COMP XCMP620                 /* Reference Desig is R28 */
+    PARAM 'Part Name' = 'RES_0603_E96' 
+    PARAM 'Value' = '43,2K ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 43.2k ohms / 1% / case 0603' 
+    PARAM 'Part Label' = 'RES_43.2k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R28'         /* Reference Desig was (null) */
+  SELECT COMP XCMP619                 /* Reference Desig is R27 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '200K ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 200k ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_200k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R27'         /* Reference Desig was (null) */
+  SELECT COMP XCMP618                 /* Reference Desig is R26 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '200K ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 200k ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_200k_0603' 
+    PARAM 'Cout HT' = '0.045' 
+    PARAM 23 = DELETE                    /* Component Fix flag */
+    PARAM 15 = 'R26'         /* Reference Desig was (null) */
