@@ -15,5 +15,3 @@
        U7                              |   16| <unconnected pin>
        U7                              |   17| <unconnected pin>
        U7                              |   19| <unconnected pin>
- Part 40-0287                          |
-       U4                              |    4| <unconnected pin>

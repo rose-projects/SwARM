@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 11/17/16 19:01:14
+! Created 11/17/16 19:03:04
 !
 
 .Global_Constants 61 2
@@ -937,7 +937,7 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x00000008	! RGB(  8,  0,  0)
+    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x00000011	! top     RGB( 17,  0,  0)
-	0x00000012	! bottom  RGB( 18,  0,  0)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Bondwire_Color (
-	0x00000013	! top     RGB( 19,  0,  0)
-	0x00000014	! bottom  RGB( 20,  0,  0)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -2044,10 +2044,10 @@
                                          True 	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       False	! top
-                                         False	! bottom
-    ..Bondwire_On                        False	! top
-                                         False	! bottom
+    ..Diepinpad_On                       True 	! top
+                                         True 	! bottom
+    ..Bondwire_On                        True 	! top
+                                         True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top
