@@ -1,0 +1,14 @@
+image: rfc1149/rose-dev
+
+variables:
+    CCACHE: ccache
+    CCACHE_DIR: $CI_PROJECT_DIR/.ccache
+
+olimex-build:
+    stage: build
+    script: make -C soft
+
+cache:
+    key: all
+    paths:
+      - $CCACHE_DIR
