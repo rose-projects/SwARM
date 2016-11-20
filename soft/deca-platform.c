@@ -2,6 +2,7 @@
  * This implements all the platform specific functions required by the Decawave
  * driver
  */
+ 
 #include "ch.h"
 #include "hal.h"
 #include "decadriver/deca_device_api.h"
@@ -36,40 +37,34 @@ void initDecaPlatform(void) {
 
 int writetospi(uint16 headerLength, const uint8 *headerBuffer, uint32 bodylength, const uint8 *bodyBuffer) {
 	spiAcquireBus(&SPID1);              // Acquire ownership of the bus.
-	//decamutexon();
     spiSelect(&SPID1);                  // Slave Select assertion.
 
 	spiSend(&SPID1, headerLength, headerBuffer);
 	spiSend(&SPID1, bodylength, bodyBuffer);
 
 	spiUnselect(&SPID1);                // Slave Select de-assertion.
-	//decamutexoff(0);
     spiReleaseBus(&SPID1);
 	return 0;
 }
 
 int readfromspi(uint16 headerLength, const uint8 *headerBuffer, uint32 readlength, uint8 *readBuffer) {
 	spiAcquireBus(&SPID1);              // Acquire ownership of the bus.
-	//decamutexon();
     spiSelect(&SPID1);                  // Slave Select assertion.
 
 	spiSend(&SPID1, headerLength, headerBuffer);
 	spiReceive(&SPID1, readlength, readBuffer);
 
 	spiUnselect(&SPID1);                // Slave Select de-assertion.
-	//decamutexoff(0);
     spiReleaseBus(&SPID1);
     return 0;
 }
 
 decaIrqStatus_t decamutexon(void) {
-    //chSysLock();
     return 0;
 }
 
 void decamutexoff(decaIrqStatus_t s) {
     (void) s;
-	//chSysUnlock();
 }
 
 void deca_sleep(unsigned int time_ms) {
