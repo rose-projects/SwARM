@@ -2,6 +2,10 @@ variables:
     CCACHE: ccache
     CCACHE_DIR: $CI_PROJECT_DIR/.ccache
 
+sudo: required
+
+language: C
+
 olimex-build:
     stage: build
     script: make -C soft
