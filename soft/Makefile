@@ -163,7 +163,7 @@ INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
 MCU  = cortex-m4
 
 #TRGT = arm-elf-
-TRGT = ccache arm-none-eabi-
+TRGT = $(CCACHE) arm-none-eabi-
 CC   = $(TRGT)gcc
 GDB = $(TRGT)gdb
 CPPC = $(TRGT)g++

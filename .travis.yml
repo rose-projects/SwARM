@@ -6,9 +6,8 @@ sudo: required
 
 language: C
 
-olimex-build:
-    stage: build
-    script: make -C soft
+script:
+    - make -C soft
 
 cache:
     key: all
