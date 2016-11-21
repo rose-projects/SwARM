@@ -1,5 +1,3 @@
-image: rfc1149/rose-dev
-
 variables:
     CCACHE: ccache
     CCACHE_DIR: $CI_PROJECT_DIR/.ccache
@@ -11,4 +9,11 @@ olimex-build:
 cache:
     key: all
     paths:
-      - $CCACHE_DIR
+    - $CCACHE_DIR
+
+addons:
+    apt:
+        sources:
+        - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
+        packages:
+        - gcc-arm-embedded
