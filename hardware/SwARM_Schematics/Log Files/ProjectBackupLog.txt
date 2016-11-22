@@ -1,0 +1,6 @@
+[2016-11-22 02.16.38] Migrating iCDB upgrade backups from directory [SWARM_SCHEMATICS\Default\default.icdb\cdbback] to Project Backup format.
+[2016-11-22 02.16.38] Migrating iCDB upgrade backup file [2016-11-22 00.27.00-4824].
+[2016-11-22 02.16.38] Successfully created [Constraints Definition Upgrade] backup [2016-11-22 00.27.00 - consDefUpgr.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-22 02.16.38] Migrated iCDB content backup file [cdbback\2016-11-22 00.27.00-4824.zip] removed.
+[2016-11-22 02.16.38] Successfully migrated iCDB upgrade backup file [2016-11-22 00.27.00-4824] to Project Backup format [2016-11-22 00.27.00 - consDefUpgr.zip]
+[2016-11-22 02.16.39] Successfully created [AutoSave] backup [2016-11-22 02.16.38 - auto.zip] requested by [WIN10:root].
