@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  21-Nov-2016  21:10
+Schematic unused pins from : Packager  22-Nov-2016  02:18
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -15,35 +15,34 @@ Schematic unused pins from : Packager  21-Nov-2016  21:10
  Part 00-0122                          |
  Part 00-0129                          |
  Part 01-0393                          |
- Part 01-0416                          |
- Part 01-0427                          |
- Part 01-0446                          |
- Part 01-0506                          |
+ Part 01-0431                          |
+ Part 01-0435                          |
  Part 01-0532                          |
+ Part 02-0098                          |
  Part 10-0011                          |
  Part 10-0030                          |
  Part 10-0040                          |
  Part 10-0054                          |
- Part 10-0055                          |
  Part 10-0057                          |
+ Part 10-0100                          |
  Part 10-0103                          |
- Part 20-0001                          |
+ Part 10-0111                          |
  Part 20-0003                          |
  Part 20-0047                          |
+ Part 20-0064                          |
  Part 30-0004                          |
  Part 30-0019                          |
  Part 30-0022                          |
- Part 40-0093                          |
  Part 40-0229                          |
  Part 40-0232                          |
+ Part 40-0261                          |
  Part 40-0291                          |
  Part 40-0292                          |
   U6                                   | (P)  20 21 22 27 29 30 10 11
                                        |  24 25 2 54 55 4 3 28
  Part 40-0301                          |
   U7                                   | (P)  21 7
- Part 50-0007                          |
- Part 50-0025                          |
+ Part 50-0038                          |
  Part 70-0002                          |
  Part 70-0014                          |
  Part 70-0028                          |
