@@ -4,3 +4,17 @@
 [2016-11-22 02.16.38] Migrated iCDB content backup file [cdbback\2016-11-22 00.27.00-4824.zip] removed.
 [2016-11-22 02.16.38] Successfully migrated iCDB upgrade backup file [2016-11-22 00.27.00-4824] to Project Backup format [2016-11-22 00.27.00 - consDefUpgr.zip]
 [2016-11-22 02.16.39] Successfully created [AutoSave] backup [2016-11-22 02.16.38 - auto.zip] requested by [WIN10:root].
+[2016-11-22 17.00.27] Migrating iCDB upgrade backups from directory [SwARM_Schematics\Default\default.icdb\cdbback] to Project Backup format.
+[2016-11-22 17.00.27] Migrating iCDB upgrade backup file [2016-11-22 14.45.42-2108].
+[2016-11-22 17.00.27] Successfully created [Constraints Definition Upgrade] backup [2016-11-22 14.45.42 - consDefUpgr.zip] requested by [WIN10:root].
+[2016-11-22 17.00.27] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-18 15.18.35 - auto.zip].
+[2016-11-22 17.00.27] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-18 15.18.35 - auto.zip] removed.
+[2016-11-22 17.00.27] Removing excessive [Constraints Definition Upgrade] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-13 18.31.52 - consDefUpgr.zip].
+[2016-11-22 17.00.27] [Constraints Definition Upgrade] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-13 18.31.52 - consDefUpgr.zip] removed.
+[2016-11-22 17.00.27] Removing excessive [Constraints Definition Upgrade] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 00.27.00 - consDefUpgr.zip].
+[2016-11-22 17.00.27] [Constraints Definition Upgrade] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 00.27.00 - consDefUpgr.zip] removed.
+[2016-11-22 17.00.27] Migrated iCDB content backup file [cdbback\2016-11-22 14.45.42-2108.zip] removed.
+[2016-11-22 17.00.27] Successfully migrated iCDB upgrade backup file [2016-11-22 14.45.42-2108] to Project Backup format [2016-11-22 14.45.42 - consDefUpgr.zip]
+[2016-11-22 17.00.28] Successfully created [AutoSave] backup [2016-11-22 17.00.27 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-22 17.00.28] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-21 10.03.55 - auto.zip].
+[2016-11-22 17.00.28] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-21 10.03.55 - auto.zip] removed.

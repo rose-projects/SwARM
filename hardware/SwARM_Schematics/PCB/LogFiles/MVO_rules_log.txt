@@ -1,6 +1,6 @@
 
 Can not open Multiple Via Rules file. File doesn't exist:
-       'E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Config\MultiViaRules.txt'
+       'C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\Config\MultiViaRules.txt'
 
 Can not open Multiple Via Rules file. File doesn't exist:
-       'E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Layout\MVO_Rules.txt'
+       'C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\Layout\MVO_Rules.txt'
