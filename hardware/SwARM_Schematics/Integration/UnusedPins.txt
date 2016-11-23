@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  22-Nov-2016  20:50
+Schematic unused pins from : Packager  23-Nov-2016  12:01
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -39,8 +39,8 @@ Schematic unused pins from : Packager  22-Nov-2016  20:50
  Part 40-0261                          |
  Part 40-0291                          |
  Part 40-0292                          |
-  U6                                   | (P)  20 21 22 41 42 43 27 29
-                                       |  30 10 11 24 25 40 2 54 7 55 4
+  U6                                   | (P)  41 42 43 27 57 58 29 30
+                                       |  10 11 24 25 40 2 54 7 56 55 4
                                        |  3 28
  Part 40-0301                          |
   U7                                   | (P)  21 7

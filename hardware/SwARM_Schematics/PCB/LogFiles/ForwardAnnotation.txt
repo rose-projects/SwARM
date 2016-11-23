@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       08:50 PM Tuesday, November 22, 2016
+                      12:01 PM Wednesday, November 23, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -90,8 +90,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 81 Symbols:
-              81  ******************************
+     Clustering 82 Symbols:
+              82  *******************************
               50  **************************************************
      Clustering is Complete
 
@@ -99,8 +99,8 @@ Version:  01.01.00
 
 
 
-     69 nets were found containing 286 pins
-     81 components were found
+     69 nets were found containing 288 pins
+     82 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -113,7 +113,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       08:50 PM Tuesday, November 22, 2016
+                      12:01 PM Wednesday, November 23, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -126,19 +126,11 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-	WARNING:  "R16" is being removed from the Layout since it is no longer in the schematic.
+     The following 1 components have not been placed:
 
-	WARNING:  "C22" is being removed from the Layout since it is no longer in the schematic.
+        C18
 
-	WARNING:  "R21" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R17" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q7" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q6" is being removed from the Layout since it is no longer in the schematic.
-
-     Netload completed successfully with 6 warning(s).
+     Netload completed successfully with 0 warning(s).
      
      Back Annotating...
 
@@ -170,19 +162,8 @@ Version:  02.11.12
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
 
-Some nets were completely deleted from the Layout Design....
-	Deleted net RSTn_MCU, which has no pins, from the Layout Design.
-	Deleted net DWM_RX, which has no pins, from the Layout Design.
-	Deleted net DWM_RXOK, which has no pins, from the Layout Design.
-	Deleted net DWM_SFD, which has no pins, from the Layout Design.
-	Deleted net DWM_TX, which has no pins, from the Layout Design.
-	Deleted net XSIG030098, which has no pins, from the Layout Design.
-	Deleted net XSIG030112, which has no pins, from the Layout Design.
-	Deleted net XSIG030166, which has no pins, from the Layout Design.
-	Deleted net XSIG030167, which has no pins, from the Layout Design.
-
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 9 nets removed from the Layout Design.
+There were 0 nets removed from the Layout Design.

@@ -2,3 +2,10 @@
 Expedition PCB - Pinnacle Version: 2015.0.676.129
 
 Successfully read the design.
+Cannot resolve immovable metal conflicts.
+Saved the design...
+Cannot resolve immovable metal conflicts.
+Cannot reconnect and/or resolve part violations.
+Saved the design...
+Cannot resolve immovable metal conflicts.
+Saved the design...
