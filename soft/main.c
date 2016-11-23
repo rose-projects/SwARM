@@ -19,7 +19,8 @@ static uint8 rx_buffer[RX_BUF_LEN];
 // Delay between frames, in UWB microseconds
 #define POLL_TO_RESP_DLY 800*UUS_TO_DWT_TIME
 
-#define POLL_TO_RESP_DLY2 2000*UUS_TO_DWT_TIME
+// abort receive if no message is received after RX_TIMEOUT
+#define RX_TIMEOUT 5000
 
 int main(void) {
 	uint64_t rx_ts, rx_msg;
@@ -34,17 +35,14 @@ int main(void) {
     initUSB();
 	// initialize decawave module
 	decaInit();
+	dwt_setrxtimeout(RX_TIMEOUT);
 
 	chEvtRegisterMask(&deca_event, &evt_listener, EVENT_MASK(0));
 
     while (1) {
         if(decaReceive(RX_BUFFER_LEN, rx_buffer, 0) < 0) {
 			chprintf(USBserial, "RX error\n");
-			continue;
-		}
-
-        // Check that the frame is a poll
-        if(rx_buffer[0] == 0x41 && rx_buffer[1] == 0x88) {
+		} else if(rx_buffer[0] == 0x41 && rx_buffer[1] == 0x88) { // Check that the frame is a poll
             // Retrieve poll reception timestamp
             rx_ts = getRXtimestamp();
 
@@ -57,15 +55,9 @@ int main(void) {
             // send the response message
             if(decaSend(7, (uint8_t*) &rx_msg, 1, DWT_START_TX_DELAYED) < 0)
 				chprintf(USBserial, "TX error\n");
-
-			// set response message transmission time
-            dwt_setdelayedtrxtime((rx_ts + POLL_TO_RESP_DLY2) >> 8);
-
-			if(decaSend(7, (uint8_t*) &rx_msg, 1, DWT_START_TX_DELAYED) < 0)
-				chprintf(USBserial, "TX2 error\n");
 			chprintf(USBserial, "ACK\n");
         }
 
-		chThdSleepMilliseconds(99);
+		chThdSleepMilliseconds(100);
     }
 }
