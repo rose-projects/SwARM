@@ -3,10 +3,6 @@ branches:
   - pretest
   - elec
 
-variables:
-    CCACHE: ccache
-    CCACHE_DIR: $CI_PROJECT_DIR/.ccache
-
 sudo: required
 
 language: C
@@ -14,10 +10,7 @@ language: C
 script:
     - make -C soft
 
-cache:
-    key: all
-    paths:
-    - $CCACHE_DIR
+cache: ccache
 
 addons:
     apt:

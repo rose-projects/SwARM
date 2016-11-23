@@ -19,8 +19,10 @@ static uint8 rx_buffer[RX_BUF_LEN];
 // Delay between frames, in UWB microseconds
 #define POLL_TO_RESP_DLY 800*UUS_TO_DWT_TIME
 
+#define POLL_TO_RESP_DLY2 2000*UUS_TO_DWT_TIME
+
 int main(void) {
-	uint64_t rx_ts;
+	uint64_t rx_ts, rx_msg;
 	event_listener_t evt_listener;
 
 	// initialize ChibiOS
@@ -50,11 +52,17 @@ int main(void) {
             dwt_setdelayedtrxtime((rx_ts + POLL_TO_RESP_DLY) >> 8);
 
             // Write timestamp in the final message
-            rx_ts = (rx_ts << 16) + (0x8841);
+            rx_msg = (rx_ts << 16) + (0x8841);
 
             // send the response message
-            if(decaSend(7, (uint8_t*) &rx_ts, 1, DWT_START_TX_DELAYED) < 0)
+            if(decaSend(7, (uint8_t*) &rx_msg, 1, DWT_START_TX_DELAYED) < 0)
 				chprintf(USBserial, "TX error\n");
+
+			// set response message transmission time
+            dwt_setdelayedtrxtime((rx_ts + POLL_TO_RESP_DLY2) >> 8);
+
+			if(decaSend(7, (uint8_t*) &rx_msg, 1, DWT_START_TX_DELAYED) < 0)
+				chprintf(USBserial, "TX2 error\n");
 			chprintf(USBserial, "ACK\n");
         }
 
