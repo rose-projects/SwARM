@@ -4,6 +4,7 @@
 #include "usb-config.h"
 #include "exti-config.h"
 #include "deca-platform.h"
+#include "deca-functions.h"
 #include "decadriver/deca_device_api.h"
 #include "decadriver/deca_regs.h"
 
@@ -20,10 +21,6 @@ static dwt_config_t config = {
     DWT_PHRMODE_STD, // PHY header mode
     (257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
 };
-
-// Default antenna delay values for 64 MHz PRF
-#define TX_ANT_DLY 16436
-#define RX_ANT_DLY 16436
 
 int decaInit(void) {
 	// initialize peripherals used by decawave module
