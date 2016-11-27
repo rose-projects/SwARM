@@ -16,7 +16,7 @@ static dwt_config_t config = {
     DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
     9,               // TX preamble code. Used in TX only
     9,               // RX preamble code. Used in RX only
-    0,               // 0 to use standard SFD, 1 to use non-standard SFD
+    1,               // 0 to use standard SFD, 1 to use non-standard SFD
     DWT_BR_6M8,      // Data rate
     DWT_PHRMODE_STD, // PHY header mode
     (257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only

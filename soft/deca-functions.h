@@ -2,8 +2,8 @@
 #define DECA_FUNTIONS_H
 
 // Default antenna delay values for 64 MHz PRF
-#define TX_ANT_DLY 16390
-#define RX_ANT_DLY 16390
+#define TX_ANT_DLY 16393
+#define RX_ANT_DLY 16393
 
 /* returns RX timestamp (40bit wide) */
 #define getRXtimestamp() (((uint64_t) dwt_readrxtimestamplo32()) | (((uint64_t) dwt_readrxtimestamphi32()) << 8))
