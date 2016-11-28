@@ -3,12 +3,12 @@
 %Prior=1
 
 %page=Schematic1
-\DWM_IRQ\    \J11\-\2\ \U6\-\38\ 
+\DWM_IRQ\    \J11\-\4\ \U6\-\37\ 
 \DWM_SPI_CLK\    \J11\-\5\ \U6\-\34\ 
 \DWM_SPI_CSn\    \J11\-\7\ \U6\-\33\ 
 \DWM_SPI_MISO\    \J11\-\3\ \U6\-\35\ 
 \DWM_SPI_MOSI\    \J11\-\6\ \U6\-\36\ 
-\DWM_WAKEUP\    \J11\-\4\ \U6\-\37\ 
+\DWM_WAKEUP\    \J11\-\2\ \U6\-\38\ 
 \ENABLE_MTR_L\    \U2\-\9\ \U6\-\17\ 
 \ENABLE_MTR_R\    \U2\-\7\ \U6\-\22\ 
 \GND\    \C1\-\2\ \C2\-\2\ \C3\-\2\ \C4\-\2\ \C5\-\2\ \C6\-\2\ \C7\-\2\ 

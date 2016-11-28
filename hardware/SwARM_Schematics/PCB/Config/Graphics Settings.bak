@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 11/25/16 17:43:00
+! Created 11/26/16 09:06:20
 !
 
 .Global_Constants 71 2
@@ -13,13 +13,13 @@
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
-	(-1, -1)	! ptMinPosition
+	(-32000, -32000)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(558, 286) (1570,984)	! ..rcNormalPosition
+	(1889, 243) (2901,941)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
-    ..Active_Route_Layer 1
+    ..Active_Route_Layer 0
     ..Trace_Layer_Color ( 
 	0x00ff6633 0x009933ff	! [1-2] RGB( 51,102,255)  RGB(255, 51,153)
 	0x0066ff99 0x000000ff	! [3-4] RGB(153,255,102)  RGB(255,  0,  0)
@@ -1809,8 +1809,8 @@
 
 .view "PCB"
     ..extrema
-	(-39134820,-3794996)		! (xmin, ymin)
-	(113737072,58917586)		! (xmax, ymax)
+	(12153176,36892929)		! (xmin, ymin)
+	(32339496,49074329)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
@@ -2064,9 +2064,9 @@
                                          False	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       True 	! top
+    ..Diepinpad_On                       False	! top
                                          True 	! bottom
-    ..Bondwire_On                        True 	! top
+    ..Bondwire_On                        False	! top
                                          True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom

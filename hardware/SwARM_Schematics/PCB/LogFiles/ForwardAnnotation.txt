@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                      09:01 AM Saturday, November 26, 2016
+                       06:03 PM Monday, November 28, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -113,7 +113,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      09:01 AM Saturday, November 26, 2016
+                       06:03 PM Monday, November 28, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -157,9 +157,19 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
+	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a via which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a via which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
+	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a via which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a via which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 0 reassignments of nets.
+There were 10 reassignments of nets.
 There were 0 traces broken back.
 There were 0 nets removed from the Layout Design.

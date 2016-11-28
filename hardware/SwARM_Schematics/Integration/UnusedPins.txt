@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  26-Nov-2016  09:04
+Schematic unused pins from : Packager  28-Nov-2016  18:03
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
