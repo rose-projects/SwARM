@@ -2,5 +2,15 @@
 
 #### Swaggy Artistic Robots Matrix
 
-This is the dev branch. Here are our clean merges from our features.
-Release versions are in master branch.
+## Links
+
+[Hackster.io](https://www.hackster.io/perceval/swarm-c362dd)
+
+## About this branch
+
+This branch contains picture analyse part and robot detection with camera.
+It will be merged with the main project.
+
+To build the OpenCV lib, execute build/build_opencv. Note: requires sudo.
+
+To build a project, go to build/<project_name> and execute the build script.
