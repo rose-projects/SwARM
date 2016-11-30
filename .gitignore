@@ -10,3 +10,5 @@ Thumbs.db
 # builds
 builds/
 .deps/
+opencv-3.1.0/build/
+
