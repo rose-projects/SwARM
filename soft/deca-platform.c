@@ -2,7 +2,7 @@
  * This implements all the platform specific functions required by the Decawave
  * driver
  */
- 
+
 #include "ch.h"
 #include "hal.h"
 #include "decadriver/deca_device_api.h"
@@ -14,11 +14,18 @@
 #define DECA_MOSI 5  // SPI1 MOSI on PB5
 
 // 2.6MHz SPI configuration, CPHA=0, CPOL=0
-static const SPIConfig spiconfig = {
+static const SPIConfig slowspiconfig = {
     NULL,
     GPIOA,
     DECA_CSn,
     SPI_CR1_BR_2
+};
+// 10.4MHz SPI configuration, CPHA=0, CPOL=0
+static const SPIConfig spiconfig = {
+    NULL,
+    GPIOA,
+    DECA_CSn,
+    SPI_CR1_BR_1
 };
 
 void initDecaPlatform(void) {
@@ -32,9 +39,12 @@ void initDecaPlatform(void) {
 	palSetPadMode(GPIOA, DECA_CSn, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
 
 	// init SPI1 with SPI clock at 2.6MHz
-	spiStart(&SPID1, &spiconfig);
+	spiStart(&SPID1, &slowspiconfig);
 }
 
+void useFastSPI(void) {
+	spiStart(&SPID1, &spiconfig);
+}
 int writetospi(uint16 headerLength, const uint8 *headerBuffer, uint32 bodylength, const uint8 *bodyBuffer) {
 	spiAcquireBus(&SPID1);              // Acquire ownership of the bus.
     spiSelect(&SPID1);                  // Slave Select assertion.

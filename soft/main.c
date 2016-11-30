@@ -1,4 +1,5 @@
 #include "ch.h"
+#include "chvt.h"
 #include "chprintf.h"
 #include "chevents.h"
 
@@ -22,11 +23,11 @@ static uint8_t rx_buffer[RX_BUF_LEN];
 #define SPEED_OF_LIGHT 299702547
 
 // Delay between frames, in UWB microseconds
-#define POLL_TO_RESP_DLY 800*UUS_TO_DWT_TIME
+#define POLL_TO_RESP_DLY 600*UUS_TO_DWT_TIME
 // abort receive if no message is received after RX_TIMEOUT
 #define RX_TIMEOUT 5000
 // Delay between poll and response
-#define POLL_TO_RESP_RX 500
+#define POLL_TO_RESP_RX 400
 
 // returns the moving average of the MEAN_LEN last mesured distances
 #define MEAN_LEN 20
@@ -46,65 +47,26 @@ static int mean(int newValue) {
 	}
 
 	// show min and max of the history to estimate noise
-	chprintf(USBserial, "max = %d, min =  %d\n", max, min);
+	chprintf(USBserial, "max = %d, min =  %d, noise = %d\n", max, min, max-min);
 	return result/MEAN_LEN;
-}
-
-static int rangingResponse(uint32_t *poll_ts, int flags, int noRXenable) {
-	uint64_t resp_msg, rx_ts;
-
-	if(decaReceive(RX_BUFFER_LEN, rx_buffer, noRXenable) < 0) {
-		//chprintf(USBserial, "RX error\n");
-		return -2;
-	}
-	// Check that the frame is a poll
-	if(rx_buffer[0] != 0x41 || rx_buffer[1] != 0x88)
-		return -3;
-
-	// Retrieve poll reception timestamp
-	rx_ts = getRXtimestamp();
-
-	// set response message transmission time
-	dwt_setdelayedtrxtime((rx_ts + POLL_TO_RESP_DLY) >> 8);
-
-	// Write timestamp in the final message
-	resp_msg = (rx_ts << 16) + (0x8841);
-
-	*poll_ts = rx_ts;
-	// send the response message
-	return decaSend(7, (uint8_t*) &resp_msg, 1, DWT_START_TX_DELAYED | flags);
 }
 
 static void rangingTask(void) {
 	int ret;
-	uint32_t tx_ts1, rx_ts1, tx_ts2, rx_ts2, beacon_hold_time1, beacon_hold_time2, beacon_rx_ts1, beacon_rx_ts2;
+	systime_t start;
 
 	while (1) {
 		// Execute a delay between ranging exchanges
 		chThdSleepMilliseconds(101);
 
+		start = chVTGetSystemTime();
 		// make sure TX done bit is cleared
         dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
         // Send poll, and enable reception automatically to receive the answer
         decaSend(4, tx_poll, 1, DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
-		tx_ts1 = dwt_readtxtimestamplo32(); // get TX timestamp
 
-		// wait for answer and reply
-		if((ret = rangingResponse(&rx_ts1, DWT_RESPONSE_EXPECTED, 1)) < 0) {
-			if(ret == -1)
-				chprintf(USBserial, "TX too late\n");
-			else
-				chprintf(USBserial, "RX error\n");
-			continue;
-		}
-
-		// retrieve beacon RX timestamp
-		beacon_rx_ts1 = (int) rx_buffer[2] + ((int) rx_buffer[3] << 8) + ((int) rx_buffer[4] << 16) + ((int) rx_buffer[5] << 24);
-		// compute precise time between beacon poll RX and response TX
-		beacon_hold_time1 = POLL_TO_RESP_DLY + TX_ANT_DLY  - (beacon_rx_ts1 & 0x1FF);
-
-		// receive 2nd response
+		// receive response
         if((ret = decaReceive(RX_BUF_LEN, rx_buffer, 1)) < 0) {
 			if(ret == -2)
 				chprintf(USBserial, "timout\n");
@@ -116,40 +78,53 @@ static void rangingTask(void) {
         // check frame is actually our response
         if (rx_buffer[0] == 0x41 && rx_buffer[1] == 0x88) {
 			double distance;
-			int32_t tof1, tof2, tof3, tof4;
+			int32_t tx_ts, rx_ts, beacon_rx_ts, beacon_hold_time;
 			int a;
 
             // Retrieve poll transmission and response reception timestamps
-            tx_ts2 = dwt_readtxtimestamplo32();
-            rx_ts2 = dwt_readrxtimestamplo32();
+            tx_ts = dwt_readtxtimestamplo32();
+            rx_ts = dwt_readrxtimestamplo32();
 
 			// retrieve beacon RX timestamp
-			beacon_rx_ts2 = (int) rx_buffer[2] + ((int) rx_buffer[3] << 8) + ((int) rx_buffer[4] << 16) + ((int) rx_buffer[5] << 24);
+			beacon_rx_ts = (int) rx_buffer[2] + ((int) rx_buffer[3] << 8) +
+				((int) rx_buffer[4] << 16) + ((int) rx_buffer[5] << 24);
             // compute precise time between beacon poll RX and response TX
-            beacon_hold_time2 = POLL_TO_RESP_DLY + TX_ANT_DLY - (beacon_rx_ts2 & 0x1FF);
-
-			// compute different time of flight
-			tof1 = rx_ts1 - tx_ts1 - beacon_hold_time1;
-			tof2 = rx_ts2 - tx_ts2 - beacon_hold_time2;
-			tof3 = rx_ts2 - tx_ts1 - (beacon_rx_ts2 - beacon_rx_ts1 + beacon_hold_time2 - 250);
-			tof4 = beacon_rx_ts2 - (beacon_rx_ts1 + beacon_hold_time1) - (tx_ts2 - rx_ts1 + 270);
+            beacon_hold_time = POLL_TO_RESP_DLY + TX_ANT_DLY - (beacon_rx_ts & 0x1FF);
 
 			// compute distance
-            distance = (tof1 + tof2 + tof3 + tof4) * 100 / 8.0 * DWT_TIME_UNITS * SPEED_OF_LIGHT;
+            distance = (rx_ts - tx_ts - beacon_hold_time) * 100 / 2.0 * DWT_TIME_UNITS * SPEED_OF_LIGHT;
 			a = distance;
         	chprintf(USBserial, "DIST: %d cm\r", mean(a));
+			chprintf(USBserial, "duration: %d us\r", ST2US(chVTGetSystemTime()-start));
         }
     }
 }
 
+
 static void beaconTask(void) {
-	uint32_t rx_ts;
+	uint64_t rx_ts, resp_msg;
 
 	while (1) {
 		chThdSleepMilliseconds(100);
-		if(rangingResponse(&rx_ts, DWT_RESPONSE_EXPECTED, 0) < 0)
+
+		if(decaReceive(RX_BUFFER_LEN, rx_buffer, 0) < 0)
 			continue;
-		rangingResponse(&rx_ts, 0, 1);
+
+		// Check that the frame is a poll
+		if(rx_buffer[0] != 0x41 || rx_buffer[1] != 0x88)
+			continue;
+
+		// Retrieve poll reception timestamp
+		rx_ts = getRXtimestamp();
+
+		// set response message transmission time
+		dwt_setdelayedtrxtime((rx_ts + POLL_TO_RESP_DLY) >> 8);
+
+		// Write timestamp in the final message
+		resp_msg = (rx_ts << 16) + (0x8841);
+
+		// send the response message
+		decaSend(7, (uint8_t*) &resp_msg, 1, DWT_START_TX_DELAYED);
 	}
 }
 

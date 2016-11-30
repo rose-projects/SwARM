@@ -10,12 +10,12 @@
 
 // Default communication configuration
 static dwt_config_t config = {
-    2,               // Channel number
+    4,               // Channel number
     DWT_PRF_64M,     // Pulse repetition frequency
     DWT_PLEN_256,    // Preamble length. Used in TX only
     DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
-    9,               // TX preamble code. Used in TX only
-    9,               // RX preamble code. Used in RX only
+    17,               // TX preamble code. Used in TX only
+    17,               // RX preamble code. Used in RX only
     1,               // 0 to use standard SFD, 1 to use non-standard SFD
     DWT_BR_6M8,      // Data rate
     DWT_PHRMODE_STD, // PHY header mode
@@ -32,6 +32,9 @@ int decaInit(void) {
 	if (dwt_initialise(DWT_LOADUCODE) == DWT_ERROR) {
         return -1;
     }
+	// after initialize, use fast SPI for optimum performance
+	useFastSPI();
+
     dwt_configure(&config);
     // Apply default antenna delay value.
     dwt_setrxantennadelay(RX_ANT_DLY);

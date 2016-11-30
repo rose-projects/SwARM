@@ -11,6 +11,9 @@
 /* initialize the peripherals and the Decawave module */
 int decaInit(void);
 
+/* switch SPI speed to 10.4MHz*/
+void useFastSPI(void);
+
 /* send a message :
  * 		size : the size of the message in bytes
  *		buffer : pointer to the message data
