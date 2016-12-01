@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                       06:03 PM Monday, November 28, 2016
+                      09:26 PM Thursday, December 01, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
@@ -120,10 +120,10 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
           Part Numb: 70-0002 -> Vend Part: 70-0002 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
-          Part Numb: 70-0053 -> Vend Part: 70-0053 
+          Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
-          Part Numb: 70-0099 -> Vend Part: 70-0099 
+          Part Numb: 70-0100 -> Vend Part: 70-0100 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -146,8 +146,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 82 Symbols:
-              82  *******************************
+     Clustering 83 Symbols:
+              83  ********************************
               50  **************************************************
      Clustering is Complete
 
@@ -156,7 +156,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
      68 nets were found containing 280 pins
-     82 components were found
+     83 components were found
 
      Parsed netlist - Augmenting..
 

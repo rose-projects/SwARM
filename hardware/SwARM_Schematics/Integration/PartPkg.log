@@ -2,13 +2,13 @@
                                     Packager
                                     --------
 
-                       06:03 PM Monday, November 28, 2016
+                      09:55 PM Thursday, December 01, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\package.exe -Replace "-jC:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj""
 
      The Common Database is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb".
 
@@ -23,8 +23,9 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      The Disable Repackage status indicates that 
       Repackaging should be allowed.
 
-     A new Target PDB will be created from the Central Library to satisfy the parts
-      requirements of the iCDB.
+     The PDBs listed in the project file will be searched to satisfy the parts
+      requirements of the iCDB and to replace any duplicates found in the
+      Target PDB.
 
      The AllowAlphaRefDes status indicates that reference
       designators containing all alpha characters should be deleted
@@ -120,10 +121,10 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
           Part Numb: 70-0002 -> Vend Part: 70-0002 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
-          Part Numb: 70-0053 -> Vend Part: 70-0053 
+          Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
-          Part Numb: 70-0099 -> Vend Part: 70-0099 
+          Part Numb: 70-0100 -> Vend Part: 70-0100 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -146,8 +147,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 82 Symbols:
-              82  *******************************
+     Clustering 83 Symbols:
+              83  ********************************
               50  **************************************************
      Clustering is Complete
 
@@ -156,7 +157,7 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
      68 nets were found containing 280 pins
-     82 components were found
+     83 components were found
 
      Parsed netlist - Augmenting..
 

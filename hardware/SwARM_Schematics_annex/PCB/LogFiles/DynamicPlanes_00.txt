@@ -1,0 +1,143 @@
+
+                                PLANES PROCESSOR
+                                ----------------
+
+                       03:31 PM Friday, November 18, 2016
+Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
+
+
+
+
+    POSITIVE PLANE LAYER : 1
+
+        Plane Shapes Found On This Layer : 1
+        Plane Holes  Found On This Layer : 1
+
+
+        PLANE NET : GND
+
+            Total Plane Shapes For This Net   : 1
+            Use Route Border As Plane Shape   : NO
+            Create Actual Plane Shapes        : NO
+            Regenerate APS Connections Only   : NO
+            Generate Plane Data               : YES
+            Plane To Plane Clearance          : 0,3mm
+            Plane To Other Metal Clearance    : 0mm
+            Mounting Hole / Contour Clearance : 0,51mm
+            Minimum Plane Gap Distance        : NA
+            Use TieLeg Bridges If Needed      : YES
+            Use Padstack Thermal Definition   : YES
+            Default Via Tie Properties
+                Number Tie Legs               : BURIED
+            Default Thru Tie Properties
+                Tie Leg Width                 : 0,2mm
+                Thermal Clearance             : 0,15mm
+                Number Tie Legs               : FOUR
+                Tie Orientation               : PREFER 0
+            Default SMD Tie Properties
+                Tie Leg Width                 : 0,15mm
+                Thermal Clearance             : 0,15mm
+                Number Tie Legs               : FOUR
+                Tie Orientation               : PREFER 0
+            Eliminate Untied Areas            : Yes
+            Eliminate Single Tied Areas       : Yes
+            Orthogonal Data Only              : NO
+            Discard Areas By Dimension        : NO
+            Default Hatch Width               : 0,15mm
+            Default Hatch Distance            : 0,15mm
+            Default Hatch Pattern             : (x) Cross Hatch
+            Default Metal Percentage          : 100.00
+
+            Total Via  Pads Of This Net       : 0
+            Total Thru Pads Of This Net       : 1
+            Total SMD  Pads Of This Net       : 42
+
+            Plane Created : Layer 1 - Net GND
+
+                Via Pads In This Plane           : 0
+                Thru Pads In This Plane          : 1
+                SMD Pads In This Plane           : 28
+                     
+                Pads With 4/4 Tie Connections    : 28
+                Pads With 2/4 Tie Connections    : 1
+
+                Pads With 2 Tie Legs : 1
+                        Coordinates (mm) :
+                            1) X=20,59       Y=4,68          Pin: J5-5  
+
+
+    POSITIVE PLANE LAYER : 2
+
+        Plane Shapes Found On This Layer : 2
+        Plane Holes  Found On This Layer : 1
+
+
+        PLANE NET : GND
+
+            Total Plane Shapes For This Net   : 2
+            Use Route Border As Plane Shape   : NO
+            Create Actual Plane Shapes        : NO
+            Regenerate APS Connections Only   : NO
+            Generate Plane Data               : YES
+            Plane To Plane Clearance          : 0,3mm
+            Plane To Other Metal Clearance    : 0mm
+            Mounting Hole / Contour Clearance : 0,51mm
+            Minimum Plane Gap Distance        : NA
+            Use TieLeg Bridges If Needed      : YES
+            Use Padstack Thermal Definition   : YES
+            Default Via Tie Properties
+                Number Tie Legs               : BURIED
+            Default Thru Tie Properties
+                Tie Leg Width                 : 0,2mm
+                Thermal Clearance             : 0,15mm
+                Number Tie Legs               : FOUR
+                Tie Orientation               : PREFER 0
+            Default SMD Tie Properties
+                Tie Leg Width                 : 0,15mm
+                Thermal Clearance             : 0,15mm
+                Number Tie Legs               : FOUR
+                Tie Orientation               : PREFER 0
+            Eliminate Untied Areas            : Yes
+            Eliminate Single Tied Areas       : Yes
+            Orthogonal Data Only              : NO
+            Discard Areas By Dimension        : NO
+            Default Hatch Width               : 0,15mm
+            Default Hatch Distance            : 0,15mm
+            Default Hatch Pattern             : (x) Cross Hatch
+            Default Metal Percentage          : 100.00
+
+            Total Via  Pads Of This Net       : 0
+            Total Thru Pads Of This Net       : 1
+            Total SMD  Pads Of This Net       : 37
+
+            Plane Created : Layer 2 - Net GND
+
+                Via Pads In This Plane           : 0
+                Thru Pads In This Plane          : 1
+                SMD Pads In This Plane           : 36
+                     
+                Pads With 4/4 Tie Connections    : 25
+                Pads With 3/4 Tie Connections    : 1
+                Pads With 2/4 Tie Connections    : 8
+                Pads With 1/4 Tie Connections    : 3
+
+                Pads With 3 Tie Legs : 1
+                        Coordinates (mm) :
+                            1) X=3,68        Y=23,88         Pin: U2-6  
+
+                Pads With 2 Tie Legs : 8
+                        Coordinates (mm) :
+                            1) X=4,93        Y=24,83         Pin: U2-PAD  
+                            2) X=5,68        Y=25,78         Pin: U2-11  
+                            3) X=13,88       Y=32,2          Pin: U6-63  
+                            4) X=16,13       Y=23,45         Pin: U6-47  
+                            5) X=18,06       Y=1,05          Pin: U7-18  
+                            6) X=21,13       Y=34,45         Pin: U6-12  
+                            7) X=24,88       Y=25,7          Pin: U6-31  
+                            8) X=24,88       Y=32,2          Pin: U6-18  
+
+                Pads With 1 Tie Legs : 3
+                        Coordinates (mm) :
+                            1) X=17,41       Y=2,13          Pin: U7-20  
+                            2) X=20,71       Y=2,13          Pin: U7-11  
+                            3) X=20,71       Y=2,93          Pin: U7-9  

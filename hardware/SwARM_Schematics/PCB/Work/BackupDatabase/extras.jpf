@@ -3,9 +3,9 @@ _ExposedToExposedTop	0
 _ExposedToExposedBot	0
 _NPE_Round_0_6	-1
 _NPE_Virtual_Pin_Square	-1
-_NPE_Rectangle_1_5x3_1	-1
-_NPE_Rectangle_0_9x0_8	-1
 _NPE_Rectangle_1x0_6	-1
+_NPE_Rectangle_0_9x0_8	-1
+_NPE_Rectangle_1_5x3_1	-1
 _NPE_Rectangle_0_5x0_28	-1
 _NPE_Rectangle_0_6x1	-1
 _NPE_Rectangle_0_9x1_6	-1
@@ -23,9 +23,11 @@ _NPE_Rectangle_0_8x3_1	-1
 _NPE_Rectangle_1x1_6	-1
 _NPE_Radius_Rect_1_7x1_54_Radius_0_15	-1
 _NPE_Radius_Rect_0_9x0_2_Radius_0_075	-1
-_NPE_Round_1_6	-1
 _NPE_Round_1_5	-1
-_NPE_Square_1_6	-1
+_NPE_Round_1_6	-1
 _NPE_Square_1_5	-1
+_NPE_Square_1_6	-1
 _NPE_PAD1_MICROMATCH	-1
 _NPE_WSON12_EPAD	-1
+_NPE_Round_1_7	-1
+_NPE_Square_1_7	-1

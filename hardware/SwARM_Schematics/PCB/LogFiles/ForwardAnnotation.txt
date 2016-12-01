@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       06:03 PM Monday, November 28, 2016
+                      09:26 PM Thursday, December 01, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -63,10 +63,10 @@ Version:  01.01.00
           Part Numb: 70-0002 -> Vend Part: 70-0002 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
-          Part Numb: 70-0053 -> Vend Part: 70-0053 
+          Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
-          Part Numb: 70-0099 -> Vend Part: 70-0099 
+          Part Numb: 70-0100 -> Vend Part: 70-0100 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -90,8 +90,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 82 Symbols:
-              82  *******************************
+     Clustering 83 Symbols:
+              83  ********************************
               50  **************************************************
      Clustering is Complete
 
@@ -100,7 +100,7 @@ Version:  01.01.00
 
 
      68 nets were found containing 280 pins
-     82 components were found
+     83 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -113,7 +113,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       06:03 PM Monday, November 28, 2016
+                      09:26 PM Thursday, December 01, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -126,7 +126,11 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     Netload completed successfully with 0 warning(s).
+     WARNING:  The "MOL22-05-3031" cell used by "J7" in the Layout is not
+      valid for a "70-0100" Part Number.
+     INFO: Cell "MOL22-05-3031" is being replaced by cell "MOL22-04-1031".
+
+     Netload completed successfully with 1 warning(s).
      
      Back Annotating...
 
@@ -157,19 +161,9 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
-	Assigned net DWM_IRQ to a via which was originally on net DWM_WAKEUP.
-	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
-	Assigned net DWM_IRQ to a via which was originally on net DWM_WAKEUP.
-	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
-	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
-	Assigned net DWM_WAKEUP to a via which was originally on net DWM_IRQ.
-	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
-	Assigned net DWM_WAKEUP to a via which was originally on net DWM_IRQ.
-	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 10 reassignments of nets.
+There were 0 reassignments of nets.
 There were 0 traces broken back.
 There were 0 nets removed from the Layout Design.

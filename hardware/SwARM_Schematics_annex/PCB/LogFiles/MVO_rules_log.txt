@@ -1,0 +1,6 @@
+
+Can not open Multiple Via Rules file. File doesn't exist:
+       'C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\Config\MultiViaRules.txt'
+
+Can not open Multiple Via Rules file. File doesn't exist:
+       'C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\Layout\MVO_Rules.txt'
