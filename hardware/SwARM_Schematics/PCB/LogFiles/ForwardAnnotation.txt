@@ -2,8 +2,8 @@
                                Forward Annotation
                                ------------------
 
-                       02:18 AM Tuesday, November 22, 2016
-          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+                       06:03 PM Monday, November 28, 2016
+Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
 Version:  01.01.00
@@ -23,16 +23,17 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 43
+     Number of Part Numbers: 44
           Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
-          Part Numb: 00-0086 -> Vend Part: 00-0086 
           Part Numb: 00-0090 -> Vend Part: 00-0090 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 00-0100 -> Vend Part: 00-0100 
+          Part Numb: 00-0110 -> Vend Part: 00-0110 
           Part Numb: 00-0122 -> Vend Part: 00-0122 
           Part Numb: 00-0129 -> Vend Part: 00-0129 
+          Part Numb: 01-0289 -> Vend Part: 01-0289 
           Part Numb: 01-0393 -> Vend Part: 01-0393 
           Part Numb: 01-0431 -> Vend Part: 01-0431 
           Part Numb: 01-0435 -> Vend Part: 01-0435 
@@ -62,10 +63,10 @@ Version:  01.01.00
           Part Numb: 70-0002 -> Vend Part: 70-0002 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
+          Part Numb: 70-0053 -> Vend Part: 70-0053 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0099 -> Vend Part: 70-0099 
-          Part Numb: 80-0067 -> Vend Part: 80-0067 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -89,8 +90,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 87 Symbols:
-              87  ************************************
+     Clustering 82 Symbols:
+              82  *******************************
               50  **************************************************
      Clustering is Complete
 
@@ -98,8 +99,8 @@ Version:  01.01.00
 
 
 
-     76 nets were found containing 309 pins
-     87 components were found
+     68 nets were found containing 280 pins
+     82 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -112,8 +113,8 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       02:18 AM Tuesday, November 22, 2016
-          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+                       06:03 PM Monday, November 28, 2016
+Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
 Version:  02.11.12
@@ -125,69 +126,7 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-	WARNING:  "C3" is being forward annotated to "C6".
-
-	WARNING:  The old version of "C6" is being removed from the Layout.
-
-	WARNING:  "U5" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R28" is being removed from the Layout since it is no longer in the schematic.
-
-     WARNING:  The "IHLP-2525" cell used by "L1" in the Layout is not
-      valid for a "50-0038" Part Number.
-     INFO: Cell "IHLP-2525" is being replaced by cell "XAL50".
-
-	WARNING:  "C18" is being removed from the Layout since it is no longer in the schematic.
-
-     WARNING:  The "C0603" cell used by "C13" in the Layout is not
-      valid for a "10-0111" Part Number.
-     INFO: Cell "C0603" is being replaced by cell "C0805".
-
-     WARNING:  The "C0603" cell used by "C10" in the Layout is not
-      valid for a "10-0111" Part Number.
-     INFO: Cell "C0603" is being replaced by cell "C0805".
-
-     WARNING:  The "SMC" cell used by "D3" in Layout does not
-      not match the "SMA" cell specified in the schematic.
-
-     WARNING:  The "SMC" cell used by "D3" in the Layout is not
-      valid for a "20-0064" Part Number.
-     INFO: Cell "SMC" is being replaced by cell "SMA".
-
-	WARNING:  "R24" is being removed from the Layout since it is no longer in the schematic.
-
-     WARNING:  The "R0603" cell used by "R19" in Layout does not
-      not match the "R0402" cell specified in the schematic.
-
-     WARNING:  The "R0603" cell used by "R19" in the Layout is not
-      valid for a "02-0098" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R0402".
-
-	WARNING:  "C25" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C29" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C27" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C23" is being removed from the Layout since it is no longer in the schematic.
-
-     WARNING:  The "R0603" cell used by "R20" in Layout does not
-      not match the "R0402" cell specified in the schematic.
-
-     WARNING:  The "R0603" cell used by "R20" in the Layout is not
-      valid for a "02-0098" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R0402".
-
-     WARNING:  The "IHLP-2525" cell used by "L2" in the Layout is not
-      valid for a "50-0038" Part Number.
-     INFO: Cell "IHLP-2525" is being replaced by cell "XAL50".
-
-     The following 2 components have not been placed:
-
-        C3
-        U4
-
-     Netload completed successfully with 20 warning(s).
+     Netload completed successfully with 0 warning(s).
      
      Back Annotating...
 
@@ -218,22 +157,19 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-
-Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG050074, which has no pins, from the Layout Design.
-	Deleted net XSIG050075, which has no pins, from the Layout Design.
-	Deleted net XSIG050117, which has no pins, from the Layout Design.
-	Deleted net XSIG030128, which has no pins, from the Layout Design.
-	Deleted net XSIG030130, which has no pins, from the Layout Design.
-	Deleted net XSIG030132, which has no pins, from the Layout Design.
-	Deleted net XSIG030136, which has no pins, from the Layout Design.
-	Deleted net XSIG030137, which has no pins, from the Layout Design.
-	Deleted net XSIG030139, which has no pins, from the Layout Design.
-	Deleted net XSIG030143, which has no pins, from the Layout Design.
-	Deleted net XSIG030145, which has no pins, from the Layout Design.
+	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a via which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a via which was originally on net DWM_WAKEUP.
+	Assigned net DWM_IRQ to a trace which was originally on net DWM_WAKEUP.
+	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a via which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a via which was originally on net DWM_IRQ.
+	Assigned net DWM_WAKEUP to a trace which was originally on net DWM_IRQ.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 0 reassignments of nets.
+There were 10 reassignments of nets.
 There were 0 traces broken back.
-There were 11 nets removed from the Layout Design.
+There were 0 nets removed from the Layout Design.

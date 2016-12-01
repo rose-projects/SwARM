@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       02:17 AM Tuesday, November 22, 2016
-     Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj
+                       06:03 PM Monday, November 28, 2016
+Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb".
+     The Common Database is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -80,16 +80,17 @@
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 43
+     Number of Part Numbers: 44
           Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
-          Part Numb: 00-0086 -> Vend Part: 00-0086 
           Part Numb: 00-0090 -> Vend Part: 00-0090 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 00-0100 -> Vend Part: 00-0100 
+          Part Numb: 00-0110 -> Vend Part: 00-0110 
           Part Numb: 00-0122 -> Vend Part: 00-0122 
           Part Numb: 00-0129 -> Vend Part: 00-0129 
+          Part Numb: 01-0289 -> Vend Part: 01-0289 
           Part Numb: 01-0393 -> Vend Part: 01-0393 
           Part Numb: 01-0431 -> Vend Part: 01-0431 
           Part Numb: 01-0435 -> Vend Part: 01-0435 
@@ -119,10 +120,10 @@
           Part Numb: 70-0002 -> Vend Part: 70-0002 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
+          Part Numb: 70-0053 -> Vend Part: 70-0053 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0099 -> Vend Part: 70-0099 
-          Part Numb: 80-0067 -> Vend Part: 80-0067 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -145,8 +146,8 @@
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 87 Symbols:
-              87  ************************************
+     Clustering 82 Symbols:
+              82  *******************************
               50  **************************************************
      Clustering is Complete
 
@@ -154,8 +155,8 @@
 
 
 
-     76 nets were found containing 309 pins
-     87 components were found
+     68 nets were found containing 280 pins
+     82 components were found
 
      Parsed netlist - Augmenting..
 
