@@ -1,7 +1,7 @@
 /* Detect the shape of the ballon in a picture:
  * - convert the picture to greyscale
- * - clean the picture through morphological opening and closing
- * - detect white shapes
+ * - use thresholding to get a binary picture
+ * - clean picture with morphological operations
  */
 
 #include <stdio.h>
@@ -10,7 +10,9 @@
 using namespace cv;
 
 enum {
-	STRUCT_ELEM_SIZE = 5
+	MAX_VAL = 255,		/* maximum value for an 8bits pixel */
+	THRESH = 190,		/* threshold value */
+	STRUCT_ELEM_S = 3	/* structuring element size */
 };
 
 int
@@ -31,16 +33,17 @@ main(int argc, char *argv[])
 	}
 
 	cvtColor(pic, pic, COLOR_BGR2GRAY);
+	threshold(pic, pic, THRESH, MAX_VAL, THRESH_BINARY);
 
-	/* Structuring element for morphological operations */
-	struct_elem = getStructuringElement(
-		MORPH_ELLIPSE, Size(STRUCT_ELEM_SIZE, STRUCT_ELEM_SIZE));
+	/* morphological structuring element: circle */
+	struct_elem = getStructuringElement(MORPH_ELLIPSE,
+		Size(STRUCT_ELEM_S, STRUCT_ELEM_S));
 
-	/* morphological opening: remove small objects */
+	/* morphological opening: remove small spots */
 	erode(pic, pic, struct_elem);
 	dilate(pic, pic, struct_elem);
 
-	/* morphological closing: fill in small holes */
+	/* morphological closing: fill small holes */
 	dilate(pic, pic, struct_elem);
 	erode(pic, pic, struct_elem);
 
