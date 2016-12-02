@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                      09:26 PM Thursday, December 01, 2016
+                       07:05 PM Friday, December 02, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -66,7 +66,7 @@ Version:  01.01.00
           Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
-          Part Numb: 70-0100 -> Vend Part: 70-0100 
+          Part Numb: 70-0099 -> Vend Part: 70-0099 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -113,7 +113,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      09:26 PM Thursday, December 01, 2016
+                       07:05 PM Friday, December 02, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -126,9 +126,9 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     WARNING:  The "MOL22-05-3031" cell used by "J7" in the Layout is not
-      valid for a "70-0100" Part Number.
-     INFO: Cell "MOL22-05-3031" is being replaced by cell "MOL22-04-1031".
+     WARNING:  The "MOL22-04-1031" cell used by "J7" in the Layout is not
+      valid for a "70-0099" Part Number.
+     INFO: Cell "MOL22-04-1031" is being replaced by cell "MOL22-05-3031".
 
      Netload completed successfully with 1 warning(s).
      

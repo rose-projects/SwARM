@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  1-Dec-2016  21:55
+Schematic unused pins from : Packager  2-Dec-2016  19:05
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -52,6 +52,6 @@ Schematic unused pins from : Packager  1-Dec-2016  21:55
  Part 70-0065                          |
   J5                                   | (P)  4
  Part 70-0081                          |
- Part 70-0100                          |
+ Part 70-0099                          |
   J7                                   | (P)  2
  Part 81-0013                          |
