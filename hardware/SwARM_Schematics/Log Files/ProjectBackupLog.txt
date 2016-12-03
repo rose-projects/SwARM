@@ -44,3 +44,6 @@
 [2016-12-02 18.42.28] Successfully created [AutoSave] backup [2016-12-02 18.42.28 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
 [2016-12-02 18.42.28] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-26 08.38.49 - auto.zip].
 [2016-12-02 18.42.28] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-26 08.38.49 - auto.zip] removed.
+[2016-12-03 16.29.47] Successfully created [AutoSave] backup [2016-12-03 16.29.47 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-03 16.29.47] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-28 18.05.20 - auto.zip].
+[2016-12-03 16.29.47] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-28 18.05.20 - auto.zip] removed.

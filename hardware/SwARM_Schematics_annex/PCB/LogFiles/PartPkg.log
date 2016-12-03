@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                      09:54 PM Thursday, December 01, 2016
+                      05:10 PM Saturday, December 03, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM_Schematics.prj
 
 
@@ -80,9 +80,10 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 3
+     Number of Part Numbers: 4
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
+          Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 80-0067 -> Vend Part: 80-0067 
 
      Number of Part Names: 0
@@ -105,16 +106,16 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 3 Symbols:
-               3  **
+     Clustering 5 Symbols:
+               5  ****
      Clustering is Complete
 
      Packager Assignments successfully completed
 
 
 
-     8 nets were found containing 18 pins
-     3 components were found
+     8 nets were found containing 26 pins
+     5 components were found
 
      Parsed netlist - Augmenting..
 

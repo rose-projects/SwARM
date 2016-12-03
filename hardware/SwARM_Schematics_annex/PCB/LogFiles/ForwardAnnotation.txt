@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                      09:54 PM Thursday, December 01, 2016
+                      05:10 PM Saturday, December 03, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\PCB.pcb
 
 
@@ -23,9 +23,10 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 3
+     Number of Part Numbers: 4
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
+          Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 80-0067 -> Vend Part: 80-0067 
 
      Number of Part Names: 0
@@ -49,16 +50,16 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 3 Symbols:
-               3  **
+     Clustering 5 Symbols:
+               5  ****
      Clustering is Complete
 
      Packager Assignments successfully completed
 
 
 
-     8 nets were found containing 18 pins
-     3 components were found
+     8 nets were found containing 26 pins
+     5 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -71,7 +72,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      09:54 PM Thursday, December 01, 2016
+                      05:10 PM Saturday, December 03, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\PCB.pcb
 
 
@@ -84,177 +85,7 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-	WARNING:  "C9" is being forward annotated to "C1".
-
-	WARNING:  "C18" is being forward annotated to "C2".
-
-	WARNING:  "R9" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R8" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  The old version of "C1" is being removed from the Layout.
-
-	WARNING:  "U3" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "D1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R6" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R7" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R3" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "D2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J8" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J4" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R31" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q8" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q9" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R32" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C15" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J5" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "U7" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C7" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C21" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C11" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R10" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R4" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "QZ1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C19" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C20" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "U6" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C14" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R14" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C16" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C24" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C17" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J9" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J6" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R30" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  The old version of "C2" is being removed from the Layout.
-
-	WARNING:  "Q5" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R15" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R11" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J10" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J11" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "L2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R26" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C26" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R23" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R25" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "U8" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C13" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C5" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R29" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R27" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C31" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C32" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R18" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "L1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R19" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C3" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R22" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C8" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R20" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "D3" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C10" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "U4" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "U2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J7" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J3" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R12" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q4" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R13" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q3" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C6" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R5" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C4" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C12" is being removed from the Layout since it is no longer in the schematic.
-
-     The following 3 components have not been placed:
-
-        C1
-        C2
-        U1
-
-     Netload completed successfully with 82 warning(s).
+     Netload completed successfully with 0 warning(s).
      
      Back Annotating...
 
@@ -286,70 +117,8 @@ Version:  02.11.12
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
 
-Some nets were completely deleted from the Layout Design....
-	Deleted net ENABLE_MTR_L, which has no pins, from the Layout Design.
-	Deleted net ENABLE_MTR_R, which has no pins, from the Layout Design.
-	Deleted net INFRA_LED_L, which has no pins, from the Layout Design.
-	Deleted net INFRA_LED_R, which has no pins, from the Layout Design.
-	Deleted net INFRA_TRA_L, which has no pins, from the Layout Design.
-	Deleted net INFRA_TRA_R, which has no pins, from the Layout Design.
-	Deleted net IR_LED, which has no pins, from the Layout Design.
-	Deleted net MPU_INT, which has no pins, from the Layout Design.
-	Deleted net MPU_I2C_SCL, which has no pins, from the Layout Design.
-	Deleted net MPU_I2C_SDA, which has no pins, from the Layout Design.
-	Deleted net MTR_L_1, which has no pins, from the Layout Design.
-	Deleted net MTR_L_2, which has no pins, from the Layout Design.
-	Deleted net MTR_R_1, which has no pins, from the Layout Design.
-	Deleted net MTR_R_2, which has no pins, from the Layout Design.
-	Deleted net PHASE_MTR_L, which has no pins, from the Layout Design.
-	Deleted net PHASE_MTR_R, which has no pins, from the Layout Design.
-	Deleted net SPI_LED_CK, which has no pins, from the Layout Design.
-	Deleted net SPI_LED_DO, which has no pins, from the Layout Design.
-	Deleted net SWCLK, which has no pins, from the Layout Design.
-	Deleted net SWDAT, which has no pins, from the Layout Design.
-	Deleted net USB_DM, which has no pins, from the Layout Design.
-	Deleted net USB_DP, which has no pins, from the Layout Design.
-	Deleted net XSIG020140, which has no pins, from the Layout Design.
-	Deleted net XSIG020142, which has no pins, from the Layout Design.
-	Deleted net XSIG030001, which has no pins, from the Layout Design.
-	Deleted net XSIG030002, which has no pins, from the Layout Design.
-	Deleted net XSIG030005, which has no pins, from the Layout Design.
-	Deleted net XSIG060006, which has no pins, from the Layout Design.
-	Deleted net IR_LED_ADAPTED, which has no pins, from the Layout Design.
-	Deleted net LED_CK_5V, which has no pins, from the Layout Design.
-	Deleted net LED_DO_5V, which has no pins, from the Layout Design.
-	Deleted net MCU_nSHUTDOWN, which has no pins, from the Layout Design.
-	Deleted net VCC5, which has no pins, from the Layout Design.
-	Deleted net XSIG020157, which has no pins, from the Layout Design.
-	Deleted net XSIG030053, which has no pins, from the Layout Design.
-	Deleted net XSIG030102, which has no pins, from the Layout Design.
-	Deleted net VBAT_PROBE, which has no pins, from the Layout Design.
-	Deleted net XSIG030141, which has no pins, from the Layout Design.
-	Deleted net XSIG030142, which has no pins, from the Layout Design.
-	Deleted net XSIG030147, which has no pins, from the Layout Design.
-	Deleted net XSIG030149, which has no pins, from the Layout Design.
-	Deleted net XSIG030154, which has no pins, from the Layout Design.
-	Deleted net XSIG030155, which has no pins, from the Layout Design.
-	Deleted net XSIG030156, which has no pins, from the Layout Design.
-	Deleted net XSIG030157, which has no pins, from the Layout Design.
-	Deleted net IR_LED_L, which has no pins, from the Layout Design.
-	Deleted net IR_LED_L_ADAPTED, which has no pins, from the Layout Design.
-	Deleted net IR_LED_R, which has no pins, from the Layout Design.
-	Deleted net IR_LED_R_ADAPTED, which has no pins, from the Layout Design.
-	Deleted net XSIG020166, which has no pins, from the Layout Design.
-	Deleted net XSIG020170, which has no pins, from the Layout Design.
-	Deleted net XSIG011020, which has no pins, from the Layout Design.
-	Deleted net XSIG011022, which has no pins, from the Layout Design.
-	Deleted net XSIG011041, which has no pins, from the Layout Design.
-	Deleted net XSIG030170, which has no pins, from the Layout Design.
-	Deleted net XSIG030172, which has no pins, from the Layout Design.
-	Deleted net XSIG030175, which has no pins, from the Layout Design.
-	Deleted net XSIG030189, which has no pins, from the Layout Design.
-	Deleted net XSIG030197, which has no pins, from the Layout Design.
-	Deleted net XSIG030198, which has no pins, from the Layout Design.
-
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 60 nets removed from the Layout Design.
+There were 0 nets removed from the Layout Design.
