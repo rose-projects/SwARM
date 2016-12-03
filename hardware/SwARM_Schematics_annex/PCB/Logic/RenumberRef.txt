@@ -1939,3 +1939,18 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\P
 ;------------------------------- --------------------------------
 ; STARTING AN IMPLICIT FORWARD ANNOTATION
 ;------------------------------- --------------------------------
+
+;------------------------------- --------------------------------
+; STARTING AN EXPLICIT FORWARD ANNOTATION
+;------------------------------- --------------------------------
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                      09:12 PM Saturday, December 03, 2016
+Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\PCB.pcb
+
+
+;------------------------------- --------------------------------
+; STARTING AN IMPLICIT FORWARD ANNOTATION
+;------------------------------- --------------------------------

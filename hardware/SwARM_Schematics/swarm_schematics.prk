@@ -23,7 +23,7 @@ KEY UpdateJobPrefsDB "CAD"
 KEY UpdateNetClassDB "Sync"
 KEY UpdateNetPropsDB "Sync"
 KEY UseCES "1"
-KEY VBPCBForwardAnno "1"
+KEY VBPCBForwardAnno "0"
 ENDSECTION
 SECTION ACEPlusFilePaths
 LIST Fonts

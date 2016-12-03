@@ -1,8 +1,8 @@
 _OptimizeOddAngleObstacles	-1
 _ExposedToExposedTop	0
 _ExposedToExposedBot	0
-_NPE_Virtual_Pin_Square	-1
 _NPE_Round_0_6	-1
+_NPE_Virtual_Pin_Square	-1
 _NPE_Rectangle_1x0_6	-1
 _NPE_Rectangle_0_8x3_1	-1
 _NPE_Rectangle_0_9x0_8	-1

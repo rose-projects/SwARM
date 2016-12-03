@@ -2,13 +2,13 @@
                                     Packager
                                     --------
 
-                      05:11 PM Saturday, December 03, 2016
+                      09:12 PM Saturday, December 03, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM_Schematics.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\package.exe -Replace "-jC:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM_Schematics.prj""
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM_Schematics.prj" -CleanBuild -NoFill "
 
      The Common Database is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\Default\default.icdb".
 
@@ -23,9 +23,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM
      The Disable Repackage status indicates that 
       Repackaging should be allowed.
 
-     The PDBs listed in the project file will be searched to satisfy the parts
-      requirements of the iCDB and to replace any duplicates found in the
-      Target PDB.
+     A new Target PDB will be created from the Central Library to satisfy the parts
+      requirements of the iCDB.
 
      The AllowAlphaRefDes status indicates that reference
       designators containing all alpha characters should be deleted

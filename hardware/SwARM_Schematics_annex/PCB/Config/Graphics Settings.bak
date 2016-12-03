@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 12/03/16 16:41:35
+! Created 12/03/16 17:11:36
 !
 
 .Global_Constants 11 2
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x6e756f52	! RGB( 82,111,117)
+    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x6e756f52	! RGB( 82,111,117)
+    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x00000000	! top     RGB(  0,  0,  0)
-	0x0005b8d8	! bottom  RGB(216,184,  5)
+	0x0000008a	! top     RGB(138,  0,  0)
+	0x00000035	! bottom  RGB( 53,  0,  0)
     )
     ..Bondwire_Color (
-	0x00198ef8	! top     RGB(248,142, 25)
-	0x00000000	! bottom  RGB(  0,  0,  0)
+	0x00000031	! top     RGB( 49,  0,  0)
+	0x00000005	! bottom  RGB(  5,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1734,8 +1734,8 @@
 
 .view "PCB"
     ..extrema
-	(-1203788,-9773810)		! (xmin, ymin)
-	(38328852,21305574)		! (xmax, ymax)
+	(-36234359,-16000778)		! (xmin, ymin)
+	(62053921,61270540)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
