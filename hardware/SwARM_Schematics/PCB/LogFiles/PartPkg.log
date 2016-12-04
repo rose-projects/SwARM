@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                      09:41 PM Saturday, December 03, 2016
+                       07:58 PM Sunday, December 04, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
 
 
@@ -146,8 +146,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 83 Symbols:
-              83  ********************************
+     Clustering 84 Symbols:
+              84  *********************************
               50  **************************************************
      Clustering is Complete
 
@@ -155,8 +155,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
 
-     68 nets were found containing 280 pins
-     83 components were found
+     68 nets were found containing 282 pins
+     84 components were found
 
      Parsed netlist - Augmenting..
 

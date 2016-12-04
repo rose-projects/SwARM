@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                      09:41 PM Saturday, December 03, 2016
+                       07:58 PM Sunday, December 04, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -90,8 +90,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 83 Symbols:
-              83  ********************************
+     Clustering 84 Symbols:
+              84  *********************************
               50  **************************************************
      Clustering is Complete
 
@@ -99,8 +99,8 @@ Version:  01.01.00
 
 
 
-     68 nets were found containing 280 pins
-     83 components were found
+     68 nets were found containing 282 pins
+     84 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -113,7 +113,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      09:41 PM Saturday, December 03, 2016
+                       07:58 PM Sunday, December 04, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
 
 
@@ -157,11 +157,14 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-	Assigned net GND to a trace which was originally on net DWM_SPI_MOSI.
-	Broke back a trace from the point (18921632, 40689658).
+	Assigned net DWM_SPI_CSn to a trace which was originally on net VCC.
+	Broke back a trace from the point (6170798, 48414340).
+	Assigned net VCC to a trace which was originally on net DWM_SPI_CSn.
+	Assigned net VCC to a trace which was originally on net DWM_SPI_CSn.
+	Broke back a trace from the point (18396632, 40472195).
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 1 reassignments of nets.
-There were 1 traces broken back.
+There were 3 reassignments of nets.
+There were 2 traces broken back.
 There were 0 nets removed from the Layout Design.

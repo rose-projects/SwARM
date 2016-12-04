@@ -2,17 +2,13 @@
                                 Autosave Log File
                                 -----------------
 
-                      09:12 PM Saturday, December 03, 2016
+                       08:15 PM Sunday, December 04, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\PCB.pcb
 
-Autosave pending at 21:17:27 Sat  Attempting...
-Autosave completed successfully.  21:17:27 Sat
-Autosave pending at 21:22:27 Sat  Attempting...
-Autosave completed successfully.  21:22:27 Sat
 
                                Autosave log closed
                                -------------------
 
-                      09:28 PM Saturday, December 03, 2016
+                       08:16 PM Sunday, December 04, 2016
 Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\PCB.pcb
 
