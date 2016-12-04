@@ -5,6 +5,13 @@
 #define TX_ANT_DLY 16393
 #define RX_ANT_DLY 16393
 
+// Speed of light in air, in metres per second
+#define SPEED_OF_LIGHT 299702547
+
+/* UWB microsecond (uus) to device time unit (dtu, around 15.65 ps) conversion factor.
+ * 1 uus = 512 / 499.2 us and 1 us = 499.2 * 128 dtu. */
+#define UUS_TO_DWT_TIME 65536
+
 /* returns RX timestamp (40bit wide) */
 #define getRXtimestamp() (((uint64_t) dwt_readrxtimestamplo32()) | (((uint64_t) dwt_readrxtimestamphi32()) << 8))
 
@@ -13,6 +20,12 @@ int decaInit(void);
 
 /* switch SPI speed to 10.4MHz*/
 void useFastSPI(void);
+
+/* change radio channel used for transmissions */
+#define MB_CHANNEL 2
+#define SB1_CHANNEL 3
+#define SB2_CHANNEL 4
+void switchToChannel(int channel);
 
 /* send a message :
  * 		size : the size of the message in bytes
@@ -26,10 +39,11 @@ int decaSend(int size, uint8_t *buffer, int ranging, int flags);
 /* activate receiver and wait for a message
  * 		maxSize : the maximum length of the message to receive
  * 		buffer : buffer to write the message in
- *		noRXenable : 1 for no RX enable, useful when it will be enabled automatically after a TX
+ *		flag : DWT_START_RX_IMMEDIATE, DWT_START_RX_DELAYED or NO_RX_ENABLE
  * returns number of bytes read for successfully received message,
  *  	-1 for receive error, -2 for timeout, -3 for message too long
  */
-int decaReceive(int maxSize, uint8_t *buffer, int noRXenable);
+#define NO_RX_ENABLE -1
+int decaReceive(int maxSize, uint8_t *buffer, int flag);
 
 #endif

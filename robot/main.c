@@ -100,7 +100,6 @@ static void rangingTask(void) {
     }
 }
 
-
 static void beaconTask(void) {
 	uint64_t rx_ts, resp_msg;
 

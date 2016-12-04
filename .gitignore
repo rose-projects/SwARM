@@ -6,5 +6,7 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 *~
-soft/build
-soft/.dep
+beacon/build
+beacon/.dep
+robot/build
+robot/.dep

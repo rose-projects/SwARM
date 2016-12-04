@@ -92,7 +92,7 @@ include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f4xx.mk
 # HAL-OSAL files (optional).
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/ports/STM32/STM32F4xx/platform.mk
-include ./board_P407_JTAG/board.mk
+include ../shared/board_P407_JTAG/board.mk
 include $(CHIBIOS)/os/hal/osal/rt/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
@@ -103,7 +103,9 @@ include $(CHIBIOS)/test/rt/test.mk
 # Define linker script file here
 LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
-vpath %.c decadriver/
+vpath %.c ../shared/decadriver/
+vpath %.c ../shared/
+
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -118,7 +120,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
-       main.c deca-platform.c usb-config.c deca_device.c deca_params_init.c exti-config.c deca-functions.c
+       main.c deca-platform.c usb-config.c deca_device.c deca_params_init.c exti-config.c deca-functions.c radio-comms.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

@@ -45,6 +45,7 @@ void initDecaPlatform(void) {
 void useFastSPI(void) {
 	spiStart(&SPID1, &spiconfig);
 }
+
 int writetospi(uint16 headerLength, const uint8 *headerBuffer, uint32 bodylength, const uint8 *bodyBuffer) {
 	spiAcquireBus(&SPID1);              // Acquire ownership of the bus.
     spiSelect(&SPID1);                  // Slave Select assertion.
