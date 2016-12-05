@@ -11,6 +11,7 @@
 This branch contains picture analyse part and robot detection with camera.
 It will be merged with the main project.
 
-To build the OpenCV lib, execute build/build_opencv. Note: requires sudo.
+To build the OpenCV lib, execute build/build_opencv. Note: requires sudo and
+cmake.
 
-To build a project, go to build/<project_name> and execute the build script.
+To build the project, execute build/build.
