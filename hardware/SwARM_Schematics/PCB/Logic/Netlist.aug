@@ -3,12 +3,12 @@
 %Prior=1
 
 %page=Schematic1
-\DWM_IRQ\    \J12\-\4\ \U6\-\37\ 
-\DWM_SPI_CLK\    \J12\-\3\ \U6\-\34\ 
-\DWM_SPI_CSn\    \J11\-\2\ \U6\-\33\ 
-\DWM_SPI_MISO\    \J12\-\2\ \U6\-\35\ 
-\DWM_SPI_MOSI\    \J12\-\1\ \U6\-\36\ 
-\DWM_WAKEUP\    \J11\-\1\ \U6\-\38\ 
+\DWM_IRQ\    \J12\-\1\ \U6\-\54\ 
+\DWM_SPI_CLK\    \J12\-\2\ \U6\-\51\ 
+\DWM_SPI_CSn\    \J11\-\2\ \U6\-\50\ 
+\DWM_SPI_MISO\    \J12\-\3\ \U6\-\52\ 
+\DWM_SPI_MOSI\    \J12\-\4\ \U6\-\53\ 
+\DWM_WAKEUP\    \J11\-\1\ \U6\-\55\ 
 \ENABLE_MTR_L\    \U2\-\9\ \U6\-\17\ 
 \ENABLE_MTR_R\    \U2\-\7\ \U6\-\22\ 
 \GND\    \C1\-\2\ \C2\-\2\ \C3\-\2\ \C4\-\2\ \C5\-\2\ \C6\-\2\ \C7\-\2\ 
@@ -26,7 +26,7 @@
 \INFRA_LED_R\    \R8\-\2\ \U6\-\20\ 
 \INFRA_TRA_L\    \J1\-\3\ \R3\-\2\ \U6\-\23\ 
 \INFRA_TRA_R\    \J2\-\3\ \R5\-\2\ \U6\-\26\ 
-\IR_LED\    \Q4\-\1\ \U6\-\52\ 
+\IR_LED\    \Q4\-\1\ \U6\-\30\ 
 \IR_LED_ADAPTED\    \J3\-\5\ \R13\-\1\ 
 \IR_LED_L\    \Q8\-\1\ \U6\-\8\ 
 \IR_LED_L_ADAPTED\    \J9\-\1\ \R31\-\1\ 
@@ -43,8 +43,8 @@
 \MTR_R_2\    \J2\-\2\ \U2\-\5\ 
 \PHASE_MTR_L\    \U2\-\10\ \U6\-\16\ 
 \PHASE_MTR_R\    \U2\-\8\ \U6\-\21\ 
-\SPI_LED_CK\    \Q3\-\1\ \U6\-\51\ 
-\SPI_LED_DO\    \Q1\-\1\ \U6\-\53\ 
+\SPI_LED_CK\    \Q3\-\1\ \U6\-\34\ 
+\SPI_LED_DO\    \Q1\-\1\ \U6\-\36\ 
 \SWCLK\    \J4\-\4\ \U6\-\49\ 
 \SWDAT\    \J4\-\2\ \U6\-\46\ 
 \USB_DM\    \J5\-\3\ \U6\-\44\ 

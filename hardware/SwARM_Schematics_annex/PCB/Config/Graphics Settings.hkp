@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 12/04/16 20:16:21
+! Created 12/05/16 18:42:24
 !
 
 .Global_Constants 11 2
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(441, 12) (1453,710)	! ..rcNormalPosition
+	(649, 51) (1661,749)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x00000071	! RGB(113,  0,  0)
+    ..Cavity_Color 0x00000084	! RGB(132,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x00000079	! RGB(121,  0,  0)
+    ..Milling_Color 0x0005b8d8	! RGB(216,184,  5)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x00000000	! top     RGB(  0,  0,  0)
-	0x00000000	! bottom  RGB(  0,  0,  0)
+	0xffe60f60	! top     RGB( 96, 15,230)
+	0xfffa4728	! bottom  RGB( 40, 71,250)
     )
     ..Bondwire_Color (
-	0x00000000	! top     RGB(  0,  0,  0)
-	0x00000000	! bottom  RGB(  0,  0,  0)
+	0xffef3720	! top     RGB( 32, 55,239)
+	0xfffe17b8	! bottom  RGB(184, 23,254)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1734,8 +1734,8 @@
 
 .view "PCB"
     ..extrema
-	(-17818975,-6320877)		! (xmin, ymin)
-	(64705061,27532929)		! (xmax, ymax)
+	(-32511239,-8579989)		! (xmin, ymin)
+	(67143753,32301443)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
@@ -1989,10 +1989,10 @@
                                          True 	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       False	! top
-                                         False	! bottom
-    ..Bondwire_On                        False	! top
-                                         False	! bottom
+    ..Diepinpad_On                       True 	! top
+                                         True 	! bottom
+    ..Bondwire_On                        True 	! top
+                                         True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top
