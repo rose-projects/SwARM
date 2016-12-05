@@ -1,29 +1,37 @@
 /* Detect the shape of the ballon in a video:
  * - convert the frame to greyscale
  * - use thresholding to get a binary frame
- * - clean frame with morphological operations
+ * - clean frame with bilateral filtering (change for gaussian if too slow)
+ * - get the center of circles
  */
 
 #include <stdio.h>
 #include "opencv2/opencv.hpp"
 
+using namespace std;
 using namespace cv;
 
 enum {
-	MAX_VAL = 255,		/* maximum value for an 8bits pixel */
-	THRESH = 190,		/* threshold value */
-	STRUCT_ELEM_S = 3	/* structuring element size */
+	PIX_MAX_VAL = 255, /* maximum value for an 8bits pixel */
+	SIGMA_COLOUR = 20,
+	SIGMA_SPACE = 20,
+	HOUGH_P1 = 100, /* hough circle method parameter 1 */
+	HOUGH_P2 = 200, /* hough circle method parameter 2 */
+	ESC = 27 /* escape key */
 };
-const double SCALE_FACTOR = 0.3;	/* frame shrinking scale factor */
-
-Mat morph_clean(Mat m);
+const double SCALE_FACTOR = 0.3; /* frame shrinking scale factor */
+int thresh = 190; /* threshold value, changed by a trackbar */
 
 int
 main(int argc, char *argv[])
 {
 	VideoCapture vid;
-	Mat fm;
+	Mat fm, blur_fm;
 	namedWindow("display", WINDOW_AUTOSIZE);
+	namedWindow("control", WINDOW_AUTOSIZE);
+	const char* thresh_tb = "Threshold value";
+	createTrackbar(thresh_tb, "control", &thresh, PIX_MAX_VAL, NULL, NULL);
+	vector<Vec3f> circles;
 
 	if (argc != 2) {
 		printf("Usage: ./track <video path>\n");
@@ -49,33 +57,18 @@ main(int argc, char *argv[])
 
 		cvtColor(fm, fm, COLOR_BGR2GRAY);
 
-		threshold(fm, fm, THRESH, MAX_VAL, THRESH_BINARY | THRESH_OTSU);
-		fm = morph_clean(fm);
+		threshold(fm, fm, (double) thresh, PIX_MAX_VAL, THRESH_BINARY);
+		bilateralFilter(fm, blur_fm, 5, SIGMA_COLOUR, SIGMA_SPACE,
+			BORDER_DEFAULT);
+		HoughCircles(blur_fm, circles, HOUGH_GRADIENT, 1, fm.rows/8,
+			HOUGH_P1, HOUGH_P2);
 
-		resize(fm, fm, Size(), SCALE_FACTOR, SCALE_FACTOR, INTER_AREA);
-		imshow("display", fm);
-		if (waitKey(30) == 27)
+		resize(blur_fm, blur_fm, Size(), SCALE_FACTOR, SCALE_FACTOR,
+			INTER_AREA);
+		imshow("display", blur_fm);
+		if (waitKey(30) == ESC)
 			break;
 	}
 
 	return 0;
-}
-
-Mat
-morph_clean(Mat m)
-{
-	Mat struct_elem;
-
-	struct_elem = getStructuringElement(MORPH_ELLIPSE,
-		Size(STRUCT_ELEM_S, STRUCT_ELEM_S));
-
-	/* morphological opening: remove small spots */
-	erode(m, m, struct_elem);
-	dilate(m, m, struct_elem);
-
-	/* morphological closing: fill small holes */
-	dilate(m, m, struct_elem);
-	erode(m, m, struct_elem);
-
-	return m;
 }
