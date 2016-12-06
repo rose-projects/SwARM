@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       12:32 PM Tuesday, December 06, 2016
+                       05:56 PM Tuesday, December 06, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -23,7 +23,7 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 45
+     Number of Part Numbers: 47
           Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
@@ -35,6 +35,7 @@ Version:  01.01.00
           Part Numb: 00-0122 -> Vend Part: 00-0122 
           Part Numb: 00-0129 -> Vend Part: 00-0129 
           Part Numb: 01-0289 -> Vend Part: 01-0289 
+          Part Numb: 01-0385 -> Vend Part: 01-0385 
           Part Numb: 01-0393 -> Vend Part: 01-0393 
           Part Numb: 01-0431 -> Vend Part: 01-0431 
           Part Numb: 01-0435 -> Vend Part: 01-0435 
@@ -68,6 +69,7 @@ Version:  01.01.00
           Part Numb: 70-0065 -> Vend Part: 70-0065 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0099 -> Vend Part: 70-0099 
+          Part Numb: 80-0035 -> Vend Part: 80-0035 
           Part Numb: 81-0013 -> Vend Part: 81-0013 
 
      Number of Part Names: 0
@@ -114,7 +116,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       12:32 PM Tuesday, December 06, 2016
+                       05:56 PM Tuesday, December 06, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -160,11 +162,10 @@ Version:  02.11.12
            ---------------------------------------------------
 
 Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG030053, which has no pins, from the Layout Design.
-	Deleted net XSIG030197, which has no pins, from the Layout Design.
+	Deleted net XSIG030198, which has no pins, from the Layout Design.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 2 nets removed from the Layout Design.
+There were 1 nets removed from the Layout Design.
