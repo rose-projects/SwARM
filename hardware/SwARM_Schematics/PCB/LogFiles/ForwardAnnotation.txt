@@ -2,8 +2,8 @@
                                Forward Annotation
                                ------------------
 
-                       06:41 PM Monday, December 05, 2016
-Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
+                       12:32 PM Tuesday, December 06, 2016
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
 Version:  01.01.00
@@ -23,10 +23,11 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 44
+     Number of Part Numbers: 45
           Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
+          Part Numb: 00-0078 -> Vend Part: 00-0078 
           Part Numb: 00-0090 -> Vend Part: 00-0090 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 00-0100 -> Vend Part: 00-0100 
@@ -90,8 +91,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 84 Symbols:
-              84  *********************************
+     Clustering 85 Symbols:
+              85  **********************************
               50  **************************************************
      Clustering is Complete
 
@@ -99,8 +100,8 @@ Version:  01.01.00
 
 
 
-     68 nets were found containing 282 pins
-     84 components were found
+     69 nets were found containing 285 pins
+     85 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -113,8 +114,8 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       06:41 PM Monday, December 05, 2016
-Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
+                       12:32 PM Tuesday, December 06, 2016
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
 Version:  02.11.12
@@ -158,8 +159,12 @@ Version:  02.11.12
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
 
+Some nets were completely deleted from the Layout Design....
+	Deleted net XSIG030053, which has no pins, from the Layout Design.
+	Deleted net XSIG030197, which has no pins, from the Layout Design.
+
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 0 nets removed from the Layout Design.
+There were 2 nets removed from the Layout Design.

@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       06:41 PM Monday, December 05, 2016
-Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj
+                       12:32 PM Tuesday, December 06, 2016
+     Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb".
+     The Common Database is at "E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -80,10 +80,11 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 44
+     Number of Part Numbers: 45
           Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
+          Part Numb: 00-0078 -> Vend Part: 00-0078 
           Part Numb: 00-0090 -> Vend Part: 00-0090 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 00-0100 -> Vend Part: 00-0100 
@@ -146,8 +147,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 84 Symbols:
-              84  *********************************
+     Clustering 85 Symbols:
+              85  **********************************
               50  **************************************************
      Clustering is Complete
 
@@ -155,8 +156,8 @@ Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schem
 
 
 
-     68 nets were found containing 282 pins
-     84 components were found
+     69 nets were found containing 285 pins
+     85 components were found
 
      Parsed netlist - Augmenting..
 

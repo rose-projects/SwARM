@@ -2,13 +2,15 @@
                                 Autosave Log File
                                 -----------------
 
-                       06:43 PM Monday, December 05, 2016
-Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
+                       12:32 PM Tuesday, December 06, 2016
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
+Autosave pending at 12:37:45 Tue  Attempting...
+Autosave completed successfully.  12:37:45 Tue
 
                                Autosave log closed
                                -------------------
 
-                       06:45 PM Monday, December 05, 2016
-Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\PCB.pcb
+                       12:37 PM Tuesday, December 06, 2016
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
