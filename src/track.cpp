@@ -8,14 +8,14 @@ using namespace cv;
 
 enum {
 	PIX_MAX_VAL = 255, /* maximum value for an 8bits pixel */
-	HOUGH_P1 = 80, /* circle: high threshold for Canny edge detector */
 	HOUGH_P2 = 20, /* circle: accumulator threshold for detection */
-	RAD_MIN = 200, /* minimum radius of detectable circles */
-	RAD_MAX = 500, /* maximum radius of detectable circles */
+	RAD_MIN = 150, /* minimum radius of detectable circles */
+	RAD_MAX = 200, /* maximum radius of detectable circles */
 	ONE_MS = 1, /* 1 millisecond */
 	ESC = 27 /* escape key */
 };
 const double SCALE_FACTOR = 0.3; /* frame shrinking scale factor */
+int hough_p1 = 80; /* circle: high threshold for Canny edge detector */
 
 int
 main(int argc, char *argv[])
@@ -23,6 +23,9 @@ main(int argc, char *argv[])
 	size_t i = 0;
 	VideoCapture vid;
 	Mat fm;
+	namedWindow("control", WINDOW_AUTOSIZE);
+	createTrackbar("hough_p1", "control",
+		&hough_p1, PIX_MAX_VAL - 1, NULL, NULL);
 	namedWindow("display", WINDOW_AUTOSIZE);
 	vector<Vec3f> circles;
 
@@ -45,8 +48,9 @@ main(int argc, char *argv[])
 
 		cvtColor(fm, fm, COLOR_BGR2GRAY);
 
+		/* hough_p1 cannot be 0 */
 		HoughCircles(fm, circles, HOUGH_GRADIENT, 1, fm.rows/8,
-			HOUGH_P1, HOUGH_P2, RAD_MIN, RAD_MAX);
+			hough_p1 + 1, HOUGH_P2, RAD_MIN, RAD_MAX);
 
 		for (i = 0; i < circles.size(); i++) {
 			Vec3i c = circles[i];
@@ -54,8 +58,6 @@ main(int argc, char *argv[])
 				3, LINE_AA);
 		}
 
-		resize(fm, fm, Size(), SCALE_FACTOR, SCALE_FACTOR,
-			INTER_AREA);
 		imshow("display", fm);
 
 		if (waitKey(ONE_MS) == ESC)
