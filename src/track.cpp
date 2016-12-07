@@ -1,9 +1,4 @@
-/* Detect the shape of the ballon in a video:
- * - convert the frame to greyscale
- * - use thresholding to get a binary frame
- * - clean frame with bilateral filtering (change for gaussian if too slow)
- * - get the center of circles
- */
+/* Detect the shape of the ballon in a video */
 
 #include <stdio.h>
 #include "opencv2/opencv.hpp"
@@ -13,24 +8,22 @@ using namespace cv;
 
 enum {
 	PIX_MAX_VAL = 255, /* maximum value for an 8bits pixel */
-	SIGMA_COLOUR = 20,
-	SIGMA_SPACE = 20,
-	HOUGH_P1 = 100, /* hough circle method parameter 1 */
-	HOUGH_P2 = 200, /* hough circle method parameter 2 */
+	HOUGH_P1 = 80, /* circle: high threshold for Canny edge detector */
+	HOUGH_P2 = 20, /* circle: accumulator threshold for detection */
+	RAD_MIN = 200, /* minimum radius of detectable circles */
+	RAD_MAX = 500, /* maximum radius of detectable circles */
+	ONE_MS = 1, /* 1 millisecond */
 	ESC = 27 /* escape key */
 };
 const double SCALE_FACTOR = 0.3; /* frame shrinking scale factor */
-int thresh = 190; /* threshold value, changed by a trackbar */
 
 int
 main(int argc, char *argv[])
 {
+	size_t i = 0;
 	VideoCapture vid;
-	Mat fm, blur_fm;
+	Mat fm;
 	namedWindow("display", WINDOW_AUTOSIZE);
-	namedWindow("control", WINDOW_AUTOSIZE);
-	const char* thresh_tb = "Threshold value";
-	createTrackbar(thresh_tb, "control", &thresh, PIX_MAX_VAL, NULL, NULL);
 	vector<Vec3f> circles;
 
 	if (argc != 2) {
@@ -49,24 +42,23 @@ main(int argc, char *argv[])
 			printf("No fm\n");
 			return -1;
 		}
-	
-		if (!fm.data) {
-			printf("No image data\n");
-			return -1;
-		}
 
 		cvtColor(fm, fm, COLOR_BGR2GRAY);
 
-		threshold(fm, fm, (double) thresh, PIX_MAX_VAL, THRESH_BINARY);
-		bilateralFilter(fm, blur_fm, 5, SIGMA_COLOUR, SIGMA_SPACE,
-			BORDER_DEFAULT);
-		HoughCircles(blur_fm, circles, HOUGH_GRADIENT, 1, fm.rows/8,
-			HOUGH_P1, HOUGH_P2);
+		HoughCircles(fm, circles, HOUGH_GRADIENT, 1, fm.rows/8,
+			HOUGH_P1, HOUGH_P2, RAD_MIN, RAD_MAX);
 
-		resize(blur_fm, blur_fm, Size(), SCALE_FACTOR, SCALE_FACTOR,
+		for (i = 0; i < circles.size(); i++) {
+			Vec3i c = circles[i];
+			circle(fm, Point(c[0], c[1]), 2, Scalar(0, 255, 0),
+				3, LINE_AA);
+		}
+
+		resize(fm, fm, Size(), SCALE_FACTOR, SCALE_FACTOR,
 			INTER_AREA);
-		imshow("display", blur_fm);
-		if (waitKey(30) == ESC)
+		imshow("display", fm);
+
+		if (waitKey(ONE_MS) == ESC)
 			break;
 	}
 
