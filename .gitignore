@@ -8,15 +8,8 @@ Thumbs.db
 *~
 
 # builds
-builds/
-.deps/
-opencv-3.1.0/build/
-
-build/CMakeCache.txt
-build/CMakeFiles/
-build/Makefile
-build/cmake_install.cmake
-build/track
+tests/blink/.dep/
+tests/blink/build/
 
 *.swp
 
