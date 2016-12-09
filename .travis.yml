@@ -13,7 +13,7 @@ script:
     - make -C tests/led/
     - make -C tests/ranging/
     - make -C tests/coding_wheels/
-    - make -C tests/cam
+    - make -C tests/cam/
 
 cache: ccache
 
