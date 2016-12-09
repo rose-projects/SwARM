@@ -1,7 +1,9 @@
 #include "ch.h"
 #include "chvt.h"
 #include "chprintf.h"
+#include "chevents.h"
 
+#include "../shared/exti-config.h"
 #include "../shared/usb-config.h"
 #include "../shared/deca-functions.h"
 #include "../shared/decadriver/deca_device_api.h"
@@ -339,6 +341,8 @@ void masterBeaconTask(void) {
 
 static THD_WORKING_AREA(waRadio, 128);
 static THD_FUNCTION(radioThread, th_data) {
+	event_listener_t evt_listener;
+
 	(void) th_data;
 	chRegSetThreadName("Radio");
 
@@ -347,6 +351,8 @@ static THD_FUNCTION(radioThread, th_data) {
 	// Set expected response's delay and timeout
 	dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
 	dwt_setrxtimeout(RX_TIMEOUT);
+
+	chEvtRegisterMask(&deca_event, &evt_listener, EVENT_MASK(0));
 
 	if(DEVICE_UID == 0)
 		masterBeaconTask();
