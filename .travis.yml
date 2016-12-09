@@ -13,6 +13,7 @@ script:
     - make -C tests/led/
     - make -C tests/ranging/
     - make -C tests/coding_wheels/
+    - make -C tests/cam
 
 cache: ccache
 
@@ -21,3 +22,5 @@ addons:
         packages:
         - gcc-arm-none-eabi
         - libnewlib-arm-none-eabi
+        - libopencv-dev
+        - libcv-dev
