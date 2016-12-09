@@ -15,6 +15,9 @@
 /* returns RX timestamp (40bit wide) */
 #define getRXtimestamp() (((uint64_t) dwt_readrxtimestamplo32()) | (((uint64_t) dwt_readrxtimestamphi32()) << 8))
 
+/* returns RX timestamp (40bit wide) */
+#define getTXtimestamp() (((uint64_t) dwt_readtxtimestamplo32()) | (((uint64_t) dwt_readtxtimestamphi32()) << 8))
+
 /* initialize the peripherals and the Decawave module */
 int decaInit(void);
 
