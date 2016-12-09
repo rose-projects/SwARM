@@ -14,8 +14,10 @@ enum {
 	ESC = 27 /* escape key */
 };
 const double SCALE_FACTOR = 0.3; /* frame shrinking scale factor */
-int hough_p1 = 150; /* circle: high threshold for Canny edge detector */
-int hough_p2 = 17; /* circle: accumulator threshold for detection */
+int contrast_coef = 75; /* final coef is this / 100.0 to create a double */
+int bright_coef = 60; /* range: [0, 200] to get [-100, 100] */
+int hough_p2 = 10; /* circle: accumulator threshold for detection */
+int hough_p1 = 90; /* circle: high threshold for Canny edge detector */
 
 int
 main(int argc, char *argv[])
@@ -24,6 +26,8 @@ main(int argc, char *argv[])
 	VideoCapture vid;
 	Mat fm;
 	namedWindow("control", WINDOW_AUTOSIZE);
+	createTrackbar("contrast", "control", &contrast_coef, 300, NULL, NULL);
+	createTrackbar("brightness", "control", &bright_coef, 200, NULL, NULL);
 	createTrackbar("hough_p1", "control",
 		&hough_p1, PIX_MAX_VAL - 1, NULL, NULL);
 	createTrackbar("hough_p2", "control",
@@ -48,6 +52,8 @@ main(int argc, char *argv[])
 			return -1;
 		}
 
+		fm.convertTo(fm, -1, contrast_coef / 100.0, bright_coef - 100);
+		medianBlur(fm, fm, 5);
 		cvtColor(fm, fm, COLOR_BGR2GRAY);
 
 		/* hough_p1 cannot be 0, and the trackbar has to start at 0 */
@@ -62,7 +68,7 @@ main(int argc, char *argv[])
 
 		imshow("display", fm);
 
-		if (waitKey(ONE_MS) == ESC)
+		if (waitKey(0) == ESC)
 			break;
 	}
 
