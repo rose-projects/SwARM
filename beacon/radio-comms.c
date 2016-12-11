@@ -8,16 +8,11 @@
 #include "../shared/deca-functions.h"
 #include "../shared/decadriver/deca_device_api.h"
 #include "../shared/decadriver/deca_regs.h"
-#include "radio-conf.h"
+#include "../shared/radio-conf.h"
 #include "robot.h"
 
-#define MS_TO_DWT ((int64_t) 1000*UUS_TO_DWT_TIME)
-
-// Radio message IDs
-#define SOF_MSG_ID 0x23
-#define BEACON_READ_MSG_ID 0x32
-#define RANGING_MSG_ID 0x42
-#define NEW_ROBOT_MSG_ID 0x2A
+// Events sources
+EVENTSOURCE_DECL(radio_event);
 
 // RX/TX buffer
 #define RADIO_BUF_LEN 100
@@ -29,8 +24,6 @@ static systime_t sofSystime = -1;
 
 // connected robots IDs
 static uint8_t robotIDs[MAX_CONNECTED_ROBOTS];
-// measured robot distances, in cm, robot <ID> distance = robotDistances[ID]
-static uint16_t robotDistances[MAX_ROBOT_ID];
 
 // ########### slave beacon specific ###########
 // delay between start-of-frame and  time slot
@@ -43,9 +36,6 @@ static uint16_t robotDistances[MAX_ROBOT_ID];
 static int isRegistered = 0;
 
 // ########### master beacon specific ###########
-// distances measured by slave beacons
-static uint16_t sb1Distances[MAX_ROBOT_ID];
-static uint16_t sb2Distances[MAX_ROBOT_ID];
 // flags indicating the connected slave beacons : bit0: slave beacon 1, bit1: slave beacon 2
 static int sbConnected = 0;
 
@@ -67,8 +57,8 @@ static void answerBeaconRead(void) {
 	radio_buffer[1] = 0;
 
 	while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0 && robotIDs[i] <= MAX_ROBOT_ID) {
-		radio_buffer[msg_index++] = robotDistances[robotIDs[i]-1];
-		radio_buffer[msg_index++] = robotDistances[robotIDs[i]-1] >> 8;
+		radio_buffer[msg_index++] = robots[robotIDs[i] - 1].mbDist;
+		radio_buffer[msg_index++] = robots[robotIDs[i] - 1].mbDist >> 8;
 		i++;
 	}
 
@@ -85,7 +75,11 @@ static void synchronizeSlaveBeacon(void) {
 
 	// clear distances as they will be outdated
 	for(ret = 0; ret < MAX_ROBOT_ID; ret++)
-		robotDistances[ret] = 0;
+		robots[ret].mbDist = 0;
+
+	// not synchronized : turn on red LED and turn off green LED
+	palSetPad(GPIOF, GPIOF_STAT3);
+	palClearPad(GPIOF, GPIOF_CAM_PWR);
 
 	sofTS = -1;
 	while(sofTS == -1 || !isRegistered) {
@@ -130,6 +124,10 @@ static void synchronizeSlaveBeacon(void) {
 		RXflag = DWT_START_RX_IMMEDIATE;
 	}
 	dwt_setrxtimeout(RX_TIMEOUT);
+
+	// synchronized : turn off red LED and turn on green LED
+	palClearPad(GPIOF, GPIOF_STAT3);
+	palSetPad(GPIOF, GPIOF_CAM_PWR);
 }
 
 static int rangeRobot(int robotUID, int dataLength) {
@@ -165,10 +163,9 @@ static int rangeRobot(int robotUID, int dataLength) {
 
 		// compute distance
 		distance = (rx_ts - tx_ts - beacon_hold_time) * 100 / 2.0 * DWT_TIME_UNITS * SPEED_OF_LIGHT;
-		distanceInCm = distance;
+		distanceInCm = distance + 200; // avoid negative values caused by wrong calibration of antenna delay
 
-		// if robot is close to beacon, noise may cause measured distance to be 0 or < 0
-		// in that case set distance to a small positive value
+		// if distance is still negative, set it to 1 for debug
 		if(distanceInCm <= 0)
 			distanceInCm = 1;
 		return distanceInCm;
@@ -231,7 +228,7 @@ void slaveBeaconTask(void) {
 			switchToChannel(DEVICE_UID == 253 ? SB1_CHANNEL : SB2_CHANNEL);
 			while(robotIDs[i] != 0 && robotIDs[i] <= MAX_ROBOT_ID) {
 				dwt_setdelayedtrxtime((sofTS  + timeInFrame*MS_TO_DWT) >> 8);
-				robotDistances[robotIDs[i] - 1] = rangeRobot(robotIDs[i], 0);
+				robots[robotIDs[i] - 1].mbDist = rangeRobot(robotIDs[i], 0);
 				i++;
 				timeInFrame += TIMESLOT_LENGTH;
 			}
@@ -258,6 +255,7 @@ static int masterBeaconSend(int timeInFrame, int expectAnswer, int size) {
 
 	return 0;
 }
+
 static void sendSOF(void) {
 	int i = 0;
 	radio_buffer[0] = SOF_MSG_ID;
@@ -277,7 +275,8 @@ static void sendSOF(void) {
 	sofTS = getTXtimestamp();
 	sofSystime = chVTGetSystemTime();
 }
-static void readSlaveBeacon(int beaconID, uint16_t *distanceBuffer) {
+
+static void readSlaveBeacon(int beaconID) {
 	int ret, i, j=0;
 	radio_buffer[0] = BEACON_READ_MSG_ID;
 	radio_buffer[1] = beaconID;
@@ -285,48 +284,76 @@ static void readSlaveBeacon(int beaconID, uint16_t *distanceBuffer) {
 			&& radio_buffer[0] == BEACON_READ_MSG_ID && radio_buffer[1] == 0) {
 		// read and store distances
 		for(i=3; i<ret; i+=2) {
-			if(robotIDs[j] != 0) {
-				distanceBuffer[robotIDs[j] - 1] = radio_buffer[i];
-				distanceBuffer[robotIDs[j] - 1] &= radio_buffer[i + 1] << 8;
+			if(beaconID == 253) {
+				robots[robotIDs[j] - 1].sb1Dist = radio_buffer[i];
+				robots[robotIDs[j] - 1].sb1Dist &= radio_buffer[i + 1] << 8;
+				robots[robotIDs[j] - 1].sb1Dist += robots[robotIDs[j] - 1].sb1Offset;
+			} else {
+				robots[robotIDs[j] - 1].sb2Dist = radio_buffer[i];
+				robots[robotIDs[j] - 1].sb2Dist &= radio_buffer[i + 1] << 8;
+				robots[robotIDs[j] - 1].sb2Dist += robots[robotIDs[j] - 1].sb2Offset;
 			}
 			j++;
 		}
+		// mark beacon as connected
+		sbConnected = sbConnected | (beaconID == 253 ? 0x01 : 0x02);
 	} else // without answer, mark beacon as disconnected
 		sbConnected = sbConnected & (beaconID == 253 ? 0xFE : 0xFD);
 }
 
 void masterBeaconTask(void) {
-	int i, j;
+	int i, j, ret;
 
 	while(1) {
 		// send start-of-frame
 		sendSOF();
 
 		// retrieve slave beacon measurements
-		readSlaveBeacon(253, sb1Distances);
-		readSlaveBeacon(254, sb2Distances);
+		readSlaveBeacon(253);
+		readSlaveBeacon(254);
 
-		// compute robots locations
-		trilateralizeRobots(robotDistances, sb1Distances, sb2Distances);
+		// compute robots locations if all the beacons are available
+		if(sbConnected == 0x03) {
+			trilateralizeRobots();
+			// LED : green
+			palClearPad(GPIOF, GPIOF_STAT3);
+			palSetPad(GPIOF, GPIOF_CAM_PWR);
+			// send radio event (new distances and robots locations available)
+			chSysLock();
+		    chEvtBroadcastFlags(&radio_event, EVENT_MASK(0));
+		    chSysUnlock();
+		} else {
+			// LED : red
+			palSetPad(GPIOF, GPIOF_STAT3);
+			palClearPad(GPIOF, GPIOF_CAM_PWR);
+		}
 
 		// send data the robots and measuse distances
 		i=0;
-		while(robotIDs[i] != 0 && robotIDs[i] <= MAX_ROBOT_ID) {
+		while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
 			dwt_setdelayedtrxtime((sofTS  + (i + 3)*TIMESLOT_LENGTH*MS_TO_DWT) >> 8);
-			robotDistances[robotIDs[i] - 1] = rangeRobot(robotIDs[i],
-				serializeRobotData(radio_buffer, robotIDs[i]));
+			robots[robotIDs[i] - 1].mbDist =
+				rangeRobot(robotIDs[i], serializeRobotData(radio_buffer, robotIDs[i]));
 			// distance = 0 means robot didn't respond or an error happened
-			if(robotDistances[robotIDs[i] - 1] == 0)
+			if(robots[robotIDs[i] - 1].mbDist == 0)
 				robotIDs[i] = 0; // mark robot as disconnected
+			else
+				robots[robotIDs[i] - 1].mbDist += robots[robotIDs[i] - 1].mbOffset;
 			i++;
 		}
 
 		// send new robot polls
 		radio_buffer[0] = NEW_ROBOT_MSG_ID;
 		radio_buffer[1] = 0xFF;
-		for(i=0; i<4; i++) {
+		for(j=0; j<4; j++) {
 			radio_buffer[2] = i;
-			masterBeaconSend(FRAME_LENGTH - (4-i)*TIMESLOT_LENGTH, 1, 3);
+			ret = masterBeaconSend(FRAME_LENGTH - (4-i)*TIMESLOT_LENGTH, 1, 3);
+			if( ret == 3 && radio_buffer[0] == NEW_ROBOT_MSG_ID && radio_buffer[1] == 0
+					&& radio_buffer[2] < MAX_ROBOT_ID && i < MAX_CONNECTED_ROBOTS) {
+				robotIDs[i++] = radio_buffer[2];
+				// distance is not available yet
+				robots[robotIDs[i] - 1].mbDist = 0;
+			};
 		}
 
 		// clean up robotIDs list (remove "holes" in the list)

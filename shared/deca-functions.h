@@ -1,12 +1,15 @@
 #ifndef DECA_FUNTIONS_H
 #define DECA_FUNTIONS_H
 
-// Default antenna delay values for 64 MHz PRF
+/* Default antenna delay values for 64 MHz PRF */
 #define TX_ANT_DLY 16393
 #define RX_ANT_DLY 16393
 
-// Speed of light in air, in metres per second
+/* Speed of light in air, in metres per second */
 #define SPEED_OF_LIGHT 299702547
+
+/* millisecond to decawave time unit conversion factor */
+#define MS_TO_DWT ((int64_t) 1000*UUS_TO_DWT_TIME)
 
 /* UWB microsecond (uus) to device time unit (dtu, around 15.65 ps) conversion factor.
  * 1 uus = 512 / 499.2 us and 1 us = 499.2 * 128 dtu. */

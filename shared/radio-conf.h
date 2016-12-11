@@ -33,4 +33,10 @@
 /* maximum supported robot ID */
 #define MAX_ROBOT_ID 50
 
+// Radio message IDs
+#define SOF_MSG_ID 0x23
+#define BEACON_READ_MSG_ID 0x32
+#define RANGING_MSG_ID 0x42
+#define NEW_ROBOT_MSG_ID 0x2A
+
 #endif
