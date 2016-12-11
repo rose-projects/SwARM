@@ -107,7 +107,7 @@ int decaReceive(int maxSize, uint8_t *buffer, int flag) {
 		messageLength = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFL_MASK_1023;
 		if (messageLength <= maxSize) {
 			dwt_readrxdata(buffer, messageLength, 0);
-			return messageLength;
+			return messageLength - 2;
 		} else {
 			return -3; // error : buffer is too small
 		}

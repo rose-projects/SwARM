@@ -13,6 +13,7 @@ struct robotData {
 	uint8_t goalSpeed;
 	uint8_t flags;
 	// not sent to the robot
+	uint8_t status;
 	int16_t mbOffset;
 	int16_t sb1Offset;
 	int16_t sb2Offset;

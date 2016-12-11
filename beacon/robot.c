@@ -68,7 +68,7 @@ static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, uint
 	event_listener_t evt_listener;
 	int averageDistance = 0, i;
 
-	chEvtRegisterMask(&radio_event, &evt_listener, EVENT_MASK(0));
+	chEvtRegisterMask(&radioEvent, &evt_listener, EVENT_MASK(0));
 	chprintf(chp, "The 3 beacons must be connected, don't move the robot\nCalibrating ...");
 
 	for(i=0; i<40; i++) {
@@ -79,7 +79,7 @@ static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, uint
 	*offset = expectedDistance - averageDistance/40;
 
 	chprintf(chp, " done. offset = %d cm\n", *offset);
-	chEvtUnregister(&radio_event, &evt_listener);
+	chEvtUnregister(&radioEvent, &evt_listener);
 }
 
 void mbCalibrate(BaseSequentialStream *chp, int argc, char **argv) {

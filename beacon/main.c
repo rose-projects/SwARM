@@ -7,6 +7,7 @@
 
 #include "../shared/usb-config.h"
 #include "../shared/exti-config.h"
+#include "../shared/non-volatile.h"
 #include "radio-comms.h"
 #include "robot.h"
 
@@ -16,6 +17,8 @@ static const ShellCommand shCmds[] = {
     {"mbcal",   mbCalibrate},
 	{"sb1cal",   sb1Calibrate},
 	{"sb2cal",   sb2Calibrate},
+	{"setid",   setDeviceUID},
+	{"getid",   getDeviceUID},
     {NULL, NULL}
 };
 

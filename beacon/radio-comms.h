@@ -4,7 +4,7 @@
 #include "ch.h"
 
 /* event triggered when new robot locations are available */
-extern event_source_t radio_event;
+extern event_source_t radioEvent;
 
 /* initialize decawave module and start radio communication thread */
 void startRadio(void);

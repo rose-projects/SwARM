@@ -121,7 +121,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
        main.c deca-platform.c usb-config.c deca_device.c deca_params_init.c \
-	   exti-config.c deca-functions.c radio-comms.c robot.c
+	   exti-config.c deca-functions.c radio-comms.c robot.c non-volatile.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

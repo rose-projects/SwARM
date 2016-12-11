@@ -1,11 +1,6 @@
 #ifndef RADIO_CONF_H
 #define RADIO_CONF_H
 
-/* device UID */
-//#define DEVICE_UID 0 // master beacon
-#define DEVICE_UID 253 // slave beacon 1
-//#define DEVICE_UID 254 // slave beacon 2
-
 /* Delay between ranging poll RX and response TX */
 #define POLL_TO_RESP_DLY 600*UUS_TO_DWT_TIME
 
