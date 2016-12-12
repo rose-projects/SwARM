@@ -9,6 +9,7 @@ language: C
 
 script:
     - make -C beacon
+    - make -C robot
 
 cache: ccache
 

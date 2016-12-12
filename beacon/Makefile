@@ -101,7 +101,7 @@ include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 include $(CHIBIOS)/test/rt/test.mk
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
+LDSCRIPT= STM32F407.ld
 
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
@@ -121,7 +121,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
        main.c deca-platform.c usb-config.c deca_device.c deca_params_init.c \
-	   exti-config.c deca-functions.c radio-comms.c robot.c non-volatile.c
+	   exti-config.c deca-functions.c radio-comms.c robot.c non-volatile.c flash.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
