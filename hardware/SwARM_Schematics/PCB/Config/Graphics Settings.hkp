@@ -2,10 +2,10 @@
 ! change it at your own peril
 
 !
-! Created 12/06/16 18:10:02
+! Created 12/14/16 02:02:22
 !
 
-.Global_Constants 72 2
+.Global_Constants 67 2
     ..File_Type Graphics_Settings
     ..Version Version_1
     ..Num_Views 1
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
+    ..Cavity_Color 0x0000000e	! RGB( 14,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
+    ..Milling_Color 0x00000033	! RGB( 51,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x00000000	! top     RGB(  0,  0,  0)
-	0x00000000	! bottom  RGB(  0,  0,  0)
+	0x136a3700	! top     RGB(  0, 55,106)
+	0x00000022	! bottom  RGB( 34,  0,  0)
     )
     ..Bondwire_Color (
-	0x00000000	! top     RGB(  0,  0,  0)
-	0x00000000	! bottom  RGB(  0,  0,  0)
+	0x69736552	! top     RGB( 82,101,115)
+	0x726f7473	! bottom  RGB(115,116,111)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1334,44 +1334,39 @@
 	"USB_DP"	! [32]
 	"XSIG020140"	! [33]
 	"XSIG020142"	! [34]
-	"XSIG030001"	! [35]
-	"XSIG030002"	! [36]
-	"XSIG030005"	! [37]
-	"DWM_WAKEUP"	! [38]
-	"IR_LED_ADAPTED"	! [39]
-	"LED_CK_5V"	! [40]
-	"LED_DO_5V"	! [41]
-	"VCC5"	! [42]
-	"XSIG020157"	! [43]
-	"XSIG030102"	! [44]
-	"VBAT_PROBE"	! [45]
-	"XSIG030141"	! [46]
-	"XSIG030142"	! [47]
-	"XSIG030147"	! [48]
-	"XSIG030149"	! [49]
-	"XSIG030154"	! [50]
-	"XSIG030155"	! [51]
-	"XSIG030156"	! [52]
-	"XSIG030157"	! [53]
-	"IR_LED_L"	! [54]
-	"IR_LED_L_ADAPTED"	! [55]
-	"IR_LED_R"	! [56]
-	"IR_LED_R_ADAPTED"	! [57]
-	"XSIG020166"	! [58]
-	"XSIG020170"	! [59]
-	"XSIG011020"	! [60]
-	"XSIG011022"	! [61]
-	"XSIG011041"	! [62]
-	"VIN"	! [63]
-	"XSIG030172"	! [64]
-	"XSIG030175"	! [65]
-	"XSIG030189"	! [66]
-	"XSIG011065"	! [67]
-	"USB_CONNECT"	! [68]
-	"XSIG050170"	! [69]
-	"VBAT"	! [70]
-	"VBUS"	! [71]
-	"XSIG030213"	! [72]
+	"DWM_WAKEUP"	! [35]
+	"IR_LED_ADAPTED"	! [36]
+	"LED_CK_5V"	! [37]
+	"LED_DO_5V"	! [38]
+	"VCC5"	! [39]
+	"XSIG020157"	! [40]
+	"VBAT_PROBE"	! [41]
+	"XSIG030141"	! [42]
+	"XSIG030142"	! [43]
+	"XSIG030147"	! [44]
+	"XSIG030149"	! [45]
+	"XSIG030154"	! [46]
+	"XSIG030155"	! [47]
+	"XSIG030156"	! [48]
+	"XSIG030157"	! [49]
+	"IR_LED_L"	! [50]
+	"IR_LED_L_ADAPTED"	! [51]
+	"IR_LED_R"	! [52]
+	"IR_LED_R_ADAPTED"	! [53]
+	"XSIG020166"	! [54]
+	"XSIG020170"	! [55]
+	"XSIG011020"	! [56]
+	"XSIG011022"	! [57]
+	"XSIG011041"	! [58]
+	"XSIG030172"	! [59]
+	"XSIG030175"	! [60]
+	"XSIG030189"	! [61]
+	"XSIG011065"	! [62]
+	"USB_CONNECT"	! [63]
+	"VBAT"	! [64]
+	"USB_VBUS"	! [65]
+	"XSIG030273"	! [66]
+	"XSIG040009"	! [67]
     )
     ..Netclass_Names ( 
 	"(Default)"	! [1]
@@ -1403,8 +1398,8 @@
 	0x00ffffff 0x00ffffff	! [33-34] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [35-36] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [37-38] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff 0x00ffffff	! [39-40] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff 0x00009900	! [41-42] RGB(255,255,255)  RGB(  0,153,  0)
+	0x00009900 0x00ffffff	! [39-40] RGB(  0,153,  0)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [41-42] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [43-44] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [45-46] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [47-48] RGB(255,255,255)  RGB(255,255,255)
@@ -1415,11 +1410,9 @@
 	0x00ffffff 0x00ffffff	! [57-58] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [59-60] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [61-62] RGB(255,255,255)  RGB(255,255,255)
-	0x0000ffff 0x00ffffff	! [63-64] RGB(255,255,  0)  RGB(255,255,255)
+	0x00ffffff 0x0000ccff	! [63-64] RGB(255,255,255)  RGB(255,204,  0)
 	0x00ffffff 0x00ffffff	! [65-66] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff 0x00ffffff	! [67-68] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff 0x00ffffff	! [69-70] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff         -1	! [71-72] RGB(255,255,255)  undefined
+	0x00ffffff		! [67] RGB(255,255,255)
     )
     ..Net_Ptrnidx ( 
 	0 0 0 0 0 0 0 0 0 0 	! [1 - 10]
@@ -1428,8 +1421,7 @@
 	0 0 0 0 0 0 0 0 0 0 	! [31 - 40]
 	0 0 0 0 0 0 0 0 0 0 	! [41 - 50]
 	0 0 0 0 0 0 0 0 0 0 	! [51 - 60]
-	0 0 0 0 0 0 0 0 0 0 	! [61 - 70]
-	0 0 ! [71 - 72]
+	0 0 0 0 0 0 0 ! [61 - 67]
 	)
     ..Net_Alpha ( 
 	100 100 100 100 100 100 100 100 100 100 	! [1 - 10]
@@ -1438,8 +1430,7 @@
 	100 100 100 100 100 100 100 100 100 100 	! [31 - 40]
 	100 100 100 100 100 100 100 100 100 100 	! [41 - 50]
 	100 100 100 100 100 100 100 100 100 100 	! [51 - 60]
-	100 100 100 100 100 100 100 100 100 100 	! [61 - 70]
-	100 100 ! [71 - 72]
+	100 100 100 100 100 100 100 ! [61 - 67]
 	)
     ..Net_Nopaque ( 
 	F F F F F F F F F F 	! [1 - 10]
@@ -1448,8 +1439,7 @@
 	F F F F F F F F F F 	! [31 - 40]
 	F F F F F F F F F F 	! [41 - 50]
 	F F F F F F F F F F 	! [51 - 60]
-	F F F F F F F F F F 	! [61 - 70]
-	F F ! [71 - 72]
+	F F F F F F F ! [61 - 67]
 	)
     ..Net_Outline ( 
 	T T F T T T T T T T 	! [1 - 10]
@@ -1457,9 +1447,8 @@
 	T T T T T T T T T T 	! [21 - 30]
 	T T T T T T T T T T 	! [31 - 40]
 	T T T T T T T T T T 	! [41 - 50]
-	T T T T T T T T T F 	! [51 - 60]
-	F F T F F F T T T T 	! [61 - 70]
-	T T ! [71 - 72]
+	T T T T T F F F F F 	! [51 - 60]
+	F T T T F F F ! [61 - 67]
 	)
     ..Netclass_Color (
 	0x00ffffff	! top     RGB(255,255,255)
@@ -1499,11 +1488,10 @@
 	F F F T T F F F F F 	! [1 - 10]
 	F F F F F F F F F F 	! [11 - 20]
 	F F F F F F F F F F 	! [21 - 30]
-	F F F F F F F F F F 	! [31 - 40]
-	F T F F F F F F F F 	! [41 - 50]
+	F F F F F F F F T F 	! [31 - 40]
+	F F F F F F F F F F 	! [41 - 50]
 	F F F F F F F F F F 	! [51 - 60]
-	F F T F F F F F F F 	! [61 - 70]
-	F F ! [71 - 72]
+	F F F T F F F ! [61 - 67]
 	)
     ..Netclass_On                        False	! top
                                          False	! bottom
@@ -2065,10 +2053,10 @@
                                          False	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       True 	! top
+    ..Diepinpad_On                       False	! top
                                          True 	! bottom
-    ..Bondwire_On                        True 	! top
-                                         True 	! bottom
+    ..Bondwire_On                        False	! top
+                                         False	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top

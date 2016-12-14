@@ -1,11 +1,10 @@
 
-Schematic unused pins from : Packager  6-Dec-2016  17:56
+Schematic unused pins from : Packager  14-Dec-2016  01:55
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
                                        |  (G) - Gate, (P) - Partial Gate
 ------------------------------------------------------------------------
- Part 00-0001                          |
  Part 00-0033                          |
  Part 00-0074                          |
  Part 00-0078                          |
@@ -13,7 +12,6 @@ Schematic unused pins from : Packager  6-Dec-2016  17:56
  Part 00-0098                          |
  Part 00-0100                          |
  Part 00-0110                          |
- Part 00-0122                          |
  Part 00-0129                          |
  Part 01-0289                          |
  Part 01-0385                          |
@@ -21,6 +19,7 @@ Schematic unused pins from : Packager  6-Dec-2016  17:56
  Part 01-0431                          |
  Part 01-0435                          |
  Part 01-0532                          |
+ Part 02-0083                          |
  Part 02-0098                          |
  Part 10-0011                          |
  Part 10-0030                          |
@@ -30,25 +29,19 @@ Schematic unused pins from : Packager  6-Dec-2016  17:56
  Part 10-0100                          |
  Part 10-0103                          |
  Part 10-0111                          |
- Part 20-0003                          |
- Part 20-0047                          |
  Part 20-0064                          |
  Part 30-0004                          |
  Part 30-0019                          |
- Part 30-0022                          |
- Part 40-0229                          |
  Part 40-0232                          |
  Part 40-0261                          |
  Part 40-0291                          |
  Part 40-0292                          |
-  U6                                   | (P)  41 42 57 58 33 35 8 9 10
-                                       |  11 24 25 37 38 39 40 2 56 4 3
-                                       |  28
+  U6                                   | (P)  41 57 58 33 35 8 9 10 11
+                                       |  24 25 37 38 39 40 2 56 4 3 28
  Part 40-0301                          |
   U7                                   | (P)  21 7
  Part 50-0038                          |
  Part 70-0002                          |
- Part 70-0014                          |
  Part 70-0028                          |
  Part 70-0060                          |
  Part 70-0065                          |

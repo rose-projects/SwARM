@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       05:56 PM Tuesday, December 06, 2016
+                      01:55 AM Wednesday, December 14, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -23,8 +23,7 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 47
-          Part Numb: 00-0001 -> Vend Part: 00-0001 
+     Number of Part Numbers: 41
           Part Numb: 00-0033 -> Vend Part: 00-0033 
           Part Numb: 00-0074 -> Vend Part: 00-0074 
           Part Numb: 00-0078 -> Vend Part: 00-0078 
@@ -32,7 +31,6 @@ Version:  01.01.00
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 00-0100 -> Vend Part: 00-0100 
           Part Numb: 00-0110 -> Vend Part: 00-0110 
-          Part Numb: 00-0122 -> Vend Part: 00-0122 
           Part Numb: 00-0129 -> Vend Part: 00-0129 
           Part Numb: 01-0289 -> Vend Part: 01-0289 
           Part Numb: 01-0385 -> Vend Part: 01-0385 
@@ -40,6 +38,7 @@ Version:  01.01.00
           Part Numb: 01-0431 -> Vend Part: 01-0431 
           Part Numb: 01-0435 -> Vend Part: 01-0435 
           Part Numb: 01-0532 -> Vend Part: 01-0532 
+          Part Numb: 02-0083 -> Vend Part: 02-0083 
           Part Numb: 02-0098 -> Vend Part: 02-0098 
           Part Numb: 10-0011 -> Vend Part: 10-0011 
           Part Numb: 10-0030 -> Vend Part: 10-0030 
@@ -49,13 +48,9 @@ Version:  01.01.00
           Part Numb: 10-0100 -> Vend Part: 10-0100 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
           Part Numb: 10-0111 -> Vend Part: 10-0111 
-          Part Numb: 20-0003 -> Vend Part: 20-0003 
-          Part Numb: 20-0047 -> Vend Part: 20-0047 
           Part Numb: 20-0064 -> Vend Part: 20-0064 
           Part Numb: 30-0004 -> Vend Part: 30-0004 
           Part Numb: 30-0019 -> Vend Part: 30-0019 
-          Part Numb: 30-0022 -> Vend Part: 30-0022 
-          Part Numb: 40-0229 -> Vend Part: 40-0229 
           Part Numb: 40-0232 -> Vend Part: 40-0232 
           Part Numb: 40-0261 -> Vend Part: 40-0261 
           Part Numb: 40-0291 -> Vend Part: 40-0291 
@@ -63,7 +58,6 @@ Version:  01.01.00
           Part Numb: 40-0301 -> Vend Part: 40-0301 
           Part Numb: 50-0038 -> Vend Part: 50-0038 
           Part Numb: 70-0002 -> Vend Part: 70-0002 
-          Part Numb: 70-0014 -> Vend Part: 70-0014 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
           Part Numb: 70-0060 -> Vend Part: 70-0060 
           Part Numb: 70-0065 -> Vend Part: 70-0065 
@@ -93,8 +87,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 85 Symbols:
-              85  **********************************
+     Clustering 74 Symbols:
+              74  ***********************
               50  **************************************************
      Clustering is Complete
 
@@ -102,8 +96,8 @@ Version:  01.01.00
 
 
 
-     69 nets were found containing 285 pins
-     85 components were found
+     64 nets were found containing 257 pins
+     74 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -116,7 +110,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       05:56 PM Tuesday, December 06, 2016
+                      01:55 AM Wednesday, December 14, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -129,7 +123,45 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     Netload completed successfully with 0 warning(s).
+	WARNING:  "C2" is being forward annotated to "C5".
+
+     WARNING:  The "R0603" cell used by "R10" in the Layout is not
+      valid for a "02-0083" Part Number.
+     INFO: Cell "R0603" is being replaced by cell "R0402".
+
+     WARNING:  The "R0603" cell used by "R4" in the Layout is not
+      valid for a "02-0083" Part Number.
+     INFO: Cell "R0603" is being replaced by cell "R0402".
+
+	WARNING:  "D2" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "R15" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "Q5" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "J8" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  The old version of "C5" is being removed from the Layout.
+
+	WARNING:  "D1" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "R6" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "C1" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "R7" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "Q2" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "R2" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "U3" is being removed from the Layout since it is no longer in the schematic.
+
+     The following 1 components have not been placed:
+
+        J6
+
+     Netload completed successfully with 15 warning(s).
      
      Back Annotating...
 
@@ -162,10 +194,17 @@ Version:  02.11.12
            ---------------------------------------------------
 
 Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG030198, which has no pins, from the Layout Design.
+	Deleted net XSIG030001, which has no pins, from the Layout Design.
+	Deleted net XSIG030002, which has no pins, from the Layout Design.
+	Deleted net XSIG030005, which has no pins, from the Layout Design.
+	Deleted net XSIG030102, which has no pins, from the Layout Design.
+	Deleted net VIN, which has no pins, from the Layout Design.
+	Deleted net XSIG050170, which has no pins, from the Layout Design.
+	Deleted net VBUS, which has no pins, from the Layout Design.
+	Deleted net XSIG030213, which has no pins, from the Layout Design.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 1 nets removed from the Layout Design.
+There were 8 nets removed from the Layout Design.
