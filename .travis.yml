@@ -8,8 +8,8 @@ sudo: required
 language: C
 
 script:
-    - cd tests/blink/
-    - make
+    - make -C tests/blink
+    - make -C tests/cam
 
 cache: ccache
 
@@ -19,3 +19,5 @@ addons:
         - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
         packages:
         - gcc-arm-embedded
+        - libopencv-dev
+        - libcv-dev
