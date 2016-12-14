@@ -9,7 +9,6 @@
 #include "../shared/decadriver/deca_device_api.h"
 #include "../shared/decadriver/deca_regs.h"
 #include "../shared/radio-conf.h"
-#include "../shared/non-volatile.h"
 #include "radio-comms.h"
 
 // event triggered when new data has been received
@@ -18,6 +17,9 @@ EVENTSOURCE_DECL(radioEvent);
 // RX/TX buffer
 #define RADIO_BUF_LEN 100
 static uint8_t radioBuffer[RADIO_BUF_LEN];
+
+static int deviceUID  = 0;
+static int sessionID  = -1;
 
 // timestamp of the last start-of-frame
 static int64_t sofTS = -1;
@@ -30,11 +32,21 @@ static int registered = 0;
 struct robotData radioData;
 
 static void parseSOF(int sofLength) {
-	int i = 3;
+	int i = 4;
 
 	// get start-of-frame reception time
 	sofTS = getRXtimestamp();
 	sofSystime = chVTGetSystemTime();
+
+	// check sessionID didn't change
+	if(sessionID == -1)
+		sessionID = radioBuffer[2];
+	else if(sessionID != radioBuffer[2]) {
+		// if it changed, restart sync
+		registered = 0;
+		sessionID = radioBuffer[2];
+		return;
+	}
 
 	// search for the robot's ID in the list
 	while(i < sofLength && radioBuffer[i++] != deviceUID);
