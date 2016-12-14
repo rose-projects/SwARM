@@ -1,11 +1,7 @@
 branches:
-  except:
-  - pretest
-  - elec
-
-variables:
-    CCACHE: ccache
-    CCACHE_DIR: $CI_PROJECT_DIR/.ccache
+    except:
+    - pretest
+    - elec
 
 sudo: required
 
@@ -14,10 +10,7 @@ language: C
 script:
     - echo "nothing to compile yet"
 
-cache:
-    key: all
-    paths:
-    - $CCACHE_DIR
+cache: ccache
 
 addons:
     apt:
@@ -25,4 +18,3 @@ addons:
         - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
         packages:
         - gcc-arm-embedded
-
