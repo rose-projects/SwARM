@@ -18,13 +18,11 @@ int main(void) {
     halInit();
     chSysInit();
 
-    /*
-     * Initializes a serial-over-USB CDC driver.
-     */
+    //  Initializes a serial-over-USB CDC driver.
     sduObjectInit(&SDU1);
     sduStart(&SDU1, &serusbcfg);
 
-   /*
+    /*
      * Activates the USB driver and then the USB bus pull-up on D+.
      * Note, a delay is inserted in order to not have to disconnect the cable
      * after a reset.
@@ -43,6 +41,7 @@ int main(void) {
     // Start the coding_wheels surveillance
     coding_wheels_start();
 
+    // Let the system have a little nap to let us start picocom 
     chThdSleepMilliseconds(2000);
 
     // Looping on a print of the speed value

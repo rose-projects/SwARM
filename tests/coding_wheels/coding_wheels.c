@@ -11,7 +11,7 @@ volatile int speed = 0;
 
 // Callback of our house made watchdog that sets the robot's speed to zero 
 // after 10ms of no activity on the coding wheel
-void vt_tim_cb(void * ptr){
+static void vt_tim_cb(void * ptr){
     (void) ptr;
     speed = 0;
 }
@@ -23,7 +23,7 @@ static virtual_timer_t wheel_vt;
 // It restarts the "watchdog" that resets the speed
 // It calculates the speed
 // And it updates the position
-void period_cb(ICUDriver * icup){
+static void period_cb(ICUDriver * icup){
     chSysLockFromISR();
 
     // Stop and reset the "watchdog" timer
@@ -41,7 +41,7 @@ void period_cb(ICUDriver * icup){
 }
 
 // Input capture configuration
-ICUConfig icu_conf = {
+const ICUConfig icu_conf = {
     // We trigger on positive edges
     ICU_INPUT_ACTIVE_HIGH,
     // The frequency at which we check the input's value
