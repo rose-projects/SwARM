@@ -1,4 +1,4 @@
-CXXFLAGS += -Wall -Wextra -pedantic
+CXXFLAGS += -Wall -Wextra -pedantic `pkg-config --cflags opencv`
 LDLIBS += `pkg-config --libs opencv`
 
 OBJ = cam.cpp
