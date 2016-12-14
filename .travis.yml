@@ -10,6 +10,7 @@ language: C
 script:
     - make -C tests/ranging/
     - make -C tests/blink/
+    - make -C tests/coding_wheels/
 
 cache: ccache
 
