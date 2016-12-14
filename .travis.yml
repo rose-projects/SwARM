@@ -8,7 +8,8 @@ sudo: required
 language: C
 
 script:
-    - echo "nothing to compile yet"
+    - cd tests/blink/
+    - make
 
 cache: ccache
 
