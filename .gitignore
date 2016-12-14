@@ -7,8 +7,6 @@ Thumbs.db
 .Trashes
 *~
 
-ChibiOS/
-
 # builds
 builds/
 .deps/

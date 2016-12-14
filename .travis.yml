@@ -1,24 +1,18 @@
 branches:
-  except:
-  - pretest
-  - elec
-
-variables:
-    CCACHE: ccache
-    CCACHE_DIR: $CI_PROJECT_DIR/.ccache
+    except:
+    - pretest
+    - elec
 
 sudo: required
 
 language: C
 
 script:
-    - cd tests/coding_wheels
-    - make
+    - make -C tests/ranging/
+    - make -C tests/blink/
+    - make -C tests/coding_wheels/
 
-cache:
-    key: all
-    paths:
-    - $CCACHE_DIR
+cache: ccache
 
 addons:
     apt:

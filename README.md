@@ -4,7 +4,6 @@
 #### Swaggy Artistic Robots Matrix.
 [Hackster.io](https://www.hackster.io/perceval/swarm-c362dd)
 
-
 ## ChibiOS stable for Olimex STM32 P407 & E407 rev.E
 
 ## About this branch
