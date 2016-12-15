@@ -7,7 +7,7 @@
 
 #include "../shared/usb-config.h"
 #include "../shared/exti-config.h"
-#include "../shared/non-volatile.h"
+#include "non-volatile.h"
 #include "radio-comms.h"
 #include "robot.h"
 

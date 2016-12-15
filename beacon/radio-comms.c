@@ -9,7 +9,7 @@
 #include "../shared/decadriver/deca_device_api.h"
 #include "../shared/decadriver/deca_regs.h"
 #include "../shared/radio-conf.h"
-#include "../shared/non-volatile.h"
+#include "non-volatile.h"
 #include "robot.h"
 
 // event triggered when new robot locations are available

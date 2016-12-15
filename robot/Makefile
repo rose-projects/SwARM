@@ -86,22 +86,21 @@ endif
 PROJECT = SwARM
 
 # Imported source files and paths
-CHIBIOS = ../ChibiOS_16.1.5
+CHIBIOS = ../ChibiOS
+BOARD = ../boards/OLIMEX_P407_JTAG
 # Startup files.
 include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f4xx.mk
 # HAL-OSAL files (optional).
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/ports/STM32/STM32F4xx/platform.mk
-include ../shared/board_P407_JTAG/board.mk
+include $(BOARD)/board.mk
 include $(CHIBIOS)/os/hal/osal/rt/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
-# Other files (optional).
-include $(CHIBIOS)/test/rt/test.mk
 
 # Define linker script file here
-LDSCRIPT= STM32F407.ld
+LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
@@ -115,13 +114,11 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-       $(TESTSRC) \
        $(CHIBIOS)/os/various/evtimer.c \
-       $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
        main.c deca-platform.c usb-config.c deca_device.c deca_params_init.c \
-	   exti-config.c deca-functions.c radio-comms.c non-volatile.c flash.c
+	   exti-config.c deca-functions.c radio-comms.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -151,8 +148,7 @@ TCPPSRC =
 ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
-         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-         $(LWINC) $(FATFSINC) \
+         $(HALINC) $(PLATFORMINC) $(BOARDINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various
 
 #
