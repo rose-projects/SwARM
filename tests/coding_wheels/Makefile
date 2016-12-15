@@ -83,7 +83,7 @@ endif
 #
 
 # Define project name here
-PROJECT = imu
+PROJECT = coding_wheels
 
 # Imported source files and paths
 CHIBIOS = ../../ChibiOS
@@ -146,7 +146,7 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
 		 $(HALINC) $(PLATFORMINC) $(BOARDINC) \
 		 $(CHIBIOS)/os/hal/lib/streams \
-		 ./ \
+		 ./
 
 #
 # Project, sources and paths
