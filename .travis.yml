@@ -11,7 +11,15 @@ script:
     - make -C tests/ranging/
     - make -C tests/blink/
     - make -C tests/coding_wheels/
-    - pkg-config --libs opencv
+    - mkdir opencv && cd opencv
+    - wget https://github.com/Itseez/opencv/archive/3.1.0.zip -O opencv-3.1.0.zip
+    - unzip opencv-3.1.0.zip
+    - cd opencv-3.1.0
+    - mkdir build && cd build
+    - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+    - make -j 8
+    - sudo make install
+    - cd ../../..
     - make -C tests/cam
 
 cache: ccache
