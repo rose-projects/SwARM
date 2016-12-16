@@ -1,15 +1,16 @@
 branches:
-    except:
-    - pretest
-    - elec
+  except:
+  - pretest
+  - elec
 
 sudo: required
 
 language: C
 
 script:
-    - make -C tests/ranging/
     - make -C tests/blink/
+    - make -C tests/led/
+    - make -C tests/ranging/
     - make -C tests/coding_wheels/
 
 cache: ccache
