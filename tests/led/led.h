@@ -2,6 +2,7 @@
 #define LED_H
 
 void initSPI(void);
-void set_leds(const char color, const uint8_t intensity);
+void turn_off_leds(void);
+void rainbow(int delay, uint8_t intensity);
 
 #endif

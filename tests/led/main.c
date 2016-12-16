@@ -16,51 +16,14 @@ int main(void) {
 	 */
 	halInit();
 	chSysInit();
-
-	// GPIOF pin 6 init as output pushpull for led
-	palSetPadMode(GPIOC, LED, PAL_MODE_OUTPUT_PUSHPULL);
 	
-	// set leds
 	initSPI();
 
-	// start color for led strip
-	char color = 'B';
+	turn_off_leds();
 
-	// led1 blinker
 	while (true) {
-
-		// set leds with 10 of intensity
-		set_leds(color, 10);
-
-		// blinking red led on the board
-		palSetPad(GPIOC, LED);
-		chThdSleepMilliseconds(500);
-		palClearPad(GPIOC, LED);
-		chThdSleepMilliseconds(500);
-
-		// changing color every second in order : 
-		// Blue, Cyan, Green, Magenta, Red, Yellow
-		switch(color) {
-			case 'B':
-				color = 'Y';
-				break;
-			case 'C':
-				color = 'B';
-				break;
-			case 'G':
-				color = 'C';
-				break;
-			case 'M':
-				color = 'G';
-				break;
-			case 'R':
-				color = 'M';
-				break;
-			case 'Y':
-				color = 'R';
-				break;
-		}
+		rainbow(2, 3);
 	}
-
+	
 	return 0;
 }
