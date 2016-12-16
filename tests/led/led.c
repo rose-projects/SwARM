@@ -1,7 +1,3 @@
-// led.c 
-// contains SPI exchange functions for SPI1 driver and led driver
-// SPI_USE_MUTUAL_EXCLUSION is set to False because we only have one slave
-
 #include "ch.h"
 #include "hal.h"
 
@@ -48,53 +44,20 @@ static inline void sendSPI(const uint8_t * datas, const size_t size) {
  * end frame = 0xFF : n/2 bits
  */
 
-// generate LED color datas : Blue, Cyan, Green, Magenta, Red, Yellow  
-static void gen_data(const char color, uint8_t intensity, uint8_t * datas) { 
-
-	intensity += 0xE0;
-	datas[0] = intensity;
-	datas[1] = 0;
-	datas[2] = 0;
-	datas[3] = 0;
-	switch(color) {
-		case 'R':
-			datas[3] = 255;
-			break;
-		case 'G':
-			datas[2] = 255;
-			break;
-		case 'B':
-			datas[1] = 255;
-			break;
-		case 'Y':
-			datas[2] = 255;
-			datas[3] = 255;
-			break;
-		case 'C':
-			datas[1] = 255;
-			datas[2] = 255;
-			break;
-		case 'M':
-			datas[1] = 255;
-			datas[3] = 255;
-			break;
-		// if nothing known we turn off the LEDs
-		default:
-			break;
-	}
-}
-
-// set the 8 leds at the same color
-void set_leds(const char color, const uint8_t intensity) {
+// set the 8 leds at the same color (BGR)
+static void set_leds(uint8_t * color, const uint8_t intensity) {
 	
-	uint8_t i; // counter for loops
-	uint8_t datas[4]; // color datas for one led
+	int i; // counter for loops
+	uint8_t datas[4]; // datas for one led 
 	uint8_t big_buffer[NB_LED * 4]; // datas to send to led strip
 	uint8_t startFrame[4] = {0,0,0,0}; // start frame for led strip
 	uint8_t endFrame = 0xff; // end frame for led strip
 	
-	// get color
-	gen_data(color, intensity, datas);
+	// generate data for one led
+	datas[0] = 0xE0 + intensity;
+	datas[1] = color[0];
+	datas[2] = color[1];
+	datas[3] = color[2];
 
 	// can't send datas in loop or the buffer will be re-written
 	// generate big buffer of datas to send
@@ -110,4 +73,84 @@ void set_leds(const char color, const uint8_t intensity) {
 
 	// send end frame
 	sendSPI(&endFrame, 1);
+}
+
+// turn of leds
+void turn_off_leds(void) {
+	uint8_t datas[] = {0, 0 ,0};
+	set_leds(datas, 0);
+}
+
+// color : B G R
+// display all colors with smooth transitions
+void rainbow(int delay, uint8_t intensity) {
+
+	int i; // counter for loops
+	uint8_t datas[3];
+	intensity += 0xE0;
+
+	// red
+	for (i = 0; i < 256; i++) {
+		datas[0] = 0;
+		datas[1] = 0;
+		datas[2] = i;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// green -> yellow
+	for (i = 0; i < 256; i++) {
+		datas[0] = 0;
+		datas[1] = i;
+		datas[2] = 255;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// red -> green
+	for (i = 255; i >= 0; i--) {
+		datas[0] = 0;
+		datas[1] = 255;
+		datas[2] = i;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// blue -> cyan
+	for (i = 0; i < 256; i++) {
+		datas[0] = i;
+		datas[1] = 255;
+		datas[2] = 0;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// green -> blue
+	for (i = 255; i >= 0; i--) {
+		datas[0] = 255;
+		datas[1] = i;
+		datas[2] = 0;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// red -> violet / pink
+	for (i = 0; i < 256; i++) {
+		datas[0] = 255;
+		datas[1] = 0;
+		datas[2] = i;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// green -> red
+	for (i = 255; i >= 0; i--) {
+		datas[0] = i;
+		datas[1] = 0;
+		datas[2] = 255;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
+	// red -> null
+	for (i = 255; i >= 0; i--) {
+		datas[0] = 0;
+		datas[1] = 0;
+		datas[2] = i;
+		set_leds(datas, intensity);
+		chThdSleepMilliseconds(delay);
+	}
 }
