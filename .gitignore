@@ -8,8 +8,9 @@ Thumbs.db
 *~
 
 # builds
-tests/blink/.dep/
-tests/blink/build/
+**/build/
+**/.deps/
+**/.dep/
 
 *.swp
 
