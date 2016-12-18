@@ -2,17 +2,15 @@
                                 Autosave Log File
                                 -----------------
 
-                       05:41 PM Sunday, December 18, 2016
+                       06:31 PM Sunday, December 18, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
-Autosave pending at 17:54:16 Sun  Attempting...
-Autosave completed successfully.  17:54:17 Sun
-Autosave pending at 17:59:18 Sun  Attempting...
-Autosave completed successfully.  17:59:18 Sun
+Autosave pending at 18:39:45 Sun  Attempting...
+Autosave completed successfully.  18:39:45 Sun
 
                                Autosave log closed
                                -------------------
 
-                       06:24 PM Sunday, December 18, 2016
+                       06:45 PM Sunday, December 18, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
