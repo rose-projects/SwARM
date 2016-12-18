@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                      01:55 AM Wednesday, December 14, 2016
+                       02:12 PM Sunday, December 18, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -96,7 +96,7 @@ Version:  01.01.00
 
 
 
-     64 nets were found containing 257 pins
+     64 nets were found containing 255 pins
      74 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
@@ -110,7 +110,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      01:55 AM Wednesday, December 14, 2016
+                       02:12 PM Sunday, December 18, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -123,45 +123,7 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-	WARNING:  "C2" is being forward annotated to "C5".
-
-     WARNING:  The "R0603" cell used by "R10" in the Layout is not
-      valid for a "02-0083" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R0402".
-
-     WARNING:  The "R0603" cell used by "R4" in the Layout is not
-      valid for a "02-0083" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R0402".
-
-	WARNING:  "D2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R15" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q5" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "J8" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  The old version of "C5" is being removed from the Layout.
-
-	WARNING:  "D1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R6" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "C1" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R7" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "Q2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "R2" is being removed from the Layout since it is no longer in the schematic.
-
-	WARNING:  "U3" is being removed from the Layout since it is no longer in the schematic.
-
-     The following 1 components have not been placed:
-
-        J6
-
-     Netload completed successfully with 15 warning(s).
+     Netload completed successfully with 0 warning(s).
      
      Back Annotating...
 
@@ -193,18 +155,8 @@ Version:  02.11.12
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
 
-Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG030001, which has no pins, from the Layout Design.
-	Deleted net XSIG030002, which has no pins, from the Layout Design.
-	Deleted net XSIG030005, which has no pins, from the Layout Design.
-	Deleted net XSIG030102, which has no pins, from the Layout Design.
-	Deleted net VIN, which has no pins, from the Layout Design.
-	Deleted net XSIG050170, which has no pins, from the Layout Design.
-	Deleted net VBUS, which has no pins, from the Layout Design.
-	Deleted net XSIG030213, which has no pins, from the Layout Design.
-
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 8 nets removed from the Layout Design.
+There were 0 nets removed from the Layout Design.
