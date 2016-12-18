@@ -33,13 +33,6 @@ int main(void) {
     usbStart(serusbcfg.usbp, &usbcfg);
     usbConnectBus(serusbcfg.usbp);
 
-    /*
-     * Sets the GPIOA0 GPIOB5 pin to their TIM2_5 alternate function so that we can 
-     * capture the timer
-     */
-    palSetPadMode(GPIOA, GPIOA_BUTTON_WKUP, PAL_MODE_ALTERNATE(2));
-    palSetPadMode(GPIOB, GPIOB_I2S3_SD, PAL_MODE_ALTERNATE(2));
-
     // Start the coding_wheels surveillance
     coding_wheels_start();
 

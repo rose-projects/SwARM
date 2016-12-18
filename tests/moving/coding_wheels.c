@@ -2,11 +2,10 @@
 #include "wheel_constants.h"
 #include "hal.h"
 #include "usbcfg.h"
-#include <math.h>
 
 /*
- * TIM5_CH1 is connected to the right wheel
- * TIM3_TH2 is connected to the left wheel
+ * TIM5_CH1 is connected to the right coding wheel
+ * TIM3_TH2 is connected to the left coding wheel
  */
 
 // Period of the last blink on the coding wheel
@@ -115,6 +114,15 @@ const ICUConfig icu_conf_r = {
 
 // Function to start the input capture, to be called in main
 void coding_wheels_start(){
+
+    /*
+     * Setting GPIOA0 on TIM5_CH1 for the right coding wheel
+     * Setting GPIOB5 on TIM3_CH2 for the left coding wheel
+     */
+    palSetPadMode(GPIOA, GPIOA_BUTTON_WKUP, PAL_MODE_ALTERNATE(2));
+    palSetPadMode(GPIOB, GPIOB_I2S3_SD, PAL_MODE_ALTERNATE(2));
+
+    // Software related init
     icuInit();
     icuStart(&ICUD3, &icu_conf_l);
     icuStart(&ICUD5, &icu_conf_r);
