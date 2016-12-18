@@ -67,3 +67,6 @@
 [2016-12-18 13.57.39] Successfully created [AutoSave] backup [2016-12-18 13.57.39 - auto.zip] requested by [WIN10:root].
 [2016-12-18 13.57.39] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 10.54.36 - auto.zip].
 [2016-12-18 13.57.39] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 10.54.36 - auto.zip] removed.
+[2016-12-18 17.57.39] Successfully created [AutoSave] backup [2016-12-18 17.57.39 - auto.zip] requested by [WIN10:root].
+[2016-12-18 17.57.39] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 15.33.08 - auto.zip].
+[2016-12-18 17.57.39] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 15.33.08 - auto.zip] removed.

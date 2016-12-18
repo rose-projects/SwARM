@@ -55,3 +55,9 @@
 [2016-12-05 17.17.35] Successfully created [AutoSave] backup [2016-12-05 17.17.35 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
 [2016-12-05 17.17.35] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\Default\ProjectBackup\backups\2016-12-03 16.18.00 - auto.zip].
 [2016-12-05 17.17.35] [AutoSave] backup file [SwARM_Schematics_annex\Default\ProjectBackup\backups\2016-12-03 16.18.00 - auto.zip] removed.
+[2016-12-18 15.29.48] Successfully created [Constraints Definition Upgrade] backup [2016-12-18 15.29.48 - consDefUpgr.zip] requested by [WIN10:root].
+[2016-12-18 15.29.48] Removing excessive [Constraints Definition Upgrade] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS_ANNEX\Default\ProjectBackup\backups\2016-11-22 14.45.42 - consDefUpgr.zip].
+[2016-12-18 15.29.48] [Constraints Definition Upgrade] backup file [SWARM_SCHEMATICS_ANNEX\Default\ProjectBackup\backups\2016-11-22 14.45.42 - consDefUpgr.zip] removed.
+[2016-12-18 15.29.48] Migrated iCDB content backup file [cdbback\2016-12-18 15.29.48-2492.zip] removed.
+[2016-12-18 15.29.49] ERROR: Cannot create Project Backup file. Requested [AutoSave] backup by [WIN10:root] will not be created.
+[2016-12-18 15.29.55] Successfully created [AutoSave] backup [2016-12-18 15.29.54 - auto.zip] requested by [WIN10:root].

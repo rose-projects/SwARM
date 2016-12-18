@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       02:12 PM Sunday, December 18, 2016
+                       05:41 PM Sunday, December 18, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -87,8 +87,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 74 Symbols:
-              74  ***********************
+     Clustering 73 Symbols:
+              73  **********************
               50  **************************************************
      Clustering is Complete
 
@@ -96,8 +96,8 @@ Version:  01.01.00
 
 
 
-     64 nets were found containing 255 pins
-     74 components were found
+     64 nets were found containing 253 pins
+     73 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -110,7 +110,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       02:12 PM Sunday, December 18, 2016
+                       05:41 PM Sunday, December 18, 2016
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -154,9 +154,10 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
+	Assigned net INFRA_LED_L to a trace which was originally on net (Net0).
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 0 reassignments of nets.
+There were 1 reassignments of nets.
 There were 0 traces broken back.
 There were 0 nets removed from the Layout Design.
