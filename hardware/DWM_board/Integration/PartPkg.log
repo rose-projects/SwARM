@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       06:53 PM Sunday, December 18, 2016
-            Job Name: E:\2017\SWARM\HARDWARE\DWM_BOARD\DWM_board.prj
+                       07:15 PM Sunday, December 18, 2016
+            Job Name: E:\2017\SwARM\hardware\DWM_board\DWM_board.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\package "-uE:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb" -k -CleanBuild -W1PinNets "-jE:\2017\SWARM\HARDWARE\DWM_BOARD\DWM_board.prj" "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"E:\2017\SwARM\hardware\DWM_board\DWM_board.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb".
+     The Common Database is at "E:\2017\SwARM\hardware\DWM_board\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "E:\2017\SWARM\HARDWARE\DWM_BOARD\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "E:\2017\SwARM\hardware\DWM_board\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -37,10 +37,8 @@
      Properties that have been checked off in the Property Definition Editor
       found at Library Manager/Common Properties will be checked for value
       differences between the PartsDB and the non-null properties on symbols.
-     Those properties checked off will be transferred from the PartsDB to all
-      symbols, both packaged and unpackaged.  However, the property values
-      transferred will be limited to the precision specified in the Notation
-      Settings dialog.
+     Those properties checked off (other than Part Number)
+      will not be transferred from the PartsDB to symbols.
      The following properties were checked off in the Property Definition Editor:
        "Parametric"
        "Value2"
@@ -124,9 +122,6 @@
      Augmented - Adding phantom pins....
 
      Numbering Nets....
-
-    After augmentation of supply pins, there are 8 nets where 0 nets have only one pin.
-
 
      Checking Pins....
 

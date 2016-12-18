@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       08:15 PM Sunday, December 04, 2016
-Job Name: C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM_Schematics.prj
+                       07:15 PM Sunday, December 18, 2016
+            Job Name: E:\2017\SwARM\hardware\DWM_board\DWM_board.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\SwARM_Schematics.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"E:\2017\SwARM\hardware\DWM_board\DWM_board.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\Default\default.icdb".
+     The Common Database is at "E:\2017\SwARM\hardware\DWM_board\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics_annex\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "E:\2017\SwARM\hardware\DWM_board\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
