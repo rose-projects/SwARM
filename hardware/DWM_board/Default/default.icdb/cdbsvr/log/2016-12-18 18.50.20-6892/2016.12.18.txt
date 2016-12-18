@@ -1,0 +1,44 @@
+[2016.12.18 18:50:46] [0000m.26s.400ms] [0] WELCOME
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] iCDB Client ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Base flow version [7.9.4]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Machine [WIN10]  User [root]  PID [6892]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Current working dir [C:\WINDOWS\system32]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] SDD_PLATFORM [win32]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] WDIR [C:\Users\root\Documents\WDIR\7.9.5;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\7.9.5\iCDB] on file system [NTFS]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] IC: Project GUID [037a-f47e-efd5-21ec-26d9-6587-6d96-5850-bc0c-3bf8-e806-e5f5]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] IC: Project path [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] on file system [VBoxSharedFolderFS]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] IC: Global project path [\\vboxsrv\elecinf344\2017\SwARM\hardware\DWM_board\Default\default.icdb] on file system [UNKNOWN]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] IC: Working in FULL access mode
+[2016.12.18 18:50:46] [0000m.26s.400ms] [0] Single file [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb\icdb.dat] size [143920 (140.5 kB)]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] Single file [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.12.18 18:50:46] [0000m.26s.400ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [0] Database GUARD OK: [143920]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] IC: Opened project [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] with session [3587] in read only mode [0]
+[2016.12.18 18:50:46] [0000m.26s.400ms] [1] IC: Adding sub-client [iCDBProjectBackupRepair] with ID [1] to project [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] with session [3587]
+[2016.12.18 18:50:46] [0000m.26s.417ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.12.18 18:50:46] [0000m.26s.417ms] [0] Database GUARD OK: [143920]
+[2016.12.18 18:50:46] [0000m.26s.417ms] [0] SingleFile: [d550-a5fe-3682-6f23] SFI version check [1009] [1009]
+[2016.12.18 18:50:46] [0000m.26s.450ms] [0] SingleFile: [d550-a5fe-3682-6f23] Database SFI header has been read in [36ms 733us]
+[2016.12.18 18:50:46] [0000m.26s.450ms] [1] IC: Adding sub-client [] with ID [2] to project [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] with session [3587]
+[2016.12.18 18:50:46] [0000m.26s.467ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.12.18 18:50:46] [0000m.26s.467ms] [0] iCDB Database: Checking constraint definitions version
+[2016.12.18 18:50:46] [0000m.26s.501ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5] up to date
+[2016.12.18 18:50:46] [0000m.26s.501ms] [1] IC: Removing sub-client [2] from project [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] with session [3587]
+[2016.12.18 18:50:46] [0000m.26s.535ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2016.12.18 18:50:46] [0000m.26s.535ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2016.12.18 18:50:46] [0000m.26s.535ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2016.12.18 18:50:46] [0000m.26s.636ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2016.12.18 18:50:46] [0000m.26s.636ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2016.12.18 18:50:46] [0000m.26s.636ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2016.12.18 18:50:46] [0000m.26s.823ms] [1] IC: Removing sub-client [1] from project [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] with session [3587]
+[2016.12.18 18:50:46] [0000m.26s.823ms] [1] IC: Closing project [E:\2017\SwARM\hardware\DWM_board\Default\default.icdb] with session [3587] for sub-client [1]
+[2016.12.18 18:50:46] [0000m.26s.823ms] [0] STOP
+[2016.12.18 18:50:46] [0000m.26s.823ms] [0] .
