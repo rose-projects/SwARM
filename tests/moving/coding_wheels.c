@@ -11,26 +11,9 @@
 // Period of the last blink on the coding wheel
 volatile float period_l = 0;
 volatile float period_r = 0;
-// Robot's speed in m/s
-volatile int speed_l = 0;
-volatile int speed_r = 0;
-volatile int speed = 0;
-
-// Callback of our house made watchdog that sets the robot's speed to zero 
-// after 10ms of no activity on the coding wheel
-static void vt_tim_cb_l(void * ptr){
-    (void) ptr;
-    speed_l = 0;
-}
-
-static void vt_tim_cb_r(void * ptr){
-    (void) ptr;
-    speed_r = 0;
-}
-
-// Virtual timers that are used in the coding wheels' interrupts
-static virtual_timer_t wheel_vt_l;
-static virtual_timer_t wheel_vt_r;
+// Wheels ticks init
+volatile int tick_l = 0;
+volatile int tick_r = 0;
 
 // Coding wheel interrupt on each period of the coding wheel feedback
 // It restarts the "watchdog" that resets the speed
@@ -39,18 +22,10 @@ static virtual_timer_t wheel_vt_r;
 static void period_cb_l(ICUDriver * icup){
     chSysLockFromISR();
 
-    // Stop and reset the "watchdog" timer
-    chVTResetI(&wheel_vt_l);
-
     // Get the period of the last tick on the coding wheel
     period_l = icuGetPeriodX(icup);
-    // Calculate speed
-    speed_l = U_MM * FREQUENCY / period_l;
-    // Update global speed
-    speed = (speed_l + speed_r)/2;
-
-    // Restart the "watchdog" timer
-    chVTSetI(&wheel_vt_l, MS2ST(10), vt_tim_cb_l, NULL);
+    // Update tick count on the wheel
+    tick_l++;
 
     chSysUnlockFromISR();
 }
@@ -58,18 +33,10 @@ static void period_cb_l(ICUDriver * icup){
 static void period_cb_r(ICUDriver * icup){
     chSysLockFromISR();
 
-    // Stop and reset the "watchdog" timer
-    chVTResetI(&wheel_vt_r);
-
     // Get the period of the last tick on the coding wheel
     period_r = icuGetPeriodX(icup);
-    // Calculate speed
-    speed_r = U_MM * FREQUENCY / period_r;
-    // Update global speed
-    speed = (speed_l + speed_r)/2;
-
-    // Restart the "watchdog" timer
-    chVTSetI(&wheel_vt_r, MS2ST(10), vt_tim_cb_r, NULL);
+    // Update tick count on the wheel
+    tick_r++;
 
     chSysUnlockFromISR();
 }

@@ -2,15 +2,15 @@
 #include "hal.h"
 #include "ch.h"
 
-#define PWM_FREQ            (100000)
-#define GO_REVERSE     palSetPad(GPIOF,GPIOF_STAT1);\
-                       palSetPad(GPIOC,GPIOC_SWITCH_TAMPER);
-#define GO_FORWARD     palClearPad(GPIOF,GPIOF_STAT1);\
-                       palClearPad(GPIOC,GPIOC_SWITCH_TAMPER);
-#define GO_RIGHT       palSetPad(GPIOF,GPIOF_STAT1);\
-                       palClearPad(GPIOC,GPIOC_SWITCH_TAMPER);
-#define GO_LEFT        palClearPad(GPIOF,GPIOF_STAT1);\
-                       palSetPad(GPIOC,GPIOC_SWITCH_TAMPER);
+#define PWM_FREQ            100000
+#define GO_REVERSE          palSetPad(GPIOF,GPIOF_STAT1);\
+                            palSetPad(GPIOC,GPIOC_SWITCH_TAMPER);
+#define GO_FORWARD          palClearPad(GPIOF,GPIOF_STAT1);\
+                            palClearPad(GPIOC,GPIOC_SWITCH_TAMPER);
+#define GO_RIGHT            palSetPad(GPIOF,GPIOF_STAT1);\
+                            palClearPad(GPIOC,GPIOC_SWITCH_TAMPER);
+#define GO_LEFT             palClearPad(GPIOF,GPIOF_STAT1);\
+                            palSetPad(GPIOC,GPIOC_SWITCH_TAMPER);
 
                             
 
