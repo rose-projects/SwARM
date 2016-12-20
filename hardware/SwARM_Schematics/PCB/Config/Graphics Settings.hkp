@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 12/18/16 18:45:20
+! Created 12/20/16 17:16:57
 !
 
 .Global_Constants 67 2
@@ -15,11 +15,11 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(498, 132) (1920,788)	! ..rcNormalPosition
+	(1, 1) (639,430)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
-    ..Active_Route_Layer 0
+    ..Active_Route_Layer 1
     ..Trace_Layer_Color ( 
 	0x00ff6633 0x009933ff	! [1-2] RGB( 51,102,255)  RGB(255, 51,153)
 	0x0066ff99 0x000000ff	! [3-4] RGB(153,255,102)  RGB(255,  0,  0)
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x011500dc	! RGB(220,  0, 21)
+    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x00710f06	! RGB(  6, 15,113)
+    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x0101b4d5	! top     RGB(213,180,  1)
-	0x00000005	! bottom  RGB(  5,  0,  0)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Bondwire_Color (
-	0x00000004	! top     RGB(  4,  0,  0)
-	0x00b9789d	! bottom  RGB(157,120,185)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1798,8 +1798,8 @@
 
 .view "PCB"
     ..extrema
-	(-58277070,-2540000)		! (xmin, ymin)
-	(96277070,60540030)		! (xmax, ymax)
+	(-58375744,-2540000)		! (xmin, ymin)
+	(96375744,60539808)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
@@ -1811,7 +1811,7 @@
     ..Trace_All_Enabled                  True
     ..Pad_All_Enabled                    True
     ..Pad_Layer_On ( 
-	T T T T T T T T T T 	! [1 - 10]
+	F T T T T T T T T T 	! [1 - 10]
 	T T T T T T T T T T 	! [11 - 20]
 	T T T T T T T T T T 	! [21 - 30]
 	T T T T T T T T T T 	! [31 - 40]
@@ -1839,7 +1839,7 @@
 	T T T T T T ! [251 - 256]
 	)
     ..Trace_Layer_On ( 
-	T T T T T T T T T T 	! [1 - 10]
+	F T T T T T T T T T 	! [1 - 10]
 	T T T T T T T T T T 	! [11 - 20]
 	T T T T T T T T T T 	! [21 - 30]
 	T T T T T T T T T T 	! [31 - 40]
@@ -2011,14 +2011,14 @@
                                          True 	! bottom
     ..Thermal_Data_On                    True 	! top
                                          True 	! bottom
-    ..All_Assy_Enabled                   False	! top
-                                         False	! bottom
+    ..All_Assy_Enabled                   True 	! top
+                                         True 	! bottom
     ..Assy_Outline_On                    True 	! top
                                          True 	! bottom
     ..Assy_Part_Number_On                False	! top
                                          False	! bottom
-    ..Assy_Ref_Des_On                    True 	! top
-                                         True 	! bottom
+    ..Assy_Ref_Des_On                    False	! top
+                                         False	! bottom
     ..All_Silkscreen_Enabled             False	! top
                                          False	! bottom
     ..Silk_Outline_On                    False	! top
@@ -2053,10 +2053,10 @@
                                          False	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       False	! top
-                                         False	! bottom
-    ..Bondwire_On                        False	! top
-                                         False	! bottom
+    ..Diepinpad_On                       True 	! top
+                                         True 	! bottom
+    ..Bondwire_On                        True 	! top
+                                         True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top

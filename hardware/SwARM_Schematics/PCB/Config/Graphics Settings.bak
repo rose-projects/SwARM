@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 12/18/16 18:24:01
+! Created 12/20/16 12:29:39
 !
 
 .Global_Constants 67 2
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(498, 132) (1920,788)	! ..rcNormalPosition
+	(1, 1) (639,430)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x4177ba02	! RGB(  2,186,119)
+    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x416f631d	! RGB( 29, 99,111)
+    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0xe8000000	! top     RGB(  0,  0,  0)
-	0x41865ebc	! bottom  RGB(188, 94,134)
+	0x010a8ff9	! top     RGB(249,143, 10)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Bondwire_Color (
-	0xfffdb610	! top     RGB( 16,182,253)
-	0x4172fbd7	! bottom  RGB(215,251,114)
+	0x010a9079	! top     RGB(121,144, 10)
+	0x010a8ff9	! bottom  RGB(249,143, 10)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1798,8 +1798,8 @@
 
 .view "PCB"
     ..extrema
-	(-50617908,-1671061)		! (xmin, ymin)
-	(103940064,61410533)		! (xmax, ymax)
+	(-38727203,-1597902)		! (xmin, ymin)
+	(116043445,61489716)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
@@ -2011,14 +2011,14 @@
                                          True 	! bottom
     ..Thermal_Data_On                    True 	! top
                                          True 	! bottom
-    ..All_Assy_Enabled                   False	! top
-                                         False	! bottom
+    ..All_Assy_Enabled                   True 	! top
+                                         True 	! bottom
     ..Assy_Outline_On                    True 	! top
                                          True 	! bottom
     ..Assy_Part_Number_On                False	! top
                                          False	! bottom
-    ..Assy_Ref_Des_On                    True 	! top
-                                         True 	! bottom
+    ..Assy_Ref_Des_On                    False	! top
+                                         False	! bottom
     ..All_Silkscreen_Enabled             False	! top
                                          False	! bottom
     ..Silk_Outline_On                    False	! top
@@ -2053,10 +2053,10 @@
                                          False	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       True 	! top
-                                         True 	! bottom
-    ..Bondwire_On                        True 	! top
-                                         True 	! bottom
+    ..Diepinpad_On                       False	! top
+                                         False	! bottom
+    ..Bondwire_On                        False	! top
+                                         False	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top

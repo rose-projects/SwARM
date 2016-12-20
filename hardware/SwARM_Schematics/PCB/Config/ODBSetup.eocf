@@ -1,57 +1,17 @@
 .FILETYPE ODBSETUP
 .VERSION "2.0"
 .SCHEMA_VERSION 1
-.DATE "05/09/2016 19:09:36"
+.DATE "20/12/2016 16:01:27"
 .USERLAYERS 
  ..ANYINCLUDES NO
- ..NAME "Default User Layer"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_Default User Layer"
- ..NAME "DRAWTRACE_CLEARANCEGEOM"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_DRAWTRACE_CLEARANCEGEOM"
- ..NAME "SVG Import"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_SVG Import"
  ..NAME "Dimensions"
   ...INCLUDE NO
   ...MAPPEDTO USE_USER_LAYER
   ....USER_LAYER_NAME "USR_Dimensions"
- ..NAME "SVG Import battery"
+ ..NAME "Measure Drawing"
   ...INCLUDE NO
   ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_SVG Import battery"
- ..NAME "DRC Assertion Assistant Layer"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_DRC Assertion Assistant Layer"
- ..NAME "DRC Assertion Assistant Layer:1"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_DRC Assertion Assistant Layer:1"
- ..NAME "DRC Assertion Assistant Layer:2"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_DRC Assertion Assistant Layer:2"
- ..NAME "QEDraw"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_QEDraw"
- ..NAME "QEDraw2"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_QEDraw2"
- ..NAME "QEDraw3"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_QEDraw3"
- ..NAME "QEDrawText"
-  ...INCLUDE NO
-  ...MAPPEDTO USE_USER_LAYER
-  ....USER_LAYER_NAME "USR_QEDrawText"
+  ....USER_LAYER_NAME "USR_Measure Drawing"
 .ODBPP_DOCUMENTATION 
  ..ANYINCLUDES NO
 .LAYERS_TO_EXPORT 
@@ -113,7 +73,7 @@
 .ROUND_CORNERS YES
 .IGNORE_COMPONENT_LAYOUT NO
 .COMPRESS NO
-.ODBPP_INSIDE NO
+.ODBPP_INSIDE YES
 .GEN_SILK_DATA YES
 .PART_NUMBER NO
 .BOARD_OUTLINE YES
@@ -123,6 +83,6 @@
 .OutputDirectory ".\\Output"
 .OutputJobName "PCBodb"
 .LogFilePath ".\\LogFiles"
-.SchemeChanged No 
+.SchemeChanged Yes 
 .Scheme "ODBSetup"
 .SchemeLocation "System"

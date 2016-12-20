@@ -1,0 +1,30 @@
+ ----------------------------
+|      Drill Engine Log      |
+|          Started           |
+|  Tue Dec 20 16:01:35 2016  |
+ ----------------------------
+
+
+Created drill file ".\Output\ODBPPIns_GN\ThruHolePlated.ncd" for span from 1 to 2
+Total holes, contours in this file 203, 0
+
+    Tool   Size (IN)    Tolerance (IN)     Plated   Count
+    ----   ---------   -----------------   ------   -----
+     03     0.0118     +0.0020 / -0.0039    YES     186
+     01     0.0394     +0.0039 / -0.0020    YES     14
+     02     0.0433     +0.0059 / -0.0039    YES     3
+
+
+Created drill file ".\Output\ODBPPIns_GN\ThruHoleNonPlated.ncd" for span from 1 to 2
+Total holes, contours in this file 3, 0
+
+    Tool   Size (IN)    Tolerance (IN)     Plated   Count
+    ----   ---------   -----------------   ------   -----
+     04     0.0591        +/- 0.0039        NO      3
+
+
+ ----------------------------
+|      Drill Engine Log      |
+|          Finished          |
+|  Tue Dec 20 16:01:36 2016  |
+ ----------------------------

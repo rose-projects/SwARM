@@ -1,6 +1,6 @@
-WARNING! MVO rules have been described in an obsolete format.
-         Not all features are supported for this version of the format.
-         Please refer to Help for the proper description of the actual format.
 
+Can not open Multiple Via Rules file. File doesn't exist:
+       'E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Config\MultiViaRules.txt'
 
- Reading MVO Rules file
+Can not open Multiple Via Rules file. File doesn't exist:
+       'E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Layout\MVO_Rules.txt'

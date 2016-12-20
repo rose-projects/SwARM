@@ -1,0 +1,25 @@
+
+
+Deleting directory .\Output\ODBPPIns_GN\
+Generating NCDrill Output ...
+Tuesday, December 20, 2016 04:01 PM
+Merging NCDrill Output files ...
+
+        Renaming NCDrill Output files "ThruHoleNonPlated.ncd" to "d_1_2.ncd"
+
+        Merged NCDrill Output files "d_1_2.ncd" - "ThruHolePlated.ncd"
+        Deleting NCDrill Output files "ThruHolePlated.ncd"
+Completed NCDrill Output ...
+Tuesday, December 20, 2016 04:01 PM
+
+Generating Gerber Output ...
+Tuesday, December 20, 2016 04:01 PM
+
+Completed Gerber Output ...
+Tuesday, December 20, 2016 04:01 PM
+        Deleting Gerber file "ssb.gdo" as it is not present in ODB++ output.
+        Deleting Gerber file "sst.gdo" as it is not present in ODB++ output.
+
+Invoking ODB++ Inside utility...
+
+Completed running ODB++ Inside utility

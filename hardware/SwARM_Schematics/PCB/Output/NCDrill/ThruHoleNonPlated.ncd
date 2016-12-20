@@ -1,0 +1,21 @@
+; Version : LOCAL
+; Job     : E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+; User    : WIN10:root
+; Date    : Tue Dec 20 14:00:00 2016
+; Format  : 3.3 / Absolute / MM / Leading
+; Contents: Thru / Drill / Non-Plated
+M48
+METRIC,TZ
+FMAT,2
+ICI,OFF
+T04C1.5000
+%
+M71
+G90
+G93X0Y0
+T04
+X5070Y5049
+X15655Y15294
+X5097Y24103
+T00
+M30
