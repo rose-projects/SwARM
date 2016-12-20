@@ -5,6 +5,7 @@
 #include "chprintf.h"
 #include "coding_wheels.h"
 #include "motors.h"
+#include "asser.h"
 
 // Application entry point.
 int main(void) {
@@ -46,8 +47,13 @@ int main(void) {
     // Starting with half the power on the motors
     pwmEnableChannel(&PWMD1, 0, 100);
     pwmEnableChannel(&PWMD1, 1, 100);
+    start_asservs();
+
+    // Let the system have a little nap to let us start picocom 
+    chThdSleepMilliseconds(5000);
 
     chprintf(COUT, "Starting wheels' tests with motors with half the power \r\n");
+
     // Looping on a print of the speed value
     for(int i =0; i<200; i++){
         chprintf(COUT, "speed_l: %D\r\n", speed_l);
