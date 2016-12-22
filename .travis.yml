@@ -1,9 +1,10 @@
+dist: trusty
+sudo: false
+
 branches:
     except:
     - pretest
     - elec
-
-sudo: required
 
 language: C
 
@@ -13,9 +14,8 @@ script:
 
 cache: ccache
 
-addons:
+addons:   
     apt:
-        sources:
-        - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
         packages:
-        - gcc-arm-embedded
+        - gcc-arm-none-eabi
+        - libnewlib-arm-none-eabi

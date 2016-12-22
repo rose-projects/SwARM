@@ -1,4 +1,4 @@
-# SwARM [![Build Status](https://travis-ci.org/rose-projects/SwARM.svg?branch=dev)](https://travis-ci.org/rose-projects/SwARM)
+# SwARM [![Build Status](https://travis-ci.org/rose-projects/SwARM.svg?branch=chibi-p407)](https://travis-ci.org/rose-projects/SwARM)
 
 #### Swaggy Artistic Robots Matrix
 
