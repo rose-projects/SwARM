@@ -1,22 +1,23 @@
-branches:
-    except:
-    - pretest
-    - elec
+dist: trusty
+sudo: false
 
-sudo: required
+branches:
+  except:
+  - pretest
+  - elec
 
 language: C
 
 script:
-    - make -C tests/ranging/
     - make -C tests/blink/
+    - make -C tests/led/
+    - make -C tests/ranging/
     - make -C tests/coding_wheels/
 
 cache: ccache
 
 addons:
     apt:
-        sources:
-        - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
         packages:
-        - gcc-arm-embedded
+        - gcc-arm-none-eabi
+        - libnewlib-arm-none-eabi
