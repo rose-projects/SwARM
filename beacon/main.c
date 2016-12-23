@@ -19,6 +19,7 @@ static const ShellCommand shCmds[] = {
 	{"sb2cal",   sb2Calibrate},
 	{"setid",   setDeviceUID},
 	{"getid",   getDeviceUID},
+	{"list", dumpConnectedDevices},
     {NULL, NULL}
 };
 

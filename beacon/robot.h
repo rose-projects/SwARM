@@ -1,6 +1,8 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
+#include "non-volatile.h"
+
 struct robotData {
 	// sent to the robot
 	uint8_t H;
@@ -14,9 +16,7 @@ struct robotData {
 	uint8_t flags;
 	// not sent to the robot
 	uint8_t status;
-	int16_t mbOffset;
-	int16_t sb1Offset;
-	int16_t sb2Offset;
+	struct distOffset *offsets;
 	uint16_t mbDist;
 	uint16_t sb1Dist;
 	uint16_t sb2Dist;

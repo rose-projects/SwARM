@@ -25,9 +25,6 @@
 /* maximum supported number of connected robots */
 #define MAX_CONNECTED_ROBOTS 48
 
-/* maximum supported robot ID */
-#define MAX_ROBOT_ID 50
-
 // Radio message IDs
 #define SOF_MSG_ID 0x23
 #define BEACON_READ_MSG_ID 0x32

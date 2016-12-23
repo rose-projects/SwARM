@@ -18,7 +18,7 @@ EVENTSOURCE_DECL(radioEvent);
 #define RADIO_BUF_LEN 100
 static uint8_t radioBuffer[RADIO_BUF_LEN];
 
-static int deviceUID  = 0;
+static int deviceID  = 0;
 static int sessionID  = -1;
 
 // timestamp of the last start-of-frame
@@ -49,7 +49,7 @@ static void parseSOF(int sofLength) {
 	}
 
 	// search for the robot's ID in the list
-	while(i < sofLength && radioBuffer[i++] != deviceUID);
+	while(i < sofLength && radioBuffer[i++] != deviceID);
 
 	// if found, robot is known to be active by master beacon
 	if(i != sofLength)
@@ -93,7 +93,7 @@ static int messageRead(int msgID, int addr, uint64_t timeInFrame) {
 }
 
 static void synchronizeRadio(void) {
-	int ret, frameCounter = 0;
+	int ret, frameCounter = 0, retryDelay = 0;
 
 	// listen to master beacon
 	switchToChannel(MB_CHANNEL);
@@ -121,14 +121,21 @@ static void synchronizeRadio(void) {
 			if(registered)
 				continue;
 
-			// retry to register each deviceUID/4 frames
-			if((frameCounter % (deviceUID/4)) == 0) {
-				ret = messageRead(NEW_ROBOT_MSG_ID, 0xFF, FRAME_LENGTH - (4 - (deviceUID&0x03))*TIMESLOT_LENGTH);
-				if(ret > 0 && radioBuffer[2] == (deviceUID&0x03)) {
+			// retry to register after a random number of frames
+			if(frameCounter == retryDelay) {
+				ret = messageRead(NEW_ROBOT_MSG_ID, 0xFF, FRAME_LENGTH - TIMESLOT_LENGTH);
+				if(ret == 3 && radioBuffer[2] != 0) {
+					uint32_t uid = dwt_getpartid();
+					deviceID = radioBuffer[2];
+
 					radioBuffer[1] = 0;
-					radioBuffer[2] = deviceUID;
-					decaSend(3, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
+					radioBuffer[2] = uid;
+					radioBuffer[3] = uid >> 8;
+					radioBuffer[4] = uid >> 16;
+					decaSend(5, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
 				}
+				frameCounter = 0;
+				retryDelay = sofTS & 0x1F;
 			}
 			frameCounter++;
 
@@ -188,7 +195,7 @@ static THD_FUNCTION(radioThread, th_data) {
 			}
 		}
 
-		if(messageRead(RANGING_MSG_ID, deviceUID, (registered+2)*TIMESLOT_LENGTH) == 15) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH) == 15) {
 			parseRadioData();
 			rangingResponse(1);
 			// send radio event (new data available)
@@ -197,11 +204,11 @@ static THD_FUNCTION(radioThread, th_data) {
 		    chSysUnlock();
 		}
 		switchToChannel(SB1_CHANNEL);
-		if(messageRead(RANGING_MSG_ID, deviceUID, (registered+4)*TIMESLOT_LENGTH) > 0) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered+4)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}
 		switchToChannel(SB2_CHANNEL);
-		if(messageRead(RANGING_MSG_ID, deviceUID, (registered+6)*TIMESLOT_LENGTH) > 0) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered+6)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}
 		switchToChannel(MB_CHANNEL);

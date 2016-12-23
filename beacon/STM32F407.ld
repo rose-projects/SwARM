@@ -142,7 +142,7 @@ SECTIONS
         . = ALIGN(8);
     } > flash
 
-	.flashdata : {
+	.flashdata (NOLOAD) : {
         *(.flashdata)
     } > flashdata
 

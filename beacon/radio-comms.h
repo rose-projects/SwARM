@@ -9,4 +9,7 @@ extern event_source_t radioEvent;
 /* initialize decawave module and start radio communication thread */
 void startRadio(void);
 
+/* shell callback, USAGE : list */
+void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv);
+
 #endif

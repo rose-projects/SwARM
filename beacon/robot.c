@@ -9,7 +9,7 @@
 #include "radio-comms.h"
 
 // data about robots status and goal, robot <ID> data = robots[ID]
-struct robotData robots[MAX_ROBOT_ID];
+struct robotData robots[MAX_CONNECTED_ROBOTS];
 
 /* beacons position :
  * master beacon is at origin (0,0)
@@ -46,7 +46,7 @@ void trilateralizeRobots(void) {
 	int i;
 	struct robotData *robot;
 
-	for(i=0; i<MAX_ROBOT_ID; i++) {
+	for(i=0; i<MAX_CONNECTED_ROBOTS; i++) {
 		robot = &robots[i];
 
 		// check all distances has been correctly measured
@@ -57,7 +57,7 @@ void trilateralizeRobots(void) {
 }
 
 static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {
-	if(argc == 2 && (*dist= atoi(argv[0])) > 0 && atoi(argv[0]) < MAX_ROBOT_ID && (*id = atoi(argv[1]) > 0)) {
+	if(argc == 2 && (*dist= atoi(argv[0])) > 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[1]) > 0)) {
 		return 0;
 	} else {
 		chprintf(chp, "USAGE : cal <ROBOT ID> <ACTUAL DISTANCE> (where ACTUAL DISTANCE is in cm)\n");
@@ -84,27 +84,51 @@ static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, uint
 
 void mbCalibrate(BaseSequentialStream *chp, int argc, char **argv) {
 	int expectedDistance, robotID;
+	struct distOffset offset;
 
 	if(checkCalibrate(chp, argc, argv, &expectedDistance, &robotID) < 0)
 		return;
 
-	calibrateRobot(chp, expectedDistance, &robots[robotID -1].mbDist, &robots[robotID - 1].mbOffset);
+	// load current offsets in RAM
+	offset.uid = robots[robotID -1].offsets->uid;
+	offset.mb = robots[robotID -1].offsets->mb;
+	offset.sb1 = robots[robotID -1].offsets->sb1;
+	offset.sb2 = robots[robotID -1].offsets->sb2;
+
+	calibrateRobot(chp, expectedDistance, &robots[robotID -1].mbDist, &offset.mb);
+	writeOffset(&offset);
 }
 
 void sb1Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 	int expectedDistance, robotID;
+	struct distOffset offset;
 
 	if(checkCalibrate(chp, argc, argv, &expectedDistance, &robotID) < 0)
 		return;
 
-	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb1Dist, &robots[robotID - 1].sb1Offset);
+	// load current offsets in RAM
+	offset.uid = robots[robotID -1].offsets->uid;
+	offset.mb = robots[robotID -1].offsets->mb;
+	offset.sb1 = robots[robotID -1].offsets->sb1;
+	offset.sb2 = robots[robotID -1].offsets->sb2;
+
+	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb1Dist, &offset.sb1);
+	writeOffset(&offset);
 }
 
 void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 	int expectedDistance, robotID;
+	struct distOffset offset;
 
 	if(checkCalibrate(chp, argc, argv, &expectedDistance, &robotID) < 0)
 		return;
 
-	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb2Dist, &robots[robotID - 1].sb2Offset);
+	// load current offsets in RAM
+	offset.uid = robots[robotID -1].offsets->uid;
+	offset.mb = robots[robotID -1].offsets->mb;
+	offset.sb1 = robots[robotID -1].offsets->sb1;
+	offset.sb2 = robots[robotID -1].offsets->sb2;
+
+	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb2Dist, &offset.sb2);
+	writeOffset(&offset);
 }
