@@ -37,41 +37,20 @@ int main(void) {
     // Start the coding_wheels surveillance
     coding_wheels_start();
 
-    // Start the motors
-    motors_init();
-
     // Let the system have a little nap to let us start picocom 
     chThdSleepMilliseconds(5000);
 
     chprintf(COUT, "Starting wheels' tests with motors");
-    // Starting with half the power on the motors
-    pwmEnableChannel(&PWMD1, 0, 100);
-    pwmEnableChannel(&PWMD1, 1, 100);
+    // Starting enslavement tests on both wheels
     start_asservs();
 
     // Let the system have a little nap to let us start picocom 
     chThdSleepMilliseconds(5000);
 
-    chprintf(COUT, "Starting wheels' tests with motors with half the power \r\n");
-
     // Looping on a print of the speed value
-    for(int i =0; i<200; i++){
-        chprintf(COUT, "speed_l: %D\r\n", speed_l);
-        chprintf(COUT, "speed_r: %D\r\n", speed_r);
-        chprintf(COUT, "speed: %D\r\n", speed);
-        chThdSleepMilliseconds(50);
-    }
-
-    // Now moving to full power on both engines
-    pwmEnableChannel(&PWMD1, 0, 200);
-    pwmEnableChannel(&PWMD1, 1, 200);
-
-    chprintf(COUT, "Starting wheels' tests with motors with full power \r\n");
-    // Looping on a print of the speed value
-    for(int i =0; i<200; i++){
-        chprintf(COUT, "speed_l: %D\r\n", speed_l);
-        chprintf(COUT, "speed_r: %D\r\n", speed_r);
-        chprintf(COUT, "speed: %D\r\n", speed);
+    for(int i =0; i<2000; i++){
+        chprintf(COUT, "tick_l: %D\r\n", tick_l);
+        chprintf(COUT, "tick_r: %D\r\n", tick_r);
         chThdSleepMilliseconds(50);
     }
 
