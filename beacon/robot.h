@@ -44,4 +44,10 @@ void sb1Calibrate(BaseSequentialStream *chp, int argc, char **argv);
  * USAGE: sb2cal <ROBOT ID> <ACTUAL DISTANCE> (where ACTUAL DISTANCE is in cm) */
 void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv);
 
+/* set the locations of the beacons
+ * USAGE : beacon <SB1 X> <SB2 Y>
+ * where SB1 X is the x coordinate of slave beacon 1 in cm
+ * and SB2 Y is the y coordinate of the slave beacon 2 in cm */
+void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv);
+
 #endif

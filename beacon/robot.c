@@ -5,6 +5,7 @@
 #include "chevents.h"
 
 #include "../shared/radio-conf.h"
+#include "../shared/usb-config.h"
 #include "robot.h"
 #include "radio-comms.h"
 
@@ -50,13 +51,21 @@ void trilateralizeRobots(void) {
 		robot = &robots[i];
 
 		// check all distances has been correctly measured
+		chprintf(USBserial, "POS :");
 		if(robot->mbDist != 0 && robot->sb1Dist != 0 && robot->sb2Dist != 0) {
 			computeTrilateralisation(robot->mbDist, robot->sb1Dist, robot->sb2Dist, &robot->x, &robot->y);
+			chprintf(USBserial, " %d %d", robot->x, robot->y);
 		}
+		chprintf(USBserial, "\n");
 	}
 }
 
 static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {
+	if(deviceUID != 0) {
+		chprintf(chp, "available only on master beacon\n");
+		return -1;
+	}
+
 	if(argc == 2 && (*dist= atoi(argv[0])) > 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[1]) > 0)) {
 		return 0;
 	} else {
@@ -131,4 +140,32 @@ void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 
 	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb2Dist, &offset.sb2);
 	writeOffset(&offset);
+}
+
+/* set the locations of the beacons
+ * USAGE : beacon <SB1 X> <SB2 Y>
+ * where SB1 X is the x coordinate of slave beacon 1 in cm
+ * and SB2 Y is the y coordinate of the slave beacon 2 in cm */
+void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
+	int x, y;
+
+	if(deviceUID != 0) {
+		chprintf(chp, "available only on master beacon\n");
+		return;
+	}
+	
+	if(argc != 2) {
+		chprintf(chp, "USAGE : beacon <SB1 X> <SB2 Y>\n");
+		return;
+	}
+
+	x = atoi(argv[0]);
+	y = atoi(argv[1]);
+	if(x != 0 && y != 0) {
+		sb1X = x;
+		sb2Y = y;
+		chprintf(chp, "OK\n");
+	} else {
+		chprintf(chp, "SB1 X and SB2 Y can't be 0\n");
+	}
 }
