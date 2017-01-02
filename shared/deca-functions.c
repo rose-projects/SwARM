@@ -9,7 +9,7 @@
 #include "decadriver/deca_regs.h"
 
 // Master beacon communication configuration
-static dwt_config_t MBconfig = {
+static const dwt_config_t MBconfig = {
     2,               // Channel number
     DWT_PRF_64M,     // Pulse repetition frequency
     DWT_PLEN_256,    // Preamble length. Used in TX only
@@ -23,7 +23,7 @@ static dwt_config_t MBconfig = {
 };
 
 // slave beacon 1 communication configuration
-static dwt_config_t SB1config = {
+static const dwt_config_t SB1config = {
     3,               // Channel number
     DWT_PRF_64M,     // Pulse repetition frequency
     DWT_PLEN_256,    // Preamble length. Used in TX only
@@ -37,7 +37,7 @@ static dwt_config_t SB1config = {
 };
 
 // slave beacon 2 communication configuration
-static dwt_config_t SB2config = {
+static const dwt_config_t SB2config = {
     4,               // Channel number
     DWT_PRF_64M,     // Pulse repetition frequency
     DWT_PLEN_256,    // Preamble length. Used in TX only
@@ -132,4 +132,19 @@ void switchToChannel(int channel) {
 		dwt_configure(&SB2config);
 		break;
 	}
+}
+
+// adapted from a code by Samuel Tardieu (see rfc1149.net)
+void sleepUntil(systime_t previous, int period) {
+	systime_t future = previous + period*CH_CFG_ST_FREQUENCY/1000*512/499.2;
+
+	chSysLock();
+	systime_t now = chVTGetSystemTimeX();
+
+	int mustDelay = now < previous ?
+		(now < future && future < previous) :
+		(now < future || future < previous);
+	if (mustDelay)
+		chThdSleepS(future - now);
+	chSysUnlock();
 }

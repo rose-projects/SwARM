@@ -8,18 +8,18 @@ struct robotData {
 	uint8_t H;
 	uint8_t S;
 	uint8_t V;
-	uint16_t x;
-	uint16_t y;
-	uint16_t goalX;
-	uint16_t goalY;
+	int16_t x;
+	int16_t y;
+	int16_t goalX;
+	int16_t goalY;
 	uint8_t goalSpeed;
 	uint8_t flags;
 	// not sent to the robot
 	uint8_t status;
 	struct distOffset *offsets;
-	uint16_t mbDist;
-	uint16_t sb1Dist;
-	uint16_t sb2Dist;
+	int16_t mbDist;
+	int16_t sb1Dist;
+	int16_t sb2Dist;
 };
 
 /* data about robots status and goal, robot <ID> data = robots[ID] */

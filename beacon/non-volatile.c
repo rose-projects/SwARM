@@ -5,6 +5,7 @@
 
 #include "non-volatile.h"
 #include "flash.h"
+#include "radio-comms.h"
 #include "../shared/radio-conf.h"
 #include "../shared/usb-config.h"
 
@@ -119,6 +120,9 @@ int writeOffset(struct distOffset *offset) {
 		return -1;
 	}
 
+	// restart radio as it can't recover from such a long blocking
+	restartRadio();
+
 	return i;
 }
 
@@ -143,6 +147,9 @@ void setDeviceUID(BaseSequentialStream *chp, int argc, char **argv) {
 		chprintf(chp, "Couln't write flash.\n");
 		return;
 	}
+
+	// restart radio as it can't recover from such a long blocking
+	restartRadio();
 
 	chprintf(chp, "OK\n");
 }

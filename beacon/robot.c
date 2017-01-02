@@ -16,8 +16,8 @@ struct robotData robots[MAX_CONNECTED_ROBOTS];
  * master beacon is at origin (0,0)
  * slave beacon 1 is at (sb1X, 0)
  * slave beacon 2 is at (0, sb2Y) */
-int sb1X = 500;
-int sb2Y = 500;
+int sb1X = 100;
+int sb2Y = 100;
 
 int serializeRobotData(uint8_t *targetBuffer, int robotID) {
 	struct robotData *robot = &robots[robotID-1];
@@ -38,9 +38,9 @@ int serializeRobotData(uint8_t *targetBuffer, int robotID) {
 	return 13;
 }
 
-static void computeTrilateralisation(uint16_t mbR, uint16_t sb1R, uint16_t sb2R, uint16_t *x, uint16_t *y) {
-	*x = ((mbR^2) - (sb1R^2) + (sb1X^2))/(2*sb1X);
-	*y = ((mbR^2) - (sb2R^2) + (sb2Y^2))/(2*sb2Y);
+static void computeTrilateralisation(int mbR, int sb1R, int sb2R, int16_t *x, int16_t *y) {
+	*x = ((mbR*mbR) - (sb1R*sb1R) + (sb1X*sb1X))/(2*sb1X);
+	*y = ((mbR*mbR) - (sb2R*sb2R) + (sb2Y*sb2Y))/(2*sb2Y);
 }
 
 void trilateralizeRobots(void) {
@@ -66,14 +66,14 @@ static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int 
 		return -1;
 	}
 
-	if(argc == 2 && (*dist= atoi(argv[0])) > 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[1]) > 0)) {
+	if(argc == 2 && (*dist = atoi(argv[1])) > 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[0]) > 0)) {
 		return 0;
 	} else {
-		chprintf(chp, "USAGE : cal <ROBOT ID> <ACTUAL DISTANCE> (where ACTUAL DISTANCE is in cm)\n");
+		chprintf(chp, "USAGE : **cal <ROBOT ID> <ACTUAL DISTANCE> (where ACTUAL DISTANCE is in cm)\n");
 		return -1;
 	}
 }
-static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, uint16_t *dist, int16_t *offset) {
+static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, int16_t *dist, int16_t *offset) {
 	event_listener_t evt_listener;
 	int averageDistance = 0, i;
 
@@ -87,7 +87,7 @@ static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, uint
 	}
 	*offset = expectedDistance - averageDistance/40;
 
-	chprintf(chp, " done. offset = %d cm\n", *offset);
+	chprintf(chp, " done. Offset = %d cm\n", *offset);
 	chEvtUnregister(&radioEvent, &evt_listener);
 }
 
@@ -153,7 +153,7 @@ void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
 		chprintf(chp, "available only on master beacon\n");
 		return;
 	}
-	
+
 	if(argc != 2) {
 		chprintf(chp, "USAGE : beacon <SB1 X> <SB2 Y>\n");
 		return;

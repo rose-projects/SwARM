@@ -52,4 +52,7 @@ int decaSend(int size, uint8_t *buffer, int ranging, int flags);
 #define NO_RX_ENABLE -1
 int decaReceive(int maxSize, uint8_t *buffer, int flag);
 
+/* wait until period (in UWB ms) has elapsed after previous (in systick) */
+void sleepUntil(systime_t previous, int period);
+
 #endif
