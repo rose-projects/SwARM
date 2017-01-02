@@ -96,7 +96,7 @@ struct distOffset* loadOffsets(uint32_t uid) {
 }
 
 int writeOffset(struct distOffset *offset) {
-	int i;
+	int i = 0;
 
 	// search for an old calibration matching the UID or an empty slot
 	while(i < MAX_CALIBRATION && offsets[i].uid != offset->uid && offsets[i].uid != 0)
