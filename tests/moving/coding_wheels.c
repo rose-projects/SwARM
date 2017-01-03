@@ -9,8 +9,8 @@
  */
 
 // Wheels ticks init
-volatile int tick_l = 0;
-volatile int tick_r = 0;
+volatile uint16_t tick_l = 0;
+volatile uint16_t tick_r = 0;
 
 // Coding wheel interrupt on each period of the coding wheel feedback
 // It restarts the "watchdog" that resets the speed
