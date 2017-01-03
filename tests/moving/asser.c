@@ -13,15 +13,14 @@
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 0.01
+#define P_ANGLE 4
 #define I_ANGLE 0
 #define D_ANGLE 0
-#define P_DIST 0.02
+#define P_DIST 0.025
 #define I_DIST 0
 #define D_DIST 0
-#define MAX_ERR_DIST 30
-#define MAX_ERR_ANGLE 100
 #define MIN(a,b) ((a>b) ? b : a)
+#define MAX_POWER 50
 
 
 static THD_WORKING_AREA(working_area_asser_thd, 128);
@@ -30,7 +29,7 @@ static THD_WORKING_AREA(working_area_asser_thd, 128);
 int angle = 0;
 int distance = 0;
 
-// Asservissement calculations
+// Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
     int dist_goal = 5000;
@@ -38,15 +37,13 @@ static THD_FUNCTION(asser_thd, arg) {
     int dist_error_sum;
     int dist_error_delta;
     int dist_error_prev;
-    int angle_goal = 200;
+    int angle_goal = 10;
     int angle_error;
     int angle_error_sum;
     int angle_error_delta;
     int angle_error_prev;
-    int cmd_dist;
-    int cmd_angle;
-    int cmd_dist_adjstd;
-    int cmd_angle_adjstd;
+    uint16_t cmd_dist;
+    uint16_t cmd_angle;
 
     // 200 Hz calculation
     while(true){
@@ -71,24 +68,33 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_angle = P_ANGLE*angle + I_ANGLE*angle_error_sum \
                     + D_ANGLE*angle_error_delta;
 
-        // Updating PWMs
-        cmd_dist_adjstd = MIN(cmd_dist, 50);
-        cmd_angle_adjstd = MIN(cmd_angle, 50);
+        /* Adding an offset to all strictly positive cmd_dist values so that
+         * the robot moves it needs to
+         */
+        if(cmd_dist > 0)
+            cmd_dist += 35;
 
-        if(cmd_dist_adjstd > 0 && cmd_dist_adjstd < 30)
-            cmd_dist_adjstd = 30;
-        if(cmd_angle_adjstd > 0 && cmd_angle_adjstd < 30)
-            cmd_angle_adjstd = 30;
+        /* Limiting all cmd values so that they don't exceed the maximum value
+         * that the pwmEnableChannel can interpret without ambiguiti
+         */
+        cmd_dist = MIN(cmd_dist, MAX_POWER);
+        cmd_angle = MIN(cmd_angle, MAX_POWER);
 
-        pwmEnableChannel(&PWMD1, 0, cmd_dist_adjstd);
-        pwmEnableChannel(&PWMD1, 1, cmd_angle_adjstd);
+        /* Translating a negative value on the cmd_angle calculation to maximum
+        * power on the right wheel
+        if(cmd_angle == -1)
+            cmd_angle = MAX_POWER;
+        */
 
+        // Updating PWM signals
+        pwmEnableChannel(&PWMD1, 0, cmd_dist);
+        pwmEnableChannel(&PWMD1, 1, cmd_angle);
 
         // Printing out the current values of ticks and pwm commands
         chprintf(COUT, "tick_l: %D\r\n", tick_l);
         chprintf(COUT, "tick_r: %D\r\n", tick_r);
-        chprintf(COUT, "cmd_dist: %D\r\n", cmd_dist_adjstd);
-        chprintf(COUT, "cmd_angle: %D\r\n", cmd_angle_adjstd);
+        chprintf(COUT, "cmd_dist_adjstd: %D\r\n", cmd_dist);
+        chprintf(COUT, "cmd_angle_adjsd: %D\r\n", cmd_angle);
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);
     }
