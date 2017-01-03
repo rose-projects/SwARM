@@ -8,9 +8,6 @@
  * TIM3_TH2 is connected to the left coding wheel
  */
 
-// Period of the last blink on the coding wheel
-volatile float period_l = 0;
-volatile float period_r = 0;
 // Wheels ticks init
 volatile int tick_l = 0;
 volatile int tick_r = 0;
@@ -20,25 +17,15 @@ volatile int tick_r = 0;
 // It calculates the speed
 // And it updates the position
 static void period_cb_l(ICUDriver * icup){
-    chSysLockFromISR();
-
-    // Get the period of the last tick on the coding wheel
-    period_l = icuGetPeriodX(icup);
+    (void) icup;
     // Update tick count on the wheel
     tick_l++;
-
-    chSysUnlockFromISR();
 }
 
 static void period_cb_r(ICUDriver * icup){
-    chSysLockFromISR();
-
-    // Get the period of the last tick on the coding wheel
-    period_r = icuGetPeriodX(icup);
+    (void) icup;
     // Update tick count on the wheel
     tick_r++;
-
-    chSysUnlockFromISR();
 }
 
 // Input capture configuration for LEFT WHEEL
