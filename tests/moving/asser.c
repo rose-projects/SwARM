@@ -5,57 +5,54 @@
 
 #include "ch.h"
 #include "hal.h"
+#include "usbcfg.h"
+#include "chprintf.h"
 
 // ASSER frequency in Hz
 #define ASSER_FREQ 200
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 0
+#define P_ANGLE 0.01
 #define I_ANGLE 0
 #define D_ANGLE 0
-#define P_DIST 0
+#define P_DIST 0.02
 #define I_DIST 0
 #define D_DIST 0
+#define MAX_ERR_DIST 30
+#define MAX_ERR_ANGLE 100
+#define MIN(a,b) ((a>b) ? b : a)
+
 
 static THD_WORKING_AREA(working_area_asser_thd, 128);
 
-// Robot's speed in m/s
-volatile int speed_l = 0;
-volatile int speed_r = 0;
-volatile int speed = 0;
-int angle;
-int distance;
+// Current values for distance and angle since starting the enslavement
+int angle = 0;
+int distance = 0;
 
 // Asservissement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
-    static int last_tick_l = 0;
-    static int last_tick_r = 0;
-    int dist_goal = 0;
+    int dist_goal = 5000;
     int dist_error;
     int dist_error_sum;
     int dist_error_delta;
     int dist_error_prev;
-    int angle_goal = 0;
+    int angle_goal = 200;
     int angle_error;
     int angle_error_sum;
     int angle_error_delta;
     int angle_error_prev;
-    int right_pwm;
-    int left_pwm;
     int cmd_dist;
     int cmd_angle;
+    int cmd_dist_adjstd;
+    int cmd_angle_adjstd;
 
     // 200 Hz calculation
     while(true){
-        // Update speed
-        speed_r = (tick_r - last_tick_r)*U_MM*ASSER_FREQ;
-        speed_l = (tick_l - last_tick_l)*U_MM*ASSER_FREQ;
-
         // Distance and error calculations
         distance = (tick_r + tick_l)/2;
-        angle = tick_l - tick_r;
+        angle = tick_r - tick_l;
 
         // Error calculations
         // For distance
@@ -72,26 +69,26 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_dist = P_DIST*dist_error + I_DIST*dist_error_sum \
                    + D_DIST*dist_error_delta;
         cmd_angle = P_ANGLE*angle + I_ANGLE*angle_error_sum \
-                   + D_ANGLE*angle_error_delta;
-
-        // Update coding wheels' commands
-        if(cmd_dist < 100)
-            right_pwm = 0;
-        else
-            right_pwm = 100;
-        if(cmd_angle < 100)
-            left_pwm = 0;
-        else
-            left_pwm = 100;
+                    + D_ANGLE*angle_error_delta;
 
         // Updating PWMs
-        pwmEnableChannel(&PWMD1, 0, right_pwm);
-        pwmEnableChannel(&PWMD1, 1, left_pwm);
+        cmd_dist_adjstd = MIN(cmd_dist, 50);
+        cmd_angle_adjstd = MIN(cmd_angle, 50);
 
-        // Prepare next loop iteration
-        last_tick_r = tick_r;
-        last_tick_l = tick_l;
+        if(cmd_dist_adjstd > 0 && cmd_dist_adjstd < 30)
+            cmd_dist_adjstd = 30;
+        if(cmd_angle_adjstd > 0 && cmd_angle_adjstd < 30)
+            cmd_angle_adjstd = 30;
 
+        pwmEnableChannel(&PWMD1, 0, cmd_dist_adjstd);
+        pwmEnableChannel(&PWMD1, 1, cmd_angle_adjstd);
+
+
+        // Printing out the current values of ticks and pwm commands
+        chprintf(COUT, "tick_l: %D\r\n", tick_l);
+        chprintf(COUT, "tick_r: %D\r\n", tick_r);
+        chprintf(COUT, "cmd_dist: %D\r\n", cmd_dist_adjstd);
+        chprintf(COUT, "cmd_angle: %D\r\n", cmd_angle_adjstd);
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);
     }
@@ -99,9 +96,11 @@ static THD_FUNCTION(asser_thd, arg) {
 
 // To be called from main to start a basic enslavement
 void start_asservs(){
-    // Starting the monitoring threads
-    (void)chThdCreateStatic(working_area_asser_thd, sizeof(working_area_asser_thd),
-            NORMALPRIO, asser_thd, NULL);
     // Motors init
     motors_init();
+
+    // Starting the monitoring threads
+    (void)chThdCreateStatic(working_area_asser_thd, \
+            sizeof(working_area_asser_thd),
+            NORMALPRIO, asser_thd, NULL);
 }

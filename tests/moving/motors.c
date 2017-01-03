@@ -1,6 +1,8 @@
 #include "motors.h"
+#include "coding_wheels.h"
 #include "hal.h"
 #include "ch.h"
+
 
 #define PWM_FREQ            100000
 #define GO_REVERSE          palSetPad(GPIOF,GPIOF_STAT1);\
@@ -36,6 +38,8 @@ const PWMConfig pwm_conf = {
     0,
 };
 void motors_init(){
+    // Now setting GPIOs' mode
+    
     // PWM for left motor
     palSetPadMode(GPIOE, GPIOE_9, PAL_MODE_ALTERNATE(1));
     // PWM for right motor
@@ -45,12 +49,19 @@ void motors_init(){
     // Input for right motor
     palSetPadMode(GPIOC, GPIOC_SWITCH_TAMPER, PAL_MODE_OUTPUT_PUSHPULL);
 
-    // Start PWM on the motors to 0, so that the robots don't move
+    // Start PWM on the motors
     pwmStart(&PWMD1, &pwm_conf);
 
     // Setting the direction of the robot
     GO_FORWARD
 
+    // Disable both channels so that the robot stays still
     pwmDisableChannel(&PWMD1,0);
     pwmDisableChannel(&PWMD1,1);
+
+    // Wait for the wheels to stop
+    chThdSleepMilliseconds(200);
+
+    // Start the coding wheels to monitor them
+    coding_wheels_start();
 }

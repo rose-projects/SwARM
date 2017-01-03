@@ -1,4 +1,3 @@
-#include "ch.h"
 #include "hal.h"
 
 #include "usbcfg.h"
@@ -34,23 +33,12 @@ int main(void) {
     usbStart(serusbcfg.usbp, &usbcfg);
     usbConnectBus(serusbcfg.usbp);
 
-    // Start the coding_wheels surveillance
-    coding_wheels_start();
-
-    // Let the system have a little nap to let us start picocom 
-    chThdSleepMilliseconds(5000);
-
+    // Starting test with enslavement
     chprintf(COUT, "Starting wheels' tests with motors");
-    // Starting enslavement tests on both wheels
     start_asservs();
 
-    // Let the system have a little nap to let us start picocom 
-    chThdSleepMilliseconds(5000);
-
-    // Looping on a print of the speed value
+    // Looping on a sleep to test the enslavement
     for(int i =0; i<2000; i++){
-        chprintf(COUT, "tick_l: %D\r\n", tick_l);
-        chprintf(COUT, "tick_r: %D\r\n", tick_r);
         chThdSleepMilliseconds(50);
     }
 
