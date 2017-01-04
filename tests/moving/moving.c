@@ -1,6 +1,6 @@
 #include "moving.h"
-#include "asser.h"
 #include "coding_wheels.h"
+#include "asser.h"
 
 #include "hal.h"
 #include "ch.h"
@@ -30,14 +30,17 @@ static THD_FUNCTION(moving_thd, arg) {
     while(true){
         current_tick_l = tick_l;
         current_tick_r = tick_r;
-        tick_l = 0;
-        tick_r = 0;
+
+        // Calling reset function for enslavement 
+        begin_new_asser();
 
         // Printing out the current values of ticks
         chprintf(COUT, "tick_l final value: %D\r\n", current_tick_l);
         chprintf(COUT, "tick_r final value: %D\r\n", current_tick_r);
 
         chprintf(COUT, "Updating distance and angle goals\r\n");
+        chprintf(COUT, "Distance new value: %D\r\n", dist_goals[i%3]);
+        chprintf(COUT, "Angle new value: %D\r\n", angle_goals[i%3]);
         dist_goal = dist_goals[i%3];
         angle_goal = angle_goals[i%3];
 
