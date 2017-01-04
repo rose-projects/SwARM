@@ -24,20 +24,20 @@
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
+static int dist_error;
+static int dist_error_sum;
+static int dist_error_delta;
+static int dist_error_prev;
+static int angle_error;
+static int angle_error_sum;
+static int angle_error_delta;
+static int angle_error_prev;
+volatile uint16_t cmd_dist;
+volatile uint16_t cmd_angle;
 
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
-    int dist_error;
-    int dist_error_sum;
-    int dist_error_delta;
-    int dist_error_prev;
-    int angle_error;
-    int angle_error_sum;
-    int angle_error_delta;
-    int angle_error_prev;
-    uint16_t cmd_dist;
-    uint16_t cmd_angle;
 
     // 200 Hz calculation
     while(true){
@@ -68,9 +68,10 @@ static THD_FUNCTION(asser_thd, arg) {
         if(cmd_dist > 0)
             cmd_dist += 35;
         if(cmd_angle > 0)
-            cmd_angle += 65;
+            cmd_angle +=35;
 
-        /* Limiting all cmd values so that they don't exceed the maximum value
+        /*
+         * Limiting all cmd values so that they don't exceed the maximum value
          * that the pwmEnableChannel can interpret without ambiguiti
          */
         cmd_dist = MIN(cmd_dist, MAX_POWER);
@@ -99,4 +100,28 @@ void start_asservs(){
     (void)chThdCreateStatic(working_area_asser_thd, \
             sizeof(working_area_asser_thd),
             NORMALPRIO, asser_thd, NULL);
+}
+
+/*
+ * This functions reset the variables that are used to enslave the two motors o
+ * the robot
+ * It is called everytime dist_goal and angle_goal are changed
+ */
+void begin_new_asser(){
+    // Reset angle related variables
+    angle_error = 0;
+    angle_error_sum = 0;
+    angle_error_delta = 0;
+    angle_error_delta = 0;
+    // Reset distance related variables
+    dist_error = 0;
+    dist_error_sum = 0;
+    dist_error_delta = 0;
+    dist_error_delta = 0;
+    // Motor commands reset
+    cmd_dist = 0;
+    cmd_angle = 0;
+    // Reset ticks
+    tick_l = 0;
+    tick_r = 0;
 }
