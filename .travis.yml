@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: true
 
 branches:
   except:
@@ -13,16 +13,14 @@ script:
     - make -C tests/led/
     - make -C tests/ranging/
     - make -C tests/coding_wheels/
-    - mkdir opencv && cd opencv
-    - wget https://github.com/Itseez/opencv/archive/3.1.0.zip -O opencv-3.1.0.zip
-    - unzip opencv-3.1.0.zip
-    - cd opencv-3.1.0
+    - cd opencv
     - mkdir build && cd build
     - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
     - make -j 8
     - sudo make install
-    - cd ../../..
-    - make -C tests/cam
+    - cd ../..
+    - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+    - make -C tests/cam/
 
 cache: ccache
 
