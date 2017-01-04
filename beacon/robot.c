@@ -46,18 +46,17 @@ static void computeTrilateralisation(int mbR, int sb1R, int sb2R, int16_t *x, in
 void trilateralizeRobots(void) {
 	int i;
 	struct robotData *robot;
-
+	chprintf(USBserial, "POS :");
 	for(i=0; i<MAX_CONNECTED_ROBOTS; i++) {
 		robot = &robots[i];
 
 		// check all distances has been correctly measured
-		chprintf(USBserial, "POS :");
 		if(robot->mbDist != 0 && robot->sb1Dist != 0 && robot->sb2Dist != 0) {
 			computeTrilateralisation(robot->mbDist, robot->sb1Dist, robot->sb2Dist, &robot->x, &robot->y);
 			chprintf(USBserial, " %d %d", robot->x, robot->y);
 		}
-		chprintf(USBserial, "\n");
 	}
+	chprintf(USBserial, "\n");
 }
 
 static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {

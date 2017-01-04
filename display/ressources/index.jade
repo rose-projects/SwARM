@@ -1,0 +1,30 @@
+//output:index.html, pretty:true
+
+html(lang="fr")
+	head
+		meta(charset="UTF-8")
+		title SwARM Real Time Localisation System
+		link(rel='stylesheet', href='styles/chartist.min.css')
+		link(rel='stylesheet', href='styles/style.css')
+	body
+		div.leftpane
+			div.ct-chart.sysmap
+			div.beacons
+				span.beacon SB 1 X : &nbsp;
+				input.sb1x(type="number" value="100")
+				| cm&nbsp;&nbsp;&nbsp;&nbsp;
+				span.beacon SB 2 Y : &nbsp;
+				input.sb2y(type="number" value="100")
+				| cm&nbsp;&nbsp;&nbsp;&nbsp;
+				a.btn.beacons-btn OK
+		div.rightpane
+			div.serialport
+				select.serialpath
+				span.beacon baudrate : &nbsp;
+				input.baudrate(type="number" value="38400")
+				| &nbsp;&nbsp;&nbsp;&nbsp;
+				a.btn.serial-btn OK
+			div.log
+			
+		script(src="scripts/chartist.min.js")
+		script(src="../lib/ui.js")
