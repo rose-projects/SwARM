@@ -18,14 +18,18 @@ volatile uint16_t tick_r = 0;
 // And it updates the position
 static void period_cb_l(ICUDriver * icup){
     (void) icup;
+    chSysLockFromISR();
     // Update tick count on the wheel
     tick_l++;
+    chSysUnlockFromISR();
 }
 
 static void period_cb_r(ICUDriver * icup){
     (void) icup;
+    chSysLockFromISR();
     // Update tick count on the wheel
     tick_r++;
+    chSysUnlockFromISR();
 }
 
 // Input capture configuration for LEFT WHEEL

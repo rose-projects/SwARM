@@ -22,22 +22,16 @@
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX_POWER 50
 
-
+// Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
-
-// Current values for distance and angle since starting the enslavement
-int angle = 0;
-int distance = 0;
 
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
-    int dist_goal = 5000;
     int dist_error;
     int dist_error_sum;
     int dist_error_delta;
     int dist_error_prev;
-    int angle_goal = 10;
     int angle_error;
     int angle_error_sum;
     int angle_error_delta;
@@ -73,18 +67,14 @@ static THD_FUNCTION(asser_thd, arg) {
          */
         if(cmd_dist > 0)
             cmd_dist += 35;
+        if(cmd_angle > 0)
+            cmd_angle += 65;
 
         /* Limiting all cmd values so that they don't exceed the maximum value
          * that the pwmEnableChannel can interpret without ambiguiti
          */
         cmd_dist = MIN(cmd_dist, MAX_POWER);
         cmd_angle = MIN(cmd_angle, MAX_POWER);
-
-        /* Translating a negative value on the cmd_angle calculation to maximum
-        * power on the right wheel
-        if(cmd_angle == -1)
-            cmd_angle = MAX_POWER;
-        */
 
         // Updating PWM signals
         pwmEnableChannel(&PWMD1, 0, cmd_dist);
