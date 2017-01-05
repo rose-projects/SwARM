@@ -13,7 +13,7 @@
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 4
+#define P_ANGLE 2
 #define I_ANGLE 0
 #define D_ANGLE 0
 #define P_DIST 0.025
@@ -32,8 +32,9 @@ static int angle_error;
 static int angle_error_sum;
 static int angle_error_delta;
 static int angle_error_prev;
-volatile uint16_t cmd_dist;
-volatile uint16_t cmd_angle;
+volatile unsigned int cmd_dist;
+volatile unsigned int cmd_angle;
+volatile unsigned int to_the_left;
 
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
@@ -42,13 +43,16 @@ static THD_FUNCTION(asser_thd, arg) {
     // 200 Hz calculation
     while(true){
         // Distance and error calculations
+        if(to_the_left)
+            angle = tick_r - tick_l;
+        else 
+            angle = tick_l - tick_r;
         distance = (tick_r + tick_l)/2;
-        angle = tick_r - tick_l;
 
         // Error calculations
         // For distance
         dist_error = dist_goal - distance;
-        dist_error_sum +=dist_error;
+        dist_error_sum += dist_error;
         dist_error_delta = dist_error - dist_error_prev;
         dist_error_prev = dist_error;
         // For angle
@@ -62,7 +66,8 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_angle = P_ANGLE*angle + I_ANGLE*angle_error_sum \
                     + D_ANGLE*angle_error_delta;
 
-        /* Adding an offset to all strictly positive cmd_dist values so that
+        /*
+         * Adding an offset to all strictly positive cmd_dist values so that
          * the robot moves it needs to
          */
         if(cmd_dist > 0)
@@ -78,8 +83,14 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_angle = MIN(cmd_angle, MAX_POWER);
 
         // Updating PWM signals
-        pwmEnableChannel(&PWMD1, 0, cmd_dist);
-        pwmEnableChannel(&PWMD1, 1, cmd_angle);
+        if(to_the_left){
+            pwmEnableChannel(&PWMD1, 0, cmd_dist);
+            pwmEnableChannel(&PWMD1, 1, cmd_angle);
+        }
+        else{
+            pwmEnableChannel(&PWMD1, 0, cmd_angle);
+            pwmEnableChannel(&PWMD1, 1, cmd_dist);
+        }
 
         // Printing out the current values of ticks and pwm commands
         chprintf(COUT, "tick_l: %D\r\n", tick_l);

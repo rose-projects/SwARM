@@ -17,7 +17,7 @@
 #define U_MM                    (WHEEL_ROTATION_MM/TICKS_PER_ROTATION)
 // Unitary rotation, equivalent to a difference of one tick in the rotation of 
 // the two wheels
-#define U_DEGREE_ANGLE          (360*U_MM/(2*PI*L_MM)
+#define U_DEGREE_ANGLE          (360*U_MM/(2*PI*L_MM))
 // Distance between the two wheels, width of the robots
 #define L_MM                    (115)
 // Wheel's radius
