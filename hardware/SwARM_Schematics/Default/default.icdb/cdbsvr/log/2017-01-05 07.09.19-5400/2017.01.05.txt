@@ -1,0 +1,106 @@
+[2017.01.05 07:09:20] [0000m.00s.124ms] [0] WELCOME
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Base flow version [7.9.4]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Machine [WIN10]  User [root]  PID [5400]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Current working dir [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] SDD_PLATFORM [win32]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] WDIR [C:\Users\root\Documents\WDIR\7.9.5;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\7.9.5\iCDB] on file system [NTFS]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] S: Config file name [ServerWG.cfg]
+[2017.01.05 07:09:20] [0000m.00s.124ms] [2] S: Loading config files
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Config file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2017.01.05 07:09:20] [0000m.00s.124ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2017.01.05 07:09:20] [0000m.00s.140ms] [3] S: Config loaded
+[2017.01.05 07:09:20] [0000m.00s.155ms] [0] S: Project path [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] on file system [VBoxSharedFolderFS]
+[2017.01.05 07:09:20] [0000m.00s.155ms] [0] S: Project global path [\\vboxsrv\elecinf344\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] on file system [UNKNOWN]
+[2017.01.05 07:09:20] [0000m.00s.155ms] [1] S: WARNING: No project file (.prj) path specified
+[2017.01.05 07:09:20] [0000m.00s.155ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2017.01.05 07:09:20] [0000m.00s.155ms] [0] S: Multi-user mode (config)
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] S: Event polling mode autodetection
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] S: Started up automatically by iCDB Client: WIN10:root:6664
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] S: Auto close mode
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] S: Database ID [3f34-9fec-cbfd-3269-630d-d68b-30dd-6850-f73c-3bf8-e806-e5f5]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: BEGIN dumping
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: Local -> global path prefix list
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [E:\] -> [\\vboxsrv\elecinf344\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [F:\] -> [\\vboxsrv\mentor\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [G:\] -> [\\vboxsrv\mtr100\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [H:\] -> [\\vboxsrv\proj101\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [I:\] -> [\\vboxsrv\proj102\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: Global -> local path prefix list
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [\\vboxsrv\elecinf344\] -> [E:\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [\\vboxsrv\proj101\] -> [H:\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [\\vboxsrv\proj102\] -> [I:\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [\\vboxsrv\mentor\] -> [F:\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: [\\vboxsrv\mtr100\] -> [G:\]
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] PathTranslator: END dumping
+[2017.01.05 07:09:20] [0000m.00s.171ms] [0] S: START
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Server startup lock file created
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Listening for client connections on port [10001]
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Server network ID [WIN10:10.0.2.15,WIN10:10001]
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Server GUID [bf40-5e1a-ba41-d547-013e-d685-13ed-6850-7afb-3bf8-e806-e5f5]
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Project GUID [3f34-9fec-cbfd-3269-630d-d68b-30dd-6850-f73c-3bf8-e806-e5f5]
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Wrote data to server address file
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] S: Server startup lock file removed
+[2017.01.05 07:09:20] [0000m.00s.187ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] S: Local disc access time: 41 us
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] S: File server access time: 568 us
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] S: Server will not release in-memory storage after read (memory usage overhead) - for better performance
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] size [172744 (168.7 kB)]
+[2017.01.05 07:09:20] [0000m.00s.234ms] [1] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] opened in read-write mode
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.05 07:09:20] [0000m.00s.234ms] [0] Database GUARD OK: [172744]
+[2017.01.05 07:09:20] [0000m.00s.249ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.05 07:09:20] [0000m.00s.249ms] [0] Database GUARD OK: [172744]
+[2017.01.05 07:09:20] [0000m.00s.249ms] [0] SingleFile: [8a7d-a171-f4d1-90bf] SFI version check [1009] [1009]
+[2017.01.05 07:09:20] [0000m.00s.296ms] [0] SingleFile: [8a7d-a171-f4d1-90bf] Database SFI header has been read in [50ms 536us]
+[2017.01.05 07:09:20] [0000m.00s.296ms] [0] iCDB Server PI: Server & plugin session [4030]
+[2017.01.05 07:09:20] [0000m.00s.296ms] [0] iCDB Server PI: Opening database [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb]
+[2017.01.05 07:09:20] [0000m.00s.296ms] [0] iCDB Server PI: Database [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] opened
+[2017.01.05 07:09:20] [0000m.00s.312ms] [0] iCDB Database: Checking existence of constraint definitions
+[2017.01.05 07:09:20] [0000m.00s.312ms] [0] iCDB Database: Checking constraint definitions version
+[2017.01.05 07:09:20] [0000m.00s.358ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5] up to date
+[2017.01.05 07:09:20] [0000m.00s.405ms] [0] iCDB Server PI: Initializing plugins
+[2017.01.05 07:09:20] [0000m.00s.405ms] [0] iCDB Server PI: Plugins initialized
+[2017.01.05 07:09:20] [0000m.00s.405ms] [0] S: iCDB database loaded
+[2017.01.05 07:09:20] [0000m.00s.421ms] [0] S: Starting threads
+[2017.01.05 07:09:20] [0000m.00s.421ms] [0] BT: Listening for broadcast messages on port [10000]
+[2017.01.05 07:09:20] [0000m.00s.421ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2017.01.05 07:09:20] [0000m.00s.421ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2017.01.05 07:09:20] [0000m.00s.421ms] [0] IT: Session [4031] for host [WIN10] user [root] with process ID [6664] created
+[2017.01.05 07:09:20] [0000m.00s.421ms] [1] SC[4031]: Registered sub-client [DCDV] with ID [1] for session ID [4031] host [WIN10] user [root] process ID [6664]
+[2017.01.05 07:09:20] [0000m.00s.421ms] [1] SC[4031]: UnRegistered sub-client [DCDV] with ID [1] for session ID [4031] host [WIN10] user [root] process ID [6664]
+[2017.01.05 07:09:20] [0000m.00s.530ms] [1] CMT: There are [1] clients now: 4031
+[2017.01.05 07:09:20] [0000m.00s.530ms] [1] CMT: Removed client [4031]
+[2017.01.05 07:09:20] [0000m.00s.530ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2017.01.05 07:09:20] [0000m.01s.015ms] [0] IT: Session [4032] for host [WIN10] user [root] with process ID [6664] created
+[2017.01.05 07:09:20] [0000m.01s.015ms] [1] SC[4032]: Registered sub-client [DCDV] with ID [1] for session ID [4032] host [WIN10] user [root] process ID [6664]
+[2017.01.05 07:09:20] [0000m.01s.015ms] [1] SC[4032]: UnRegistered sub-client [DCDV] with ID [1] for session ID [4032] host [WIN10] user [root] process ID [6664]
+[2017.01.05 07:09:21] [0000m.01s.093ms] [1] CMT: Removed client [4032]
+[2017.01.05 07:09:21] [0000m.01s.093ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2017.01.05 07:09:23] [0000m.03s.074ms] [0] CMT: Starting server auto-close
+[2017.01.05 07:09:23] [0000m.03s.183ms] [0] S: Closing server
+[2017.01.05 07:09:23] [0000m.03s.200ms] [0] ProjectBackupManager: WARNING: Could not shutdown Project Backup engine - not started yet
+[2017.01.05 07:09:23] [0000m.03s.339ms] [0] iCDB Server PI: Closing plugins
+[2017.01.05 07:09:23] [0000m.03s.339ms] [0] iCDB Server PI: Plugins closed
+[2017.01.05 07:09:23] [0000m.03s.339ms] [0] iCDB Server PI: Unloading database
+[2017.01.05 07:09:23] [0000m.03s.388ms] [0] iCDB Server PI: Saving storage
+[2017.01.05 07:09:23] [0000m.03s.388ms] [0] iCDB Server PI: Closing database
+[2017.01.05 07:09:23] [0000m.03s.402ms] [1] iCDB Server PI: Stats: Database defragmentation: max[3] avg[1] holes[4%] data[92%]
+[2017.01.05 07:09:23] [0000m.03s.402ms] [1] iCDB Server PI: Stats: Database file size [172744 (168.7 kB)]
+[2017.01.05 07:09:23] [0000m.03s.433ms] [0] iCDB Server PI: Database closed
+[2017.01.05 07:09:23] [0000m.03s.433ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [40] ticks
+[2017.01.05 07:09:23] [0000m.03s.433ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [15] microseconds
+[2017.01.05 07:09:23] [0000m.03s.433ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [2]
+[2017.01.05 07:09:23] [0000m.03s.433ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [131408] commands per second
+[2017.01.05 07:09:23] [0000m.03s.433ms] [0] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] closed with size [172744 (168.7 kB)]
+[2017.01.05 07:09:23] [0000m.03s.449ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2017.01.05 07:09:23] [0000m.03s.636ms] [0] S: STOP

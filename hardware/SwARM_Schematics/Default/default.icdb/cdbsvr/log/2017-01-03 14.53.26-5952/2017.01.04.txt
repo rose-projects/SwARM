@@ -1,0 +1,12 @@
+[2017.01.04 01:52:45] [0659m.18s.643ms] [0] IT: Session [4018] for host [WIN10] user [root] with process ID [5668] created
+[2017.01.04 01:52:45] [0659m.18s.659ms] [1] SC[4018]: Registered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4018] host [WIN10] user [root] process ID [5668]
+[2017.01.04 01:52:45] [0659m.18s.675ms] [1] CMT: There are [3] clients now: 4012, 4013, 4018
+[2017.01.04 01:52:45] [0659m.18s.707ms] [1] SC[4018]: UnRegistered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4018] host [WIN10] user [root] process ID [5668]
+[2017.01.04 01:52:45] [0659m.18s.785ms] [1] CMT: Removed client [4018]
+[2017.01.04 01:52:45] [0659m.18s.785ms] [1] CMT: There are [2] clients now: 4012, 4013
+[2017.01.04 02:17:34] [0684m.08s.205ms] [0] IT: Session [4019] for host [WIN10] user [root] with process ID [5220] created
+[2017.01.04 02:17:34] [0684m.08s.205ms] [1] SC[4019]: Registered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4019] host [WIN10] user [root] process ID [5220]
+[2017.01.04 02:17:34] [0684m.08s.252ms] [1] SC[4019]: UnRegistered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4019] host [WIN10] user [root] process ID [5220]
+[2017.01.04 02:17:34] [0684m.08s.314ms] [1] CMT: There are [3] clients now: 4012, 4013, 4019
+[2017.01.04 02:17:34] [0684m.08s.314ms] [1] CMT: Removed client [4019]
+[2017.01.04 02:17:34] [0684m.08s.314ms] [1] CMT: There are [2] clients now: 4012, 4013

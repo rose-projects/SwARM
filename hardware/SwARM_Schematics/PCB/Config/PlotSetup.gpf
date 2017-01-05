@@ -1,7 +1,7 @@
 .FILETYPE GerberPlotSetupFile
 .VERSION "VB99.0"
 .CREATOR "Expedition PCB Gerber Output"
-.DATE "Tuesday, December 20, 2016 02:00 PM"
+.DATE "Thursday, January 05, 2017 07:13 AM"
 
 .BaseUnits "1NM"
 
@@ -50,9 +50,8 @@
  ..BoardItem SolderpasteBottom
 
 .GerberOutputFile "SilkScreenTop.gdo"
- ..ProcessFile Yes
+ ..ProcessFile No
  ..FlashPads Yes
- ..GerberOutputPath "Output\\Gerber\\SilkScreenTop.gdo"
  ..BoardItem AlteredSilkscreenTop
  ..BoardItem BoardOutline
  ..CellType Buried
@@ -80,9 +79,8 @@
  ..CellType TestPoint
 
 .GerberOutputFile "SilkScreenBottom.gdo"
- ..ProcessFile Yes
+ ..ProcessFile No
  ..FlashPads Yes
- ..GerberOutputPath "Output\\Gerber\\SilkScreenBottom.gdo"
  ..BoardItem AlteredSilkscreenBottom
  ..BoardItem BoardOutline
  ..CellType Buried
@@ -116,6 +114,7 @@
  ..HeaderText
    ...CommentLine "Mentor Graphics Example Gerber Output Definition"
  ..ConductiveLayer 1
+   ...ConductiveItem BondPads
    ...ConductiveItem EtchedText
    ...ConductiveItem Fiducials
    ...ConductiveItem PartPadsSMD
@@ -125,6 +124,7 @@
    ...ConductiveItem ResistorAreas
    ...ConductiveItem Traces
    ...ConductiveItem ViaPads
+   ...ConductiveItem CopperBalancing
    ...ProcessUnconnectedPads Yes
  ..BoardItem BoardOutline
  ..CellType Buried
@@ -158,6 +158,7 @@
  ..HeaderText
    ...CommentLine "Mentor Graphics Example Gerber Output Definition"
  ..ConductiveLayer 2
+   ...ConductiveItem BondPads
    ...ConductiveItem EtchedText
    ...ConductiveItem Fiducials
    ...ConductiveItem PartPadsSMD
@@ -167,6 +168,7 @@
    ...ConductiveItem ResistorAreas
    ...ConductiveItem Traces
    ...ConductiveItem ViaPads
+   ...ConductiveItem CopperBalancing
    ...ProcessUnconnectedPads Yes
  ..BoardItem BoardOutline
  ..CellType Buried

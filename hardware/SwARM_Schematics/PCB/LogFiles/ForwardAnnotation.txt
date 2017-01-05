@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       05:41 PM Sunday, December 18, 2016
+                       07:11 AM Thursday, January 05, 2017
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -84,6 +84,10 @@ Version:  01.01.00
       
      No errors in Existing Schematic Packaging.
 
+     INFO: Cell (_VB_DRILL_DRAWING_)THRU is not in Central Library - Using local library.
+
+     INFO: Cell (_VB_DRILL_SYMBOLS_)THRU is not in Central Library - Using local library.
+
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
@@ -110,7 +114,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       05:41 PM Sunday, December 18, 2016
+                       07:11 AM Thursday, January 05, 2017
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -154,10 +158,9 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-	Assigned net INFRA_LED_L to a trace which was originally on net (Net0).
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 1 reassignments of nets.
+There were 0 reassignments of nets.
 There were 0 traces broken back.
 There were 0 nets removed from the Layout Design.

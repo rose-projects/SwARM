@@ -83,3 +83,17 @@
 [2016-12-20 16.04.33] Successfully created [AutoSave] backup [2016-12-20 16.04.33 - auto.zip] requested by [WIN10:root].
 [2016-12-20 16.04.33] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 13.57.39 - auto.zip].
 [2016-12-20 16.04.33] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 13.57.39 - auto.zip] removed.
+[2017-01-05 05.50.06] Migrating iCDB upgrade backups from directory [SWARM_SCHEMATICS\Default\default.icdb\cdbback] to Project Backup format.
+[2017-01-05 05.50.06] Migrating iCDB upgrade backup file [2017-01-05 05.48.55-4816].
+[2017-01-05 05.50.07] Successfully created [Database Upgrade] backup [2017-01-05 05.48.55 - upgrade.zip] requested by [WIN10:root].
+[2017-01-05 05.50.07] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 17.57.39 - auto.zip].
+[2017-01-05 05.50.07] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 17.57.39 - auto.zip] removed.
+[2017-01-05 05.50.07] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.04.33 - auto.zip].
+[2017-01-05 05.50.07] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.04.33 - auto.zip] removed.
+[2017-01-05 05.50.07] Removing excessive [Constraints Definition Upgrade] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.01.39 - consDefUpgr.zip].
+[2017-01-05 05.50.07] [Constraints Definition Upgrade] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.01.39 - consDefUpgr.zip] removed.
+[2017-01-05 05.50.07] Migrated iCDB content backup file [cdbback\2017-01-05 05.48.55-4816.zip] removed.
+[2017-01-05 05.50.07] Successfully migrated iCDB upgrade backup file [2017-01-05 05.48.55-4816] to Project Backup format [2017-01-05 05.48.55 - upgrade.zip]
+[2017-01-05 05.52.42] Successfully created [AutoSave] backup [2017-01-05 05.52.42 - auto.zip] requested by [WIN10:root].
+[2017-01-05 05.52.42] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 16.04.33 - auto.zip].
+[2017-01-05 05.52.42] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 16.04.33 - auto.zip] removed.

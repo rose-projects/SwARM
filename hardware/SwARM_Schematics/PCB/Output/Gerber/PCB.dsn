@@ -1,6 +1,6 @@
 {Program	Expedition GerbTool(tm)
 	{Version	8.1.2 X1}
-	{Created	Tue Dec 20 14:00:09 2016}
+	{Created	Thu Jan 05 07:13:38 2017}
 }
 {Environment
 	{ViewMetric	Yes}
@@ -35,41 +35,27 @@
 		{Ftype		Gerber}
 	}
 	{Layer  5
-		{File		SilkScreenTop.gdo}
-		{LyrName	SilkScreenTop}
-		{Visibility	Off}
-		{Type		Other}
-		{Ftype		Gerber}
-	}
-	{Layer  6
-		{File		SilkScreenBottom.gdo}
-		{LyrName	SilkScreenBottom}
-		{Visibility	Off}
-		{Type		Other}
-		{Ftype		Gerber}
-	}
-	{Layer  7
 		{File		EtchLayerTop.gdo}
 		{LyrName	EtchLayerTop}
 		{Visibility	Off}
 		{Type		Top}
 		{Ftype		Gerber}
 	}
-	{Layer  8
+	{Layer  6
 		{File		EtchLayerBottom.gdo}
 		{LyrName	EtchLayerBottom}
 		{Visibility	Off}
 		{Type		Bottom}
 		{Ftype		Gerber}
 	}
-	{Layer  9
+	{Layer  7
 		{File		DrillDrawingThrough.gdo}
 		{LyrName	DrillDrawingThrough}
 		{Visibility	Off}
 		{Type		Other}
 		{Ftype		Gerber}
 	}
-	{Layer 10
+	{Layer  8
 		{File		BoardOutlline.gdo}
 		{LyrName	BoardOutlline}
 		{Visibility	Off}

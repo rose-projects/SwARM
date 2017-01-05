@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 12/20/16 12:29:39
+! Created 01/05/17 06:10:46
 !
 
 .Global_Constants 67 2
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(1, 1) (639,430)	! ..rcNormalPosition
+	(498, 132) (1920,788)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x010a8ff9	! top     RGB(249,143, 10)
+	0x00000000	! top     RGB(  0,  0,  0)
 	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Bondwire_Color (
-	0x010a9079	! top     RGB(121,144, 10)
-	0x010a8ff9	! bottom  RGB(249,143, 10)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1798,8 +1798,8 @@
 
 .view "PCB"
     ..extrema
-	(-38727203,-1597902)		! (xmin, ymin)
-	(116043445,61489716)		! (xmax, ymax)
+	(-58277070,-2540000)		! (xmin, ymin)
+	(96277070,60540030)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
@@ -2011,14 +2011,14 @@
                                          True 	! bottom
     ..Thermal_Data_On                    True 	! top
                                          True 	! bottom
-    ..All_Assy_Enabled                   True 	! top
-                                         True 	! bottom
+    ..All_Assy_Enabled                   False	! top
+                                         False	! bottom
     ..Assy_Outline_On                    True 	! top
                                          True 	! bottom
     ..Assy_Part_Number_On                False	! top
                                          False	! bottom
-    ..Assy_Ref_Des_On                    False	! top
-                                         False	! bottom
+    ..Assy_Ref_Des_On                    True 	! top
+                                         True 	! bottom
     ..All_Silkscreen_Enabled             False	! top
                                          False	! bottom
     ..Silk_Outline_On                    False	! top
