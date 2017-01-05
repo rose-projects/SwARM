@@ -3,8 +3,10 @@
 
 #include "stdint.h"
 
-extern volatile uint16_t x_pos;
-extern volatile uint16_t y_pos;
-extern volatile uint16_t orientation;
+extern volatile int x_pos;
+extern volatile int y_pos;
+extern volatile int orientation;
+
+void update_position(void);
 
 #endif

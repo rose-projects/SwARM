@@ -8,12 +8,13 @@
 #include "moving.h"
 
 // Initialization of the enslavement related variables
-volatile uint16_t distance;
-volatile uint16_t angle;
-volatile uint16_t dist_goal;
-volatile uint16_t angle_goal;
-volatile uint16_t dist_goals[3];
-volatile uint16_t angle_goals[3];
+volatile int distance;
+volatile int angle;
+volatile int dist_goal;
+volatile int angle_goal;
+volatile int dist_goals[3];
+volatile int angle_goals[3];
+volatile int to_the_lefts[3];
 
 // Application entry point.
 int main(void) {
@@ -52,6 +53,9 @@ int main(void) {
     angle_goals[0] = 100;
     angle_goals[1] = 50;
     angle_goals[2] = 80;
+    to_the_lefts[0] = 0;
+    to_the_lefts[1] = 1;
+    to_the_lefts[2] = 0;
 
     // Starting test with enslavement
     chprintf(COUT, "Starting wheels' tests with motors\r\n");

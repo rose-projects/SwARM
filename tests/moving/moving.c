@@ -10,6 +10,9 @@
 // We update robot position goal every 20 seconds
 #define MOVING_THD_SLEEP 20000
 
+unsigned int last_tick_cnt_l;
+unsigned int last_tick_cnt_r;
+
 // Moving control thread working area
 static THD_WORKING_AREA(working_area_moving_thd, 128);
 
@@ -18,8 +21,6 @@ static THD_FUNCTION(moving_thd, arg) {
     (void) arg;
 
     int i = 0;
-    uint16_t current_tick_l;
-    uint16_t current_tick_r;
 
     /* 
      * Thread routine
@@ -28,21 +29,22 @@ static THD_FUNCTION(moving_thd, arg) {
      * so that the robot moves to the next position
      */
     while(true){
-        current_tick_l = tick_l;
-        current_tick_r = tick_r;
+        last_tick_cnt_l = tick_l;
+        last_tick_cnt_r = tick_r;
 
         // Calling reset function for enslavement 
         begin_new_asser();
 
         // Printing out the current values of ticks
-        chprintf(COUT, "tick_l final value: %D\r\n", current_tick_l);
-        chprintf(COUT, "tick_r final value: %D\r\n", current_tick_r);
+        chprintf(COUT, "tick_l final value: %D\r\n", last_tick_cnt_l);
+        chprintf(COUT, "tick_r final value: %D\r\n", last_tick_cnt_r);
 
         chprintf(COUT, "Updating distance and angle goals\r\n");
         chprintf(COUT, "Distance new value: %D\r\n", dist_goals[i%3]);
         chprintf(COUT, "Angle new value: %D\r\n", angle_goals[i%3]);
         dist_goal = dist_goals[i%3];
         angle_goal = angle_goals[i%3];
+        to_the_left = to_the_lefts[i%3];
 
         // Preparation of the next loop iteration
         i++;

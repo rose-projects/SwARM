@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-	USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16
+	USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16 -lm
 endif
 
 # C specific options here (added to USE_OPT).
@@ -114,7 +114,7 @@ CSRC = $(STARTUPSRC) \
 	   $(BOARDSRC) \
 	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
 	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-	   main.c coding_wheels.c usbcfg.c motors.c asser.c moving.c
+	   main.c coding_wheels.c usbcfg.c motors.c asser.c moving.c position.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

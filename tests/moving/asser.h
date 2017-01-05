@@ -5,10 +5,11 @@
 
 void start_asservs(void);
 void begin_new_asser(void);
-extern volatile uint16_t angle;
-extern volatile uint16_t distance;
-extern volatile uint16_t dist_goal;
-extern volatile uint16_t angle_goal;
+extern volatile int angle;
+extern volatile int distance;
+extern volatile int dist_goal;
+extern volatile int angle_goal;
+extern volatile unsigned int to_the_left;
 
 
 #endif
