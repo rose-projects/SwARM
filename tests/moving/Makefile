@@ -114,7 +114,8 @@ CSRC = $(STARTUPSRC) \
 	   $(BOARDSRC) \
 	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
 	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-	   main.c coding_wheels.c usbcfg.c motors.c asser.c moving.c position.c
+	   main.c coding_wheels.c usbcfg.c motors.c asser.c moving.c position.c \
+	   coordination.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -203,6 +204,8 @@ startgdbserver:
 gdb:
 	$(DBG) build/$(PROJECT).elf
 
+pico:
+	picocom -b 9600 /dev/ttyACM0
 #
 # End of user defines
 ##############################################################################
