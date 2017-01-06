@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ch.h"
-#include "chprintf.h"
 
 #include "non-volatile.h"
 #include "flash.h"
@@ -39,7 +38,7 @@ const struct flash_sector_def f407_flash[FLASH_SECTOR_COUNT] = {
 int deviceUID __attribute__((section(".flashdata")));
 
 /* distance offsets in flash */
-static struct distOffset offsets[MAX_CALIBRATION] __attribute__((section(".flashdata")));
+struct distOffset offsets[MAX_CALIBRATION] __attribute__((section(".flashdata")));
 
 /* Flash data RAM instance to save data while erasing flash sector */
 static int deviceUIDinRAM;
@@ -103,12 +102,12 @@ int writeOffset(struct distOffset *offset) {
 		i++;
 
 	if(i == MAX_CALIBRATION) {
-		chprintf(USBserial, "calibration buffer is full\n");
+		printf("calibration buffer is full\n");
 		return -1;
 	}
 
 	if(saveAndErase()) {
-		chprintf(USBserial, "Couln't erase flash.\n");
+		printf("Couln't erase flash.\n");
 		return -1;
 	}
 	offsetsInRAM[i].uid = offset->uid;
@@ -116,7 +115,7 @@ int writeOffset(struct distOffset *offset) {
 	offsetsInRAM[i].sb1 = offset->sb1;
 	offsetsInRAM[i].sb2 = offset->sb2;
 	if(writeFlash()) {
-		chprintf(USBserial, "Couln't write flash.\n");
+		printf("Couln't write flash.\n");
 		return -1;
 	}
 

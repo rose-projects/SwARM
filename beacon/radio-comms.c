@@ -266,16 +266,16 @@ static void readSlaveBeacon(int beaconID) {
 			j++;
 		}
 		if((sbConnected & 0x01) == 0 && beaconID == 253)
-			chprintf(USBserial, "SB1 connected\n");
+			printf("SB1 connected\n");
 		if((sbConnected & 0x02) == 0 && beaconID == 254)
-			chprintf(USBserial, "SB2 connected\n");
+			printf("SB2 connected\n");
 		// mark beacon as connected
 		sbConnected = sbConnected | (beaconID == 253 ? 0x01 : 0x02);
 	} else { // without answer, mark beacon as disconnected
 		if((sbConnected & 0x01) && beaconID == 253)
-			chprintf(USBserial, "SB1 disconnected\n");
+			printf("SB1 disconnected\n");
 		if((sbConnected & 0x02) && beaconID == 254)
-			chprintf(USBserial, "SB2 disconnected\n");
+			printf("SB2 disconnected\n");
 		sbConnected = sbConnected & (beaconID == 253 ? 0x02 : 0x01);
 	}
 }
@@ -311,7 +311,7 @@ static void pollNewRobot(int nextIndex) {
 		robots[id - 1].sb2Dist = 0;
 		robots[id - 1].offsets = loadOffsets(uid);
 
-		chprintf(USBserial, "new robot connected : id=%d, uid=%d\n", id, uid);
+		printf("new robot connected : id=%d, uid=%d\n", id, uid);
 	};
 }
 
@@ -330,7 +330,7 @@ static void masterBeaconTask(void) {
 	i = dwt_readtxtimestamplo32();
 	sessionID = (i >> 8) + (i >> 16);
 
-	chprintf(USBserial, "sessionID = %d\n", sessionID);
+	printf("sessionID = %d\n", sessionID);
 
 	while(restartMB == 0) {
 		// send start-of-frame
@@ -363,7 +363,7 @@ static void masterBeaconTask(void) {
 				rangeRobot(robotIDs[i], serializeRobotData(radioBuffer, robotIDs[i]));
 			// distance = 0 means robot didn't respond or an error happened
 			if(robots[robotIDs[i] - 1].mbDist == 0) {
-				chprintf(USBserial, "robot %d disconnected\n", robotIDs[i]);
+				printf("robot %d disconnected\n", robotIDs[i]);
 				robotIDs[i] = 0; // mark robot as disconnected
 			} else {
 				robots[robotIDs[i] - 1].mbDist += robots[robotIDs[i] - 1].offsets->mb;

@@ -1,7 +1,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "ch.h"
-#include "chprintf.h"
 #include "chevents.h"
 
 #include "../shared/radio-conf.h"
@@ -46,17 +45,17 @@ static void computeTrilateralisation(int mbR, int sb1R, int sb2R, int16_t *x, in
 void trilateralizeRobots(void) {
 	int i;
 	struct robotData *robot;
-	chprintf(USBserial, "POS :");
+	printf("POS :");
 	for(i=0; i<MAX_CONNECTED_ROBOTS; i++) {
 		robot = &robots[i];
 
 		// check all distances has been correctly measured
 		if(robot->mbDist != 0 && robot->sb1Dist != 0 && robot->sb2Dist != 0) {
 			computeTrilateralisation(robot->mbDist, robot->sb1Dist, robot->sb2Dist, &robot->x, &robot->y);
-			chprintf(USBserial, " %d %d", robot->x, robot->y);
+			printf(" %d %d %d", robot->x, robot->y, robot->sb1Dist);
 		}
 	}
-	chprintf(USBserial, "\n");
+	printf("\n");
 }
 
 static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {
