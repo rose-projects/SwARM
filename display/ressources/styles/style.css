@@ -42,17 +42,28 @@ input, span {
 	left: 0;
 }
 
+.calib {
+	position: absolute;
+	width: 100%;
+	background-color: white;
+	height: 6vh;
+	left: 0;
+	top: 0;
+	text-align: center;
+	background-color: #dfdcd6;
+}
 .sysmap {
-	position: relative;
+	position: absolute;;
 	left: 5%;
+	top: 12vh;
 	width: 90%;
-	height: 85%;
+	height: 78vh;
 }
 .beacons {
 	position: absolute;
 	width: 100%;
 	background-color: white;
-	height: 5vw;
+	height: 6vh;
 	left: 0;
 	bottom: 0;
 	text-align: center;
@@ -60,14 +71,14 @@ input, span {
 }
 
 .serialport {
-	height: 10vh;
+	height: 9vh;
 	width: 100%;
 	padding-top: 1vh;
 	text-align: center;
 	background-color: #dfdcd6;
 }
 .log {
-	height: 90vh;
+	height: 88vh;
 	width: 100%;
 	overflow: scroll;
 	font-size: 1.5vw;
@@ -75,7 +86,7 @@ input, span {
 	padding-top: 1vh;
 }
 
-.baudrate, .sb1x, .sb2y {
+input {
 	width: 8vw;
 	margin-top: 1vh;
 }

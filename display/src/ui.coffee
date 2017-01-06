@@ -4,15 +4,11 @@ app = require('electron').remote.app
 
 robots = []
 
-sb1x = ->
-	val = parseInt $('.sb1x').val()
-	return if isNaN(val) then 100 else val
-sb2y = ->
-	val = parseInt $('.sb2y').val()
-	return if isNaN(val) then 100 else val
-baudrate = ->
-	val = parseInt $('.baudrate').val()
-	return if isNaN(val) then 38400 else val
+intRead = (cl, def) ->
+	val = parseInt $(".#{cl}").val()
+	return if isNaN(val) then def else val
+sb1x = -> intRead('sb1x', 100)
+sb2y = -> intRead('sb2y', 100)
 
 point2serie = (point) ->
 	serie  = (null for i in [1..point[0]])
@@ -25,7 +21,7 @@ updateChart = ->
 	series = [[0], [sb2y()], point2serie([sb1x(), 0])]
 	series.push point2serie(rb) for rb in robots
 
-	new Chartist.Line '.ct-chart', {labels: labels, series: series}
+	new Chartist.Line('.ct-chart', {labels: labels, series: series})
 
 ipc.on 'robots', (event, points) ->
 	robots = points
@@ -42,7 +38,9 @@ $ ->
 		ipc.send 'beacons', sb1x(), sb2y()
 	$('.serial-btn').click ->
 		$('.log').text('')
-		ipc.send 'connect', $('.serialpath').val(), baudrate()
+		ipc.send 'connect', $('.serialpath').val(), intRead('baudrate', 38400)
+	$('.calib-btn').click ->
+		ipc.send 'calib', intRead('calib-id', 1), intRead('calib-x', 50), intRead('calib-y', 50), [sb1x(), 0], [0, sb2y()]
 
 	updateChart()
 	ipc.send 'ready'

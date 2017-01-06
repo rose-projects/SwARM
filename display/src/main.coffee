@@ -6,7 +6,7 @@ renderer = null
 port = null
 
 robotsHist = []
-meanDepth = 1 # TODO : add GUI control
+meanDepth = 4 # TODO : add GUI control
 
 computeMean = (robots) ->
 	res = [0, 0]
@@ -14,14 +14,12 @@ computeMean = (robots) ->
 	robotsHist.push robots[..] if typeof robots[0] is 'object' and robots[0].length == 2
 	if robotsHist.length == meanDepth
 		for rb in robotsHist when typeof rb[0] is 'object' and rb[0].length == 2
-			console.log rb[0]
 			res[0] += rb[0][0]
 			res[1] += rb[0][1]
 		robotsHist.shift()
 
 	res[0] = res[0]/meanDepth
 	res[1] = res[1]/meanDepth
-	console.log res
 	return [res]
 
 app.on 'ready', ->
@@ -32,7 +30,6 @@ app.on 'ready', ->
 
 ipcMain.on 'ready', ->
 	serialport.list (err, ports) ->
-		console.log ports
 		renderer.send('seriallist', ports.reverse()) unless err?
 
 ipcMain.on 'connect', (event, serialpath, baudrate) ->
@@ -57,3 +54,21 @@ ipcMain.on 'connect', (event, serialpath, baudrate) ->
 ipcMain.on 'beacons', (event, sb1x, sb2y) ->
 	if port? and port.isOpen()
 		port.write "beacon #{sb1x} #{sb2y}\r\n"
+
+ipcMain.on 'calib', (event, id, x, y, sb1, sb2) ->
+	distance = (point1, point2) -> Math.sqrt((point1[0]-point2[0])**2 + (point1[1]-point2[1])**2)
+	beacons = [ ['mb', Math.round(distance([x, y], [0, 0]))],
+			    ['sb1', Math.round(distance([x, y], sb1))],
+			    ['sb2', Math.round(distance([x, y], sb2))] ]
+	sendCal = ->
+		console.log
+		if robotsHist.length == 0
+			setTimeout sendCal, 400
+		else
+			beacon = beacons.shift()
+			port.write "#{beacon[0]}cal #{id} #{beacon[1]}\r\n"
+			robotsHist = []
+			setTimeout(sendCal, 800) if beacons.length > 0
+
+	if port? and port.isOpen()
+		sendCal()
