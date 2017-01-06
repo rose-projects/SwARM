@@ -1,6 +1,8 @@
 #include "moving.h"
 #include "coding_wheels.h"
 #include "asser.h"
+#include "position.h"
+#include "coordination.h"
 
 #include "hal.h"
 #include "ch.h"
@@ -8,7 +10,7 @@
 #include "chprintf.h"
 
 // We update robot position goal every 20 seconds
-#define MOVING_THD_SLEEP 20000
+#define MOVING_THD_SLEEP 200
 
 unsigned int last_tick_cnt_l;
 unsigned int last_tick_cnt_r;
@@ -34,22 +36,25 @@ static THD_FUNCTION(moving_thd, arg) {
 
         // Calling reset function for enslavement 
         begin_new_asser();
+        update_position();
 
         // Printing out the current values of ticks
         chprintf(COUT, "tick_l final value: %D\r\n", last_tick_cnt_l);
         chprintf(COUT, "tick_r final value: %D\r\n", last_tick_cnt_r);
 
-        chprintf(COUT, "Updating distance and angle goals\r\n");
-        chprintf(COUT, "Distance new value: %D\r\n", dist_goals[i%3]);
-        chprintf(COUT, "Angle new value: %D\r\n", angle_goals[i%3]);
-        dist_goal = dist_goals[i%3];
-        angle_goal = angle_goals[i%3];
-        to_the_left = to_the_lefts[i%3];
-
         // Preparation of the next loop iteration
-        i++;
-        if(i%3 == 0)
+        if((i%N_POINTS) == 0){
             chprintf(COUT, "Begin of new cycle\r\n");
+            update_main_coordinates();
+            i++;
+        }
+        update_sub_coordinates();
+
+        chprintf(COUT, "Updating distance and angle goals\r\n");
+        chprintf(COUT, "Distance new value: %D\r\n", dist_goal);
+        chprintf(COUT, "Are we going forward?: %D\r\n", forward);
+        chprintf(COUT, "Angle new value: %D\r\n", angle_goal);
+        chprintf(COUT, "To the left?: %D\r\n", to_the_left);
 
         // Go to sleep
         chThdSleepMilliseconds(MOVING_THD_SLEEP);

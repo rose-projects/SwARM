@@ -34,7 +34,8 @@ static int angle_error_delta;
 static int angle_error_prev;
 volatile unsigned int cmd_dist;
 volatile unsigned int cmd_angle;
-volatile unsigned int to_the_left;
+volatile int to_the_left = 1;
+volatile int forward = 1;
 
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
@@ -48,6 +49,12 @@ static THD_FUNCTION(asser_thd, arg) {
         else 
             angle = tick_l - tick_r;
         distance = (tick_r + tick_l)/2;
+        if(forward){
+            GO_FORWARD
+        }
+        else{
+            GO_REVERSE
+        }
 
         // Error calculations
         // For distance

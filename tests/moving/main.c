@@ -7,14 +7,6 @@
 #include "asser.h"
 #include "moving.h"
 
-// Initialization of the enslavement related variables
-volatile int distance;
-volatile int angle;
-volatile int dist_goal;
-volatile int angle_goal;
-volatile int dist_goals[3];
-volatile int angle_goals[3];
-volatile int to_the_lefts[3];
 
 // Application entry point.
 int main(void) {
@@ -47,16 +39,8 @@ int main(void) {
     angle = 0;
     dist_goal = 0;
     angle_goal = 0;
-    dist_goals[0] = 1000;
-    dist_goals[1] = 2000;
-    dist_goals[2] = 3000;
-    angle_goals[0] = 100;
-    angle_goals[1] = 50;
-    angle_goals[2] = 80;
-    to_the_lefts[0] = 0;
-    to_the_lefts[1] = 1;
-    to_the_lefts[2] = 0;
 
+    chThdSleepMilliseconds(5000);
     // Starting test with enslavement
     chprintf(COUT, "Starting wheels' tests with motors\r\n");
     start_asservs();
