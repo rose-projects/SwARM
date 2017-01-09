@@ -1,5 +1,5 @@
 dist: trusty
-sudo: true
+sudo: false
 
 branches:
   except:
@@ -15,11 +15,11 @@ script:
     - make -C tests/coding_wheels/
     - cd opencv
     - mkdir build && cd build
-    - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+    - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$HOME/local ..
     - make -j 8
-    - sudo make install
+    - make install
     - cd ../..
-    - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+    - export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig/
     - make -C tests/cam/
 
 cache: ccache

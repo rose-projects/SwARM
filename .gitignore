@@ -6,9 +6,8 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 *~
+*.swp
 
 # builds
 **/build/
 **/.dep/
-
-*.swp
