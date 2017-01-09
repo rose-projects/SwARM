@@ -45,7 +45,6 @@ main(int argc, char *argv[])
 	}
 
 	for (;;) {
-		size_t i = 0;
 		vector<Vec3f> circles;
 
 		if (vid.read(fm) == false) {
@@ -61,7 +60,7 @@ main(int argc, char *argv[])
 		HoughCircles(fm, circles, HOUGH_GRADIENT, 1, fm.rows/4,
 			hough_p1 + 1, hough_p2, RAD_MIN, RAD_MAX);
 
-		for (auto const c : circles)
+		for (auto const& c : circles)
 			circle(fm, Point(c[0], c[1]), 2, Scalar(0, 255, 0),
 				3, LINE_AA);
 
