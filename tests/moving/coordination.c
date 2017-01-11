@@ -39,6 +39,6 @@ void update_sub_coordinates(){
     forward = SIGN(yb_p);
     dist_goal = fabs(alpha)*radius*i/N_POINTS;
     to_the_left = SIGN(xb_p);
-    angle_goal = L_MM*dist_goal/(radius*U_MM);
+    angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
     i++;
 }

@@ -35,12 +35,6 @@ int main(void) {
     usbStart(serusbcfg.usbp, &usbcfg);
     usbConnectBus(serusbcfg.usbp);
 
-    distance = 0;
-    angle = 0;
-    dist_goal = 0;
-    angle_goal = 0;
-
-    chThdSleepMilliseconds(5000);
     // Starting test with enslavement
     chprintf(COUT, "Starting wheels' tests with motors\r\n");
     start_asservs();

@@ -20,7 +20,7 @@
 #define I_DIST 0
 #define D_DIST 0
 #define MIN(a,b) ((a>b) ? b : a)
-#define MAX_POWER 50
+#define MAX_POWER 200
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
@@ -34,8 +34,8 @@ static int angle_error_delta;
 static int angle_error_prev;
 volatile unsigned int cmd_dist;
 volatile unsigned int cmd_angle;
-volatile int to_the_left = 1;
 volatile int forward = 1;
+volatile int to_the_left = 1;
 
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
@@ -44,10 +44,7 @@ static THD_FUNCTION(asser_thd, arg) {
     // 200 Hz calculation
     while(true){
         // Distance and error calculations
-        if(to_the_left)
-            angle = tick_r - tick_l;
-        else 
-            angle = tick_l - tick_r;
+        angle = tick_r - tick_l;
         distance = (tick_r + tick_l)/2;
         if(forward){
             GO_FORWARD
@@ -56,13 +53,12 @@ static THD_FUNCTION(asser_thd, arg) {
             GO_REVERSE
         }
 
-        // Error calculations
-        // For distance
+        // Error calculations for distance
         dist_error = dist_goal - distance;
         dist_error_sum += dist_error;
         dist_error_delta = dist_error - dist_error_prev;
         dist_error_prev = dist_error;
-        // For angle
+        // Error calculations for angle
         angle_error = angle_goal - angle;
         angle_error_sum += angle_error;
         angle_error_delta = angle_error - angle_error_prev;
@@ -74,8 +70,8 @@ static THD_FUNCTION(asser_thd, arg) {
                     + D_ANGLE*angle_error_delta;
 
         /*
-         * Adding an offset to all strictly positive cmd_dist values so that
-         * the robot moves it needs to
+         * Adding an offset to all strictly positive cmd_* values so that
+         * the robot moves if it needs to
          */
         if(cmd_dist > 0)
             cmd_dist += 35;
@@ -85,19 +81,15 @@ static THD_FUNCTION(asser_thd, arg) {
         /*
          * Limiting all cmd values so that they don't exceed the maximum value
          * that the pwmEnableChannel can interpret without ambiguiti
+         * The maximmun value they can take is 200 so MAX_POWER should be at
+         * less than 200
          */
         cmd_dist = MIN(cmd_dist, MAX_POWER);
         cmd_angle = MIN(cmd_angle, MAX_POWER);
 
         // Updating PWM signals
-        if(to_the_left){
-            pwmEnableChannel(&PWMD1, 0, cmd_dist);
-            pwmEnableChannel(&PWMD1, 1, cmd_angle);
-        }
-        else{
-            pwmEnableChannel(&PWMD1, 0, cmd_angle);
-            pwmEnableChannel(&PWMD1, 1, cmd_dist);
-        }
+        pwmEnableChannel(&PWMD1, 0, cmd_dist);
+        pwmEnableChannel(&PWMD1, 1, cmd_angle);
 
         // Printing out the current values of ticks and pwm commands
         chprintf(COUT, "tick_l: %D\r\n", tick_l);
