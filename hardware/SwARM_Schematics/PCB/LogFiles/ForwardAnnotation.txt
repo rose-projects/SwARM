@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       07:11 AM Thursday, January 05, 2017
+                       08:34 PM Tuesday, January 10, 2017
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 
@@ -56,7 +56,7 @@ Version:  01.01.00
           Part Numb: 40-0291 -> Vend Part: 40-0291 
           Part Numb: 40-0292 -> Vend Part: 40-0292 
           Part Numb: 40-0301 -> Vend Part: 40-0301 
-          Part Numb: 50-0038 -> Vend Part: 50-0038 
+          Part Numb: 50-0044 -> Vend Part: 50-0044 
           Part Numb: 70-0002 -> Vend Part: 70-0002 
           Part Numb: 70-0028 -> Vend Part: 70-0028 
           Part Numb: 70-0060 -> Vend Part: 70-0060 
@@ -114,7 +114,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       07:11 AM Thursday, January 05, 2017
+                       08:35 PM Tuesday, January 10, 2017
           Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
 
 

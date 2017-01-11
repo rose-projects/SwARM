@@ -1,0 +1,362 @@
+[2017.01.10 19:26:37] [0000m.00s.124ms] [0] WELCOME
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] Base flow version [7.9.4]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] Machine [WIN10]  User [root]  PID [1072]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] Current working dir [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\xe\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] SDD_PLATFORM [win32]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] WDIR [C:\Users\root\Documents\WDIR\7.9.5;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\7.9.5\iCDB] on file system [NTFS]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [1] S: Config file name [ServerWG.cfg]
+[2017.01.10 19:26:37] [0000m.00s.124ms] [2] S: Loading config files
+[2017.01.10 19:26:37] [0000m.00s.140ms] [1] Config file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2017.01.10 19:26:37] [0000m.00s.140ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2017.01.10 19:26:37] [0000m.00s.140ms] [3] S: Config loaded
+[2017.01.10 19:26:37] [0000m.00s.171ms] [0] S: Project path [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] on file system [VBoxSharedFolderFS]
+[2017.01.10 19:26:37] [0000m.00s.171ms] [0] S: Project global path [\\vboxsrv\elecinf344\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] on file system [UNKNOWN]
+[2017.01.10 19:26:37] [0000m.00s.171ms] [0] S: Project file (.prj) path [\\vboxsrv\elecinf344\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj] on file system [UNKNOWN]
+[2017.01.10 19:26:37] [0000m.00s.171ms] [0] S: Project file (.prj) local path [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj] on file system [VBoxSharedFolderFS]
+[2017.01.10 19:26:37] [0000m.00s.171ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2017.01.10 19:26:37] [0000m.00s.171ms] [0] S: Multi-user mode (config)
+[2017.01.10 19:26:37] [0000m.00s.171ms] [0] S: Event polling mode autodetection
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Started up automatically by iCDB Client: WIN10:root:5468
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Auto close mode
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Database ID [3f34-9fec-cbfd-3269-630d-d68b-30dd-6850-f73c-3bf8-e806-e5f5]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: BEGIN dumping
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: Local -> global path prefix list
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [E:\] -> [\\vboxsrv\elecinf344\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [F:\] -> [\\vboxsrv\mentor\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [G:\] -> [\\vboxsrv\mtr100\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [H:\] -> [\\vboxsrv\proj101\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [I:\] -> [\\vboxsrv\proj102\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: Global -> local path prefix list
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [\\vboxsrv\elecinf344\] -> [E:\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [\\vboxsrv\proj101\] -> [H:\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [\\vboxsrv\proj102\] -> [I:\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [\\vboxsrv\mentor\] -> [F:\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: [\\vboxsrv\mtr100\] -> [G:\]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] PathTranslator: END dumping
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: START
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Server startup lock file created
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Listening for client connections on port [10000]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Server network ID [WIN10:10.0.2.15,WIN10:10000]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Server GUID [9f8c-7795-5634-54e8-d572-5782-6725-7850-f7db-3bf8-e806-e5f5]
+[2017.01.10 19:26:37] [0000m.00s.186ms] [0] S: Project GUID [3f34-9fec-cbfd-3269-630d-d68b-30dd-6850-f73c-3bf8-e806-e5f5]
+[2017.01.10 19:26:37] [0000m.00s.202ms] [0] S: Wrote data to server address file
+[2017.01.10 19:26:37] [0000m.00s.202ms] [0] S: Server startup lock file removed
+[2017.01.10 19:26:37] [0000m.00s.202ms] [1] ProjectBackupManager: Setting project file (.prj) path: [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\SwARM_Schematics.prj]
+[2017.01.10 19:26:38] [0000m.00s.372ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2017.01.10 19:26:38] [0000m.00s.372ms] [0] S: Local disc access time: 49 us
+[2017.01.10 19:26:38] [0000m.00s.372ms] [0] S: File server access time: 850 us
+[2017.01.10 19:26:38] [0000m.00s.372ms] [0] S: Server will not release in-memory storage after read (memory usage overhead) - for better performance
+[2017.01.10 19:26:38] [0000m.00s.372ms] [0] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] size [154056 (150.4 kB)]
+[2017.01.10 19:26:38] [0000m.00s.372ms] [1] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] opened in read-write mode
+[2017.01.10 19:26:38] [0000m.00s.372ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.10 19:26:38] [0000m.00s.388ms] [0] Database GUARD OK: [154056]
+[2017.01.10 19:26:38] [0000m.00s.388ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.10 19:26:38] [0000m.00s.388ms] [0] Database GUARD OK: [154056]
+[2017.01.10 19:26:38] [0000m.00s.388ms] [0] SingleFile: [8a7d-a171-f4d1-90bf] SFI version check [1009] [1009]
+[2017.01.10 19:26:38] [0000m.00s.435ms] [0] SingleFile: [8a7d-a171-f4d1-90bf] Database SFI header has been read in [52ms 491us]
+[2017.01.10 19:26:38] [0000m.00s.435ms] [0] iCDB Server PI: Server & plugin session [4087]
+[2017.01.10 19:26:38] [0000m.00s.435ms] [0] iCDB Server PI: Opening database [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb]
+[2017.01.10 19:26:38] [0000m.00s.435ms] [0] iCDB Server PI: Database [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] opened
+[2017.01.10 19:26:38] [0000m.00s.529ms] [0] iCDB Database: Checking existence of constraint definitions
+[2017.01.10 19:26:38] [0000m.00s.529ms] [0] iCDB Database: Checking constraint definitions version
+[2017.01.10 19:26:38] [0000m.00s.576ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5] up to date
+[2017.01.10 19:26:38] [0000m.00s.623ms] [0] iCDB Server PI: Initializing plugins
+[2017.01.10 19:26:38] [0000m.00s.623ms] [0] iCDB Server PI: Plugins initialized
+[2017.01.10 19:26:38] [0000m.00s.623ms] [0] S: iCDB database loaded
+[2017.01.10 19:26:38] [0000m.00s.623ms] [0] S: Starting threads
+[2017.01.10 19:26:38] [0000m.00s.638ms] [0] BT: Listening for broadcast messages on port [10000]
+[2017.01.10 19:26:38] [0000m.00s.638ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2017.01.10 19:26:38] [0000m.00s.638ms] [0] IT: Session [4088] for host [WIN10] user [root] with process ID [5468] created
+[2017.01.10 19:26:38] [0000m.00s.638ms] [1] SC[4088]: Registered sub-client [Expedition PCB_1778484] with ID [1] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 19:26:38] [0000m.00s.747ms] [1] CMT: There are [1] clients now: 4088
+[2017.01.10 19:26:38] [0000m.00s.747ms] [1] SC[4088]: Registered sub-client [EEVM] with ID [2] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 19:26:38] [0000m.00s.982ms] [1] SC[4088]: UnRegistered sub-client [EEVM] with ID [2] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 19:26:40] [0000m.03s.245ms] [1] SC[4088]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 19:27:09] [0000m.31s.623ms] [0] IT: Session [4089] for host [WIN10] user [root] with process ID [2964] created
+[2017.01.10 19:27:09] [0000m.31s.623ms] [1] SC[4089]: Registered sub-client [DCDV] with ID [1] for session ID [4089] host [WIN10] user [root] process ID [2964]
+[2017.01.10 19:27:09] [0000m.31s.623ms] [1] SC[4089]: UnRegistered sub-client [DCDV] with ID [1] for session ID [4089] host [WIN10] user [root] process ID [2964]
+[2017.01.10 19:27:09] [0000m.31s.670ms] [1] CMT: There are [2] clients now: 4088, 4089
+[2017.01.10 19:27:09] [0000m.31s.670ms] [1] CMT: Removed client [4089]
+[2017.01.10 19:27:09] [0000m.31s.670ms] [1] CMT: There are [1] clients now: 4088
+[2017.01.10 19:27:09] [0000m.32s.230ms] [0] IT: Session [4090] for host [WIN10] user [root] with process ID [2964] created
+[2017.01.10 19:27:09] [0000m.32s.230ms] [1] SC[4090]: Registered sub-client [DCDV] with ID [1] for session ID [4090] host [WIN10] user [root] process ID [2964]
+[2017.01.10 19:27:09] [0000m.32s.246ms] [1] SC[4090]: UnRegistered sub-client [DCDV] with ID [1] for session ID [4090] host [WIN10] user [root] process ID [2964]
+[2017.01.10 19:27:10] [0000m.32s.340ms] [1] CMT: There are [2] clients now: 4088, 4090
+[2017.01.10 19:27:10] [0000m.32s.340ms] [1] CMT: Removed client [4090]
+[2017.01.10 19:27:10] [0000m.32s.340ms] [1] CMT: There are [1] clients now: 4088
+[2017.01.10 19:27:10] [0000m.32s.949ms] [0] DFAMT: File server access time: 963 us
+[2017.01.10 19:27:11] [0000m.34s.291ms] [0] IT: Session [4091] for host [WIN10] user [root] with process ID [2964] created
+[2017.01.10 19:27:11] [0000m.34s.291ms] [1] SC[4091]: Registered sub-client [DCDV] with ID [1] for session ID [4091] host [WIN10] user [root] process ID [2964]
+[2017.01.10 19:27:12] [0000m.34s.353ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 19:29:13] [0002m.36s.165ms] [1] PrjBackupMgr: Successfully created Project Backup [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-10 19.29.13 - auto.zip] with GUID [96f6-27ba-c4f5-2c77-9f72-578e-f725-7850-731c-3bf8-e806-e5f5]
+[2017.01.10 19:29:13] [0002m.36s.165ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[a8b6-f8cf-ede2-ab47-2efa-b687-efab-6850-382b-3bf8-e806-e5f5] CreationTime[Tuesday, January 03, 2017 14:06:26] Type[Autosave] Creator[iCDB Server (2017-01-03 14.53.26-5952)] ApplicationName[iCDB Server (2017-01-03 14.53.26-5952)] UserName[root] MachineName[WIN10] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-03 15.06.26 - auto.zip] BackupFileSize[777425] Persistent[FALSE]
+[2017.01.10 19:29:13] [0002m.36s.165ms] [0] PrjBackupMgr: Project Backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-03 15.06.26 - auto.zip] with GUID [a8b6-f8cf-ede2-ab47-2efa-b687-efab-6850-382b-3bf8-e806-e5f5] removed
+[2017.01.10 19:29:13] [0002m.36s.165ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[96f6-27ba-c4f5-2c77-9f72-578e-f725-7850-731c-3bf8-e806-e5f5] CreationTime[Tuesday, January 10, 2017 18:29:13] Type[Autosave] Creator[iCDB Server (2017-01-10 19.26.37-1072)] ApplicationName[iCDB Server (2017-01-10 19.26.37-1072)] UserName[root] MachineName[WIN10] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-10 19.29.13 - auto.zip] BackupFileSize[799804] Persistent[FALSE]
+[2017.01.10 20:22:38] [0056m.01s.138ms] [1] SC[4091]: Registered sub-client [JobPrefsDBPI_5139796] with ID [2] for session ID [4091] host [WIN10] user [root] process ID [2964]
+[2017.01.10 20:22:38] [0056m.01s.154ms] [1] SC[4091]: UnRegistered sub-client [JobPrefsDBPI_5139796] with ID [2] for session ID [4091] host [WIN10] user [root] process ID [2964]
+[2017.01.10 20:22:38] [0056m.01s.154ms] [1] SC[4091]: WARNING: Trying to get data for non existing sub-client [2]
+[2017.01.10 20:23:38] [0057m.00s.572ms] [0] IT: Session [4092] for host [WIN10] user [root] with process ID [3092] created
+[2017.01.10 20:23:38] [0057m.00s.572ms] [1] SC[4092]: Registered sub-client [ICDBC] with ID [1] for session ID [4092] host [WIN10] user [root] process ID [3092]
+[2017.01.10 20:23:38] [0057m.00s.603ms] [1] CMT: There are [3] clients now: 4088, 4091, 4092
+[2017.01.10 20:23:38] [0057m.00s.603ms] [1] SC[4092]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [4092] host [WIN10] user [root] process ID [3092]
+[2017.01.10 20:23:43] [0057m.05s.816ms] [1] SC[4092]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [4092] host [WIN10] user [root] process ID [3092]
+[2017.01.10 20:23:43] [0057m.05s.816ms] [1] SC[4092]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [4092] host [WIN10] user [root] process ID [3092]
+[2017.01.10 20:23:43] [0057m.05s.879ms] [1] CMT: Removed client [4092]
+[2017.01.10 20:23:43] [0057m.05s.879ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:23:44] [0057m.06s.707ms] [0] IT: Session [4093] for host [WIN10] user [root] with process ID [2284] created
+[2017.01.10 20:23:44] [0057m.06s.707ms] [1] SC[4093]: Registered sub-client [Packager_5205312] with ID [1] for session ID [4093] host [WIN10] user [root] process ID [2284]
+[2017.01.10 20:23:44] [0057m.06s.752ms] [1] CMT: There are [3] clients now: 4088, 4091, 4093
+[2017.01.10 20:23:44] [0057m.07s.205ms] [1] SC[4093]: UnRegistered sub-client [Packager_5205312] with ID [1] for session ID [4093] host [WIN10] user [root] process ID [2284]
+[2017.01.10 20:23:44] [0057m.07s.299ms] [1] CMT: Removed client [4093]
+[2017.01.10 20:23:44] [0057m.07s.299ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:23:54] [0057m.16s.835ms] [1] SC[4088]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:54] [0057m.16s.850ms] [1] SC[4088]: Registered sub-client [EEVM_EEVM_1698648] with ID [4] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:54] [0057m.16s.850ms] [1] SC[4088]: UnRegistered sub-client [EEVM_EEVM_1698648] with ID [4] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:54] [0057m.16s.975ms] [1] SC[4088]: Registered sub-client [JobPrefsDBPI_5215625] with ID [5] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:54] [0057m.17s.006ms] [1] SC[4088]: UnRegistered sub-client [JobPrefsDBPI_5215625] with ID [5] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:56] [0057m.18s.781ms] [1] SC[4088]: Registered sub-client [JobPrefsDBPI_5217437] with ID [6] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:56] [0057m.18s.810ms] [1] SC[4088]: UnRegistered sub-client [JobPrefsDBPI_5217437] with ID [6] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:23:56] [0057m.19s.151ms] [0] IT: Session [4094] for host [WIN10] user [root] with process ID [4688] created
+[2017.01.10 20:23:56] [0057m.19s.151ms] [1] SC[4094]: Registered sub-client [Packager_5217734] with ID [1] for session ID [4094] host [WIN10] user [root] process ID [4688]
+[2017.01.10 20:23:56] [0057m.19s.167ms] [1] CMT: There are [3] clients now: 4088, 4091, 4094
+[2017.01.10 20:23:57] [0057m.19s.620ms] [1] SC[4094]: UnRegistered sub-client [Packager_5217734] with ID [1] for session ID [4094] host [WIN10] user [root] process ID [4688]
+[2017.01.10 20:23:57] [0057m.19s.713ms] [1] CMT: Removed client [4094]
+[2017.01.10 20:23:57] [0057m.19s.713ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:23:57] [0057m.19s.977ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\s2\cdbcatlg\grpobj] - auto-saving it
+[2017.01.10 20:23:58] [0057m.20s.525ms] [0] IT: Session [4095] for host [WIN10] user [root] with process ID [6664] created
+[2017.01.10 20:23:58] [0057m.20s.525ms] [1] SC[4095]: Registered sub-client [Expedition_5219125] with ID [1] for session ID [4095] host [WIN10] user [root] process ID [6664]
+[2017.01.10 20:23:58] [0057m.20s.571ms] [1] SC[4095]: UnRegistered sub-client [Expedition_5219125] with ID [1] for session ID [4095] host [WIN10] user [root] process ID [6664]
+[2017.01.10 20:23:58] [0057m.20s.603ms] [1] CMT: There are [3] clients now: 4088, 4091, 4095
+[2017.01.10 20:23:58] [0057m.20s.603ms] [1] CMT: Removed client [4095]
+[2017.01.10 20:23:58] [0057m.20s.603ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:23:59] [0057m.21s.507ms] [0] IT: Session [4096] for host [WIN10] user [root] with process ID [6664] created
+[2017.01.10 20:23:59] [0057m.21s.507ms] [1] SC[4096]: Registered sub-client [JobPrefsDBPI_5220109] with ID [1] for session ID [4096] host [WIN10] user [root] process ID [6664]
+[2017.01.10 20:23:59] [0057m.21s.554ms] [1] SC[4096]: UnRegistered sub-client [JobPrefsDBPI_5220109] with ID [1] for session ID [4096] host [WIN10] user [root] process ID [6664]
+[2017.01.10 20:23:59] [0057m.21s.616ms] [1] CMT: There are [3] clients now: 4088, 4091, 4096
+[2017.01.10 20:23:59] [0057m.21s.616ms] [1] CMT: Removed client [4096]
+[2017.01.10 20:23:59] [0057m.21s.616ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:23:59] [0057m.22s.210ms] [0] IT: Session [4097] for host [WIN10] user [root] with process ID [6664] created
+[2017.01.10 20:23:59] [0057m.22s.210ms] [1] SC[4097]: Registered sub-client [JobPrefsDBPI_5220812] with ID [1] for session ID [4097] host [WIN10] user [root] process ID [6664]
+[2017.01.10 20:23:59] [0057m.22s.273ms] [1] CMT: There are [3] clients now: 4088, 4091, 4097
+[2017.01.10 20:24:00] [0057m.22s.523ms] [1] SC[4097]: UnRegistered sub-client [JobPrefsDBPI_5220812] with ID [1] for session ID [4097] host [WIN10] user [root] process ID [6664]
+[2017.01.10 20:24:00] [0057m.22s.601ms] [1] CMT: Removed client [4097]
+[2017.01.10 20:24:00] [0057m.22s.601ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:24:01] [0057m.23s.567ms] [0] IT: Session [4098] for host [WIN10] user [root] with process ID [4264] created
+[2017.01.10 20:24:01] [0057m.23s.567ms] [1] SC[4098]: Registered sub-client [JobPrefsDBPI_5222171] with ID [1] for session ID [4098] host [WIN10] user [root] process ID [4264]
+[2017.01.10 20:24:01] [0057m.23s.599ms] [1] CMT: There are [3] clients now: 4088, 4091, 4098
+[2017.01.10 20:24:01] [0057m.23s.630ms] [1] SC[4098]: Registered sub-client [Expedition_5222281] with ID [2] for session ID [4098] host [WIN10] user [root] process ID [4264]
+[2017.01.10 20:24:01] [0057m.23s.677ms] [1] SC[4098]: UnRegistered sub-client [JobPrefsDBPI_5222171] with ID [1] for session ID [4098] host [WIN10] user [root] process ID [4264]
+[2017.01.10 20:24:01] [0057m.23s.755ms] [1] SC[4098]: UnRegistered sub-client [Expedition_5222281] with ID [2] for session ID [4098] host [WIN10] user [root] process ID [4264]
+[2017.01.10 20:24:01] [0057m.23s.818ms] [1] CMT: Removed client [4098]
+[2017.01.10 20:24:01] [0057m.23s.818ms] [1] CMT: There are [2] clients now: 4088, 4091
+[2017.01.10 20:24:01] [0057m.24s.302ms] [1] SC[4088]: Registered sub-client [EEVM_EEVM_327052956] with ID [7] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:01] [0057m.24s.302ms] [1] SC[4088]: UnRegistered sub-client [EEVM_EEVM_327052956] with ID [7] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:01] [0057m.24s.318ms] [1] SC[4088]: Registered sub-client [EEVM_EEVM_327052956] with ID [8] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:01] [0057m.24s.318ms] [1] SC[4088]: UnRegistered sub-client [EEVM_EEVM_327052956] with ID [8] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:02] [0057m.24s.333ms] [1] SC[4088]: Registered sub-client [EEVM_EEVM_327047676] with ID [9] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:02] [0057m.24s.349ms] [1] SC[4088]: UnRegistered sub-client [EEVM_EEVM_327047676] with ID [9] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:02] [0057m.24s.568ms] [1] SC[4088]: UnRegistered sub-client [Expedition PCB_1778484] with ID [1] for session ID [4088] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:02] [0057m.24s.583ms] [1] CMT: Removed client [4088]
+[2017.01.10 20:24:02] [0057m.24s.583ms] [1] CMT: There are [1] clients now: 4091
+[2017.01.10 20:24:02] [0057m.24s.880ms] [0] IT: Session [4099] for host [WIN10] user [root] with process ID [5468] created
+[2017.01.10 20:24:02] [0057m.24s.880ms] [1] SC[4099]: Registered sub-client [Expedition PCB_5223500] with ID [1] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:02] [0057m.24s.911ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:24:04] [0057m.27s.144ms] [1] SC[4099]: Registered sub-client [JobPrefsDBPI_5225796] with ID [2] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:04] [0057m.27s.164ms] [1] SC[4099]: UnRegistered sub-client [JobPrefsDBPI_5225796] with ID [2] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:04] [0057m.27s.228ms] [1] SC[4099]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:24:20] [0057m.42s.386ms] [0] IT: Session [4100] for host [WIN10] user [root] with process ID [6764] created
+[2017.01.10 20:24:20] [0057m.42s.386ms] [1] SC[4100]: Registered sub-client [JobPrefsDBPI_5240984] with ID [1] for session ID [4100] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:20] [0057m.42s.402ms] [1] SC[4100]: UnRegistered sub-client [JobPrefsDBPI_5240984] with ID [1] for session ID [4100] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:20] [0057m.42s.496ms] [1] CMT: There are [3] clients now: 4091, 4099, 4100
+[2017.01.10 20:24:20] [0057m.42s.496ms] [1] CMT: Removed client [4100]
+[2017.01.10 20:24:20] [0057m.42s.496ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:24:20] [0057m.43s.104ms] [0] IT: Session [4101] for host [WIN10] user [root] with process ID [6764] created
+[2017.01.10 20:24:20] [0057m.43s.104ms] [1] SC[4101]: Registered sub-client [JobPrefsDBPI_5241687] with ID [1] for session ID [4101] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:20] [0057m.43s.135ms] [1] SC[4101]: UnRegistered sub-client [JobPrefsDBPI_5241687] with ID [1] for session ID [4101] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:20] [0057m.43s.150ms] [1] CMT: There are [3] clients now: 4091, 4099, 4101
+[2017.01.10 20:24:20] [0057m.43s.150ms] [1] CMT: Removed client [4101]
+[2017.01.10 20:24:20] [0057m.43s.150ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:24:21] [0057m.43s.713ms] [0] IT: Session [4102] for host [WIN10] user [root] with process ID [6764] created
+[2017.01.10 20:24:21] [0057m.43s.713ms] [1] SC[4102]: Registered sub-client [NetClassDBPI_5242312] with ID [1] for session ID [4102] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:21] [0057m.43s.728ms] [1] SC[4102]: UnRegistered sub-client [NetClassDBPI_5242312] with ID [1] for session ID [4102] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:21] [0057m.43s.807ms] [1] CMT: There are [3] clients now: 4091, 4099, 4102
+[2017.01.10 20:24:21] [0057m.43s.807ms] [1] CMT: Removed client [4102]
+[2017.01.10 20:24:21] [0057m.43s.807ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:24:22] [0057m.44s.322ms] [0] IT: Session [4103] for host [WIN10] user [root] with process ID [6764] created
+[2017.01.10 20:24:22] [0057m.44s.322ms] [1] SC[4103]: Registered sub-client [NetPropsDBPI_5242921] with ID [1] for session ID [4103] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:22] [0057m.44s.338ms] [1] SC[4103]: UnRegistered sub-client [NetPropsDBPI_5242921] with ID [1] for session ID [4103] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:22] [0057m.44s.353ms] [1] CMT: There are [3] clients now: 4091, 4099, 4103
+[2017.01.10 20:24:22] [0057m.44s.353ms] [1] CMT: Removed client [4103]
+[2017.01.10 20:24:22] [0057m.44s.353ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:24:22] [0057m.45s.023ms] [0] IT: Session [4104] for host [WIN10] user [root] with process ID [6764] created
+[2017.01.10 20:24:22] [0057m.45s.023ms] [1] SC[4104]: Registered sub-client [JobPrefsDBPI_5243625] with ID [1] for session ID [4104] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:22] [0057m.45s.117ms] [1] CMT: There are [3] clients now: 4091, 4099, 4104
+[2017.01.10 20:24:22] [0057m.45s.117ms] [1] SC[4104]: UnRegistered sub-client [JobPrefsDBPI_5243625] with ID [1] for session ID [4104] host [WIN10] user [root] process ID [6764]
+[2017.01.10 20:24:22] [0057m.45s.227ms] [1] CMT: Removed client [4104]
+[2017.01.10 20:24:22] [0057m.45s.227ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:25:03] [0058m.25s.872ms] [0] IT: Session [4105] for host [WIN10] user [root] with process ID [5184] created
+[2017.01.10 20:25:03] [0058m.25s.872ms] [1] SC[4105]: Registered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4105] host [WIN10] user [root] process ID [5184]
+[2017.01.10 20:25:03] [0058m.25s.887ms] [1] CMT: There are [3] clients now: 4091, 4099, 4105
+[2017.01.10 20:25:03] [0058m.25s.903ms] [1] SC[4105]: UnRegistered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4105] host [WIN10] user [root] process ID [5184]
+[2017.01.10 20:25:03] [0058m.25s.997ms] [1] CMT: Removed client [4105]
+[2017.01.10 20:25:03] [0058m.25s.997ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:25:18] [0058m.40s.998ms] [0] IT: Session [4106] for host [WIN10] user [root] with process ID [6612] created
+[2017.01.10 20:25:18] [0058m.40s.998ms] [1] SC[4106]: Registered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4106] host [WIN10] user [root] process ID [6612]
+[2017.01.10 20:25:18] [0058m.41s.028ms] [1] CMT: There are [3] clients now: 4091, 4099, 4106
+[2017.01.10 20:25:18] [0058m.41s.043ms] [1] SC[4106]: UnRegistered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4106] host [WIN10] user [root] process ID [6612]
+[2017.01.10 20:25:18] [0058m.41s.137ms] [1] CMT: Removed client [4106]
+[2017.01.10 20:25:18] [0058m.41s.137ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:34:42] [0068m.04s.958ms] [0] IT: Session [4107] for host [WIN10] user [root] with process ID [4076] created
+[2017.01.10 20:34:42] [0068m.04s.958ms] [1] SC[4107]: Registered sub-client [ICDBC] with ID [1] for session ID [4107] host [WIN10] user [root] process ID [4076]
+[2017.01.10 20:34:42] [0068m.04s.990ms] [1] SC[4107]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [4107] host [WIN10] user [root] process ID [4076]
+[2017.01.10 20:34:42] [0068m.05s.021ms] [1] CMT: There are [3] clients now: 4091, 4099, 4107
+[2017.01.10 20:34:45] [0068m.07s.985ms] [1] SC[4107]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [4107] host [WIN10] user [root] process ID [4076]
+[2017.01.10 20:34:45] [0068m.07s.985ms] [1] SC[4107]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [4107] host [WIN10] user [root] process ID [4076]
+[2017.01.10 20:34:45] [0068m.08s.079ms] [1] CMT: Removed client [4107]
+[2017.01.10 20:34:45] [0068m.08s.079ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:34:46] [0068m.08s.423ms] [0] IT: Session [4108] for host [WIN10] user [root] with process ID [5208] created
+[2017.01.10 20:34:46] [0068m.08s.423ms] [1] SC[4108]: Registered sub-client [Packager_5867031] with ID [1] for session ID [4108] host [WIN10] user [root] process ID [5208]
+[2017.01.10 20:34:46] [0068m.08s.517ms] [1] CMT: There are [3] clients now: 4091, 4099, 4108
+[2017.01.10 20:34:46] [0068m.08s.985ms] [1] SC[4108]: UnRegistered sub-client [Packager_5867031] with ID [1] for session ID [4108] host [WIN10] user [root] process ID [5208]
+[2017.01.10 20:34:46] [0068m.09s.064ms] [1] CMT: Removed client [4108]
+[2017.01.10 20:34:46] [0068m.09s.064ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:34:54] [0068m.16s.619ms] [1] SC[4099]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:54] [0068m.16s.650ms] [1] SC[4099]: Registered sub-client [EEVM_EEVM_1698648] with ID [4] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:54] [0068m.16s.650ms] [1] SC[4099]: UnRegistered sub-client [EEVM_EEVM_1698648] with ID [4] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:54] [0068m.16s.744ms] [1] SC[4099]: Registered sub-client [JobPrefsDBPI_5875406] with ID [5] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:54] [0068m.16s.773ms] [1] SC[4099]: UnRegistered sub-client [JobPrefsDBPI_5875406] with ID [5] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:56] [0068m.18s.524ms] [1] SC[4099]: Registered sub-client [JobPrefsDBPI_5877187] with ID [6] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:56] [0068m.18s.554ms] [1] SC[4099]: UnRegistered sub-client [JobPrefsDBPI_5877187] with ID [6] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:34:56] [0068m.18s.831ms] [0] IT: Session [4109] for host [WIN10] user [root] with process ID [6820] created
+[2017.01.10 20:34:56] [0068m.18s.831ms] [1] SC[4109]: Registered sub-client [Packager_5877437] with ID [1] for session ID [4109] host [WIN10] user [root] process ID [6820]
+[2017.01.10 20:34:56] [0068m.18s.924ms] [1] CMT: There are [3] clients now: 4091, 4099, 4109
+[2017.01.10 20:34:57] [0068m.19s.347ms] [1] SC[4109]: UnRegistered sub-client [Packager_5877437] with ID [1] for session ID [4109] host [WIN10] user [root] process ID [6820]
+[2017.01.10 20:34:57] [0068m.19s.362ms] [1] CMT: Removed client [4109]
+[2017.01.10 20:34:57] [0068m.19s.362ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:34:57] [0068m.20s.189ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\s2\cdbcatlg\grpobj] - auto-saving it
+[2017.01.10 20:34:58] [0068m.20s.626ms] [0] IT: Session [4110] for host [WIN10] user [root] with process ID [4056] created
+[2017.01.10 20:34:58] [0068m.20s.626ms] [1] SC[4110]: Registered sub-client [Expedition_5879234] with ID [1] for session ID [4110] host [WIN10] user [root] process ID [4056]
+[2017.01.10 20:34:58] [0068m.20s.688ms] [1] CMT: There are [3] clients now: 4091, 4099, 4110
+[2017.01.10 20:34:58] [0068m.20s.688ms] [1] SC[4110]: UnRegistered sub-client [Expedition_5879234] with ID [1] for session ID [4110] host [WIN10] user [root] process ID [4056]
+[2017.01.10 20:34:58] [0068m.20s.798ms] [1] CMT: Removed client [4110]
+[2017.01.10 20:34:58] [0068m.20s.798ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:34:59] [0068m.21s.624ms] [0] IT: Session [4111] for host [WIN10] user [root] with process ID [4056] created
+[2017.01.10 20:34:59] [0068m.21s.624ms] [1] SC[4111]: Registered sub-client [JobPrefsDBPI_5880234] with ID [1] for session ID [4111] host [WIN10] user [root] process ID [4056]
+[2017.01.10 20:34:59] [0068m.21s.671ms] [1] CMT: There are [3] clients now: 4091, 4099, 4111
+[2017.01.10 20:34:59] [0068m.21s.671ms] [1] SC[4111]: UnRegistered sub-client [JobPrefsDBPI_5880234] with ID [1] for session ID [4111] host [WIN10] user [root] process ID [4056]
+[2017.01.10 20:34:59] [0068m.21s.780ms] [1] CMT: Removed client [4111]
+[2017.01.10 20:34:59] [0068m.21s.780ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:35:00] [0068m.22s.342ms] [0] IT: Session [4112] for host [WIN10] user [root] with process ID [4056] created
+[2017.01.10 20:35:00] [0068m.22s.342ms] [1] SC[4112]: Registered sub-client [JobPrefsDBPI_5880953] with ID [1] for session ID [4112] host [WIN10] user [root] process ID [4056]
+[2017.01.10 20:35:00] [0068m.22s.436ms] [1] CMT: There are [3] clients now: 4091, 4099, 4112
+[2017.01.10 20:35:00] [0068m.22s.671ms] [1] SC[4112]: UnRegistered sub-client [JobPrefsDBPI_5880953] with ID [1] for session ID [4112] host [WIN10] user [root] process ID [4056]
+[2017.01.10 20:35:00] [0068m.22s.765ms] [1] CMT: Removed client [4112]
+[2017.01.10 20:35:00] [0068m.22s.765ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:35:01] [0068m.23s.637ms] [0] IT: Session [4113] for host [WIN10] user [root] with process ID [748] created
+[2017.01.10 20:35:01] [0068m.23s.637ms] [1] SC[4113]: Registered sub-client [JobPrefsDBPI_5882250] with ID [1] for session ID [4113] host [WIN10] user [root] process ID [748]
+[2017.01.10 20:35:01] [0068m.23s.653ms] [1] CMT: There are [3] clients now: 4091, 4099, 4113
+[2017.01.10 20:35:01] [0068m.23s.700ms] [1] SC[4113]: Registered sub-client [Expedition_5882375] with ID [2] for session ID [4113] host [WIN10] user [root] process ID [748]
+[2017.01.10 20:35:01] [0068m.23s.747ms] [1] SC[4113]: UnRegistered sub-client [JobPrefsDBPI_5882250] with ID [1] for session ID [4113] host [WIN10] user [root] process ID [748]
+[2017.01.10 20:35:01] [0068m.23s.825ms] [1] SC[4113]: UnRegistered sub-client [Expedition_5882375] with ID [2] for session ID [4113] host [WIN10] user [root] process ID [748]
+[2017.01.10 20:35:01] [0068m.23s.872ms] [1] CMT: Removed client [4113]
+[2017.01.10 20:35:01] [0068m.23s.872ms] [1] CMT: There are [2] clients now: 4091, 4099
+[2017.01.10 20:35:02] [0068m.24s.372ms] [1] SC[4099]: Registered sub-client [EEVM_EEVM_148201484] with ID [7] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.388ms] [1] SC[4099]: UnRegistered sub-client [EEVM_EEVM_148201484] with ID [7] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.405ms] [1] SC[4099]: Registered sub-client [EEVM_EEVM_148201484] with ID [8] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.405ms] [1] SC[4099]: UnRegistered sub-client [EEVM_EEVM_148201484] with ID [8] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.419ms] [1] SC[4099]: Registered sub-client [EEVM_EEVM_148199900] with ID [9] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.419ms] [1] SC[4099]: UnRegistered sub-client [EEVM_EEVM_148199900] with ID [9] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.622ms] [1] SC[4099]: UnRegistered sub-client [Expedition PCB_5223500] with ID [1] for session ID [4099] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.24s.653ms] [1] CMT: Removed client [4099]
+[2017.01.10 20:35:02] [0068m.24s.653ms] [1] CMT: There are [1] clients now: 4091
+[2017.01.10 20:35:02] [0068m.24s.997ms] [0] IT: Session [4114] for host [WIN10] user [root] with process ID [5468] created
+[2017.01.10 20:35:02] [0068m.24s.997ms] [1] SC[4114]: Registered sub-client [Expedition PCB_5883609] with ID [1] for session ID [4114] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:02] [0068m.25s.091ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:04] [0068m.27s.244ms] [1] SC[4114]: Registered sub-client [JobPrefsDBPI_5885906] with ID [2] for session ID [4114] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:04] [0068m.27s.267ms] [1] SC[4114]: UnRegistered sub-client [JobPrefsDBPI_5885906] with ID [2] for session ID [4114] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:05] [0068m.27s.326ms] [1] SC[4114]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4114] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:35:10] [0068m.33s.296ms] [0] IT: Session [4115] for host [WIN10] user [root] with process ID [5408] created
+[2017.01.10 20:35:10] [0068m.33s.296ms] [1] SC[4115]: Registered sub-client [JobPrefsDBPI_5891890] with ID [1] for session ID [4115] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:10] [0068m.33s.311ms] [1] SC[4115]: UnRegistered sub-client [JobPrefsDBPI_5891890] with ID [1] for session ID [4115] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:11] [0068m.33s.359ms] [1] CMT: There are [3] clients now: 4091, 4114, 4115
+[2017.01.10 20:35:11] [0068m.33s.359ms] [1] CMT: Removed client [4115]
+[2017.01.10 20:35:11] [0068m.33s.359ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:11] [0068m.33s.981ms] [0] IT: Session [4116] for host [WIN10] user [root] with process ID [5408] created
+[2017.01.10 20:35:11] [0068m.33s.981ms] [1] SC[4116]: Registered sub-client [JobPrefsDBPI_5892578] with ID [1] for session ID [4116] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:11] [0068m.34s.013ms] [1] CMT: There are [3] clients now: 4091, 4114, 4116
+[2017.01.10 20:35:11] [0068m.34s.028ms] [1] SC[4116]: UnRegistered sub-client [JobPrefsDBPI_5892578] with ID [1] for session ID [4116] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:11] [0068m.34s.122ms] [1] CMT: Removed client [4116]
+[2017.01.10 20:35:11] [0068m.34s.122ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:12] [0068m.34s.591ms] [0] IT: Session [4117] for host [WIN10] user [root] with process ID [5408] created
+[2017.01.10 20:35:12] [0068m.34s.591ms] [1] SC[4117]: Registered sub-client [NetClassDBPI_5893203] with ID [1] for session ID [4117] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:12] [0068m.34s.606ms] [1] SC[4117]: UnRegistered sub-client [NetClassDBPI_5893203] with ID [1] for session ID [4117] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:12] [0068m.34s.669ms] [1] CMT: There are [3] clients now: 4091, 4114, 4117
+[2017.01.10 20:35:12] [0068m.34s.669ms] [1] CMT: Removed client [4117]
+[2017.01.10 20:35:12] [0068m.34s.669ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:12] [0068m.35s.201ms] [0] IT: Session [4118] for host [WIN10] user [root] with process ID [5408] created
+[2017.01.10 20:35:12] [0068m.35s.201ms] [1] SC[4118]: Registered sub-client [NetPropsDBPI_5893812] with ID [1] for session ID [4118] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:12] [0068m.35s.216ms] [1] CMT: There are [3] clients now: 4091, 4114, 4118
+[2017.01.10 20:35:12] [0068m.35s.232ms] [1] SC[4118]: UnRegistered sub-client [NetPropsDBPI_5893812] with ID [1] for session ID [4118] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:13] [0068m.35s.339ms] [1] CMT: Removed client [4118]
+[2017.01.10 20:35:13] [0068m.35s.339ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:13] [0068m.35s.901ms] [0] IT: Session [4119] for host [WIN10] user [root] with process ID [5408] created
+[2017.01.10 20:35:13] [0068m.35s.901ms] [1] SC[4119]: Registered sub-client [JobPrefsDBPI_5894500] with ID [1] for session ID [4119] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:13] [0068m.35s.979ms] [1] SC[4119]: UnRegistered sub-client [JobPrefsDBPI_5894500] with ID [1] for session ID [4119] host [WIN10] user [root] process ID [5408]
+[2017.01.10 20:35:13] [0068m.36s.011ms] [1] CMT: There are [3] clients now: 4091, 4114, 4119
+[2017.01.10 20:35:13] [0068m.36s.011ms] [1] CMT: Removed client [4119]
+[2017.01.10 20:35:13] [0068m.36s.011ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:41] [0069m.03s.374ms] [0] IT: Session [4120] for host [WIN10] user [root] with process ID [6544] created
+[2017.01.10 20:35:41] [0069m.03s.374ms] [1] SC[4120]: Registered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4120] host [WIN10] user [root] process ID [6544]
+[2017.01.10 20:35:41] [0069m.03s.421ms] [1] CMT: There are [3] clients now: 4091, 4114, 4120
+[2017.01.10 20:35:41] [0069m.03s.421ms] [1] SC[4120]: UnRegistered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4120] host [WIN10] user [root] process ID [6544]
+[2017.01.10 20:35:41] [0069m.03s.529ms] [1] CMT: Removed client [4120]
+[2017.01.10 20:35:41] [0069m.03s.529ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:35:54] [0069m.16s.953ms] [0] IT: Session [4121] for host [WIN10] user [root] with process ID [3988] created
+[2017.01.10 20:35:54] [0069m.16s.953ms] [1] SC[4121]: Registered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4121] host [WIN10] user [root] process ID [3988]
+[2017.01.10 20:35:54] [0069m.17s.000ms] [1] SC[4121]: UnRegistered sub-client [ICDB_Tool_26962] with ID [1] for session ID [4121] host [WIN10] user [root] process ID [3988]
+[2017.01.10 20:35:54] [0069m.17s.031ms] [1] CMT: There are [3] clients now: 4091, 4114, 4121
+[2017.01.10 20:35:54] [0069m.17s.031ms] [1] CMT: Removed client [4121]
+[2017.01.10 20:35:54] [0069m.17s.031ms] [1] CMT: There are [2] clients now: 4091, 4114
+[2017.01.10 20:39:44] [0073m.07s.167ms] [1] SC[4091]: UnRegistered sub-client [DCDV] with ID [1] for session ID [4091] host [WIN10] user [root] process ID [2964]
+[2017.01.10 20:39:44] [0073m.07s.292ms] [1] CMT: Removed client [4091]
+[2017.01.10 20:39:44] [0073m.07s.292ms] [1] CMT: There are [1] clients now: 4114
+[2017.01.10 20:39:49] [0073m.11s.491ms] [1] SC[4114]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4114] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:39:49] [0073m.11s.770ms] [1] SC[4114]: UnRegistered sub-client [Expedition PCB_5883609] with ID [1] for session ID [4114] host [WIN10] user [root] process ID [5468]
+[2017.01.10 20:39:49] [0073m.11s.786ms] [1] CMT: Removed client [4114]
+[2017.01.10 20:39:49] [0073m.11s.786ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2017.01.10 20:39:51] [0073m.13s.349ms] [0] CMT: Starting server auto-close
+[2017.01.10 20:39:51] [0073m.13s.474ms] [0] S: Closing server
+[2017.01.10 20:39:51] [0073m.13s.628ms] [0] iCDB Server PI: Closing plugins
+[2017.01.10 20:39:51] [0073m.13s.628ms] [0] iCDB Server PI: Plugins closed
+[2017.01.10 20:39:51] [0073m.13s.628ms] [0] iCDB Server PI: Unloading database
+[2017.01.10 20:39:51] [0073m.13s.628ms] [0] iCDB Server PI: Saving storage
+[2017.01.10 20:39:51] [0073m.13s.628ms] [0] iCDB Server PI: Closing database
+[2017.01.10 20:39:51] [0073m.13s.644ms] [1] iCDB Server PI: Stats: Database defragmentation: max[6] avg[1] holes[19%] data[73%]
+[2017.01.10 20:39:51] [0073m.13s.644ms] [1] iCDB Server PI: Stats: Database file size [229024 (223.7 kB)]
+[2017.01.10 20:39:51] [0073m.13s.644ms] [1] iCDB Server PI: WARNING: Database needs defragmentation!
+[2017.01.10 20:39:51] [0073m.13s.659ms] [0] iCDB Server PI: Database closed
+[2017.01.10 20:39:51] [0073m.13s.659ms] [0] iCDB Server PI: Defragmenting database
+[2017.01.10 20:39:51] [0073m.13s.659ms] [0] iCDB Server PI: Creating database [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb] backup to file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\cdbback\2017-01-10 20.39.51-1072-d.zip]
+[2017.01.10 20:39:51] [0073m.13s.940ms] [0] iCDB Server PI: Database backup: DONE
+[2017.01.10 20:39:51] [0073m.13s.940ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.10 20:39:51] [0073m.13s.940ms] [0] Database GUARD OK: [229024]
+[2017.01.10 20:39:51] [0073m.13s.940ms] [0] SingleFile: [8a7d-a171-f4d1-90bf] SFI version check [1009] [1009]
+[2017.01.10 20:39:51] [0073m.14s.019ms] [0] SingleFile: [8a7d-a171-f4d1-90bf] Database SFI header has been read in [72ms 18us]
+[2017.01.10 20:39:51] [0073m.14s.253ms] [1] iCDB Server PI: Stats: Database file sizes: before[229024 (223.7 kB)], after[144240 (140.9 kB)], gain[84784 (82.8 kB)]
+[2017.01.10 20:39:51] [0073m.14s.269ms] [0] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] closed with size [144240 (140.9 kB)]
+[2017.01.10 20:39:51] [0073m.14s.269ms] [0] iCDB Server PI: Database defragmentation completed successfully
+[2017.01.10 20:39:51] [0073m.14s.269ms] [1] BackupTransaction: Removing database backup [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\cdbback\2017-01-10 20.39.51-1072-d.zip]
+[2017.01.10 20:39:51] [0073m.14s.269ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [371914] ticks
+[2017.01.10 20:39:51] [0073m.14s.269ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [141510] microseconds
+[2017.01.10 20:39:51] [0073m.14s.269ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [623]
+[2017.01.10 20:39:51] [0073m.14s.269ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [4402] commands per second
+[2017.01.10 20:39:52] [0073m.14s.457ms] [0] S: STOP

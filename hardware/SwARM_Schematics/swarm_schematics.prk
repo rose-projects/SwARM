@@ -16,14 +16,14 @@ KEY FwdAnnoSchematicRefDesChanges "1"
 KEY LayoutTemplate "2 Layer Template"
 KEY PkgrRunning "0"
 KEY SchematicConflict "FE"
-KEY SchematicDesignBackAnno "1"
+KEY SchematicDesignBackAnno "0"
 KEY SchematicDesignStatus "0"
 KEY UnusedPartsFlag "1"
 KEY UpdateJobPrefsDB "CAD"
 KEY UpdateNetClassDB "Sync"
 KEY UpdateNetPropsDB "Sync"
 KEY UseCES "1"
-KEY VBPCBForwardAnno "1"
+KEY VBPCBForwardAnno "0"
 ENDSECTION
 SECTION ACEPlusFilePaths
 LIST Fonts

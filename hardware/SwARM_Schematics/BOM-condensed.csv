@@ -4,11 +4,11 @@ SW1	 	B3U-3000P	Button Switch latéral / 2 pins / SMD / Omron B3U-3000P	1	Fa : 13
 D3	 	B220A-13-F	Schottky diode, Imoy=2A, Vf=0.5V, Vr=20V, Diodes Inc B220A-13-F, case SMA	1	Fa : 1858604	 	20-0064
 C11,C26	10nF	CAP C0603 10nF X7R 50V	Capacitor Ceramic C0G / 10nF / 50V / ±5% / case 0603	2	Fa : 2456107	 	10-0011
 C3,C4,C5,C6,C9	10uF	CAP C0603 10uF X5R 6.3V	Capacitor Ceramic X5R / 10uF / 6.3V / ±20% / case 0603	5	Fa : 1759393 	 	10-0103
-C19,C20	18pF	CAP C0603 18pF COG 10V	Capacitor Ceramic 18pF / 10V / ±20% / case 0603	2	RS : 211-3164	 	10-0030
+C19,C20	18pF	CAP C0603 18pF COG 10V	Capacitor Ceramic 18pF / 10V / ±20% / case 0603	2	Fa : 1759056	 	10-0030
 C32	33pF	CAP C0603 33pF NPO 50V	Capacitor Ceramic 33pF / NPO / 50V / ±5% / case 0603	1	Fa : 722029	 	10-0054
 C7,C12,C14,C15,C17,C18,C21,C22,C24	100nF	CAP C0603 100nF X7R 16V	Capacitor Ceramic X7R / 100nF / 16V / ±10% / case 0603	9	Fa : 1414027	 	10-0057
 C31	220pF	CAP C0603 220pF NPO 50V	Capacitor Ceramic 220pF / NPO / 50V / ±5% / case 0603	1	Fa : 498579	 	10-0040
-C8	820pF	CAP C0603 820pF NP0 50V	Capacitor Ceramic 820pF / NP0 / 50V / ±5% / case 0603	1	Fa : 2210791	 	10-0100
+C8	820pF	CAP C0603 820pF NP0 50V	Capacitor Ceramic 820pF / NP0 / 50V / ±5% / case 0603	1	Fa : 1759086	 	10-0100
 C10,C13	22uF	CAP C0805 22uF X5R 10V	Capacitor Ceramic X5R / 22uF / 10V / ±20% / case 0805	2	Fa : 2494270	 	10-0111
 Q4,Q8,Q9	 	DMN2050L	N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23	3	Fa : 2061409 	 	30-0019
 U2	 	DRV8835DSSR	Dual Low-Voltage H-Bridge IC, 1.5A + 1.5A, 11V, Texas Instruments DRV8835DSSR, case WSON12	1	Fa : 2115235	 	40-0291
@@ -21,22 +21,22 @@ J5	 	MOL-47346-0001	Female micro-USB B bottom SMD mount connector, Molex 47346-0
 J7	 	MOL22-05-3031	Connector 3 points with mating, 2.54mm, TH, series KK 7478, Molex 22-05-3031	1	Fa : 1462932	 	70-0099
 U7	 	MPU9250	3 axis gyroscope - accéléromètre - magnétomètre, +/- 250 à 2000°/s, 2-16g, +/-1200uT, 3.3V, I2C, SPI, Ivensense MPU9250, case QFN24 0.4mm, http://bit.ly/2eJzppX	1	DG : 1428-1019-1-ND 	 	40-0301
 R8,R9,R18	1K 	RES_1.0k_0603	Resistor 1.0k ohms / 5% / case 0603	3	Fa : 9331697	 	00-0074
-R16	1.5K 	RES_1.5k_0603	Resistor 1.5k ohms / 5% / case 0603	1	RS : 322-9377	 	00-0078
-R1,R12	1K 	RES_1.00k_0603	Resistor 1.00k ohms / 1% / case 0603	2	 	 	01-0289
-R4,R10	2.4K 	RES_2.4k_0402	Resistor 2.4k ohms / 1% / case 0402	2	RS : 322-9484	 	02-0083
-R3,R5	4.7K 	RES_4.7k_0603	Resistor 4.7k ohms / 5% / case 0603	2	RS : 322-9440	 	00-0090
+R16	1.5K 	RES_1.5k_0603	Resistor 1.5k ohms / 5% / case 0603	1	Fa : 9330607	 	00-0078
+R1,R12	1K 	RES_1.00k_0603	Resistor 1.00k ohms / 1% / case 0603	2	Fa : 9330380	 	01-0289
+R4,R10	2.4K 	RES_2.4k_0402	Resistor 2.4k ohms / 1% / case 0402	2	Fa: 2447149	 	02-0083
+R3,R5	4.7K 	RES_4.7k_0603	Resistor 4.7k ohms / 5% / case 0603	2	Fa : 2447385	 	00-0090
 R20	10K 	RES_10.0k_0603	Resistor 10.0k ohms / 1% / case 0603	1	Fa : 9330399	 	01-0385
-R19	10K 	RES_10k_0402	Resistor 10k ohms / 1% / case 0402	1	Fa : 1117284	 	02-0098
+R19	10K 	RES_10k_0402	Resistor 10k ohms / 1% / case 0402	1	Fa : 9239359	 	02-0098
 R11	10K 	RES_10k_0603	Resistor 10k ohms / 5% / case 0603	1	Fa : 9331700	 	00-0098
-R29	12.1K 	RES_12.1k_0603	Resistor 12.1k ohms / 1% / case 0603	1	 	 	01-0393
-R30	12K 	RES_12k_0603	Resistor 12k ohms / 5% / case 0603	1	 	 	00-0100
-R13,R31,R32	20 	RES_20_0603	Resistor 20 ohms / 5% / case 0603	3	 	 	00-0033
-R22	30.1K 	RES_30.1k_0603	Resistor 30.1k ohms / 1% / case 0603	1	 	 	01-0431
-R23	33.2K 	RES_33.2k_0603	Resistor 33.2k ohms / 1% / case 0603	1	 	 	01-0435
-R14	33K 	RES_33k_0603	Resistor 33k ohms / 5% / case 0603	1	 	 	00-0110
-R26,R27	200K 	RES_200k_0603	Resistor 200k ohms / 5% / case 0603	2	 	 	00-0129
-R25	340K 	RES_340k_0603	Resistor 340k ohms / 1% / case 0603	1	 	 	01-0532
-L1,L2	10uH	SELF 10uH	Inductor blindée 10uH, 20%, 4.9A, 15MHz, 0.047ohms, Coilcraft XAL5050-103MEC, boitier 5.48x5.28	2	Fa : 2289073	 	50-0038
+R29	12.1K 	RES_12.1k_0603	Resistor 12.1k ohms / 1% / case 0603	1	Fa : 1170896	 	01-0393
+R30	12K 	RES_12k_0603	Resistor 12k ohms / 5% / case 0603	1	Fa : 9330518	 	00-0100
+R13,R31,R32	20 	RES_20_0603	Resistor 20 ohms / 5% / case 0603	3	Fa : 9330798	 	00-0033
+R22	30.1K 	RES_30.1k_0603	Resistor 30.1k ohms / 1% / case 0603	1	Fa : 1170935	 	01-0431
+R23	33.2K 	RES_33.2k_0603	Resistor 33.2k ohms / 1% / case 0603	1	Fa : 1170939	 	01-0435
+R14	33K 	RES_33k_0603	Resistor 33k ohms / 5% / case 0603	1	Fa : 9331034	 	00-0110
+R26,R27	200K 	RES_200k_0603	Resistor 200k ohms / 5% / case 0603	2	Fa : 9330780	 	00-0129
+R25	340K 	RES_340k_0603	Resistor 340k ohms / 1% / case 0603	1	Fa : 2303271	 	01-0532
+L1,L2	8.2uH	SELF 8.2uH	Inductor blindée 8.2uH, 20%, 6.1A, 15MHz, 0.035ohms, Coilcraft XAL5050-822MEC, boitier 5.48x5.28	2	Fa : 2289072	 	50-0044
 U6	 	STM32F302R6T6	ARM-based Cortex-M4 32b MCU+FPU, 72MHz, 32KB Flash/16KB SRAM, USB FS, 2 SPI, 3 I2C, 3USART, 1 CAN, 6 TIMs, 3 ADCs, 1 OpAmp, 3 analog comparators,  ST STM32F302R6T6, case TQFP64	1	Fa : 2424421	 	40-0292
 Q1,Q3	 	2N7002	Basic N-Channel MOSFET, 2N7002, case SOT23	2	Fa : 1021754	 	30-0004
 QZ1	 	8 MHz	Quartz 8 MHz, +/- 30ppm, 40 ohms, 18pF, case HC49SMD	1	Fa : 1538763 	 	81-0013
