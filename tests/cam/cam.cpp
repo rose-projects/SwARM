@@ -35,10 +35,15 @@ main(int argc, char *argv[])
 
 	if (argc != 2) {
 		printf("Usage: ./track <video path>\n");
+		printf("note: use <0> for the default camera.");
 		return -1;
 	}
 
-	vid = VideoCapture(argv[1]);
+	/* the argument 0 opens the default video stream (here the camera) */
+	if (!strncmp(argv[1], "0", 2))
+		vid = VideoCapture(0);
+	else
+		vid = VideoCapture(argv[1]);
 	if (!vid.isOpened()) {
 		printf("No video\n");
 		return -1;
