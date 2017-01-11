@@ -9,8 +9,7 @@ extern volatile int angle;
 extern volatile int distance;
 extern volatile int dist_goal;
 extern volatile int angle_goal;
-extern volatile int to_the_left;
 extern volatile int forward;
-
+extern volatile int to_the_left;
 
 #endif
