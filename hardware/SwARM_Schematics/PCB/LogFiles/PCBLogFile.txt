@@ -2,5 +2,4 @@
 Expedition PCB - Pinnacle Version: 2015.0.676.129
 
 Successfully read the design.
-Connection to iCDB server has been lost. Changes that require constraint updates will no longer be allowed.
-Cannot Stop the Cross Probe Daemon
+Saved the design...

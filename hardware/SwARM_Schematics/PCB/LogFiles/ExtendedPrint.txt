@@ -1,0 +1,14 @@
+ ----------------------------
+|       EzPDF Output Log     |
+|          Started           |
+|  Thu Jan 12 19:27:55 2017  |
+ ----------------------------
+
+
+    Processing document ......
+    Processing sheet Current view......
+ ---------------------------
+|       EzPDF Output Log     |
+|          Finished          |
+|  Thu Jan 12 19:27:57 2017  |
+ ----------------------------

@@ -53,19 +53,19 @@
                 <Name>EzPrint.Output.OutputPaper.Autofit</Name>
                 <ScreenName>Autofit</ScreenName>
                 <ShortDescription>This is for Automatic fitting the contents in the output file</ShortDescription>
-                <Value DataType="Boolean">yes</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.AutoRotate</Name>
                 <ScreenName>AutoRotate</ScreenName>
                 <ShortDescription>This is for rotation of contents while automatic fitting them in the output file</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.UseSourcePageSize</Name>
                 <ScreenName>UseSourcePageSize</ScreenName>
                 <ShortDescription>This is for using the source document page sizes for printing</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.GenerateMultipleFiles</Name>
@@ -77,7 +77,7 @@
                 <Name>EzPrint.Output.OutputPaper.Scaling</Name>
                 <ScreenName>Scaling</ScreenName>
                 <ShortDescription>This is for Scaling of the contents in the output file</ShortDescription>
-                <Value DataType="Integer">100</Value>
+                <Value DataType="Integer">300</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.Orientation</Name>
@@ -219,7 +219,7 @@
                 <Name>EzPrint.DocumentManager.Document.CompanyName</Name>
                 <ScreenName>Company name</ScreenName>
                 <ShortDescription>Company name</ShortDescription>
-                <Value DataType="String">Footbar</Value>
+                <Value DataType="String"></Value>
               </Parameter>
             </Parameters>
           </ParameterGroup>
@@ -296,7 +296,7 @@
                 <Name>EzPrint.Graphics.Transformations.MaintainAspectRatio</Name>
                 <ScreenName>MaintainAspectRatio</ScreenName>
                 <ShortDescription>This is for maintaining AspectRatio of the contents in the output file</ShortDescription>
-                <Value DataType="Boolean">yes</Value>
+                <Value DataType="Boolean">true</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.Transformations.OpacityMode</Name>
@@ -358,13 +358,13 @@
                 <Name>EzPrint.Graphics.Pen.ScaleZeroPenWidth</Name>
                 <ScreenName>Scale zero pen width</ScreenName>
                 <ShortDescription>Enable if zero pen width should be scaled as one pen width.</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.Pen.ScaleOnePenWidth</Name>
                 <ScreenName>Scale One pen width</ScreenName>
                 <ShortDescription>Enable if One pen width should be scaled as one pen width.</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
             </Parameters>
           </ParameterGroup>
@@ -391,7 +391,7 @@
                 <Name>EzPrint.Graphics.Colormap.EnableColormap</Name>
                 <ScreenName>Enable Colormap</ScreenName>
                 <ShortDescription>Enable Colormap</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
             </Parameters>
           </ParameterGroup>
@@ -404,7 +404,7 @@
                 <Name>EzPrint.Graphics.FalconStrokeFonts.ReplaceTtfForStroke</Name>
                 <ScreenName>Use true type</ScreenName>
                 <ShortDescription>Use true type replacement for stroke fonts</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.FalconStrokeFonts.StrokeFont</Name>
@@ -442,7 +442,7 @@
                 <Name>EzPrint.ExportToPDF.PDFOutput.PDFA1b</Name>
                 <ScreenName>PDF/A-1b standard compliance</ScreenName>
                 <ShortDescription>Allows generated PDF to be of PDF/A-1b standard compliant.</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.EmbedFonts</Name>
@@ -478,7 +478,7 @@
                 <Name>EzPrint.ExportToPDF.PDFOutput.EnablePrinting</Name>
                 <ScreenName>EnablePrinting</ScreenName>
                 <ShortDescription>EnablePrinting</ShortDescription>
-                <Value DataType="Boolean">yes</Value>
+                <Value DataType="Boolean">true</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.InvokeViewer</Name>
@@ -510,7 +510,7 @@
                 <Name>EzPrint.Print.Options.ManualFeed</Name>
                 <ScreenName>Manual Feed</ScreenName>
                 <ShortDescription>Selecting this option will prompt user to manually feed the paper into printer</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Print.Options.UseForms</Name>

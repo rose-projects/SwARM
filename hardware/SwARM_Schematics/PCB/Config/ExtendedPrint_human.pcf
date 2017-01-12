@@ -1,7 +1,7 @@
 .FILETYPE ExtendedPrint SetupFile
 .VERSION "VB99.0"
 .CREATOR "Expedition PCB PDF Output"
-.DATE "Friday, September 23, 2016 10:43 AM"
+.DATE "Thursday, January 12, 2017 07:22 PM"
 
 .BaseUnits "1NM"
 
@@ -51,18 +51,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 1
    ...ProcessLayer Yes
@@ -151,18 +141,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 2
    ...ProcessLayer Yes
@@ -250,18 +230,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 1
    ...ProcessLayer No
@@ -340,18 +310,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 1
    ...ProcessLayer No
@@ -390,7 +350,7 @@
    ...CellItem AssemblyReferenceDesignator
 
 .SheetName "SilkScreenTop"
- ..ProcessSheet Yes
+ ..ProcessSheet No
  ..UseLayering No
  ..PageSize None
  ..Orientation BestFit
@@ -430,18 +390,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 1
    ...ProcessLayer No
@@ -476,7 +426,7 @@
  ..BoardCellType TestPoint
 
 .SheetName "SilkScreenBottom"
- ..ProcessSheet Yes
+ ..ProcessSheet No
  ..UseLayering No
  ..PageSize None
  ..Orientation BestFit
@@ -516,18 +466,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 1
    ...ProcessLayer No
@@ -562,7 +502,7 @@
  ..BoardCellType TestPoint
 
 .SheetName "Dimensions"
- ..ProcessSheet Yes
+ ..ProcessSheet No
  ..UseLayering No
  ..PageSize None
  ..Orientation BestFit
@@ -602,18 +542,8 @@
    ...LayerName "Redline Layer"
    ...LayerName "Lyr 1"
    ...LayerName "Lyr 2"
-   ...LayerName "Default User Layer"
-   ...LayerName "DRAWTRACE_CLEARANCEGEOM"
-   ...LayerName "SVG Import"
    ...LayerName "Dimensions"
-   ...LayerName "SVG Import battery"
-   ...LayerName "DRC Assertion Assistant Layer"
-   ...LayerName "DRC Assertion Assistant Layer:1"
-   ...LayerName "DRC Assertion Assistant Layer:2"
-   ...LayerName "QEDraw"
-   ...LayerName "QEDraw2"
-   ...LayerName "QEDraw3"
-   ...LayerName "QEDrawText"
+   ...LayerName "Measure Drawing"
 
  ..ConductiveLayer 1
    ...ProcessLayer Yes
@@ -653,4 +583,4 @@
 .OutputVariants NO
 .VariantList "Master"
 
-.EzPrintConfigFilePath ".\\CONFIG\\Extended_print_human.xml"
+.EzPrintConfigFilePath "CONFIG\\Extended_print_human.xml"

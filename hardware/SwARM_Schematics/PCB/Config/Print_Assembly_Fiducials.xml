@@ -41,7 +41,7 @@
                 <Name>EzPrint.Output.OutputPaper.AutoRotate</Name>
                 <ScreenName>AutoRotate</ScreenName>
                 <ShortDescription>This is for rotation of contents while automatic fitting them in the output file</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.Paper</Name>
@@ -65,7 +65,7 @@
                 <Name>EzPrint.Output.OutputPaper.UseSourcePageSize</Name>
                 <ScreenName>UseSourcePageSize</ScreenName>
                 <ShortDescription>This is for using the source document page sizes for printing</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.GenerateMultipleFiles</Name>
@@ -219,7 +219,7 @@
                 <Name>EzPrint.DocumentManager.Document.CompanyName</Name>
                 <ScreenName>Company name</ScreenName>
                 <ShortDescription>Company name</ShortDescription>
-                <Value DataType="String">footbar</Value>
+                <Value DataType="String"></Value>
               </Parameter>
             </Parameters>
           </ParameterGroup>
@@ -404,7 +404,7 @@
                 <Name>EzPrint.Graphics.FalconStrokeFonts.ReplaceTtfForStroke</Name>
                 <ScreenName>Use true type</ScreenName>
                 <ShortDescription>Use true type replacement for stroke fonts</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.FalconStrokeFonts.StrokeFont</Name>
@@ -454,37 +454,37 @@
                 <Name>EzPrint.ExportToPDF.PDFOutput.EnableLayers</Name>
                 <ScreenName>Generate PDF with layers</ScreenName>
                 <ShortDescription>Extended Print can generate PDF output with or without layers. When layers are enabled, each page in generated PDF will have layer wise graphical data which can be selected to view in a PDF viewer. When layers are disabled, generated PDF will not have any layer and every graphical entity will be rendered on a page.</ShortDescription>
-                <Value DataType="Boolean">yes</Value>
+                <Value DataType="Boolean">true</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.Mirror</Name>
                 <ScreenName>Generate PDF with mirrored graphics</ScreenName>
                 <ShortDescription>Extended Print can generate PDF output with mirrored graphics. When mirror is enabled, each page in generated PDF will have graphical data mirrored with respect to vertical axis. When mirror is disabled, generated PDF will not have any mirroring of graphical entity will be rendered on a page.</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.TextSelection</Name>
                 <ScreenName>TextSelection</ScreenName>
                 <ShortDescription>TextSelection</ShortDescription>
-                <Value DataType="Boolean">yes</Value>
+                <Value DataType="Boolean">true</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.DocumentEditing</Name>
                 <ScreenName>DocumentEditing</ScreenName>
                 <ShortDescription>DocumentEditing</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.EnablePrinting</Name>
                 <ScreenName>EnablePrinting</ScreenName>
                 <ShortDescription>EnablePrinting</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.InvokeViewer</Name>
                 <ScreenName>Invoke Viewer </ScreenName>
                 <ShortDescription>On Setting this, PDF output will be viewed in viewer</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.Transparency</Name>
@@ -510,7 +510,7 @@
                 <Name>EzPrint.Print.Options.ManualFeed</Name>
                 <ScreenName>Manual Feed</ScreenName>
                 <ShortDescription>Selecting this option will prompt user to manually feed the paper into printer</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Print.Options.UseForms</Name>
