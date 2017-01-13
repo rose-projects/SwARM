@@ -287,8 +287,8 @@
  * PB7  - MPU_INT                   (input floating).
  * PB8  - MPU_I2C_SCL               (alternate 4 open drain).
  * PB9  - MPU_I2C_SDA               (alternate 4 open drain).
- * PB10 - LED_IR_R                  (input floating).
- * PB11 - LED_IR_L                  (input floating).
+ * PB10 - LED_IR_R                  (output pull-down).
+ * PB11 - LED_IR_L                  (output pull-down).
  * PB12 - PIN12                     (input floating).
  * PB13 - LED_SPI_CK                (alternate 5).
  * PB14 - PIN14                     (input floating).
@@ -398,7 +398,7 @@
  * PC1  - PIN1                      (input floating).
  * PC2  - PIN2                      (input floating).
  * PC3  - PIN3                      (input floating).
- * PC4  - MTR_LED_R                 (input floating).
+ * PC4  - MTR_LED_R                 (output pull-down).
  * PC5  - PIN5                      (input floating).
  * PC6  - PIN6                      (input floating).
  * PC7  - PIN7                      (input floating).
