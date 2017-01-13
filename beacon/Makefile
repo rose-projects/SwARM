@@ -101,7 +101,7 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= robot.ld
+LDSCRIPT= beacon.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -112,7 +112,8 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-       main.c RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
+	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+       main.c usbconf.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -143,7 +144,7 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) \
-         $(CHIBIOS)/os/various
+         $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various
 
 #
 # Project, sources and paths
