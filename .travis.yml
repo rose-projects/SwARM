@@ -9,12 +9,13 @@ branches:
 language: C
 
 script:
-    - cd tests/blink/
-    - make
-
+    - make -C robot/
+    - make -C beacon/
+    - make -C tests/blink/
+    
 cache: ccache
 
-addons:   
+addons:
     apt:
         packages:
         - gcc-arm-none-eabi
