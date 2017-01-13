@@ -6,7 +6,7 @@ renderer = null
 port = null
 
 robotsHist = []
-meanDepth = 4 # TODO : add GUI control
+meanDepth = 10 # TODO : add GUI control
 
 computeMean = (robots) ->
 	res = [0, 0]
