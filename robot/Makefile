@@ -112,7 +112,7 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-       main.c RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
+       main.c RTT/SEGGER_RTT.c SEGGER_RTT_printf.c exticonf.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
