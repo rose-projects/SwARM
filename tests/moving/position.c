@@ -10,17 +10,17 @@
 
 /*
  * Update position according to the coding wheels
- * The calculation depends on wether we are rotating to the left or to the rigrt
+ * The calculation depends on wether we are rotating to the left or to the right
  */
 void update_position(){
-    // Calculation current angle value in radians
+    // Calculating current angle value in radians
     float angle_rad = angle*U_DEGREE_ANGLE*DEG_TO_RAD;
 
     // Updating orientation
-    orientation += to_the_left*angle_rad;
+    orientation += angle_rad;
     // Calculating last coordinates of the robot
-    x_pos += distance*cos(orientation);
-    y_pos += distance*sin(orientation);
+    x_pos += forward*distance*cos(orientation);
+    y_pos += forward*distance*sin(orientation);
 
     chprintf(COUT, "Position update:\r\n");
     chprintf(COUT, "x_pos: %D\r\n", (long)x_pos);

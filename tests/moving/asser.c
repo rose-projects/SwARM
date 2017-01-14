@@ -44,7 +44,7 @@ static THD_FUNCTION(asser_thd, arg) {
     // 200 Hz calculation
     while(true){
         // Distance and error calculations
-        angle = tick_r - tick_l;
+        angle = forward*(tick_r - tick_l);
         distance = (tick_r + tick_l)/2;
         if(forward == 1){
             GO_FORWARD
@@ -79,8 +79,14 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_angle = MIN(cmd_angle, MAX_POWER);
 
         // Updating PWM signals
-        pwmEnableChannel(&PWMD1, 0, cmd_dist);
-        pwmEnableChannel(&PWMD1, 1, cmd_angle);
+        if(forward == 1){
+            pwmEnableChannel(&PWMD1, 0, cmd_dist);
+            pwmEnableChannel(&PWMD1, 1, cmd_angle);
+        }
+        else{
+            pwmEnableChannel(&PWMD1, 0, cmd_angle);
+            pwmEnableChannel(&PWMD1, 1, cmd_dist);
+        }
 
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);
