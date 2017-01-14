@@ -38,6 +38,7 @@ int main(void) {
     // Starting test with enslavement
     chprintf(COUT, "Starting wheels' tests with motors\r\n");
     start_asservs();
+    chThdSleepMilliseconds(3000);
     start_moving();
 
     // Looping on a sleep to test the enslavement

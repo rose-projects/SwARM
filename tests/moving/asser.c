@@ -13,10 +13,10 @@
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 2
+#define P_ANGLE 3
 #define I_ANGLE 0
 #define D_ANGLE 0
-#define P_DIST 0.025
+#define P_DIST 2
 #define I_DIST 0
 #define D_DIST 0
 #define MIN(a,b) ((a>b) ? b : a)
@@ -70,15 +70,6 @@ static THD_FUNCTION(asser_thd, arg) {
                     + D_ANGLE*angle_error_delta;
 
         /*
-         * Adding an offset to all strictly positive cmd_* values so that
-         * the robot moves if it needs to
-         */
-        if(cmd_dist > 0)
-            cmd_dist += 35;
-        if(cmd_angle > 0)
-            cmd_angle +=35;
-
-        /*
          * Limiting all cmd values so that they don't exceed the maximum value
          * that the pwmEnableChannel can interpret without ambiguiti
          * The maximmun value they can take is 200 so MAX_POWER should be at
@@ -91,11 +82,6 @@ static THD_FUNCTION(asser_thd, arg) {
         pwmEnableChannel(&PWMD1, 0, cmd_dist);
         pwmEnableChannel(&PWMD1, 1, cmd_angle);
 
-        // Printing out the current values of ticks and pwm commands
-        chprintf(COUT, "tick_l: %D\r\n", tick_l);
-        chprintf(COUT, "tick_r: %D\r\n", tick_r);
-        chprintf(COUT, "cmd_dist_adjstd: %D\r\n", cmd_dist);
-        chprintf(COUT, "cmd_angle_adjsd: %D\r\n", cmd_angle);
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);
     }
