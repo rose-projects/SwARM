@@ -19,8 +19,6 @@ volatile double orientation = 0;
 volatile int x_pos = 0;
 volatile int y_pos = 0;
 
-static double xb_p;
-static double yb_p;
 static double radius;
 static double alpha;
 static int i;
@@ -30,7 +28,8 @@ void update_main_coordinates(){
     double theta = M_PI/2 - orientation;
     // Initializing i factor to 1, used in update_sub_coordinates
     i = 1;
-
+    double xb_p;
+    double yb_p;    
     /*
      * Calculating coordinates of the next position to go to in the referential
      * defined by the robot itself

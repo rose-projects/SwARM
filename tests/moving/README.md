@@ -6,5 +6,7 @@
 
 ### What does it do ?
 
-The main allows to test the coding wheels connected to the board. The output of
-the comparator used in the coding wheels is connected to GPIOA0 TIM5_IC1
+Here we take care of the movements of the robots:
+We calculate target coordinates and sub target coordinates 
+We update the robot's position thanks to the coding wheels' feedback
+We enslave the motors on distance and angle
