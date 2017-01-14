@@ -46,7 +46,7 @@ static THD_FUNCTION(asser_thd, arg) {
         // Distance and error calculations
         angle = tick_r - tick_l;
         distance = (tick_r + tick_l)/2;
-        if(forward){
+        if(forward == 1){
             GO_FORWARD
         }
         else{
