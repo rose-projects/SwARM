@@ -9,11 +9,8 @@
 #include "usbcfg.h"
 #include "chprintf.h"
 
-// We update robot position goal every 20 seconds
+// We update robot position goal every 200 milliseconds
 #define MOVING_THD_SLEEP 200
-
-unsigned int last_tick_cnt_l;
-unsigned int last_tick_cnt_r;
 
 // Moving control thread working area
 static THD_WORKING_AREA(working_area_moving_thd, 128);
@@ -21,7 +18,8 @@ static THD_WORKING_AREA(working_area_moving_thd, 128);
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
     (void) arg;
-
+    unsigned int last_tick_cnt_l;
+    unsigned int last_tick_cnt_r;   
     int i = 0;
 
     /* 
@@ -44,11 +42,20 @@ static THD_FUNCTION(moving_thd, arg) {
 
         // Preparation of the next loop iteration
         if((i%N_POINTS) == 0){
+            chprintf(COUT, "##########################\r\n");
+            chprintf(COUT, "##########################\r\n");
+            chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "Begin of new cycle\r\n");
+            chprintf(COUT, "##########################\r\n");
+            chprintf(COUT, "##########################\r\n");
+            chprintf(COUT, "##########################\r\n");
             update_main_coordinates();
-            i++;
         }
+        // Calculate next target position and update distance and angle goals
         update_sub_coordinates();
+
+        // Ready for next iteration
+        i++;
 
         chprintf(COUT, "Updating distance and angle goals\r\n");
         chprintf(COUT, "Distance new value: %D\r\n", dist_goal);
