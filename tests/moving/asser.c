@@ -13,17 +13,21 @@
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 3
+#define P_ANGLE 2
 #define I_ANGLE 0
 #define D_ANGLE 0
 #define P_DIST 2
 #define I_DIST 0
 #define D_DIST 0
 #define MIN(a,b) ((a>b) ? b : a)
-#define MAX_POWER 200
+#define MAX_POWER 100
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
+volatile int cmd_dist;
+volatile int cmd_angle;
+volatile int forward = 1;
+volatile int to_the_left = 1;
 static int dist_error;
 static int dist_error_sum;
 static int dist_error_delta;
@@ -32,26 +36,24 @@ static int angle_error;
 static int angle_error_sum;
 static int angle_error_delta;
 static int angle_error_prev;
-volatile unsigned int cmd_dist;
-volatile unsigned int cmd_angle;
-volatile int forward = 1;
-volatile int to_the_left = 1;
 
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
+    int cmd_left;
+    int cmd_right;
 
     // 200 Hz calculation
     while(true){
+        /*
+         * Enslavement PID related calculations:
+         * Calculating errors
+         * Calculating output
+         */
+
         // Distance and error calculations
-        angle = forward*(tick_r - tick_l);
+        angle = tick_r - tick_l;
         distance = (tick_r + tick_l)/2;
-        if(forward == 1){
-            GO_FORWARD
-        }
-        else{
-            GO_REVERSE
-        }
 
         // Error calculations for distance
         dist_error = dist_goal - distance;
@@ -71,22 +73,50 @@ static THD_FUNCTION(asser_thd, arg) {
 
         /*
          * Limiting all cmd values so that they don't exceed the maximum value
-         * that the pwmEnableChannel can interpret without ambiguiti
-         * The maximmun value they can take is 200 so MAX_POWER should be at
-         * less than 200
+         * that the pwmEnableChannel can interpret without ambiguosity
+         * The maximmun value they can take is 200 so MAX_POWER should be less 
+         * than 200
+         * Also if the value is negative, the wheel they control will move in
+         * reverse
          */
-        cmd_dist = MIN(cmd_dist, MAX_POWER);
-        cmd_angle = MIN(cmd_angle, MAX_POWER);
+        
+        // Calculating cmd values
+        cmd_left = cmd_dist - cmd_angle;
+        cmd_right = cmd_dist + cmd_angle;
 
-        // Updating PWM signals
-        if(forward == 1){
-            pwmEnableChannel(&PWMD1, 0, cmd_dist);
-            pwmEnableChannel(&PWMD1, 1, cmd_angle);
+        // Standardizing command values regarding their sign
+        if(cmd_left < 0){
+            cmd_left = -cmd_left;
+            LEFT_REVERSE
         }
         else{
-            pwmEnableChannel(&PWMD1, 0, cmd_angle);
-            pwmEnableChannel(&PWMD1, 1, cmd_dist);
+            LEFT_FORWARD
         }
+        if(cmd_right < 0){
+            cmd_right = -cmd_right;
+            RIGHT_REVERSE
+        }
+        else{
+            RIGHT_FORWARD
+        }
+        
+        // Standardizing command values by limiting them by MAX_POWER
+        cmd_left = MIN(cmd_left, MAX_POWER);
+        cmd_right = MIN(cmd_right, MAX_POWER);
+
+        if(dist_goal != 0){
+            // Printing out the current values of ticks and pwm commands 
+            chprintf(COUT, "tick_l: %D\r\n", tick_l); 
+            chprintf(COUT, "tick_r: %D\r\n", tick_r); 
+            chprintf(COUT, "distance: %D\r\n", distance); 
+            chprintf(COUT, "angle: %D\r\n", angle); 
+            chprintf(COUT, "cmd_left: %D\r\n", cmd_left); 
+            chprintf(COUT, "cmd_right: %D\r\n", cmd_right); 
+        }
+
+        // Updating PWM signals
+        pwmEnableChannel(&PWMD1, 0, cmd_left);
+        pwmEnableChannel(&PWMD1, 1, cmd_right);
 
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);

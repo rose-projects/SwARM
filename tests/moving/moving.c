@@ -10,7 +10,7 @@
 #include "chprintf.h"
 
 // We update robot position goal every 200 milliseconds
-#define MOVING_THD_SLEEP 200
+#define MOVING_THD_SLEEP 2000
 
 // Moving control thread working area
 static THD_WORKING_AREA(working_area_moving_thd, 128);
@@ -18,8 +18,6 @@ static THD_WORKING_AREA(working_area_moving_thd, 128);
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
     (void) arg;
-    unsigned int last_tick_cnt_l;
-    unsigned int last_tick_cnt_r;   
     int i = 0;
 
     /* 
@@ -29,18 +27,10 @@ static THD_FUNCTION(moving_thd, arg) {
      * so that the robot moves to the next position
      */
     while(true){
-        last_tick_cnt_l = tick_l;
-        last_tick_cnt_r = tick_r;
-
         // Calling reset function for enslavement 
         begin_new_asser();
         update_position();
 
-        // Printing out the current values of ticks
-        chprintf(COUT, "tick_l final value: %D\r\n", last_tick_cnt_l);
-        chprintf(COUT, "tick_r final value: %D\r\n", last_tick_cnt_r);
-
-        // Preparation of the next loop iteration
         if((i%N_POINTS) == 0){
             chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "##########################\r\n");
@@ -51,6 +41,7 @@ static THD_FUNCTION(moving_thd, arg) {
             chprintf(COUT, "##########################\r\n");
             update_main_coordinates();
         }
+
         // Calculate next target position and update distance and angle goals
         update_sub_coordinates();
 
