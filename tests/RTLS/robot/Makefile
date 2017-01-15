@@ -86,8 +86,8 @@ endif
 PROJECT = SwARM
 
 # Imported source files and paths
-CHIBIOS = ../ChibiOS
-BOARD = ../boards/OLIMEX_P407_JTAG
+CHIBIOS = ../../../ChibiOS
+BOARD = ../../../boards/OLIMEX_P407_JTAG
 # Startup files.
 include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f4xx.mk
 # HAL-OSAL files (optional).

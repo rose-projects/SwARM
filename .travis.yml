@@ -8,8 +8,8 @@ branches:
 language: C
 
 script:
-    - make -C beacon
-    - make -C robot
+    - make -C tests/RTLS/beacon
+    - make -C tests/RTLS/robot
 
 cache: ccache
 
