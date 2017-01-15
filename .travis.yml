@@ -1,4 +1,5 @@
 dist: trusty
+sudo: false
 
 branches:
     except:
@@ -8,8 +9,22 @@ branches:
 language: C
 
 script:
+    - make -C robot/
+    - make -C beacon/
+    - make -C tests/blink/
+    - make -C tests/led/
+    - make -C tests/ranging/
+    - make -C tests/coding_wheels/
     - make -C tests/RTLS/beacon
     - make -C tests/RTLS/robot
+    - cd opencv
+    - mkdir build && cd build
+    - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$HOME/local ..
+    - make -j 8
+    - make install
+    - cd ../..
+    - export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig/
+    - make -C tests/cam/
 
 cache: ccache
 
