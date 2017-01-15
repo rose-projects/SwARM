@@ -9,7 +9,7 @@
 // To get the sign of a variable, returns 1 if positive or null, -1 if negative
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
-volatile int xb = -2000;
+volatile int xb = 2000;
 volatile int yb = 0;
 volatile int distance = 0;
 volatile int angle = 0;
@@ -30,6 +30,7 @@ void update_main_coordinates(){
     i = 1;
     double xb_p;
     double yb_p;    
+
     /*
      * Calculating coordinates of the next position to go to in the referential
      * defined by the robot itself
@@ -48,8 +49,8 @@ void update_main_coordinates(){
 
 void update_sub_coordinates(){
     // Updating distance and angle goals
-    dist_goal = fabs(alpha)*radius*i/N_POINTS - distance;
-    angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left - angle;
+    dist_goal = forward*fabs(alpha)*radius*i/N_POINTS;
+    angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
 
     // Preparing next call of the function
     i++;

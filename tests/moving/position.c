@@ -19,8 +19,8 @@ void update_position(){
     // Updating orientation
     orientation += angle_rad;
     // Calculating last coordinates of the robot
-    x_pos += forward*distance*cos(orientation);
-    y_pos += forward*distance*sin(orientation);
+    x_pos += distance*cos(orientation);
+    y_pos += distance*sin(orientation);
 
     chprintf(COUT, "Position update:\r\n");
     chprintf(COUT, "x_pos: %D\r\n", (long)x_pos);

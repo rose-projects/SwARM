@@ -11,6 +11,7 @@ script:
     - make -C tests/ranging/
     - make -C tests/blink/
     - make -C tests/coding_wheels/
+    - make -C tests/moving/
 
 cache: ccache
 
