@@ -2,13 +2,15 @@ dist: trusty
 sudo: false
 
 branches:
-  except:
-  - pretest
-  - elec
+    except:
+    - pretest
+    - elec
 
 language: C
 
 script:
+    - make -C robot/
+    - make -C beacon/
     - make -C tests/blink/
     - make -C tests/led/
     - make -C tests/ranging/
