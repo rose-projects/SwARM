@@ -42,9 +42,8 @@ int main(void) {
     start_moving();
 
     // Looping on a sleep to test the enslavement
-    for(int i =0; i<20000; i++){
-        chThdSleepMilliseconds(50);
-    }
+    while(true)
+        chThdSleepMilliseconds(100);
 
     return 0;
 }

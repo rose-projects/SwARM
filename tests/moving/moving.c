@@ -10,7 +10,7 @@
 #include "chprintf.h"
 
 // We update robot position goal every 200 milliseconds
-#define MOVING_THD_SLEEP 2000
+#define MOVING_THD_SLEEP 200
 
 // Moving control thread working area
 static THD_WORKING_AREA(working_area_moving_thd, 128);
@@ -26,37 +26,40 @@ static THD_FUNCTION(moving_thd, arg) {
      * it modifies on a periodic basis the  dist_goal and angle_goal values
      * so that the robot moves to the next position
      */
-    while(true){
-        // Calling reset function for enslavement 
-        begin_new_asser();
-        update_position();
+    //    while(true){
+    // Calling reset function for enslavement 
+    begin_new_asser();
+    update_position();
 
-        if((i%N_POINTS) == 0){
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "Begin of new cycle\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            update_main_coordinates();
-        }
-
-        // Calculate next target position and update distance and angle goals
-        update_sub_coordinates();
-
-        // Ready for next iteration
-        i++;
-
-        chprintf(COUT, "Updating distance and angle goals\r\n");
-        chprintf(COUT, "Distance new value: %D\r\n", dist_goal);
-        chprintf(COUT, "Are we going forward?: %D\r\n", forward);
-        chprintf(COUT, "Angle new value: %D\r\n", angle_goal);
-        chprintf(COUT, "To the left?: %D\r\n", to_the_left);
-
-        // Go to sleep
-        chThdSleepMilliseconds(MOVING_THD_SLEEP);
+    if((i%N_POINTS) == 0){
+        chprintf(COUT, "##########################\r\n");
+        chprintf(COUT, "##########################\r\n");
+        chprintf(COUT, "##########################\r\n");
+        chprintf(COUT, "Begin of new cycle\r\n");
+        chprintf(COUT, "##########################\r\n");
+        chprintf(COUT, "##########################\r\n");
+        chprintf(COUT, "##########################\r\n");
+        update_main_coordinates();
     }
+
+    // Calculate next target position and update distance and angle goals
+    // update_sub_coordinates();
+    dist_goal = 0;
+    angle_goal = 246;
+
+    // Ready for next iteration
+    i++;
+    chprintf(COUT, "##########################\r\n");
+
+    chprintf(COUT, "Updating distance and angle goals\r\n");
+    chprintf(COUT, "Distance new value: %D\r\n", dist_goal);
+    chprintf(COUT, "Are we going forward?: %D\r\n", forward);
+    chprintf(COUT, "Angle new value: %D\r\n", angle_goal);
+    chprintf(COUT, "To the left?: %D\r\n", to_the_left);
+
+    // Go to sleep
+    chThdSleepMilliseconds(MOVING_THD_SLEEP);
+    //   }
 }
 
 // To be called from main to start the enslavement with some distance and goal
