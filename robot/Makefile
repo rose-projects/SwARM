@@ -106,6 +106,10 @@ LDSCRIPT= robot.ld
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
+RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
+DRIVERSRC = pwmdriver.c exticonf.c compdriver.c
+RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
+
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -115,9 +119,11 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-	   decaplatform.c decafunctions.c deca_device.c deca_params_init.c \
-       main.c RTT/SEGGER_RTT.c SEGGER_RTT_printf.c exticonf.c compdriver.c \
-	   pwmdriver.c radiocomms.c
+       $(RADIOSRC) \
+       $(DRIVERSRC) \
+       $(RTTSRC) \
+       main.c
+	   
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
