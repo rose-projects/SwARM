@@ -37,9 +37,9 @@ static void parseSOF(int sofLength) {
 	sofSystime = chVTGetSystemTime();
 
 	// check sessionID didn't change
-	if(sessionID == -1)
+	if(sessionID == -1) {
 		sessionID = radioBuffer[2];
-	else if(sessionID != radioBuffer[2]) {
+	} else if(sessionID != radioBuffer[2]) {
 		// if it changed, restart sync
 		registered = 0;
 		sessionID = radioBuffer[2];
@@ -173,9 +173,9 @@ static THD_FUNCTION(radioThread, th_data) {
 
 	while(1) {
 		// if last start-of-frame time isn't known or robot isn't registered
-		if(sofTS == -1 || registered == 0)
+		if(sofTS == -1 || registered == 0) {
 			synchronizeRadio();
-		else {
+		} else {
 			if((ret = messageRead(SOF_MSG_ID, 0xFF, FRAME_LENGTH)) > 0)
 				parseSOF(ret);
 
