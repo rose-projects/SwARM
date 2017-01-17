@@ -151,6 +151,7 @@ INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various .
 
+
 #
 # Project, sources and paths
 ##############################################################################

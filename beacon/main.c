@@ -22,8 +22,8 @@ static const ShellCommand shCmds[] = {
 };
 
 static const ShellConfig shConfig = {
-    (BaseSequentialStream *) &SDU1,
-    shCmds
+	(BaseSequentialStream *) &SDU1,
+	shCmds
 };
 
 int main(void) {

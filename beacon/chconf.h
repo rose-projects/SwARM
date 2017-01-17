@@ -300,6 +300,7 @@
  */
 #define CH_CFG_USE_MEMPOOLS                 FALSE
 
+
 /**
  * @brief   Dynamic Threads APIs.
  * @details If enabled then the dynamic threads creation APIs are included
