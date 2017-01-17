@@ -9,63 +9,63 @@
 
 // Master beacon communication configuration
 static const dwt_config_t MBconfig = {
-    2,               // Channel number
-    DWT_PRF_64M,     // Pulse repetition frequency
-    DWT_PLEN_256,    // Preamble length. Used in TX only
-    DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
-    9,               // TX preamble code. Used in TX only
-    9,               // RX preamble code. Used in RX only
-    1,               // 0 to use standard SFD, 1 to use non-standard SFD
-    DWT_BR_6M8,      // Data rate
-    DWT_PHRMODE_STD, // PHY header mode
-    (257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
+	2,               // Channel number
+	DWT_PRF_64M,     // Pulse repetition frequency
+	DWT_PLEN_256,    // Preamble length. Used in TX only
+	DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
+	9,               // TX preamble code. Used in TX only
+	9,               // RX preamble code. Used in RX only
+	1,               // 0 to use standard SFD, 1 to use non-standard SFD
+	DWT_BR_6M8,      // Data rate
+	DWT_PHRMODE_STD, // PHY header mode
+	(257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
 };
 
 // slave beacon 1 communication configuration
 static const dwt_config_t SB1config = {
-    3,               // Channel number
-    DWT_PRF_64M,     // Pulse repetition frequency
-    DWT_PLEN_256,    // Preamble length. Used in TX only
-    DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
-    9,               // TX preamble code. Used in TX only
-    9,               // RX preamble code. Used in RX only
-    1,               // 0 to use standard SFD, 1 to use non-standard SFD
-    DWT_BR_6M8,      // Data rate
-    DWT_PHRMODE_STD, // PHY header mode
-    (257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
+	3,               // Channel number
+	DWT_PRF_64M,     // Pulse repetition frequency
+	DWT_PLEN_256,    // Preamble length. Used in TX only
+	DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
+	9,               // TX preamble code. Used in TX only
+	9,               // RX preamble code. Used in RX only
+	1,               // 0 to use standard SFD, 1 to use non-standard SFD
+	DWT_BR_6M8,      // Data rate
+	DWT_PHRMODE_STD, // PHY header mode
+	(257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
 };
 
 // slave beacon 2 communication configuration
 static const dwt_config_t SB2config = {
-    4,               // Channel number
-    DWT_PRF_64M,     // Pulse repetition frequency
-    DWT_PLEN_256,    // Preamble length. Used in TX only
-    DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
-    17,               // TX preamble code. Used in TX only
-    17,               // RX preamble code. Used in RX only
-    1,               // 0 to use standard SFD, 1 to use non-standard SFD
-    DWT_BR_6M8,      // Data rate
-    DWT_PHRMODE_STD, // PHY header mode
-    (257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
+	4,               // Channel number
+	DWT_PRF_64M,     // Pulse repetition frequency
+	DWT_PLEN_256,    // Preamble length. Used in TX only
+	DWT_PAC16,        // Preamble acquisition chunk size. Used in RX only
+	17,               // TX preamble code. Used in TX only
+	17,               // RX preamble code. Used in RX only
+	1,               // 0 to use standard SFD, 1 to use non-standard SFD
+	DWT_BR_6M8,      // Data rate
+	DWT_PHRMODE_STD, // PHY header mode
+	(257 + 8 - 16)    // SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only
 };
 
 int decaInit(void) {
 	// initialize peripherals used by decawave module
-    initDecaPlatform();
+	initDecaPlatform();
 	// reset module
 	dwt_softreset();
 	chThdSleepMilliseconds(3);
 	// initialize for ranging
 	if (dwt_initialise(DWT_LOADUCODE) == DWT_ERROR) {
-        return -1;
-    }
+		return -1;
+	}
 	// after initialize, use fast SPI for optimum performance
 	useFastSPI();
 
-    dwt_configure(&MBconfig);
-    // Apply default antenna delay value.
-    dwt_setrxantennadelay(RX_ANT_DLY);
-    dwt_settxantennadelay(TX_ANT_DLY);
+	dwt_configure(&MBconfig);
+	// Apply default antenna delay value.
+	dwt_setrxantennadelay(RX_ANT_DLY);
+	dwt_settxantennadelay(TX_ANT_DLY);
 	// activate interrupts for tx done, rx done, rx errors and timeout
 	dwt_setinterrupt(SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_ERR | SYS_STATUS_ALL_RX_TO | SYS_STATUS_TXFRS, 1);
 
