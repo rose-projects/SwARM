@@ -37,26 +37,22 @@ void useFastSPI(void) {
 }
 
 int writetospi(uint16 headerLength, const uint8 *headerBuffer, uint32 bodylength, const uint8 *bodyBuffer) {
-	spiAcquireBus(&SPID3);              // Acquire ownership of the bus.
 	spiSelect(&SPID3);                  // Slave Select assertion.
 
 	spiSend(&SPID3, headerLength, headerBuffer);
 	spiSend(&SPID3, bodylength, bodyBuffer);
 
 	spiUnselect(&SPID3);                // Slave Select de-assertion.
-	spiReleaseBus(&SPID3);
 	return 0;
 }
 
 int readfromspi(uint16 headerLength, const uint8 *headerBuffer, uint32 readlength, uint8 *readBuffer) {
-	spiAcquireBus(&SPID3);              // Acquire ownership of the bus.
 	spiSelect(&SPID3);                  // Slave Select assertion.
 
 	spiSend(&SPID3, headerLength, headerBuffer);
 	spiReceive(&SPID3, readlength, readBuffer);
 
 	spiUnselect(&SPID3);                // Slave Select de-assertion.
-	spiReleaseBus(&SPID3);
 	return 0;
 }
 
