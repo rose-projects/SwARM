@@ -106,6 +106,9 @@ LDSCRIPT= beacon.ld
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
+RADIOSRC = radiocomms.c decaplatform.c decafunctions.c deca_device.c deca_params_init.c
+DRIVERSRC = flash.c usbconf.c exticonf.c
+
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -115,10 +118,12 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-	   $(CHIBIOS)/os/various/shell.c \
-       main.c usbconf.c exticonf.c radiocomms.c robot.c nonvolatile.c flash.c \
-	   decaplatform.c decafunctions.c deca_device.c deca_params_init.c
+       $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+       $(CHIBIOS)/os/various/shell.c \
+       $(RADIOSRC) \
+       $(DRIVERSRC) \
+       main.c robot.c nonvolatile.c
+       
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
