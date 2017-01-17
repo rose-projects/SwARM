@@ -102,7 +102,7 @@ int writeOffset(struct distOffset *offset) {
 }
 
 /* set ID of the device (write it in flash).
- * USAGE: setid <NEW ID> */
+* USAGE: setid <NEW ID> */
 void setDeviceUID(BaseSequentialStream *chp, int argc, char **argv) {
 	(void) chp;
 	(void) argc;
@@ -130,7 +130,7 @@ void setDeviceUID(BaseSequentialStream *chp, int argc, char **argv) {
 }
 
 /* print ID of the device
- * USAGE: getid */
+* USAGE: getid */
 void getDeviceUID(BaseSequentialStream *chp, int argc, char **argv) {
 	(void) argc;
 	(void) argv;

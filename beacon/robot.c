@@ -141,9 +141,9 @@ void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 }
 
 /* set the locations of the beacons
- * USAGE : beacon <SB1 X> <SB2 Y>
- * where SB1 X is the x coordinate of slave beacon 1 in cm
- * and SB2 Y is the y coordinate of the slave beacon 2 in cm */
+* USAGE : beacon <SB1 X> <SB2 Y>
+* where SB1 X is the x coordinate of slave beacon 1 in cm
+* and SB2 Y is the y coordinate of the slave beacon 2 in cm */
 void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
 	int x, y;
 

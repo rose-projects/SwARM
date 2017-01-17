@@ -11,14 +11,14 @@
 static THD_WORKING_AREA(waShell, 1024);
 
 static const ShellCommand shCmds[] = {
-    {"mbcal",   mbCalibrate},
+	{"mbcal",   mbCalibrate},
 	{"sb1cal",   sb1Calibrate},
 	{"sb2cal",   sb2Calibrate},
 	{"setid",   setDeviceUID},
 	{"getid",   getDeviceUID},
 	{"list", dumpConnectedDevices},
 	{"beacon", setBeaconPosition},
-    {NULL, NULL}
+	{NULL, NULL}
 };
 
 static const ShellConfig shConfig = {
@@ -39,8 +39,8 @@ int main(void) {
 
 	while(1) {
 		if (SDU1.config->usbp->state == USB_ACTIVE) {
-	    	shellCreateStatic(&shConfig, waShell, 512, NORMALPRIO);
-	    }
+			shellCreateStatic(&shConfig, waShell, 512, NORMALPRIO);
+		}
 		chThdSleepMilliseconds(1000);
 	}
 }
