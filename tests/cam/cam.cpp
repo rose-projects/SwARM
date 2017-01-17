@@ -13,11 +13,11 @@ enum {
 	ONE_MS = 1, /* 1 millisecond */
 	ESC = 27 /* escape key */
 };
-const double SCALE_FACTOR = 0.3; /* frame shrinking scale factor */
-int contrast_coef = 200; /* final coef is this / 100.0 to create a double */
-int bright_coef = 0; /* range: [0, 510] to get [-255, 255] */
-int hough_p2 = 10; /* circle: accumulator threshold for detection */
-int hough_p1 = 90; /* circle: high threshold for Canny edge detector */
+static const double SCALE_FACTOR = 0.3; /* frame shrinking scale factor */
+static int contrast_coef = 200; /* final coef is this / 100.0 to create a double */
+static int bright_coef = 0; /* range: [0, 510] to get [-255, 255] */
+static int hough_p2 = 10; /* circle: accumulator threshold for detection */
+static int hough_p1 = 90; /* circle: high threshold for Canny edge detector */
 
 int
 main(int argc, char *argv[])
