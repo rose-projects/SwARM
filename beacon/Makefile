@@ -113,7 +113,7 @@ CSRC = $(STARTUPSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
 	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-       main.c usbconf.c exticonf.c
+       main.c usbconf.c exticonf.c led.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
