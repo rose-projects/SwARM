@@ -41,7 +41,7 @@ static void parseSOF(int sofLength) {
 
 	// update connected flag
 	sbConnected = ((radioBuffer[3] & 0x01) != 0 && deviceUID == 253)
-			   || ((radioBuffer[3] & 0x02) != 0 && deviceUID == 254);
+	           || ((radioBuffer[3] & 0x02) != 0 && deviceUID == 254);
 
 	// retrieve active robots list, for ranging
 	for(i=4; i < sofLength; i++) {
@@ -158,9 +158,9 @@ static void slaveBeaconTask(void) {
 
 	while(1) {
 		// if last start-of-frame time isn't known or beacon isn't registered
-		if(sofTS == -1)
+		if(sofTS == -1) {
 			synchronizeSlaveBeacon();
-		else {
+		} else {
 			ret = slaveBeaconRead(SOF_MSG_ID, 0xFF, FRAME_LENGTH);
 			if(ret > 0)
 				parseSOF(ret);
