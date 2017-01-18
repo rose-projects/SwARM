@@ -1,5 +1,6 @@
 #include "ch.h"
 #include "hal.h"
+#include "led.h"
 
 // sample to battery voltage (in 0.01V) conversion coeff
 #define PROBE_TO_VBAT 450/4096
@@ -71,8 +72,21 @@ static void updateState(int voltage) {
 		if(voltage > BATTERY_VERYLOW_HTHRES)
 			batteryState = BATTERY_LOW;
 	}
-
-	// TODO : change LED color to display battery state
+	
+	// display battery state
+	switch (batteryState) {
+	case BATTERY_HIGH:
+		setLEDs(0, 50, 0);
+		break;
+	case BATTERY_OK:
+		setLEDs(25, 25, 0);
+		break;
+	case BATTERY_LOW:
+		setLEDs(33, 17, 0);
+		break;
+	case BATTERY_VERYLOW:
+		setLEDs(40, 0, 0);
+	}
 }
 
 static THD_WORKING_AREA(waBattery, 128);

@@ -1,6 +1,7 @@
 #include "ch.h"
 #include "hal.h"
 #include "radiocomms.h"
+#include "led.h"
 
 // sample to battery voltage (in 0.01V) conversion coeff
 #define PROBE_TO_VBAT 450/4096
@@ -80,6 +81,8 @@ static void updateState(int voltage) {
 	chSysUnlock();
 
 	// TODO: stop the robot when battery is VERY_LOW
+	if(batteryState == BATTERY_VERYLOW)
+		setColor(0, 255, 40);
 }
 
 static THD_WORKING_AREA(waBattery, 128);

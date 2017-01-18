@@ -5,6 +5,7 @@
 
 #include "usbconf.h"
 #include "exticonf.h"
+#include "led.h"
 #include "radiocomms.h"
 #include "robot.h"
 #include "battery.h"
@@ -27,6 +28,7 @@ static const ShellConfig shConfig = {
 	shCmds
 };
 
+
 int main(void) {
 	// initialize ChibiOS
 	halInit();
@@ -35,6 +37,8 @@ int main(void) {
 	// initialize hardware
 	initExti();
 	initUSB();
+	initLEDs();
+
 	// start radio thread
 	startRadio();
 
