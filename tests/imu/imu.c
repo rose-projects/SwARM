@@ -185,16 +185,15 @@ static void mag_calibration(float * bias, float * scale) {
 	int16_t mag_min[3] = {0x7FFF, 0x7FFF, 0x7FFF};
 	int16_t mag_temp[3] = {0, 0, 0};
 
-//	chprintf(SERIAL, "Mag Calibration: Wave device in a figure eight until done!\r\n");
-//	chThdSleepMilliseconds(3000);
-
 	for(i = 0; i < sample_count; i++) {
 		readMagData(mag_temp);
 		for (j = 0; j < 3; j++) {
 			if(mag_temp[j] > mag_max[j]) mag_max[j] = mag_temp[j];
 			if(mag_temp[j] < mag_min[j]) mag_min[j] = mag_temp[j];
 		}
-		chThdSleepMilliseconds(5);  // at 100 Hz ODR, new mag data is available every 1 ms
+
+		// at 100 Hz ODR, new mag data is available every 1 ms
+		chThdSleepMilliseconds(5);
 	}
 
 	// Get hard iron correction
@@ -218,8 +217,6 @@ static void mag_calibration(float * bias, float * scale) {
 	scale[0] = avg_rad/((float)mag_scale[0]);
 	scale[1] = avg_rad/((float)mag_scale[1]);
 	scale[2] = avg_rad/((float)mag_scale[2]);
-
-	// chprintf(SERIAL, "Mag Calibration done!\r\n");
 }
 
 static void imu_calibration(int times) {
@@ -284,7 +281,8 @@ void imu_init(void) {
 			// Calibration of magnetometer : 10 times
 			// User environmental axis correction in milliGauss
 			imu_calibration(NB_CALIB);
-			chprintf(SERIAL, " MagBias :\r\n%f\r\n%f\r\n%f\r\n MagScale :\r\n%f\r\n%f\r\n%f\r\n", magbias[0], magbias[1], magbias[2], magscale[0], magscale[1], magscale[2]);
+			chprintf(SERIAL, " MagBias :\r\n%f\r\n%f\r\n%f\r\n MagScale :\r\n%f\r\n%f\r\n%f\r\n", \
+				magbias[0], magbias[1], magbias[2], magscale[0], magscale[1], magscale[2]);
 
 			initAK8963(magCalibration);
 
