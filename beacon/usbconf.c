@@ -185,7 +185,6 @@ static const USBDescriptor *get_descriptor(USBDriver *usbp,
                                            uint8_t dtype,
                                            uint8_t dindex,
                                            uint16_t lang) {
-
 	(void)usbp;
 	(void)lang;
 	switch (dtype) {
@@ -294,7 +293,6 @@ static void usb_event(USBDriver *usbp, usbevent_t event) {
  * Handles the USB driver global events.
  */
 static void sof_handler(USBDriver *usbp) {
-
 	(void)usbp;
 
 	osalSysLockFromISR();
