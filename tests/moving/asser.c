@@ -2,6 +2,7 @@
 #include "coding_wheels.h"
 #include "wheel_constants.h"
 #include "motors.h"
+#include "coordination.h"
 
 #include "ch.h"
 #include "hal.h"
@@ -13,13 +14,14 @@
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 2
-#define I_ANGLE 0
-#define D_ANGLE 0
-#define P_DIST 2
-#define I_DIST 0
-#define D_DIST 0
+#define P_ANGLE 1.33333333
+#define I_ANGLE 0.033333333
+#define D_ANGLE 0.8
+#define P_DIST 3.3333333
+#define I_DIST 0.0001
+#define D_DIST 9
 #define MIN(a,b) ((a>b) ? b : a)
+#define MAX(a,b) ((a>b) ? a : b)
 #define MAX_POWER 100
 
 // Enslavement thread working area
@@ -28,11 +30,11 @@ volatile int cmd_dist;
 volatile int cmd_angle;
 volatile int forward = 1;
 volatile int to_the_left = 1;
-static int dist_error;
+int dist_error = 0;
+int angle_error = 0;
 static int dist_error_sum;
 static int dist_error_delta;
 static int dist_error_prev;
-static int angle_error;
 static int angle_error_sum;
 static int angle_error_delta;
 static int angle_error_prev;
@@ -81,8 +83,6 @@ static THD_FUNCTION(asser_thd, arg) {
          */
 
         // Calculating cmd values
-        if(dist_goal == 0)
-            cmd_dist = 10;
         cmd_left = cmd_dist - cmd_angle;
         cmd_right = cmd_dist + cmd_angle;
 
@@ -94,11 +94,25 @@ static THD_FUNCTION(asser_thd, arg) {
             cmd_right = 0;
         }
 
-        // Standardizing command values by limiting them by MAX_POWER
+        int cmd_max = MAX(cmd_right, cmd_left);
+        int offset = cmd_max - MIN(cmd_max, MAX_POWER);
+        
+        cmd_left = cmd_left - offset;
+        cmd_right = cmd_right - offset;
+        
+        // Standardizing command values regarding their sign
+        if(cmd_left < 0){
+            cmd_left = 0;
+        }
+        if(cmd_right < 0){
+            cmd_right = 0;
+        }
+
         cmd_left = MIN(cmd_left, MAX_POWER);
         cmd_right = MIN(cmd_right, MAX_POWER);
 
         // Printing out the current values of ticks and pwm commands 
+        if(cmd_dist != 0){
         chprintf(COUT, "tick_l: %D\r\n", tick_l); 
         chprintf(COUT, "tick_r: %D\r\n", tick_r); 
         chprintf(COUT, "dist_goal: %D\r\n", dist_goal); 
@@ -110,6 +124,7 @@ static THD_FUNCTION(asser_thd, arg) {
         chprintf(COUT, "cmd_left: %D\r\n", cmd_left); 
         chprintf(COUT, "cmd_right: %D\r\n", cmd_right); 
         chprintf(COUT, "##########################################\r\n"); 
+        }
 
         // Updating PWM signals
         pwmEnableChannel(&PWMD1, 0, cmd_left);
@@ -150,4 +165,7 @@ void begin_new_asser(){
     // Reset ticks
     tick_l = 0;
     tick_r = 0;
+    // Reset angle and distance error integrals
+    last_angle_error = 0;
+    last_dist_error = 0;
 }
