@@ -3,130 +3,32 @@
 #include "chprintf.h"
 #include "terminal.h"
 
+#include "math.h"
+#include "my_i2c.h"
 #include "MPU9250.h"
-#include "imu.h"
 
 /*
  * Set initial input parameters
  */
+
+#define PI 3.14159265359
+#define NB_CALIB 10 // > 0
 
 enum Mscale_t {
 	MFS_14BITS = 0, // 0.6 mG per LSB
 	MFS_16BITS      // 0.15 mG per LSB
 };
 
-static enum Mscale_t Mscale = MFS_16BITS;   // MFS_14BITS or MFS_16BITS, 14-bit or 16-bit magnetometer resolution
-static uint8_t Mmode = 0x06;                // Either 8 Hz 0x02) or 100 Hz (0x06) magnetometer data ODR  
 static float mRes;                          // scale resolutions per LSB for the sensors
-static int16_t magOutput[3] = {0, 0, 0};    // Stores the 16-bit signed magnetometer sensor output
 static float magCalibration[3] = {0, 0, 0}; // Factory mag calibration
 static float magbias[3] = {0, 0, 0};        // Factory mag bias
 static float magscale[3] = {0, 0, 0};       // Factory mag scale
+
+static enum Mscale_t Mscale = MFS_16BITS;   // MFS_14BITS or MFS_16BITS, 14-bit or 16-bit magnetometer resolution
+static uint8_t Mmode = 0x06;                // Either 8 Hz 0x02) or 100 Hz (0x06) magnetometer data ODR  
+static int16_t magOutput[3] = {0, 0, 0};    // Stores the 16-bit signed magnetometer sensor output
 static float mx, my, mz;                    // variables to hold latest sensor data values 
-
-// Pin definitions
-// int intPin = 12;  // These can be changed, 2 and 3 are the Arduinos ext int pins
-
-/*
- * I2C Driver PART
- */
-
-// We use the I2C driver 2
-#define I2C_SDA (0U)
-#define I2C_SDC (1U)
-#define I2C_INT (3U)
-
-static i2cflags_t errors = 0;
-
-// I2C interface #2
-static const I2CConfig i2cfg = {
-		OPMODE_I2C,
-		400000,
-		FAST_DUTY_CYCLE_2,
-};
-
-void initI2C(void) {
-	palSetPadMode(GPIOF, I2C_SDA, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
-	palSetPadMode(GPIOF, I2C_SDC, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
-	palSetPadMode(GPIOF, I2C_INT, PAL_MODE_INPUT);
-
-	i2cStart(&I2CD2, &i2cfg);
-}
-
-
-static void writeByte(uint8_t address, uint8_t subAddress, uint8_t data) {
-	msg_t status = MSG_OK;
-	systime_t tmo = MS2ST(100);
-
-	uint8_t data_write[2];
-	data_write[0] = subAddress;
-	data_write[1] = data;
-
-	status = i2cMasterTransmitTimeout(&I2CD2, address, data_write, 2, 0, 0, tmo);
-
-	if (status != MSG_OK) {
-		i2cGetErrors(&I2CD2);
-	}
-}
-
-static uint8_t readByte(uint8_t address, uint8_t subAddress) {
-	msg_t status = MSG_OK;
-	systime_t tmo = MS2ST(100);
-
-	// store the register data
-	uint8_t data[1];
-	uint8_t data_write[1];
-	data_write[0] = subAddress;
-
-	status = i2cMasterTransmitTimeout(&I2CD2, address, data_write, 1, data, 1, tmo);
-
-	if (status != MSG_OK) {
-		return i2cGetErrors(&I2CD2);
-	}
-
-	return data[0]; 
-}
-
-static void readBytes(uint8_t address, uint8_t subAddress, uint8_t count, uint8_t * dest) {     
-	msg_t status = MSG_OK;
-	systime_t tmo = MS2ST(100);
-
-	int ii;
-	uint8_t data[14];
-	uint8_t data_write[1];
-	data_write[0] = subAddress;
-
-	status = i2cMasterTransmitTimeout(&I2CD2, address, data_write, 1, data, count, tmo);
-
-	if (status != MSG_OK) {
-		i2cGetErrors(&I2CD2);
-	}
-
-	for(ii = 0; ii < count; ii++) {
-		dest[ii] = data[ii];
-	}
-}
-
-int ping_ak(void) {
-	msg_t status = MSG_OK;
-	systime_t tmo = MS2ST(100);
-
-	static uint8_t txbuf = WHO_AM_I_AK8963;
-	static uint8_t rxbuf = 0x00;
-
-	status = i2cMasterTransmitTimeout(&I2CD2, AK8963_ADDRESS, &txbuf, 1, &rxbuf, 1, tmo);
-
-	if (status != MSG_OK) {
-		errors = i2cGetErrors(&I2CD2);
-		return errors;
-	}
-
-	if (rxbuf == 0x48) {
-		return 0;
-	}
-	return -1;
-}
-
+static float azimuth;
 
 /*
  * MPU 9250 & AK 8963 PART
@@ -201,19 +103,6 @@ static void initAK8963(float * calibration) {
 }
 
 // MEASURES PART
-static void getMres(void) {
-	switch (Mscale) {
-	// Possible magnetometer scales (and their register bit settings) are:
-	// 14 bit resolution (0) and 16 bit resolution (1)
-	case MFS_14BITS:
-		mRes = 10.0*4219.0/8190.0;  // Proper scale to return milliGauss
-		break;
-	case MFS_16BITS:
-		mRes = 10.0*4219.0/32760.0; // Proper scale to return milliGauss
-		break;
-	}
-}
-
 static int readMagData(int16_t * data) {
 	// x/y/z mag register and ST2 register datas stored here
 	// must read ST2 at end of data acquisition
@@ -242,7 +131,8 @@ static int readMagData(int16_t * data) {
 }
 
 
-static void mag_self_test(void) {
+// CALIBRATION PART
+void mag_self_test(void) {
 
 	// x/y/z mag register data
 	int16_t datas[6];
@@ -260,7 +150,7 @@ static void mag_self_test(void) {
 	if(!readMagData(datas)) {
 		chprintf(SERIAL, "self-test datas : x: %d y: %d y: %d \r\n", datas[0], datas[1], datas[2]);
 	} else {
-		chprintf(SERIAL, "can't get slef datas\r\n");
+		chprintf(SERIAL, "can't get self-test datas\r\n");
 	}
 	// stop self test mode
 	writeByte(AK8963_ADDRESS, AK8963_ASTC, 0x00);
@@ -270,24 +160,41 @@ static void mag_self_test(void) {
 	chThdSleepMilliseconds(10);
 }
 
+// get magnetometer resolution
+static void getMres(void) {
+	switch (Mscale) {
+	// Possible magnetometer scales (and their register bit settings) are:
+	// 14 bit resolution (0) and 16 bit resolution (1)
+	case MFS_14BITS:
+		mRes = 10.0*4219.0/8190.0;  // Proper scale to return milliGauss
+		break;
+	case MFS_16BITS:
+		mRes = 10.0*4219.0/32760.0; // Proper scale to return milliGauss
+		break;
+	}
+}
 
+// the values will be hardcoded in the future
 static void mag_calibration(float * bias, float * scale) {
-	uint16_t ii = 0, sample_count = 0;
-	int32_t mag_bias[3] = {0, 0, 0}, mag_scale[3] = {0, 0, 0};
-	int16_t mag_max[3] = {0x8000, 0x8000, 0x8000}, mag_min[3] = {0x7FFF, 0x7FFF, 0x7FFF}, mag_temp[3] = {0, 0, 0};
+	int i = 0;
+	int j = 0;
+	uint16_t sample_count = 2048;
+	int32_t mag_bias[3] = {0, 0, 0};
+	int32_t mag_scale[3] = {0, 0, 0};
+	int16_t mag_max[3] = {0x8000, 0x8000, 0x8000};
+	int16_t mag_min[3] = {0x7FFF, 0x7FFF, 0x7FFF};
+	int16_t mag_temp[3] = {0, 0, 0};
 
-	chprintf(SERIAL, "Mag Calibration: Wave device in a figure eight until done!");
-	chThdSleepMilliseconds(4000);
+//	chprintf(SERIAL, "Mag Calibration: Wave device in a figure eight until done!\r\n");
+//	chThdSleepMilliseconds(3000);
 
-	sample_count = 128;
-	for(ii = 0; ii < sample_count; ii++) {
-		// Read the mag data
+	for(i = 0; i < sample_count; i++) {
 		readMagData(mag_temp);
-		for (int jj = 0; jj < 3; jj++) {
-			if(mag_temp[jj] > mag_max[jj]) mag_max[jj] = mag_temp[jj];
-			if(mag_temp[jj] < mag_min[jj]) mag_min[jj] = mag_temp[jj];
+		for (j = 0; j < 3; j++) {
+			if(mag_temp[j] > mag_max[j]) mag_max[j] = mag_temp[j];
+			if(mag_temp[j] < mag_min[j]) mag_min[j] = mag_temp[j];
 		}
-		chThdSleepMilliseconds(135);  // at 8 Hz ODR, new mag data is available every 125 ms
+		chThdSleepMilliseconds(5);  // at 100 Hz ODR, new mag data is available every 1 ms
 	}
 
 	// Get hard iron correction
@@ -312,29 +219,54 @@ static void mag_calibration(float * bias, float * scale) {
 	scale[1] = avg_rad/((float)mag_scale[1]);
 	scale[2] = avg_rad/((float)mag_scale[2]);
 
-	chprintf(SERIAL, "Mag Calibration done!");
+	// chprintf(SERIAL, "Mag Calibration done!\r\n");
 }
 
+static void imu_calibration(int times) {
+	int i = 0;
+	float magBias[3];
+	float magScale[3];
+	
+	for(i = 0; i < times; i++) {
+		chprintf(SERIAL, "Mag Calibration n° %d : Wave device in a figure eight until done!\r\n", i);
+		mag_calibration(magBias, magScale);
+		chprintf(SERIAL, "calibration datas : \r\n Mag Bias: %f, %f, %f,\r\n Mag Scale %f, %f, %f,\r\n\r\n",\
+			magBias[0],magBias[1],magBias[2],magScale[0],magScale[1],magScale[2]);
 
+		// sum for mean
+		magbias[0] += magBias[0];
+		magbias[1] += magBias[1];
+		magbias[2] += magBias[2];
+		magscale[0] += magScale[0];
+		magscale[1] += magScale[1];
+		magscale[2] += magScale[2];
+	}
+
+	// set global calibration mean
+	magbias[0] /= times;
+	magbias[1] /= times;
+	magbias[2] /= times;
+	magscale[0] /= times;
+	magscale[1] /= times;
+	magscale[2] /= times;
+}
+
+// actual called function
 // print all values in loop
-void imu(void) {
+void imu_init(void) {
 
 	// Read the WHO_AM_I register for MPU-9250, this is a good test of communication
 	uint8_t whoami = readByte(MPU9250_ADDRESS, WHO_AM_I_MPU9250);
-	chprintf(SERIAL, "I AM 0x%x\n\r", whoami);
-	chprintf(SERIAL, "I SHOULD BE 0x71\n\r");
-
-	// WHO_AM_I should always be 0x68
 	if (whoami == 0x71) {
 		chprintf(SERIAL, "MPU9250 is online...\n\r");
 		initMPU9250();
 
+		// Read the WHO_AM_I register for AK-8963, this is a good test of communication
 		whoami = readByte(AK8963_ADDRESS, WHO_AM_I_AK8963);
-
 		if(whoami == 0x48) {
-			chprintf(SERIAL, "AK8963 is Online...\n\r");
 
 			// Initialize device for active mode read of magnetometer
+			chprintf(SERIAL, "AK8963 is Online...\n\r");
 			resetAK8963();
 			mag_self_test();
 			initAK8963(magCalibration);
@@ -344,6 +276,20 @@ void imu(void) {
 			if(Mscale == 1) chprintf(SERIAL, "Magnetometer resolution = 16  bits\n\r");
 			if(Mmode == 2) chprintf(SERIAL, "Magnetometer ODR = 8 Hz\n\r");
 			if(Mmode == 6) chprintf(SERIAL, "Magnetometer ODR = 100 Hz\n\r");
+
+			// Get magnetometer sensitivity
+			getMres();
+			chprintf(SERIAL, "Magnetometer sensitivity is %f LSB/G \n\r", 1.0f/mRes);
+
+			// Calibration of magnetometer : 10 times
+			// User environmental axis correction in milliGauss
+			imu_calibration(NB_CALIB);
+			chprintf(SERIAL, " MagBias :\r\n%f\r\n%f\r\n%f\r\n MagScale :\r\n%f\r\n%f\r\n%f\r\n", magbias[0], magbias[1], magbias[2], magscale[0], magscale[1], magscale[2]);
+
+			initAK8963(magCalibration);
+
+			// pause to see results
+			chThdSleepMilliseconds(3000);
 
 		} else {
 			// Loop forever if communication doesn't happen
@@ -357,21 +303,12 @@ void imu(void) {
 		chprintf(SERIAL, "%#x \n",  whoami);
 		while(1);
 	}
+}
 
-	// Get magnetometer sensitivity
-	getMres();
-	chprintf(SERIAL, "Magnetometer sensitivity is %f LSB/G \n\r", 1.0f/mRes);
-
-	// Calibration of magnetometer
-	// User environmental axis correction in milliGauss
-	mag_calibration(magbias, magscale);
-	chprintf(SERIAL, "MagBias :\r\n%f\r\n%f\r\n%f\r\nMagScale :\r\n%f\r\n%f\r\n%f\r\n",\
-		magbias[0], magbias[1], magbias[2], magscale[0], magscale[1], magscale[2]);
-
-	// pause to see results
+void imu(void) {
 	chprintf(SERIAL, "Let's get some datas\r\n");
-	chThdSleepMilliseconds(3000);
 	chprintf(SERIAL, "x,y,z");
+	
 	// actual reading loop
 	while(1) {
 		// Read the x/y/z adc values
@@ -388,11 +325,25 @@ void imu(void) {
 		my *= magscale[1]; 
 		mz *= magscale[2]; 
 
-		chprintf(SERIAL, "%f,%f,%f\r\n", mx, my, mz);
+		// all angles ar from the north
+		// they will be from the X axis of the scene in the future
+		if(mx == 0) {
+			if(my < 0) {
+				azimuth = PI/2;
+			} else { // y > 0
+				azimuth = - PI/2;
+			}
+		} else if (mx < 0) {
+			azimuth = PI - atan(my/mx); 
+		} else if (mx > 0) {
+			if (my < 0) {
+				azimuth = - atan(my/mx);
+			} else { // y > 0
+				azimuth = 2 * PI - atan(my/mx);
+			}
+		}
 
-//		chprintf(SERIAL, "mx = %f", mx);
-//		chprintf(SERIAL, " my = %f", my);
-//		chprintf(SERIAL, " mz = %f  mG\n\r", mz);
-		chThdSleepMilliseconds(30);
+		chprintf(SERIAL, "Azimuth : %f\r\n", azimuth);
+		chThdSleepMilliseconds(20);
 	}
 }

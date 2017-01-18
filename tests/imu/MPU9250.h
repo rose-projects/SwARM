@@ -1,13 +1,6 @@
 #ifndef MPU9250_H
 #define MPU9250_H
 
-#include "math.h"
-#include "stdint.h"
-
-// Full scale setup
-// #define MFS_14BITS	0
-// #define MFS_16BITS	1
-
 // See also MPU-9250 Register Map and Descriptions, Revision 4.0, 
 // RM-MPU-9250A-00, Rev. 1.4, 9/9/2013 for registers not listed in above document;
 // the MPU9250 and MPU9150 are virtually identical but the latter has a different register map

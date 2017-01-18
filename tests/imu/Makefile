@@ -105,7 +105,7 @@ LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
-MYSRC = usbcfg.c terminal.c imu.c main.c
+MYSRC = usbcfg.c terminal.c my_i2c.c imu.c main.c
 
 CSRC = $(STARTUPSRC) \
        $(KERNSRC) \

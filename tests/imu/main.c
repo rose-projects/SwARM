@@ -2,10 +2,9 @@
 #include "hal.h"
 
 #include "chprintf.h"
-#include "imu.h"
 #include "terminal.h"
-
-#include "MPU9250.h"
+#include "my_i2c.h"
+#include "imu.h"
 
 #define LED1 (13U)
 
@@ -48,13 +47,15 @@ int main(void) {
 	// Serial manager initialization
 	initSerial();
 
-	// I2C and MPU initialization
-	initI2C();
-
 	// let us the time to connect to serial
-	chThdSleepMilliseconds(4000);
+	chThdSleepMilliseconds(5000);
 	chprintf(SERIAL, "terminal start \r\n");
 
+	// I2C and MPU initialization
+	initI2C();
+	imu_init();
+
+	// let's go !
 	imu();
 
 	return 0;
