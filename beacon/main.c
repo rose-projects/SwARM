@@ -20,6 +20,8 @@ static const ShellCommand shCmds[] = {
 	{"getid",   getDeviceUID},
 	{"list", dumpConnectedDevices},
 	{"beacon", setBeaconPosition},
+	{"dance", startDance},
+	{"stop", stopDance},
 	{NULL, NULL}
 };
 

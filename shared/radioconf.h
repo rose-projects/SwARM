@@ -31,4 +31,10 @@
 #define RANGING_MSG_ID 0x42
 #define NEW_ROBOT_MSG_ID 0x2A
 
+// flags bits :
+#define RB_FLAGS_DEN 0x01 // dance enable
+#define RB_FLAGS_WF 0x02 // write flash
+#define RB_FLAGS_PTSTR 0x04 // store points
+#define RB_FLAGS_CLSTR 0x08 // store colors
+
 #endif

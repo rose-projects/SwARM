@@ -22,7 +22,10 @@ static int sessionID = -1;
 
 // timestamp of the last start-of-frame
 static int64_t sofTS = -1;
-static systime_t sofSystime = -1;
+static systime_t sofSystime = 0xFFFFFFFF;
+
+// current date (timing for the dance)
+static uint16_t date = 0;
 
 // registered position (indicates when to listen)
 static int registered = 0;
@@ -31,7 +34,7 @@ static int registered = 0;
 struct robotData radioData;
 
 static void parseSOF(int sofLength) {
-	int i = 4;
+	int i = 6;
 
 	// get start-of-frame reception time
 	sofTS = getRXtimestamp();
@@ -47,31 +50,26 @@ static void parseSOF(int sofLength) {
 		return;
 	}
 
+	// save date
+	date = radioBuffer[4] & (radioBuffer[5] << 8);
+
 	// search for the robot's ID in the list
 	while(i < sofLength && radioBuffer[i] != deviceID)
 		i++;
 
 	// if found, robot is known to be active by master beacon
 	if(i != sofLength)
-		registered = i - 3;
+		registered = i - 5;
 	else
 		registered = 0;
 }
 
 static void parseRadioData(void) {
-	radioData.H = radioBuffer[2];
-	radioData.S = radioBuffer[3];
-	radioData.V = radioBuffer[4];
-	radioData.x = radioBuffer[5];
-	radioData.x &= radioBuffer[6] << 8;
-	radioData.y = radioBuffer[7];
-	radioData.y &= radioBuffer[8] << 8;
-	radioData.goalX = radioBuffer[9];
-	radioData.goalX &= radioBuffer[10] << 8;
-	radioData.goalY = radioBuffer[11];
-	radioData.goalY &= radioBuffer[12] << 8;
-	radioData.goalSpeed = radioBuffer[13];
-	radioData.flags = radioBuffer[14];
+	radioData.x = radioBuffer[2];
+	radioData.x &= radioBuffer[3] << 8;
+	radioData.y = radioBuffer[4];
+	radioData.y &= radioBuffer[5] << 8;
+	radioData.flags = radioBuffer[6];
 	radioBuffer[2] = radioData.status;
 }
 
@@ -192,7 +190,7 @@ static THD_FUNCTION(radioThread, th_data) {
 			}
 		}
 
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH) == 15) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH) > 0) {
 			parseRadioData();
 			rangingResponse(1);
 			// send radio event (new data available)
@@ -210,6 +208,16 @@ static THD_FUNCTION(radioThread, th_data) {
 		}
 		switchToChannel(MB_CHANNEL);
 	}
+}
+
+uint16_t getDate(void) {
+	uint16_t dateSinceSOF;
+
+	if(sofSystime == 0xFFFFFFFF)
+	 	return 0;
+
+	dateSinceSOF = chVTTimeElapsedSinceX(sofSystime)*10/CH_CFG_ST_FREQUENCY;
+	return date*512/499.2 + dateSinceSOF;
 }
 
 void startRadio(void) {

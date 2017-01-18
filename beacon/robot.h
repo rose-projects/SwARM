@@ -5,14 +5,8 @@
 
 struct robotData {
 	// sent to the robot
-	uint8_t H;
-	uint8_t S;
-	uint8_t V;
 	int16_t x;
 	int16_t y;
-	int16_t goalX;
-	int16_t goalY;
-	uint8_t goalSpeed;
 	uint8_t flags;
 	// not sent to the robot
 	uint8_t status;
@@ -49,5 +43,10 @@ void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv);
  * where SB1 X is the x coordinate of slave beacon 1 in cm
  * and SB2 Y is the y coordinate of the slave beacon 2 in cm */
 void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv);
+
+/* start dance, USAGE : dance */
+void startDance(BaseSequentialStream *chp, int argc, char **argv);
+/* stop dance, USAGE : stop */
+void stopDance(BaseSequentialStream *chp, int argc, char **argv);
 
 #endif

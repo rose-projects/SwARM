@@ -18,23 +18,22 @@ struct robotData robots[MAX_CONNECTED_ROBOTS];
 int sb1X = 100;
 int sb2Y = 100;
 
+int danceEnable = 0;
+
 int serializeRobotData(uint8_t *targetBuffer, int robotID) {
 	struct robotData *robot = &robots[robotID-1];
 
-	targetBuffer[0] = robot->H;
-	targetBuffer[1] = robot->S;
-	targetBuffer[2] = robot->V;
-	targetBuffer[3] = robot->x;
-	targetBuffer[4] = robot->x >> 8;
-	targetBuffer[5] = robot->y;
-	targetBuffer[6] = robot->y >> 8;
-	targetBuffer[7] = robot->goalX;
-	targetBuffer[8] = robot->goalX >> 8;
-	targetBuffer[9] = robot->goalY;
-	targetBuffer[10] = robot->goalY >> 8;
-	targetBuffer[11] = robot->goalSpeed;
-	targetBuffer[12] = robot->flags;
-	return 13;
+	targetBuffer[0] = robot->x;
+	targetBuffer[1] = robot->x >> 8;
+	targetBuffer[2] = robot->y;
+	targetBuffer[3] = robot->y >> 8;
+	targetBuffer[4] = robot->flags;
+
+	if(danceEnable) {
+		targetBuffer[4] |= RB_FLAGS_DEN;
+	}
+
+	return 5;
 }
 
 static void computeTrilateralisation(int mbR, int sb1R, int sb2R, int16_t *x, int16_t *y) {
@@ -166,4 +165,21 @@ void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
 	} else {
 		chprintf(chp, "SB1 X and SB2 Y can't be 0\n");
 	}
+}
+
+void startDance(BaseSequentialStream *chp, int argc, char **argv) {
+	(void) argc;
+	(void) argv;
+
+	resetDate();
+	danceEnable = 1;
+	chprintf(chp, "OK\n");
+}
+
+void stopDance(BaseSequentialStream *chp, int argc, char **argv) {
+	(void) argc;
+	(void) argv;
+
+	danceEnable = 0;
+	chprintf(chp, "OK\n");
 }

@@ -32,6 +32,7 @@ static int sbConnected = 0;
 // master beacon specific :
 static uint8_t sessionID; // session ID, randomly generated ID at each startup of the MB
 static int restartMB = 0; // soft reset for master beacon radio task
+static uint16_t date = 0;
 
 static void parseSOF(int sofLength) {
 	int i;
@@ -45,10 +46,10 @@ static void parseSOF(int sofLength) {
 	           || ((radioBuffer[3] & 0x02) != 0 && deviceUID == 254);
 
 	// retrieve active robots list, for ranging
-	for(i=4; i < sofLength; i++) {
-		robotIDs[i-4] = radioBuffer[i];
+	for(i=6; i < sofLength; i++) {
+		robotIDs[i-6] = radioBuffer[i];
 	}
-	robotIDs[sofLength - 4] = 0;
+	robotIDs[sofLength - 6] = 0;
 }
 
 static void answerBeaconRead(void) {
@@ -227,6 +228,8 @@ static void sendSOF(void) {
 	radioBuffer[1] = 0xFF;
 	radioBuffer[2] = sessionID;
 	radioBuffer[3] = sbConnected;
+	radioBuffer[4] = date;
+	radioBuffer[5] = date >> 8;
 
 	while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
 		radioBuffer[i + 4] = robotIDs[i];
@@ -240,6 +243,9 @@ static void sendSOF(void) {
 
 	sofTS = getTXtimestamp();
 	sofSystime = chVTGetSystemTime();
+	chSysLock(); // make sure increment is atomic
+	date++;
+	chSysUnlock();
 }
 
 static void readSlaveBeacon(int beaconID) {
@@ -422,6 +428,10 @@ void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv) {
 
 void startRadio(void) {
 	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO+1, radioThread, NULL);
+}
+
+void resetDate(void) {
+	date = 0;
 }
 
 void restartRadio(void) {

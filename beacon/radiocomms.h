@@ -16,4 +16,7 @@ void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv);
  * (useful after a flash write) */
 void restartRadio(void);
 
+/* reset date counter (for dance timing sync) */
+void resetDate(void);
+
 #endif
