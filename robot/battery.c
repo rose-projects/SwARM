@@ -2,7 +2,7 @@
 #include "hal.h"
 #include "radiocomms.h"
 
-// sample to battery voltage (in 0.1V) conversion coeff
+// sample to battery voltage (in 0.01V) conversion coeff
 #define PROBE_TO_VBAT 450/4096
 
 #define SAMPLES_HISTORY 16
