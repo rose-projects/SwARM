@@ -2,9 +2,10 @@ dist: trusty
 sudo: false
 
 branches:
-    except:
-    - pretest
-    - elec
+  except:
+  - pretest
+  - elec
+
 
 language: C
 
@@ -17,6 +18,7 @@ script:
     - make -C tests/coding_wheels/
     - make -C tests/RTLS/beacon
     - make -C tests/RTLS/robot
+    - make -C tests/imu/
     - cd opencv
     - mkdir build && cd build
     - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$HOME/local ..
