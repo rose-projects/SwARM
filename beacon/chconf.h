@@ -163,7 +163,7 @@
  *
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_USE_SEMAPHORES               TRUE
+#define CH_CFG_USE_SEMAPHORES               FALSE
 
 /**
  * @brief   Semaphores queuing mode.
@@ -182,7 +182,7 @@
  *
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_USE_MUTEXES                  TRUE
+#define CH_CFG_USE_MUTEXES                  FALSE
 
 /**
  * @brief   Enables recursive behavior on mutexes.
@@ -202,7 +202,7 @@
  * @note    The default is @p TRUE.
  * @note    Requires @p CH_CFG_USE_MUTEXES.
  */
-#define CH_CFG_USE_CONDVARS                 TRUE
+#define CH_CFG_USE_CONDVARS                 FALSE
 
 /**
  * @brief   Conditional Variables APIs with timeout.
@@ -212,7 +212,7 @@
  * @note    The default is @p TRUE.
  * @note    Requires @p CH_CFG_USE_CONDVARS.
  */
-#define CH_CFG_USE_CONDVARS_TIMEOUT         TRUE
+#define CH_CFG_USE_CONDVARS_TIMEOUT         FALSE
 
 /**
  * @brief   Events Flags APIs.
@@ -239,7 +239,7 @@
  *
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_USE_MESSAGES                 TRUE
+#define CH_CFG_USE_MESSAGES                 FALSE
 
 /**
  * @brief   Synchronous Messages queuing mode.
@@ -260,7 +260,7 @@
  * @note    The default is @p TRUE.
  * @note    Requires @p CH_CFG_USE_SEMAPHORES.
  */
-#define CH_CFG_USE_MAILBOXES                TRUE
+#define CH_CFG_USE_MAILBOXES                FALSE
 
 /**
  * @brief   I/O Queues APIs.
@@ -268,7 +268,7 @@
  *
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_USE_QUEUES                   TRUE
+#define CH_CFG_USE_QUEUES                   FALSE
 
 /**
  * @brief   Core Memory Manager APIs.
@@ -277,7 +277,7 @@
  *
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_USE_MEMCORE                  TRUE
+#define CH_CFG_USE_MEMCORE                  FALSE
 
 /**
  * @brief   Heap Allocator APIs.
@@ -289,7 +289,7 @@
  *          @p CH_CFG_USE_SEMAPHORES.
  * @note    Mutexes are recommended.
  */
-#define CH_CFG_USE_HEAP                     TRUE
+#define CH_CFG_USE_HEAP                     FALSE
 
 /**
  * @brief   Memory Pools Allocator APIs.
@@ -298,7 +298,8 @@
  *
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_USE_MEMPOOLS                 TRUE
+#define CH_CFG_USE_MEMPOOLS                 FALSE
+
 
 /**
  * @brief   Dynamic Threads APIs.
@@ -309,7 +310,7 @@
  * @note    Requires @p CH_CFG_USE_WAITEXIT.
  * @note    Requires @p CH_CFG_USE_HEAP and/or @p CH_CFG_USE_MEMPOOLS.
  */
-#define CH_CFG_USE_DYNAMIC                  TRUE
+#define CH_CFG_USE_DYNAMIC                  FALSE
 
 /** @} */
 
@@ -334,7 +335,7 @@
  *
  * @note    The default is @p FALSE.
  */
-#define CH_DBG_SYSTEM_STATE_CHECK           TRUE
+#define CH_DBG_SYSTEM_STATE_CHECK           FALSE
 
 /**
  * @brief   Debug option, parameters checks.
@@ -343,7 +344,7 @@
  *
  * @note    The default is @p FALSE.
  */
-#define CH_DBG_ENABLE_CHECKS                TRUE
+#define CH_DBG_ENABLE_CHECKS                FALSE
 
 /**
  * @brief   Debug option, consistency checks.
@@ -353,7 +354,7 @@
  *
  * @note    The default is @p FALSE.
  */
-#define CH_DBG_ENABLE_ASSERTS               TRUE
+#define CH_DBG_ENABLE_ASSERTS               FALSE
 
 /**
  * @brief   Debug option, trace buffer.
@@ -362,7 +363,7 @@
  *
  * @note    The default is @p FALSE.
  */
-#define CH_DBG_ENABLE_TRACE                 TRUE
+#define CH_DBG_ENABLE_TRACE                 FALSE
 
 /**
  * @brief   Debug option, stack checks.
@@ -374,7 +375,7 @@
  * @note    The default failure mode is to halt the system with the global
  *          @p panic_msg variable set to @p NULL.
  */
-#define CH_DBG_ENABLE_STACK_CHECK           TRUE
+#define CH_DBG_ENABLE_STACK_CHECK           FALSE
 
 /**
  * @brief   Debug option, stacks initialization.

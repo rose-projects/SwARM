@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -103,6 +103,12 @@ include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 # Define linker script file here
 LDSCRIPT= beacon.ld
 
+vpath %.c ../shared/decadriver/
+vpath %.c ../shared/
+
+RADIOSRC = radiocomms.c decaplatform.c decafunctions.c deca_device.c deca_params_init.c
+DRIVERSRC = flash.c usbconf.c exticonf.c
+
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -112,8 +118,11 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-       main.c usbconf.c exticonf.c led.c
+       $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+       $(CHIBIOS)/os/various/shell.c \
+       $(RADIOSRC) \
+       $(DRIVERSRC) \
+       main.c robot.c nonvolatile.c battery.c led.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -144,7 +153,8 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) \
-         $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various
+         $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various .
+
 
 #
 # Project, sources and paths
