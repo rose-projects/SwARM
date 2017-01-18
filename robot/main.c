@@ -4,6 +4,7 @@
 #include "exticonf.h"
 #include "compdriver.h"
 #include "pwmdriver.h"
+#include "battery.h"
 #include "radiocomms.h"
 
 int main(void) {
@@ -13,6 +14,7 @@ int main(void) {
 	initExti();
 	initComparators();
 	initPWM();
+	initBattery();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
 	startRadio();
