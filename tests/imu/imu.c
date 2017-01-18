@@ -294,12 +294,14 @@ void imu_init(void) {
 			chprintf(SERIAL, "Could not connect to AK8963\n\r");
 			chprintf(SERIAL, "%#x \n",  whoami);
 			while(1);
+			// TO DO : Send message to turn LEDs red
 		}
 	} else {
 		// Loop forever if communication doesn't happen
 		chprintf(SERIAL, "Could not connect to MPU9250\n\r");
 		chprintf(SERIAL, "%#x \n",  whoami);
 		while(1);
+		// TO DO : Send message to turn LEDs red
 	}
 }
 
