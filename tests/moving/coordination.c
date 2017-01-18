@@ -9,8 +9,8 @@
 // To get the sign of a variable, returns 1 if positive or null, -1 if negative
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
-volatile int xb = 2000;
-volatile int yb = 0;
+volatile int xb = 200;
+volatile int yb = 200;
 volatile int distance = 0;
 volatile int angle = 0;
 volatile int dist_goal = 0;
@@ -18,16 +18,15 @@ volatile int angle_goal = 0;
 volatile double orientation = 0;
 volatile int x_pos = 0;
 volatile int y_pos = 0;
+volatile int last_angle_error = 0;
+volatile int last_dist_error = 0;
 
 static double radius;
 static double alpha;
-static int i;
 
 void update_main_coordinates(){
     // Theta is the angle between Y axis and the orientation of the robot
     double theta = M_PI/2 - orientation;
-    // Initializing i factor to 1, used in update_sub_coordinates
-    i = 1;
     double xb_p;
     double yb_p;    
 
@@ -49,9 +48,8 @@ void update_main_coordinates(){
 
 void update_sub_coordinates(){
     // Updating distance and angle goals
-    dist_goal = forward*fabs(alpha)*radius*i/N_POINTS;
+    dist_goal = forward*fabs(alpha)*radius/N_POINTS;
     angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
-
-    // Preparing next call of the function
-    i++;
+    dist_goal += last_dist_error;
+    angle_goal += last_angle_error;
 }

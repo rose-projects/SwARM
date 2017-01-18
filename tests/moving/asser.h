@@ -11,5 +11,7 @@ extern volatile int dist_goal;
 extern volatile int angle_goal;
 extern volatile int forward;
 extern volatile int to_the_left;
+extern int dist_error;
+extern int angle_error;
 
 #endif
