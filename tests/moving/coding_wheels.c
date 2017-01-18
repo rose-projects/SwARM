@@ -11,8 +11,6 @@
 // Wheels ticks init
 volatile int tick_l = 0;
 volatile int tick_r = 0;
-volatile int left_forward = 1; 
-volatile int right_forward = 1; 
 
 // Coding wheel interrupt on each period of the coding wheel feedback
 // It restarts the "watchdog" that resets the speed
@@ -22,7 +20,7 @@ static void period_cb_l(ICUDriver * icup){
     (void) icup;
     chSysLockFromISR();
     // Update tick count on the wheel
-    tick_l += left_forward;
+    tick_l ++;
     chSysUnlockFromISR();
 }
 
@@ -30,7 +28,7 @@ static void period_cb_r(ICUDriver * icup){
     (void) icup;
     chSysLockFromISR();
     // Update tick count on the wheel
-    tick_r += right_forward;
+    tick_r ++;
     chSysUnlockFromISR();
 }
 

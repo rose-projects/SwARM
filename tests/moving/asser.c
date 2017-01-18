@@ -13,7 +13,7 @@
 // ASSER THREADS sleep time in ms
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
-#define P_ANGLE 10
+#define P_ANGLE 2
 #define I_ANGLE 0
 #define D_ANGLE 0
 #define P_DIST 2
@@ -81,23 +81,17 @@ static THD_FUNCTION(asser_thd, arg) {
          */
 
         // Calculating cmd values
+        if(dist_goal == 0)
+            cmd_dist = 10;
         cmd_left = cmd_dist - cmd_angle;
         cmd_right = cmd_dist + cmd_angle;
 
         // Standardizing command values regarding their sign
         if(cmd_left < 0){
-            cmd_left = -cmd_left;
-            LEFT_REVERSE
-        }
-        else{
-            LEFT_FORWARD
+            cmd_left = 0;
         }
         if(cmd_right < 0){
-            cmd_right = -cmd_right;
-            RIGHT_REVERSE
-        }
-        else{
-            RIGHT_FORWARD
+            cmd_right = 0;
         }
 
         // Standardizing command values by limiting them by MAX_POWER
@@ -115,8 +109,6 @@ static THD_FUNCTION(asser_thd, arg) {
         chprintf(COUT, "cmd_angle: %D\r\n", cmd_angle); 
         chprintf(COUT, "cmd_left: %D\r\n", cmd_left); 
         chprintf(COUT, "cmd_right: %D\r\n", cmd_right); 
-        chprintf(COUT, "left_forward: %D\r\n", left_forward); 
-        chprintf(COUT, "right_forward: %D\r\n", right_forward); 
         chprintf(COUT, "##########################################\r\n"); 
 
         // Updating PWM signals
