@@ -1,5 +1,6 @@
 #include "ch.h"
 #include "hal.h"
+#include "radiocomms.h"
 
 // sample to battery voltage (in 0.1V) conversion coeff
 #define PROBE_TO_VBAT 450/4096
@@ -72,7 +73,13 @@ static void updateState(int voltage) {
 			batteryState = BATTERY_LOW;
 	}
 
-	//TODO set status flag
+	// set battery state flag in status
+	chSysLock(); // lock to guarantee atomicity
+	radioData.status &= 0xFC;
+	radioData.status |= batteryState;
+	chSysUnlock();
+
+	// TODO: stop the robot when battery is VERY_LOW
 }
 
 static THD_WORKING_AREA(waBattery, 128);
@@ -103,7 +110,7 @@ static THD_FUNCTION(batteryThread, th_data) {
 
 void initBattery(void) {
 	// power up ADC1
-    adcStart(&ADCD1, NULL);
+	adcStart(&ADCD1, NULL);
 
 	// start battery probe thread
 	chThdCreateStatic(waBattery, sizeof(waBattery), NORMALPRIO-2, batteryThread, NULL);
