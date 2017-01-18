@@ -122,8 +122,8 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/various/shell.c \
        $(RADIOSRC) \
        $(DRIVERSRC) \
-       main.c robot.c nonvolatile.c
-       
+       main.c robot.c nonvolatile.c battery.c
+
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

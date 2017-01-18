@@ -7,6 +7,7 @@
 #include "exticonf.h"
 #include "radiocomms.h"
 #include "robot.h"
+#include "battery.h"
 
 static THD_WORKING_AREA(waShell, 1024);
 
