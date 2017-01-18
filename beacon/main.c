@@ -5,8 +5,10 @@
 
 #include "usbconf.h"
 #include "exticonf.h"
+#include "led.h"
 #include "radiocomms.h"
 #include "robot.h"
+#include "battery.h"
 
 static THD_WORKING_AREA(waShell, 1024);
 
@@ -34,6 +36,8 @@ int main(void) {
 	// initialize hardware
 	initExti();
 	initUSB();
+	initLEDs();
+
 	// start radio thread
 	startRadio();
 

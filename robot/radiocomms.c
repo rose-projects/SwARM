@@ -8,6 +8,7 @@
 #include "../shared/decadriver/deca_regs.h"
 #include "../shared/radioconf.h"
 #include "radiocomms.h"
+#include "led.h"
 
 // event triggered when new data has been received
 EVENTSOURCE_DECL(radioEvent);
@@ -16,8 +17,8 @@ EVENTSOURCE_DECL(radioEvent);
 #define RADIO_BUF_LEN 100
 static uint8_t radioBuffer[RADIO_BUF_LEN];
 
-static int deviceID  = 0;
-static int sessionID  = -1;
+static int deviceID = 0;
+static int sessionID = -1;
 
 // timestamp of the last start-of-frame
 static int64_t sofTS = -1;
@@ -96,6 +97,8 @@ static void synchronizeRadio(void) {
 	switchToChannel(MB_CHANNEL);
 	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
 
+	setColor(33, 255, 128);
+
 	sofTS = -1;
 	while(sofTS == -1 || registered == 0) {
 		if((ret = decaReceive(RADIO_BUF_LEN, radioBuffer, DWT_START_RX_IMMEDIATE)) < 0) {
@@ -138,6 +141,8 @@ static void synchronizeRadio(void) {
 		}
 	}
 	dwt_setrxtimeout(RX_TIMEOUT);
+
+	releaseColor();
 }
 
 static void rangingResponse(int sendStatus) {
