@@ -19,11 +19,9 @@ static int bright_coef = 0; /* range: [0, 510] to get [-255, 255] */
 static int hough_p2 = 10; /* circle: accumulator threshold for detection */
 static int hough_p1 = 90; /* circle: high threshold for Canny edge detector */
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	VideoCapture vid;
-	Mat fm;
 	namedWindow("control", WINDOW_AUTOSIZE);
 	createTrackbar("contrast", "control", &contrast_coef, 300, NULL, NULL);
 	createTrackbar("brightness", "control", &bright_coef, 510, NULL, NULL);
@@ -44,12 +42,14 @@ main(int argc, char *argv[])
 		vid = VideoCapture(0);
 	else
 		vid = VideoCapture(argv[1]);
+
 	if (!vid.isOpened()) {
 		printf("No video\n");
 		return -1;
 	}
 
 	for (;;) {
+		Mat fm;
 		vector<Vec3f> circles;
 
 		if (vid.read(fm) == false) {
