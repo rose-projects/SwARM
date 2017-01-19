@@ -14,6 +14,8 @@
 
 // event triggered when new robot locations are available
 EVENTSOURCE_DECL(radioEvent);
+// event triggered when payload has been sent and robot's answer received
+EVENTSOURCE_DECL(payloadEvent);
 
 // RX/TX buffer
 #define RADIO_BUF_LEN 100
@@ -354,7 +356,7 @@ static void masterBeaconTask(void) {
 		while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
 			dwt_setdelayedtrxtime((sofTS  + (i + 3)*TIMESLOT_LENGTH*MS_TO_DWT) >> 8);
 			robots[robotIDs[i] - 1].mbDist =
-				rangeRobot(robotIDs[i], serializeRobotData(radioBuffer, robotIDs[i]));
+				rangeRobot(robotIDs[i], serializeRobotData(&radioBuffer[2], robotIDs[i]));
 			// distance = 0 means robot didn't respond or an error happened
 			if(robots[robotIDs[i] - 1].mbDist == 0) {
 				printf("robot %d disconnected\n", robotIDs[i]);
@@ -362,6 +364,11 @@ static void masterBeaconTask(void) {
 			} else {
 				robots[robotIDs[i] - 1].mbDist += robots[robotIDs[i] - 1].offsets->mb;
 				robots[robotIDs[i] - 1].status = radioBuffer[4];
+				// if additional payload was sent to the robot
+				if(robotIDs[i] == payloadID) {
+					payloadID = 0;
+					chEvtBroadcastFlags(&payloadEvent, EVENT_MASK(0));
+				}
 			}
 			i++;
 		}
@@ -406,11 +413,6 @@ void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv) {
 	int i;
 	(void) argc;
 	(void) argv;
-
-	if(deviceUID != 0) {
-		chprintf(chp, "available only on master beacon\n");
-		return;
-	}
 
 	if(sbConnected & 0x01)
 		chprintf(chp, "Slave beacon 1 ... connected\n");

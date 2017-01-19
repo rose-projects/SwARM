@@ -495,6 +495,9 @@
 /* Port-specific settings (override port settings defaulted in chcore.h).    */
 /*===========================================================================*/
 
+#define SHELL_MAX_LINE_LENGTH 200
+#define SHELL_MAX_ARGUMENTS   38
+
 #endif  /* _CHCONF_H_ */
 
 /** @} */

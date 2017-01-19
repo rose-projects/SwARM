@@ -9,6 +9,7 @@
 #include "../shared/radioconf.h"
 #include "radiocomms.h"
 #include "led.h"
+#include "dance.h"
 
 // event triggered when new data has been received
 EVENTSOURCE_DECL(radioEvent);
@@ -70,6 +71,13 @@ static void parseRadioData(void) {
 	radioData.y = radioBuffer[4];
 	radioData.y &= radioBuffer[5] << 8;
 	radioData.flags = radioBuffer[6];
+
+	if(radioData.flags & RB_FLAGS_CLR) {
+		clearStoredData();
+	} else if(radioData.flags & RB_FLAGS_WF) {
+		radioData.status |= RB_STATUS_WOK;
+	}
+
 	radioBuffer[2] = radioData.status;
 }
 
@@ -190,11 +198,21 @@ static THD_FUNCTION(radioThread, th_data) {
 			}
 		}
 
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH) > 0) {
+		ret = messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH);
+		if(ret > 0) {
 			parseRadioData();
 			rangingResponse(1);
+
 			// send radio event (new data available)
 		    chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+
+			// process payload
+			if(radioData.flags & RB_FLAGS_PTSTR)
+				storeMoves(&radioBuffer[7], (ret - 7)/11);
+			else if(radioData.flags & RB_FLAGS_CLSTR)
+				storeColors(&radioBuffer[7], (ret - 7)/6);
+			else if(radioData.flags & RB_FLAGS_WF)
+				writeStoredData();
 		} else {
 			sofTS = -1;
 		}

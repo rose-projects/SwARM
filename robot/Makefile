@@ -101,13 +101,13 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= robot.ld
+LDSCRIPT= ../shared/STM32F302R6.ld
 
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
 RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
-DRIVERSRC = pwmdriver.c exticonf.c compdriver.c
+DRIVERSRC = pwmdriver.c exticonf.c compdriver.c flash.c
 RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
@@ -122,7 +122,7 @@ CSRC = $(STARTUPSRC) \
        $(RADIOSRC) \
        $(DRIVERSRC) \
        $(RTTSRC) \
-       main.c battery.c led.c
+       main.c battery.c led.c dance.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

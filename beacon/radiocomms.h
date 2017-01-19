@@ -5,6 +5,8 @@
 
 /* event triggered when new robot locations are available */
 extern event_source_t radioEvent;
+/* event triggered when payload has been sent and robot's answer has been received */
+extern event_source_t payloadEvent;
 
 /* initialize decawave module and start radio communication thread */
 void startRadio(void);

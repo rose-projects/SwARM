@@ -3,13 +3,12 @@
 #include "ch.h"
 
 #include "nonvolatile.h"
-#include "flash.h"
+#include "../shared/flash.h"
 #include "radiocomms.h"
 #include "../shared/radioconf.h"
 #include "usbconf.h"
 
 #define MAX_CALIBRATION 50
-#define FLASHDATA_PAGE 15
 
 /* ID of the beacon : 0 for mb, 253 for sb1, 254 for sb2 */
 int deviceUID __attribute__((section(".flashdata")));

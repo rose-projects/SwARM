@@ -12,7 +12,7 @@
 
 static THD_WORKING_AREA(waShell, 1024);
 
-static const ShellCommand shCmds[] = {
+static const ShellCommand MBshCmds[] = {
 	{"mbcal",   mbCalibrate},
 	{"sb1cal",   sb1Calibrate},
 	{"sb2cal",   sb2Calibrate},
@@ -22,12 +22,22 @@ static const ShellCommand shCmds[] = {
 	{"beacon", setBeaconPosition},
 	{"dance", startDance},
 	{"stop", stopDance},
+	{"clear", clearStoredData},
+	{"moves", storeMoves},
+	{"colors", storeColors},
+	{"flash", writeStoredData},
 	{NULL, NULL}
 };
 
-static const ShellConfig shConfig = {
+static const ShellCommand SBshCmds[] = {
+	{"setid",   setDeviceUID},
+	{"getid",   getDeviceUID},
+	{NULL, NULL}
+};
+
+static ShellConfig shConfig = {
 	(BaseSequentialStream *) &SDU1,
-	shCmds
+	SBshCmds
 };
 
 int main(void) {
@@ -42,6 +52,10 @@ int main(void) {
 
 	// start radio thread
 	startRadio();
+
+	// extend command set on master beacon
+	if(deviceUID != 0)
+		shConfig.sc_commands = MBshCmds;
 
 	while(1) {
 		if (SDU1.config->usbp->state == USB_ACTIVE) {

@@ -20,9 +20,13 @@ int sb2Y = 100;
 
 int danceEnable = 0;
 
+static uint8_t payloadBuffer[64];
+static int payloadSize = 0;
+int payloadID = 0;
+
 int serializeRobotData(uint8_t *targetBuffer, int robotID) {
 	struct robotData *robot = &robots[robotID-1];
-
+	int i, size = 5;
 	targetBuffer[0] = robot->x;
 	targetBuffer[1] = robot->x >> 8;
 	targetBuffer[2] = robot->y;
@@ -33,7 +37,13 @@ int serializeRobotData(uint8_t *targetBuffer, int robotID) {
 		targetBuffer[4] |= RB_FLAGS_DEN;
 	}
 
-	return 5;
+	if(robotID == payloadID) {
+		for(i=0; i<payloadSize; i++)
+			targetBuffer[i+5] = payloadBuffer[i];
+
+		size += payloadSize;
+	}
+	return size;
 }
 
 static void computeTrilateralisation(int mbR, int sb1R, int sb2R, int16_t *x, int16_t *y) {
@@ -57,12 +67,21 @@ void trilateralizeRobots(void) {
 	printf("\n");
 }
 
-static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {
-	if(deviceUID != 0) {
-		chprintf(chp, "available only on master beacon\n");
-		return -1;
-	}
+static int sendPayload(int id, int size) {
+	event_listener_t evt_listener;
+	int result;
 
+	payloadSize = size;
+	payloadID = id;
+
+	chEvtRegisterMask(&payloadEvent, &evt_listener, EVENT_MASK(0));
+	result = chEvtWaitAnyTimeout(ALL_EVENTS, CH_CFG_ST_FREQUENCY); // timeout = 1 sec
+	chEvtUnregister(&payloadEvent, &evt_listener);
+
+	return result;
+}
+
+static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {
 	if(argc == 2 && (*dist = atoi(argv[1])) > 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[0]) > 0)) {
 		return 0;
 	} else {
@@ -146,11 +165,6 @@ void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
 	int x, y;
 
-	if(deviceUID != 0) {
-		chprintf(chp, "available only on master beacon\n");
-		return;
-	}
-
 	if(argc != 2) {
 		chprintf(chp, "USAGE : beacon <SB1 X> <SB2 Y>\n");
 		return;
@@ -182,4 +196,90 @@ void stopDance(BaseSequentialStream *chp, int argc, char **argv) {
 
 	danceEnable = 0;
 	chprintf(chp, "OK\n");
+}
+
+void clearStoredData(BaseSequentialStream *chp, int argc, char **argv) {
+	if(argc == 1 && atoi(argv[0]) != 0) {
+		int id = atoi(argv[0]);
+		robots[id - 1].flags = RB_FLAGS_CLR;
+		if(sendPayload(id, 0) != 0 && (robots[id - 1].status & RB_STATUS_WOK) == 0) {
+			chprintf(chp, "OK\n");
+			return;
+		}
+	}
+	chprintf(chp, "KO\n");
+}
+
+void storeMoves(BaseSequentialStream *chp, int argc, char **argv) {
+	// check parameters : maximum is 6 points at once
+	if(argc > 1 && (argc - 1) % 6 == 0 && argc < 38 && atoi(argv[0]) != 0) {
+		int i, id = atoi(argv[0]);
+		int dataLength = (argc - 1) % 6;
+
+		for(i=0; i<dataLength; i++) {
+			int date = atoi(argv[i*6 + 1]);
+			int x = atoi(argv[i*6 + 2]), y = atoi(argv[i*6 + 3]);
+			int angle = atoi(argv[i*6 + 4]);
+			int rs = atoi(argv[i*6 + 5]), re = atoi(argv[i*6 + 6]);
+
+			payloadBuffer[i*11] = date;
+			payloadBuffer[i*11 + 1] = date >> 8;
+			payloadBuffer[i*11 + 2] = x;
+			payloadBuffer[i*11 + 3] = x >> 8;
+			payloadBuffer[i*11 + 4] = y;
+			payloadBuffer[i*11 + 5] = y >> 8;
+			payloadBuffer[i*11 + 6] = angle;
+			payloadBuffer[i*11 + 7] = rs;
+			payloadBuffer[i*11 + 8] = rs >> 8;
+			payloadBuffer[i*11 + 9] = re;
+			payloadBuffer[i*11 + 10] = re >> 8;
+		}
+
+		robots[id - 1].flags = RB_FLAGS_PTSTR;
+		if(sendPayload(id, dataLength*11) != 0) {
+			chprintf(chp, "OK\n");
+			return;
+		}
+	}
+	chprintf(chp, "KO\n");
+}
+
+void storeColors(BaseSequentialStream *chp, int argc, char **argv) {
+	// check parameters : maximum is 6 color points at once
+	if(argc > 1 && (argc - 1) % 5 == 0 && argc < 32 && atoi(argv[0]) != 0) {
+		int i, id = atoi(argv[0]);
+		int dataLength = (argc - 1) % 5;
+
+		for(i=0; i<dataLength; i++) {
+			int date = atoi(argv[i*5 + 1]);
+			int h = atoi(argv[i*5 + 2]), s = atoi(argv[i*5 + 3]), v = atoi(argv[i*5 + 4]);
+			int fadeTime = atoi(argv[i*5 + 5]);
+
+			payloadBuffer[i*6] = date;
+			payloadBuffer[i*6 + 1] = date >> 8;
+			payloadBuffer[i*6 + 2] = h;
+			payloadBuffer[i*6 + 3] = s;
+			payloadBuffer[i*6 + 4] = v;
+			payloadBuffer[i*6 + 5] = fadeTime;
+		}
+
+		robots[id - 1].flags = RB_FLAGS_CLSTR;
+		if(sendPayload(id, dataLength*6) != 0) {
+			chprintf(chp, "OK\n");
+			return;
+		}
+	}
+	chprintf(chp, "KO\n");
+}
+
+void writeStoredData(BaseSequentialStream *chp, int argc, char **argv) {
+	if(argc == 1 && atoi(argv[0]) != 0) {
+		int id = atoi(argv[0]);
+		robots[id - 1].flags = RB_FLAGS_WF;
+		if(sendPayload(id, 0) != 0 && (robots[id - 1].status & RB_STATUS_WOK)) {
+			chprintf(chp, "OK\n");
+			return;
+		}
+	}
+	chprintf(chp, "KO\n");
 }

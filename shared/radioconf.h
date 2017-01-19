@@ -32,9 +32,15 @@
 #define NEW_ROBOT_MSG_ID 0x2A
 
 // flags bits :
-#define RB_FLAGS_DEN 0x01 // dance enable
-#define RB_FLAGS_WF 0x02 // write flash
+#define RB_FLAGS_DEN 0x01   // dance enable
+#define RB_FLAGS_WF 0x02    // write flash
 #define RB_FLAGS_PTSTR 0x04 // store points
 #define RB_FLAGS_CLSTR 0x08 // store colors
+#define RB_FLAGS_CLR 0x10   // clear stored data
+
+// status bits :
+#define RB_STATUS_BATT1 0x01 // battery state
+#define RB_STATUS_BATT2 0x02 // battery state
+#define RB_STATUS_WOK 0x04 // write OK
 
 #endif

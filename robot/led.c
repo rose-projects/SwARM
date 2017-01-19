@@ -1,6 +1,8 @@
 #include "ch.h"
 #include "hal.h"
 
+#include "dance.h"
+
 // number of LED module to drive, from 1 to 8
 #define NB_LED 2
 // correction coefficients to get closer to the target color
@@ -82,12 +84,10 @@ static void setLEDs(uint8_t h, uint8_t s, uint8_t v) {
 	spiSend(&SPID2, 1, data);
 }
 
-static uint8_t *hgoal, *sgoal, *vgoal;
+static struct color **goal;
 
 // refresh period (in ms) : defines fader steps length
 #define REFRESH_PERIOD 5
-// fade time (in ms)
-#define FADE_TIME 100
 // returns 1 if x>0, -1 if x<0 and 0 if x=0
 #define SIGN(x) ((x > 0) - (x < 0))
 
@@ -101,14 +101,20 @@ static THD_FUNCTION(faderThread, th_data) {
 
 	while(1) {
 		// if goals have changed, update steps
-		if(htarget != *hgoal || starget != *sgoal || vtarget != *vgoal) {
-			htarget = *hgoal;
-			starget = *sgoal;
-			vtarget = *vgoal;
+		if(htarget != (*goal)->h || starget != (*goal)->s || vtarget != (*goal)->v) {
+			htarget = (*goal)->h;
+			starget = (*goal)->s;
+			vtarget = (*goal)->v;
 
-			hstep = (htarget - h)/(FADE_TIME/REFRESH_PERIOD) + SIGN(htarget - h);
-			sstep = (starget - s)/(FADE_TIME/REFRESH_PERIOD) + SIGN(starget - s);
-			vstep = (vtarget - v)/(FADE_TIME/REFRESH_PERIOD) + SIGN(vtarget - v);
+			if((*goal)->fadeTime != 0) {
+				hstep = (htarget - h)/((*goal)->fadeTime*100/REFRESH_PERIOD) + SIGN(htarget - h);
+				sstep = (starget - s)/((*goal)->fadeTime*100/REFRESH_PERIOD) + SIGN(starget - s);
+				vstep = (vtarget - v)/((*goal)->fadeTime*100/REFRESH_PERIOD) + SIGN(vtarget - v);
+			} else {
+				hstep = 255;
+				sstep = 255;
+				vstep = 255;
+			}
 		}
 
 		// update LEDs if target is not reached
@@ -146,18 +152,18 @@ static const SPIConfig spiconf = {
 
 // take control of the color locally
 void setColor(uint8_t h, uint8_t s, uint8_t v) {
-	static uint8_t hlocal, slocal, vlocal;
+	static struct color local;
+	static struct color *localPtr = &local;
 
-	hlocal = h;
-	slocal = s;
-	vlocal = v;
-	hgoal = &hlocal;
-	sgoal = &slocal;
-	vgoal = &vlocal;
+	local.fadeTime = 0;
+	local.h = h;
+	local.s = s;
+	local.v = v;
+	goal = &localPtr;
 }
 
 void releaseColor(void) {
-	//TODO
+	goal = &currentColor;
 }
 
 // LEDs setup

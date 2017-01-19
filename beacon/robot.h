@@ -19,6 +19,9 @@ struct robotData {
 /* data about robots status and goal, robot <ID> data = robots[ID] */
 extern struct robotData robots[];
 
+/* ID of the robot to send payload to (or 0) */
+extern int payloadID;
+
 /* fill targetBuffer with a serialized version of the robot data to send.
  * Returns length of serialized data */
 int serializeRobotData(uint8_t *targetBuffer, int robotID);
@@ -48,5 +51,19 @@ void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv);
 void startDance(BaseSequentialStream *chp, int argc, char **argv);
 /* stop dance, USAGE : stop */
 void stopDance(BaseSequentialStream *chp, int argc, char **argv);
+
+/* send and store points of the dance to a robot (up to 6 points at once)
+ * USAGE : moves <ROBOT ID> <DATE> <X> <Y> <ANGLE> <START RADIUS> <END RADIUS> <DATE> ... */
+void storeMoves(BaseSequentialStream *chp, int argc, char **argv);
+/* send and store colors of the dance to a robot (up to 6 points at once)
+ * USAGE : moves <ROBOT ID> <DATE> <H> <S> <V> <FADE TIME> <DATE> <H> ... */
+void storeColors(BaseSequentialStream *chp, int argc, char **argv);
+
+/* clear any previously stored data on a robot
+ * USAGE : clear <ROBOT ID> */
+void clearStoredData(BaseSequentialStream *chp, int argc, char **argv);
+/* write previously stored data on a robot in its flash
+ * USAGE : flash <ROBOT ID> */
+void writeStoredData(BaseSequentialStream *chp, int argc, char **argv);
 
 #endif

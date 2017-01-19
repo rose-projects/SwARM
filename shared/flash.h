@@ -16,6 +16,8 @@
 /* Flash operation error because of bad flash, corrupted memory */
 #define FLASH_RETURN_BAD_FLASH -11
 
+#define FLASHDATA_PAGE 15
+
 /** @brief Address in the flash memory */
 typedef uintptr_t flashaddr_t;
 
