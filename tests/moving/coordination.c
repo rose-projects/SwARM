@@ -6,51 +6,51 @@
 #include <math.h>
 #include "hal.h"
 #include "ch.h"
-// To get the sign of a variable, returns 1 if positive or null, -1 if negative
+/* return 1 if x >= 0, -1 otherwise */
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
-volatile int xb = 200;
-volatile int yb = 200;
-volatile int distance = 0;
-volatile int angle = 0;
-volatile int dist_goal = 0;
-volatile int angle_goal = 0;
-volatile double orientation = 0;
-volatile int x_pos = 0;
-volatile int y_pos = 0;
-volatile int last_angle_error = 0;
-volatile int last_dist_error = 0;
+volatile int dist_goal = 0; // PID->dist to next sub_coord call
+volatile int angle_goal = 0; // PID->tick diff : 0 is straigt, 246 is Pi/2
+volatile double orientation = 0; // robot's orientation in rad
+volatile int x_pos = 0; // last measured position : true when exec main_coord
+volatile int y_pos = 0; // ^
+volatile int last_angle_error = 0; // PID
+volatile int last_dist_error = 0; // ^
 
-static double radius;
-static double alpha;
+static double radius; /* radius of the trajectory */
+static double alpha; /* angle of the trajectory */
+static int i; // i-th point out of N_POINTS in the trajectory
 
-void update_main_coordinates(){
-    // Theta is the angle between Y axis and the orientation of the robot
-    double theta = M_PI/2 - orientation;
-    double xb_p;
-    double yb_p;    
+/* Called once to go from A to B */
+void update_main_coordinates(int xb, int yb, double arrival_angle) {
+	double xb_, yb_, arrival_angle_; // variables in the new system
+	double theta = M_PI/2 - orientation; // system rotation angle	
 
-	/*
-	 * Calculating coordinates of the next position to go to in the referential
-	 * defined by the robot itself
-	 */
-	xb_p = (xb - x_pos)*cos(theta) - (yb-y_pos)*sin(theta);
-	yb_p = (xb - x_pos)*sin(theta) + (yb-y_pos)*cos(theta);
+	/* testing order */
+	xb = 200;
+	yb = 200;
+	arrival_angle = M_PI / 4;
+
+	xb_ = (xb-x_pos)*cos(theta) - (yb-y_pos)*sin(theta);
+	yb_ = (xb-x_pos)*sin(theta) + (yb-y_pos)*cos(theta);
+	arrival_angle_ = M_PI/2 - arrival_angle;
+
 	// Are we going forward? To the left?
-	forward = SIGN(yb_p);
-	to_the_left = SIGN(xb_p);
+	forward = SIGN(yb_);
+	to_the_left = SIGN(xb_);
 
-	// Calculating radius of the trajectory
-	radius = (fabs(xb_p) + yb_p*yb_p/fabs(xb_p))/2;
-	// Calculating angle of the trajectory
-	alpha = 2*asin(sqrt((xb_p*xb_p)+(yb_p*yb_p))/(2*radius));
+	radius = (fabs(xb_) + yb_*yb_/fabs(xb_)) / 2;
+	alpha = 2*asin(sqrt((xb_*xb_)+(yb_*yb_)) / (2*radius));
+	i = 1;
 }
 
-void update_sub_coordinates(){
-<<<<<<< HEAD
-    // Updating distance and angle goals
-    dist_goal = forward*fabs(alpha)*radius/N_POINTS;
-    angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
-    dist_goal += last_dist_error;
-    angle_goal += last_angle_error;
+// Update distance and angle goals
+// Called every 50ms
+void update_sub_coordinates(void) {
+	dist_goal = forward*fabs(alpha)*radius*i/N_POINTS;
+	angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
+	dist_goal += last_dist_error;
+	angle_goal += last_angle_error;
+	i++;
 }
+
