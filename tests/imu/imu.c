@@ -12,7 +12,7 @@
  */
 
 #define PI 3.14159265359
-#define NB_CALIB 10 // > 0
+#define NB_CALIB 0
 
 enum Mscale_t {
 	MFS_14BITS = 0, // 0.6 mG per LSB
@@ -219,7 +219,20 @@ static void mag_calibration(float * bias, float * scale) {
 	scale[2] = avg_rad/((float)mag_scale[2]);
 }
 
-static void imu_calibration(int times) {
+static int imu_calibration(int times) {
+	
+	// set hard pre calibrated datas
+	if(times == 0) {
+		magbias[0] = 33.0;
+		magbias[1] = -60.0;
+		magbias[2] = 350.0;
+		magscale[0] = 1.02;
+		magscale[1] = 1.007;
+		magscale[2] = 0.960;
+
+		return 0;
+	}
+
 	int i = 0;
 	float magBias[3];
 	float magScale[3];
@@ -246,6 +259,8 @@ static void imu_calibration(int times) {
 	magscale[0] /= times;
 	magscale[1] /= times;
 	magscale[2] /= times;
+
+	return 0;
 }
 
 // actual called function
@@ -306,8 +321,6 @@ void imu_init(void) {
 }
 
 void imu(void) {
-	chprintf(SERIAL, "Let's get some datas\r\n");
-	chprintf(SERIAL, "x,y,z");
 	
 	// actual reading loop
 	while(1) {
@@ -344,6 +357,6 @@ void imu(void) {
 		}
 
 		chprintf(SERIAL, "Azimuth : %f\r\n", azimuth);
-		chThdSleepMilliseconds(20);
+		chThdSleepMilliseconds(10);
 	}
 }
