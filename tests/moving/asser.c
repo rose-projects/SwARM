@@ -15,14 +15,14 @@
 #define ASSER_THD_SLEEP (1000/ASSER_FREQ)
 // PID coefficients for angle and distance
 #define P_ANGLE 1.33333333
-#define I_ANGLE 0.033333333
+#define I_ANGLE 0.03333333
 #define D_ANGLE 0.8
-#define P_DIST 3.3333333
+#define P_DIST 3.33333333
 #define I_DIST 0.0001
 #define D_DIST 9
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX(a,b) ((a>b) ? a : b)
-#define MAX_POWER 100
+#define MAX_POWER 200
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
@@ -96,10 +96,10 @@ static THD_FUNCTION(asser_thd, arg) {
 
         int cmd_max = MAX(cmd_right, cmd_left);
         int offset = cmd_max - MIN(cmd_max, MAX_POWER);
-        
+
         cmd_left = cmd_left - offset;
         cmd_right = cmd_right - offset;
-        
+
         // Standardizing command values regarding their sign
         if(cmd_left < 0){
             cmd_left = 0;
@@ -113,17 +113,17 @@ static THD_FUNCTION(asser_thd, arg) {
 
         // Printing out the current values of ticks and pwm commands 
         if(cmd_dist != 0){
-        chprintf(COUT, "tick_l: %D\r\n", tick_l); 
-        chprintf(COUT, "tick_r: %D\r\n", tick_r); 
-        chprintf(COUT, "dist_goal: %D\r\n", dist_goal); 
-        chprintf(COUT, "angle_goal: %D\r\n", angle_goal); 
-        chprintf(COUT, "distance: %D\r\n", distance); 
-        chprintf(COUT, "angle: %D\r\n", angle); 
-        chprintf(COUT, "cmd_dist: %D\r\n", cmd_dist); 
-        chprintf(COUT, "cmd_angle: %D\r\n", cmd_angle); 
-        chprintf(COUT, "cmd_left: %D\r\n", cmd_left); 
-        chprintf(COUT, "cmd_right: %D\r\n", cmd_right); 
-        chprintf(COUT, "##########################################\r\n"); 
+            chprintf(COUT, "tick_l: %D\r\n", tick_l); 
+            chprintf(COUT, "tick_r: %D\r\n", tick_r); 
+            chprintf(COUT, "dist_goal: %D\r\n", dist_goal); 
+            chprintf(COUT, "angle_goal: %D\r\n", angle_goal); 
+            chprintf(COUT, "distance: %D\r\n", distance); 
+            chprintf(COUT, "angle: %D\r\n", angle); 
+            chprintf(COUT, "cmd_dist: %D\r\n", cmd_dist); 
+            chprintf(COUT, "cmd_angle: %D\r\n", cmd_angle); 
+            chprintf(COUT, "cmd_left: %D\r\n", cmd_left); 
+            chprintf(COUT, "cmd_right: %D\r\n", cmd_right); 
+            chprintf(COUT, "##########################################\r\n"); 
         }
 
         // Updating PWM signals
@@ -162,10 +162,10 @@ void begin_new_asser(){
     dist_error_sum = 0;
     dist_error_delta = 0;
     dist_error_delta = 0;
-    // Reset ticks
-    tick_l = 0;
-    tick_r = 0;
     // Reset angle and distance error integrals
     last_angle_error = 0;
     last_dist_error = 0;
+    // Reset ticks
+    tick_l = 0;
+    tick_r = 0;
 }

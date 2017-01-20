@@ -23,6 +23,7 @@ volatile int last_dist_error = 0;
 
 static double radius;
 static double alpha;
+static int i;
 
 void update_main_coordinates(){
 	// Theta is the angle between Y axis and the orientation of the robot
@@ -46,13 +47,18 @@ void update_main_coordinates(){
 	radius = (fabs(xb_p) + yb_p*yb_p/fabs(xb_p))/2;
 	// Calculating angle of the trajectory
 	alpha = 2*asin(sqrt((xb_p*xb_p)+(yb_p*yb_p))/(2*radius));
+	
+	i = 1;
 }
 
 void update_sub_coordinates(){
 	// Updating distance and angle goals
-	dist_goal = forward*fabs(alpha)*radius*i/N_POINTS;
-	angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
+	dist_goal = forward*fabs(alpha)*radius/N_POINTS;
+	angle_goal = L_MM*forward*fabs(alpha)*radius/(N_POINTS*(radius*U_MM)*to_the_left);
+	// Adding distance to previous goal
+	dist_goal += last_dist_error;
+	angle_goal += last_angle_error;
 
-	// Preparing next call of the function
+	// Ready for next iteration
 	i++;
 }

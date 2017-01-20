@@ -47,7 +47,6 @@ static THD_FUNCTION(moving_thd, arg) {
         // Ready for next iteration
         i++;
         chprintf(COUT, "##########################\r\n");
-
         chprintf(COUT, "Updating distance and angle goals\r\n");
         chprintf(COUT, "Distance new value: %D\r\n", dist_goal);
         chprintf(COUT, "Are we going forward?: %D\r\n", forward);
