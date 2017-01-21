@@ -1,9 +1,6 @@
 #include "coding_wheels.h"
 #include "hal.h"
 
-// Frequency at which we check the input on the coding wheels
-#define FREQUENCY 100000
-
 /*
  * TIM5_CH1 is connected to the right coding wheel
  * TIM3_TH2 is connected to the left coding wheel

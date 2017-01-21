@@ -1,11 +1,14 @@
+#include "hal.h"
+#include "ch.h"
+
+#include <math.h>
+
 #include "coordination.h"
 #include "wheel_constants.h"
 #include "asser.h"
 #include "moving.h"
 #include "position.h"
-#include <math.h>
-#include "hal.h"
-#include "ch.h"
+
 /* return 1 if x >= 0, -1 otherwise */
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
@@ -20,8 +23,8 @@ volatile int last_dist_error = 0; // ^
 static double radius; /* radius of the trajectory */
 static double alpha; /* angle of the trajectory */
 static int i; // i-th point out of N_POINTS in the trajectory
-static int forward;
-static int to_the_left;
+static int forward; // are we going forward?
+static int to_the_left; // are we going to the left ?
 
 /* Called once to go from A to B */
 void update_main_coordinates(int xb, int yb, double arrival_angle) {

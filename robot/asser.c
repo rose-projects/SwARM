@@ -1,13 +1,12 @@
+#include "ch.h"
+#include "hal.h"
+
 #include "asser.h"
 #include "coding_wheels.h"
 #include "wheel_constants.h"
+#include "pwmdriver.h"
 #include "motors.h"
 #include "coordination.h"
-
-#include "ch.h"
-#include "hal.h"
-#include "usbcfg.h"
-#include "chprintf.h"
 
 // ASSER frequency in Hz
 #define ASSER_FREQ 200
@@ -109,24 +108,9 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_left = MIN(cmd_left, MAX_POWER);
         cmd_right = MIN(cmd_right, MAX_POWER);
 
-        // Printing out the current values of ticks and pwm commands 
-        if(cmd_dist != 0){
-            chprintf(COUT, "tick_l: %D\r\n", tick_l); 
-            chprintf(COUT, "tick_r: %D\r\n", tick_r); 
-            chprintf(COUT, "dist_goal: %D\r\n", dist_goal); 
-            chprintf(COUT, "angle_goal: %D\r\n", angle_goal); 
-            chprintf(COUT, "distance: %D\r\n", distance); 
-            chprintf(COUT, "angle: %D\r\n", angle); 
-            chprintf(COUT, "cmd_dist: %D\r\n", cmd_dist); 
-            chprintf(COUT, "cmd_angle: %D\r\n", cmd_angle); 
-            chprintf(COUT, "cmd_left: %D\r\n", cmd_left); 
-            chprintf(COUT, "cmd_right: %D\r\n", cmd_right); 
-            chprintf(COUT, "##########################################\r\n"); 
-        }
-
         // Updating PWM signals
-        pwmEnableChannel(&PWMD1, 0, cmd_left);
-        pwmEnableChannel(&PWMD1, 1, cmd_right);
+        setLpwm(cmd_left);
+        setRpwm(cmd_right);
 
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);
@@ -136,7 +120,7 @@ static THD_FUNCTION(asser_thd, arg) {
 // To be called from main to start a basic enslavement
 void start_asservs(){
     // Motors init
-    motors_init();
+    initMotors();
 
     // Starting the monitoring threads
     (void)chThdCreateStatic(working_area_asser_thd, \

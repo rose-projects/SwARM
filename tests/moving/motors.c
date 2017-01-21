@@ -3,9 +3,9 @@
 #include "hal.h"
 #include "ch.h"
 
-#define PWM_FREQ            100000
+#define PWM_FREQ        100000
 
-const PWMConfig pwm_conf = {
+static const PWMConfig pwm_conf = {
     // Frequency
     PWM_FREQ,
     // Period of the PWM generation

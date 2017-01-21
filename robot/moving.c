@@ -1,13 +1,11 @@
+#include "hal.h"
+#include "ch.h"
+
 #include "moving.h"
 #include "coding_wheels.h"
 #include "asser.h"
 #include "position.h"
 #include "coordination.h"
-
-#include "hal.h"
-#include "ch.h"
-#include "usbcfg.h"
-#include "chprintf.h"
 
 // We update robot position goal every 200 milliseconds
 #define MOVING_THD_SLEEP 50
@@ -28,14 +26,7 @@ static THD_FUNCTION(moving_thd, arg) {
      */
     while(i<N_POINTS){
         if((i%N_POINTS) == 0){
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "Begin of new cycle\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            chprintf(COUT, "##########################\r\n");
-            update_main_coordinates();
+            update_main_coordinates(0,0,0);
         }
         // Updating position, dist/angle error offset to add to next commands
         update_position();
@@ -46,10 +37,6 @@ static THD_FUNCTION(moving_thd, arg) {
 
         // Ready for next iteration
         i++;
-        chprintf(COUT, "##########################\r\n");
-        chprintf(COUT, "Updating distance and angle goals\r\n");
-        chprintf(COUT, "Distance new value: %D\r\n", dist_goal);
-        chprintf(COUT, "Angle new value: %D\r\n", angle_goal);
 
         // Go to sleep
         chThdSleepMilliseconds(MOVING_THD_SLEEP);
