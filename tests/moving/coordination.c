@@ -9,47 +9,56 @@
 /* return 1 if x >= 0, -1 otherwise */
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
-volatile int dist_goal = 0; // PID->dist to next sub_coord call
-volatile int angle_goal = 0; // PID->tick diff : 0 is straigt, 246 is Pi/2
-volatile double orientation = 0; // robot's orientation in rad
-volatile int x_pos = 0; // last measured position : true when exec main_coord
-volatile int y_pos = 0; // ^
-volatile int last_angle_error = 0; // PID
-volatile int last_dist_error = 0; // ^
+volatile int dist_goal = 0; /* PID->dist to next update_sub_coordinates call */
+volatile int angle_goal = 0; /* PID->tick diff: 0 is straigt, 246 is Pi/2 */
+volatile double orientation = 0; /* orientation of the robot in rad */
+volatile int x_pos = 0; /* last measured position, used when calling update_ */
+volatile int y_pos = 0; /* main_coordinates */
+volatile int last_angle_error = 0; /* computed in position.c */
+volatile int last_dist_error = 0; /* computed in position.c */
 
 static double radius; /* radius of the trajectory */
 static double alpha; /* angle of the trajectory */
-static int i; // i-th point out of N_POINTS in the trajectory
-static int forward;
-static int to_the_left;
+static int i; /* i-th point out of N_POINTS in the trajectory */
+static int forward; /* 1: going forward, -1: backward */
+static int to_the_left; /* 1: going to the left, -1 to the right */
 
-/* Called once to go from A to B */
-void update_main_coordinates(int xb, int yb, double arrival_angle) {
-	double xb_, yb_, arrival_angle_; // variables in the new system
-	double theta = M_PI/2 - orientation; // system rotation angle	
+/* Called once to set the goalination */
+void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
+	int r_dep, int r_goal)
+{
+	double x_goal_, y_goal_, goal_angle_; /* variables in the new system */
+	double theta = M_PI/2 - orientation; /* system rotation angle */
+	int dep_circle[2] = {0};
+	int goal_circle[2] = {0};
 
 	/* testing order */
-	xb = 200;
-	yb = 200;
-	arrival_angle = M_PI / 4;
+	x_goal = 200;
+	y_goal = 200;
+	goal_angle = M_PI / 4;
+	r_dep = 10;
+	r_goal = 40;
 
-	xb_ = (xb-x_pos)*cos(theta) - (yb-y_pos)*sin(theta);
-	yb_ = (xb-x_pos)*sin(theta) + (yb-y_pos)*cos(theta);
-	arrival_angle_ = M_PI/2 - arrival_angle;
+	/* cartesian system change */
+	x_goal_ = (x_goal-x_pos)*cos(theta) - (y_goal-y_pos)*sin(theta);
+	y_goal_ = (x_goal-x_pos)*sin(theta) + (y_goal-y_pos)*cos(theta);
+	goal_angle_ = goal_angle + theta;
 
-	// Are we going forward? To the left?
-	forward = SIGN(yb_);
-	to_the_left = SIGN(xb_);
-
-	radius = (fabs(xb_) + yb_*yb_/fabs(xb_)) / 2;
-	alpha = 2*asin(sqrt((xb_*xb_)+(yb_*yb_)) / (2*radius));
+	/* choose the right circles */
+	(x_goal_ >= 0) ? O : O;
 	i = 1;
-    (void) arrival_angle_;
 }
 
-// Update distance and angle goals
-// Called every 50ms
+/* Update distance and angle goals
+ * Called every 50ms
+ */
 void update_sub_coordinates(void) {
+	forward = SIGN(y_goal_);
+	to_the_left = SIGN(x_goal_);
+
+	radius = (fabs(x_goal_) + y_goal_*y_goal_/fabs(x_goal_)) / 2;
+	alpha = 2*asin(sqrt((x_goal_*x_goal_)+(y_goal_*y_goal_)) / (2*radius));
+
 	dist_goal = forward*fabs(alpha)*radius*i/N_POINTS;
 	angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
 	dist_goal += last_dist_error;
