@@ -1,12 +1,10 @@
-#include "asser.h"
-#include "position.h"
-#include "wheel_constants.h"
-#include "coordination.h"
-
 #include "ch.h"
 #include "hal.h"
-#include "usbcfg.h"
-#include "chprintf.h"
+
+#include "position.h"
+#include "wheel_constants.h"
+#include "asser.h"
+#include "coordination.h"
 
 /*
  * Update position according to the coding wheels
@@ -23,10 +21,4 @@ void update_position(){
     y_pos += distance*sin(orientation);
     last_dist_error = dist_error;
     last_angle_error = angle_error;
-
-    chprintf(COUT, "Position update:\r\n");
-    chprintf(COUT, "x_pos: %D\r\n", (long)x_pos);
-    chprintf(COUT, "y_pos: %D\r\n", (long)y_pos);
-    chprintf(COUT, "last_dist_error: %D\r\n", last_dist_error);
-    chprintf(COUT, "last_angle_error: %D\r\n", last_angle_error);
 }

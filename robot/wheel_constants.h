@@ -3,7 +3,8 @@
 
 #include <math.h>
 
-/* This file defines the constants that are used throughout the code and that 
+/* 
+ * This file defines the constants that are used throughout the code and that 
  * are related to the coding_wheels
  */
 
