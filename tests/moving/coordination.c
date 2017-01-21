@@ -22,15 +22,16 @@ static double alpha; /* angle of the trajectory */
 static int i; /* i-th point out of N_POINTS in the trajectory */
 static int forward; /* 1: going forward, -1: backward */
 static int to_the_left; /* 1: going to the left, -1 to the right */
+static double x_goal_, y_goal_, goal_angle_; /* variables in the new system */
 
 /* Called once to set the goalination */
 void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	int r_dep, int r_goal)
 {
-	double x_goal_, y_goal_, goal_angle_; /* variables in the new system */
 	double theta = M_PI/2 - orientation; /* system rotation angle */
 	int dep_circle[2] = {0};
 	int goal_circle[2] = {0};
+	int tmp1[2], tmp2[2]; /* the 2 arrival circles we have to chose from */
 
 	/* testing order */
 	x_goal = 200;
@@ -45,7 +46,20 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	goal_angle_ = goal_angle + theta;
 
 	/* choose the right circles */
-	(x_goal_ >= 0) ? O : O;
+	dep_circle[0] = (x_goal_ >= 0 ? r_dep : -r_dep);
+	tmp1[0] = x_goal_ + r_goal * sin(goal_angle_);
+	tmp1[1] = y_goal_ - r_goal * cos(goal_angle_);
+	tmp2[0] = x_goal_ - r_goal * sin(goal_angle_);
+	tmp2[1] = y_goal_ + r_goal * cos(goal_angle_);
+	if (tmp1[0]*tmp1[0] + tmp1[1]*tmp1[1]
+		<= tmp2[0]*tmp2[0] + tmp2[1]*tmp2[1])
+	{
+		goal_circle[0] = tmp1[0];
+		goal_circle[1] = tmp1[1];
+	}
+
+	/* find the tangent points */
+
 	i = 1;
 }
 
