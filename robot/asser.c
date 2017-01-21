@@ -29,6 +29,8 @@ volatile int cmd_dist;
 volatile int cmd_angle;
 volatile int dist_error = 0;
 volatile int angle_error = 0;
+volatile int angle = 0;
+volatile int distance = 0;
 static int dist_error_sum;
 static int dist_error_delta;
 static int dist_error_prev;

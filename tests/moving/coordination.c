@@ -44,6 +44,7 @@ void update_main_coordinates(int xb, int yb, double arrival_angle) {
 	radius = (fabs(xb_) + yb_*yb_/fabs(xb_)) / 2;
 	alpha = 2*asin(sqrt((xb_*xb_)+(yb_*yb_)) / (2*radius));
 	i = 1;
+    (void) arrival_angle_;
 }
 
 // Update distance and angle goals
