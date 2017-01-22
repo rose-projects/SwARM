@@ -23,6 +23,7 @@ static int i; /* i-th point out of N_POINTS in the trajectory */
 static int forward; /* 1: going forward, -1: backward */
 static int to_the_left; /* 1: going to the left, -1 to the right */
 static double x_goal_, y_goal_, goal_angle_; /* variables in the new system */
+static double tan_pt_dep[2], tan_pt_goal[2]; /* tangent points */
 
 /* Called once to set the goalination */
 void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
@@ -32,13 +33,15 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	int dep_circle[2] = {0};
 	int goal_circle[2] = {0};
 	int tmp1[2], tmp2[2]; /* the 2 arrival circles we have to chose from */
+	double h[2] = {0}; /* homothetic center */
+	int t = 0; /* 1 if inner tangent, -1 otherwise */
 
 	/* testing order */
 	x_goal = 200;
 	y_goal = 200;
 	goal_angle = M_PI / 4;
-	r_dep = 10;
-	r_goal = 40;
+	r_dep = 40;
+	r_goal = 10;
 
 	/* cartesian system change */
 	x_goal_ = (x_goal-x_pos)*cos(theta) - (y_goal-y_pos)*sin(theta);
@@ -46,6 +49,10 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	goal_angle_ = goal_angle + theta;
 
 	/* choose the right circles */
+	/* hypothesis: the closest to the goal is the one we want.
+	 * Some cases break this law, but they may not happen depending on the
+	 * choice of the choreography.
+	 */
 	dep_circle[0] = (x_goal_ >= 0 ? r_dep : -r_dep);
 	tmp1[0] = x_goal_ + r_goal * sin(goal_angle_);
 	tmp1[1] = y_goal_ - r_goal * cos(goal_angle_);
@@ -59,6 +66,33 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	}
 
 	/* find the tangent points */
+	/* hypothesis1: the robot will never need to to go to the left if
+	 * the goal is in the right-hand quadrant
+	 * hypothesis2: r_dep > r_goal TODO: all cases
+	 */
+	if (goal_circle[0] == tmp1[0])
+		t = -1;
+	else
+		t = 1;
+
+	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0])/
+		(r_dep + t*r_goal);
+	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1])/
+		(r_dep + t*r_goal);
+
+	tan_pt_dep[0] = dep_circle[0] +
+		(r_dep*r_dep*(h[0]-dep_circle[0])-r_dep*(h[1]-dep_circle[1])*sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0])+(h[1]-dep_circle[1])*(h[1]-dep_circle[1])-r_dep*r_dep))/
+		((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]));
+	tan_pt_dep[1] = dep_circle[1] +
+		(r_dep*r_dep*(h[1]-dep_circle[1])+r_dep*(h[0]-dep_circle[0])*sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0])+(h[1]-dep_circle[1])*(h[1]-dep_circle[1])-r_dep*r_dep))/
+		((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]));
+
+	tan_pt_goal[0] = goal_circle[0] +
+		(r_goal*r_goal*(h[0]-goal_circle[0])+t*r_goal*(h[1]-goal_circle[0])*sqrt((h[0]-goal_circle[0])*(h[0]-goal_circle[0])+(h[1]-goal_circle[1])*(h[1]-goal_circle[1])-r_goal*r_goal))/
+		((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) + (h[1]-goal_circle[1])*(h[1]-goal_circle[1]));
+	tan_pt_goal[1] = goal_circle[1] +
+		(r_goal*r_goal*(h[1]-goal_circle[1])-t*r_goal*(h[0]-goal_circle[0])*sqrt((h[0]-goal_circle[0])*(h[0]-goal_circle[0])+(h[1]-goal_circle[1])*(h[1]-goal_circle[1])-r_goal*r_goal))/
+		((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) + (h[1]-goal_circle[1])*(h[1]-goal_circle[1]));
 
 	i = 1;
 }
@@ -67,6 +101,9 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
  * Called every 50ms
  */
 void update_sub_coordinates(void) {
+	/* 0: departure circles, 1: straight line, 2: goal circle */
+	static int state = 0; 
+
 	forward = SIGN(y_goal_);
 	to_the_left = SIGN(x_goal_);
 
