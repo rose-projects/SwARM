@@ -1,0 +1,22 @@
+//output:index.html, pretty:true
+
+doctype html
+html(lang="fr")
+	head
+		title Choregraph
+		link(rel='stylesheet', href='styles/style.css')
+		link(rel='stylesheet', href='styles/list.css')
+		link(rel='stylesheet', href='styles/font-awesome.css')
+	body
+		div.table-layout
+		canvas#table.table-layout
+		div.tools
+			div.selector
+				a.btn.selected-btn.moves-mode Mouvements
+				a.btn.colors-mode Couleurs
+			br
+			div.robots
+			
+		script(src="../lib/list.js")
+		script(src="../lib/sidebar.js")
+		script(type="text/paperscript" src="scripts/paths.js" canvas="table")

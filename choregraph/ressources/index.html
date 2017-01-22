@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Choregraph</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/list.css">
+    <link rel="stylesheet" href="styles/font-awesome.css">
+  </head>
+  <body>
+    <div class="table-layout"></div>
+    <canvas id="table" class="table-layout"></canvas>
+    <div class="tools">
+      <div class="selector"><a class="btn selected-btn moves-mode">Mouvements</a><a class="btn colors-mode">Couleurs</a></div><br>
+      <div class="robots"></div>
+    </div>
+    <script src="../lib/list.js"></script>
+    <script src="../lib/sidebar.js"></script>
+    <script type="text/paperscript" src="scripts/paths.js" canvas="table"></script>
+  </body>
+</html>
