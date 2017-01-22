@@ -26,7 +26,7 @@ static THD_FUNCTION(moving_thd, arg) {
      */
     while(i<N_POINTS){
         if((i%N_POINTS) == 0){
-            update_main_coordinates(0,0,0);
+            update_main_coordinates(0,0,0,0,0);
         }
         // Updating position, dist/angle error offset to add to next commands
         update_position();
