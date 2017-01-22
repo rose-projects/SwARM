@@ -133,9 +133,9 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
  * Called every 50ms
  */
 void update_sub_coordinates(void) {
-	double x, y; /* coordinate of the destination */
-	double radius; /* radius of the trajectory */
-	double alpha; /* angle of the trajectory */
+	double x = 0, y = 0; /* coordinate of the destination */
+	double radius = 0; /* radius of the trajectory */
+	double alpha = 0; /* angle of the trajectory */
 
 	switch (state) {
 	case 0:
