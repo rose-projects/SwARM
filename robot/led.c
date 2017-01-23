@@ -93,8 +93,9 @@ static uint8_t *hgoal, *sgoal, *vgoal;
 
 static THD_WORKING_AREA(waFader, 128);
 static THD_FUNCTION(faderThread, th_data) {
-	uint8_t h = 0, s = 0, v = 0, htarget, starget, vtarget;
-	int hstep, sstep, vstep;
+	uint8_t h = 0, s = 0, v = 0;
+	uint8_t htarget = 0, starget = 0, vtarget = 0;
+	int hstep = 0, sstep = 0, vstep = 0;
 
 	(void) th_data;
 	chRegSetThreadName("Fader");

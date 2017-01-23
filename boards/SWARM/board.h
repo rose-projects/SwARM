@@ -106,7 +106,7 @@
 #define LINE_USB_CONNECT           PAL_LINE(GPIOA, 10U)
 #define LINE_USB_DM                PAL_LINE(GPIOA, 11U)
 #define LINE_USB_DP                PAL_LINE(GPIOA, 12U)
-#define LINE_DWM_CSn           	   PAL_LINE(GPIOA, 15U)
+#define LINE_DWM_CSn               PAL_LINE(GPIOA, 15U)
 
 #define LINE_MTR_TRA_R             PAL_LINE(GPIOB, 0U)
 #define LINE_LED_IR_C              PAL_LINE(GPIOB, 1U)
@@ -190,7 +190,7 @@
 #define VAL_GPIOA_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
                                      PIN_PUPDR_PULLDOWN(GPIOA_SWCLK))
-#define VAL_GPIOA_ODR       		(PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
+#define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
                                      PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_SWDIO, 0U) |         \
