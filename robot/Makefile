@@ -109,7 +109,8 @@ vpath %.c ../shared/
 RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
 DRIVERSRC = pwmdriver.c exticonf.c compdriver.c
 RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
-
+IMU = my_i2c.c imu.c
+MOVING =  motors.c asser.c coordination.c moving.c position.c
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -122,8 +123,9 @@ CSRC = $(STARTUPSRC) \
        $(RADIOSRC) \
        $(DRIVERSRC) \
        $(RTTSRC) \
-       main.c battery.c led.c motors.c asser.c coordination.c moving.c \
-	   position.c
+       $(IMU) \
+       $(MOVING) \
+       battery.c led.c main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

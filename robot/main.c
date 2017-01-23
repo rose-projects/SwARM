@@ -7,6 +7,7 @@
 #include "led.h"
 #include "battery.h"
 #include "radiocomms.h"
+#include "imu.h"
 #include "motors.h"
 #include "asser.h"
 #include "moving.h"
@@ -20,6 +21,7 @@ int main(void) {
     initMotors();
 	initLEDs();
 	initBattery();
+	initIMU();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
 	startRadio();

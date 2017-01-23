@@ -4,7 +4,6 @@
 
 // Events sources
 EVENTSOURCE_DECL(deca_event);
-EVENTSOURCE_DECL(imu_event);
 
 /* Wheels ticks init */
 volatile int tick_l = 0;
@@ -17,15 +16,6 @@ static void decaIRQ_cb(EXTDriver *extp, expchannel_t channel) {
 
 	chSysLockFromISR();
 	chEvtBroadcastFlagsI(&deca_event, EVENT_MASK(0));
-	chSysUnlockFromISR();
-}
-/* IMU EXTI callback */
-static void imuIRQ_cb(EXTDriver *extp, expchannel_t channel) {
-	(void)extp;
-	(void)channel;
-
-	chSysLockFromISR();
-	chEvtBroadcastFlagsI(&imu_event, EVENT_MASK(0));
 	chSysUnlockFromISR();
 }
 /* Left encoder wheel EXTI callback */
@@ -53,7 +43,7 @@ static const EXTConfig extcfg = {
 		{EXT_CH_MODE_DISABLED, NULL}, // 4
 		{EXT_CH_MODE_DISABLED, NULL}, // 5
 		{EXT_CH_MODE_DISABLED, NULL}, // 6
-		{EXT_CH_MODE_RISING_EDGE | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, imuIRQ_cb}, // 7
+		{EXT_CH_MODE_DISABLED, NULL}, // 7
 		{EXT_CH_MODE_DISABLED, NULL}, // 8
 		{EXT_CH_MODE_DISABLED, NULL}, // 9
 		{EXT_CH_MODE_DISABLED, NULL}, // 10
@@ -83,7 +73,6 @@ static const EXTConfig extcfg = {
 void initExti(void) {
 	extStart(&EXTD1, &extcfg);
 	extChannelEnableI(&EXTD1, 2);
-	extChannelEnableI(&EXTD1, 7);
 	extChannelEnableI(&EXTD1, 22);
 	extChannelEnableI(&EXTD1, 30);
 }
