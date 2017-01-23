@@ -1,13 +1,13 @@
+#include "ch.h"
+#include "hal.h"
+#include "usbcfg.h"
+#include "chprintf.h"
+
 #include "asser.h"
 #include "coding_wheels.h"
 #include "wheel_constants.h"
 #include "motors.h"
 #include "coordination.h"
-
-#include "ch.h"
-#include "hal.h"
-#include "usbcfg.h"
-#include "chprintf.h"
 
 // ASSER frequency in Hz
 #define ASSER_FREQ 200
