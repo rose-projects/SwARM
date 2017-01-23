@@ -1,0 +1,27 @@
+[2017.01.10 00:16:37] [0305m.56s.857ms] [1] PrjBackupMgr: Successfully created Project Backup [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-10 00.16.37 - auto.zip] with GUID [e6a1-6261-e923-0588-5d91-478a-d914-7850-3f2c-3bf8-e806-e5f5]
+[2017.01.10 00:16:37] [0305m.56s.873ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[d31f-438d-d7bf-1c75-eaca-3683-bca3-6850-392c-3bf8-e806-e5f5] CreationTime[Wednesday, December 28, 2016 12:14:38] Type[Autosave] Creator[iCDB Server (2016-12-28 13.14.07-5492)] ApplicationName[iCDB Server (2016-12-28 13.14.07-5492)] UserName[root] MachineName[WIN10] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-28 13.14.38 - auto.zip] BackupFileSize[775377] Persistent[FALSE]
+[2017.01.10 00:16:37] [0305m.56s.888ms] [0] PrjBackupMgr: Project Backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-28 13.14.38 - auto.zip] with GUID [d31f-438d-d7bf-1c75-eaca-3683-bca3-6850-392c-3bf8-e806-e5f5] removed
+[2017.01.10 00:16:37] [0305m.56s.888ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[e6a1-6261-e923-0588-5d91-478a-d914-7850-3f2c-3bf8-e806-e5f5] CreationTime[Monday, January 09, 2017 23:16:37] Type[Autosave] Creator[iCDB Server (2017-01-09 19.10.40-5848)] ApplicationName[iCDB Server (2017-01-09 19.10.40-5848)] UserName[root] MachineName[WIN10] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-10 00.16.37 - auto.zip] BackupFileSize[347782] Persistent[FALSE]
+[2017.01.10 03:28:27] [0497m.46s.962ms] [1] SC[4059]: UnRegistered sub-client [DCDV] with ID [1] for session ID [4059] host [WIN10] user [root] process ID [7144]
+[2017.01.10 03:28:27] [0497m.47s.029ms] [1] CMT: Removed client [4059]
+[2017.01.10 03:28:27] [0497m.47s.029ms] [1] CMT: There are [1] clients now: 4081
+[2017.01.10 03:28:33] [0497m.53s.205ms] [1] SC[4081]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [4081] host [WIN10] user [root] process ID [4312]
+[2017.01.10 03:28:34] [0497m.53s.517ms] [1] SC[4081]: UnRegistered sub-client [Expedition PCB_11351375] with ID [1] for session ID [4081] host [WIN10] user [root] process ID [4312]
+[2017.01.10 03:28:34] [0497m.53s.548ms] [1] CMT: Removed client [4081]
+[2017.01.10 03:28:34] [0497m.53s.548ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2017.01.10 03:28:36] [0497m.55s.531ms] [0] CMT: Starting server auto-close
+[2017.01.10 03:28:36] [0497m.55s.562ms] [0] S: Closing server
+[2017.01.10 03:28:36] [0497m.55s.687ms] [0] iCDB Server PI: Closing plugins
+[2017.01.10 03:28:36] [0497m.55s.687ms] [0] iCDB Server PI: Plugins closed
+[2017.01.10 03:28:36] [0497m.55s.687ms] [0] iCDB Server PI: Unloading database
+[2017.01.10 03:28:36] [0497m.55s.687ms] [0] iCDB Server PI: Saving storage
+[2017.01.10 03:28:36] [0497m.55s.687ms] [0] iCDB Server PI: Closing database
+[2017.01.10 03:28:36] [0497m.55s.703ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[3%] data[95%]
+[2017.01.10 03:28:36] [0497m.55s.703ms] [1] iCDB Server PI: Stats: Database file size [154056 (150.4 kB)]
+[2017.01.10 03:28:36] [0497m.55s.719ms] [0] iCDB Server PI: Database closed
+[2017.01.10 03:28:36] [0497m.55s.719ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [181649] ticks
+[2017.01.10 03:28:36] [0497m.55s.719ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [69116] microseconds
+[2017.01.10 03:28:36] [0497m.55s.719ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [80]
+[2017.01.10 03:28:36] [0497m.55s.719ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [1157] commands per second
+[2017.01.10 03:28:36] [0497m.55s.734ms] [0] Single file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] closed with size [154056 (150.4 kB)]
+[2017.01.10 03:28:36] [0497m.55s.890ms] [0] S: STOP

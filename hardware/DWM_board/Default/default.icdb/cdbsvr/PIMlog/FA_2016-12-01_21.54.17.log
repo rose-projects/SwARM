@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Project integration - START (2016-12-01 21:54:17) 
+--------------------------------------------------------------------------------
+FE snapshot name: DCDV
+BE snapshot name: PCB_Layout_Temp
+Top level block: (2-1-5)
+Parameters: FAConstraints,FEWin,
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+ CES synchronization - START (2016-12-01 21:54:17) 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+ TOPOLOGY synchronization - START (2016-12-01 21:54:17) 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+ TOPOLOGY synchronization - END (2016-12-01 21:54:17) 
+--------------------------------------------------------------------------------
+[Skipped][Addition] - [FE->BE] [P: CesPart,80-0067,(3495-1-53)] [O: CesConstraint,PART_TYPE,(3495-1-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,U1,(3495-1-51)] [O: CesConstraint,SERIES,(3495-2-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,U1,(3495-1-51)] [O: CesConstraint,HLT_POWER_SCALING_FACT,(3495-3-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C1,(3495-2-51)] [O: CesConstraint,SERIES,(3495-4-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C1,(3495-2-51)] [O: CesConstraint,DEF_VALUE,(3495-5-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C1,(3495-2-51)] [O: CesConstraint,HLT_POWER_SCALING_FACT,(3495-6-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C2,(3495-3-51)] [O: CesConstraint,SERIES,(3495-7-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C2,(3495-3-51)] [O: CesConstraint,DEF_VALUE,(3495-8-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C2,(3495-3-51)] [O: CesConstraint,HLT_POWER_SCALING_FACT,(3495-9-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,U1,(3495-1-51)] [O: CesConstraint,PACKAGED_COMP,(3495-10-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C1,(3495-2-51)] [O: CesConstraint,PACKAGED_COMP,(3495-11-22)]
+[Skipped][Addition] - [FE->BE] [P: CesComp,C2,(3495-3-51)] [O: CesConstraint,PACKAGED_COMP,(3495-12-22)]
+--------------------------------------------------------------------------------
+ CES synchronization - END (2016-12-01 21:54:17) 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+ Project integration - END (2016-12-01 21:54:17) 
+--------------------------------------------------------------------------------

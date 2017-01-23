@@ -1,0 +1,234 @@
+
+                           Expedition PCB ODBPP Output
+                           ---------------------------
+
+                       04:01 PM Tuesday, December 20, 2016
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+
+
+Configuration file found. Using the following settings.
+        Output User Layers 
+        Output ODB++ Documentation Layers
+        Output User Layers 
+        Using Assembly Outline for package outline
+        Remove NFP Pins: None
+        Remove NFP Vias: None
+        Neutralize nets
+        Units: English
+        Read DRC Features
+        Round Corners
+        Run ODB++ Inside
+        Use Generate SilkScreen Data
+        Output Board Outline
+
+Output Dir: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Output
+Output Job Name: pcbodb
+Processing Board Outline
+Processing Layer Information
+Processing Symbols
+Processing Packages
+Processing Components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+        ERROR: The attribute ".package_type" is not for components
+Processing Nets
+Processing Nets
+Processing Layer Information
+Processing Feature Section
+    Processing Via Pads
+    Processing Fiducials
+    Processing Traces
+    Processing Component Pads
+    Processing Positive Planes
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    Processing Negative Plane Data
+    Processing Thieving Data
+    Processing Resistor Shapes
+    Processing Conductive Shapes
+    Processing RF Conductive Shapes
+    Processing Text
+    Processing Via Pads
+    Processing Fiducials
+    Processing Traces
+    Processing Component Pads
+    Processing Positive Planes
+    ActualPlaneShape
+    ActualPlaneShape
+    ActualPlaneShape
+    Processing Negative Plane Data
+    Processing Thieving Data
+    Processing Resistor Shapes
+    Processing Conductive Shapes
+    Processing RF Conductive Shapes
+    Processing Text
+    Processing Via Pads
+    Processing Fiducials
+    Processing Component Pads
+    Processing Text
+    Processing Via Pads
+    Processing Fiducials
+    Processing Component Pads
+    Processing Text
+    Processing Via Pads
+    Processing Fiducials
+    Processing Component Pads
+    Processing Text
+    Processing Via Pads
+    Processing Fiducials
+    Processing Component Pads
+    Processing Text
+    Processing Assembly Data
+    Processing Text
+    Processing Text
+    Processing Through Drill Drawing Data
+    Processing Text
+    Processing Vias
+    Processing Component Holes
+    Processing Mounting Holes
+    Processing Alternate Silkscreen Data
+Neutralizing nets....
+    Neutralized original net name GND to ODBPPNet_0.
+    Neutralized original net name VCC to ODBPPNet_1.
+    Neutralized original net name DWM_IRQ to ODBPPNet_2.
+    Neutralized original net name DWM_SPI_CLK to ODBPPNet_3.
+    Neutralized original net name DWM_SPI_CSn to ODBPPNet_4.
+    Neutralized original net name DWM_SPI_MISO to ODBPPNet_5.
+    Neutralized original net name DWM_SPI_MOSI to ODBPPNet_6.
+    Neutralized original net name ENABLE_MTR_L to ODBPPNet_7.
+    Neutralized original net name ENABLE_MTR_R to ODBPPNet_8.
+    Neutralized original net name INFRA_LED_L to ODBPPNet_9.
+    Neutralized original net name INFRA_LED_R to ODBPPNet_10.
+    Neutralized original net name INFRA_TRA_L to ODBPPNet_11.
+    Neutralized original net name INFRA_TRA_R to ODBPPNet_12.
+    Neutralized original net name IR_LED to ODBPPNet_13.
+    Neutralized original net name MPU_INT to ODBPPNet_14.
+    Neutralized original net name MPU_I2C_SCL to ODBPPNet_15.
+    Neutralized original net name MPU_I2C_SDA to ODBPPNet_16.
+    Neutralized original net name MTR_L_1 to ODBPPNet_17.
+    Neutralized original net name MTR_L_2 to ODBPPNet_18.
+    Neutralized original net name MTR_R_1 to ODBPPNet_19.
+    Neutralized original net name MTR_R_2 to ODBPPNet_20.
+    Neutralized original net name PHASE_MTR_L to ODBPPNet_21.
+    Neutralized original net name PHASE_MTR_R to ODBPPNet_22.
+    Neutralized original net name SPI_LED_CK to ODBPPNet_23.
+    Neutralized original net name SPI_LED_DO to ODBPPNet_24.
+    Neutralized original net name SWCLK to ODBPPNet_25.
+    Neutralized original net name SWDAT to ODBPPNet_26.
+    Neutralized original net name USB_DM to ODBPPNet_27.
+    Neutralized original net name USB_DP to ODBPPNet_28.
+    Neutralized original net name XSIG020140 to ODBPPNet_29.
+    Neutralized original net name XSIG020142 to ODBPPNet_30.
+    Neutralized original net name DWM_WAKEUP to ODBPPNet_31.
+    Neutralized original net name IR_LED_ADAPTED to ODBPPNet_32.
+    Neutralized original net name LED_CK_5V to ODBPPNet_33.
+    Neutralized original net name LED_DO_5V to ODBPPNet_34.
+    Neutralized original net name VCC5 to ODBPPNet_35.
+    Neutralized original net name XSIG020157 to ODBPPNet_36.
+    Neutralized original net name VBAT_PROBE to ODBPPNet_37.
+    Neutralized original net name XSIG030141 to ODBPPNet_38.
+    Neutralized original net name XSIG030142 to ODBPPNet_39.
+    Neutralized original net name XSIG030147 to ODBPPNet_40.
+    Neutralized original net name XSIG030149 to ODBPPNet_41.
+    Neutralized original net name XSIG030154 to ODBPPNet_42.
+    Neutralized original net name XSIG030155 to ODBPPNet_43.
+    Neutralized original net name XSIG030156 to ODBPPNet_44.
+    Neutralized original net name XSIG030157 to ODBPPNet_45.
+    Neutralized original net name IR_LED_L to ODBPPNet_46.
+    Neutralized original net name IR_LED_L_ADAPTED to ODBPPNet_47.
+    Neutralized original net name IR_LED_R to ODBPPNet_48.
+    Neutralized original net name IR_LED_R_ADAPTED to ODBPPNet_49.
+    Neutralized original net name XSIG020166 to ODBPPNet_50.
+    Neutralized original net name XSIG020170 to ODBPPNet_51.
+    Neutralized original net name XSIG011020 to ODBPPNet_52.
+    Neutralized original net name XSIG011022 to ODBPPNet_53.
+    Neutralized original net name XSIG011041 to ODBPPNet_54.
+    Neutralized original net name XSIG030172 to ODBPPNet_55.
+    Neutralized original net name XSIG030175 to ODBPPNet_56.
+    Neutralized original net name XSIG030189 to ODBPPNet_57.
+    Neutralized original net name USB_CONNECT to ODBPPNet_58.
+    Neutralized original net name VBAT to ODBPPNet_59.
+    Neutralized original net name USB_VBUS to ODBPPNet_60.
+    Neutralized original net name XSIG030273 to ODBPPNet_61.
+    Neutralized original net name XSIG040009 to ODBPPNet_62.
+    Neutralized original net name RSTn to ODBPPNet_63.
+    Removing empty layers from ODB++ job :-
+        ssb
+        sst
+Process Completed at ....
+04:01:31 PM Tuesday, December 20, 2016

@@ -1,0 +1,144 @@
+[2016.12.18 18:51:00] [0000m.00s.106ms] [0] WELCOME
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Base flow version [7.9.4]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Machine [WIN10]  User [root]  PID [6164]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Current working dir [E:\2017\SWARM\HARDWARE\DWM_BOARD]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] SDD_PLATFORM [win32]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] WDIR [C:\Users\root\Documents\WDIR\7.9.5;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\7.9.5\iCDB] on file system [NTFS]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] S: Config file name [ServerWG.cfg]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [2] S: Loading config files
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Config file [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.12.18 18:51:00] [0000m.00s.121ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.12.18 18:51:00] [0000m.00s.121ms] [3] S: Config loaded
+[2016.12.18 18:51:00] [0000m.00s.182ms] [0] S: Project path [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb] on file system [VBoxSharedFolderFS]
+[2016.12.18 18:51:00] [0000m.00s.182ms] [0] S: Project global path [\\vboxsrv\elecinf344\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb] on file system [UNKNOWN]
+[2016.12.18 18:51:00] [0000m.00s.182ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.12.18 18:51:00] [0000m.00s.182ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.12.18 18:51:00] [0000m.00s.182ms] [0] S: Multi-user mode (config)
+[2016.12.18 18:51:00] [0000m.00s.182ms] [0] S: Event polling mode autodetection
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Started up automatically by iCDB Client: WIN10:root:2512
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Auto close mode
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Database ID [037a-f47e-efd5-21ec-26d9-6587-6d96-5850-bc0c-3bf8-e806-e5f5]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: BEGIN dumping
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: Local -> global path prefix list
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [E:\] -> [\\vboxsrv\elecinf344\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [F:\] -> [\\vboxsrv\mentor\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [G:\] -> [\\vboxsrv\mtr100\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [H:\] -> [\\vboxsrv\proj101\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [I:\] -> [\\vboxsrv\proj102\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: Global -> local path prefix list
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [\\vboxsrv\elecinf344\] -> [E:\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [\\vboxsrv\proj101\] -> [H:\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [\\vboxsrv\proj102\] -> [I:\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [\\vboxsrv\mentor\] -> [F:\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: [\\vboxsrv\mtr100\] -> [G:\]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] PathTranslator: END dumping
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: START
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Server startup lock file created
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Listening for client connections on port [10000]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Server network ID [WIN10:10.0.2.15,WIN10:10000]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Server GUID [ef84-5be3-e137-9c83-48cc-6589-8cc6-5850-734c-3bf8-e806-e5f5]
+[2016.12.18 18:51:00] [0000m.00s.197ms] [0] S: Project GUID [037a-f47e-efd5-21ec-26d9-6587-6d96-5850-bc0c-3bf8-e806-e5f5]
+[2016.12.18 18:51:00] [0000m.00s.213ms] [0] S: Wrote data to server address file
+[2016.12.18 18:51:00] [0000m.00s.213ms] [0] S: Server startup lock file removed
+[2016.12.18 18:51:00] [0000m.00s.213ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] S: Local disc access time: 76 us
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] S: File server access time: 584 us
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] S: Server will not release in-memory storage after read (memory usage overhead) - for better performance
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] Single file [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb\icdb.dat] size [97400 (95.1 kB)]
+[2016.12.18 18:51:00] [0000m.00s.243ms] [1] Single file [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] Database GUARD OK: [97400]
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] Database GUARD OK: [97400]
+[2016.12.18 18:51:00] [0000m.00s.243ms] [0] SingleFile: [d550-a5fe-3682-6f23] SFI version check [1009] [1009]
+[2016.12.18 18:51:00] [0000m.00s.274ms] [0] SingleFile: [d550-a5fe-3682-6f23] Database SFI header has been read in [31ms 378us]
+[2016.12.18 18:51:00] [0000m.00s.274ms] [0] iCDB Server PI: Server & plugin session [3591]
+[2016.12.18 18:51:00] [0000m.00s.289ms] [0] iCDB Server PI: Opening database [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb]
+[2016.12.18 18:51:00] [0000m.00s.289ms] [0] iCDB Server PI: Database [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb] opened
+[2016.12.18 18:51:00] [0000m.00s.304ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.12.18 18:51:00] [0000m.00s.304ms] [0] iCDB Database: Checking constraint definitions version
+[2016.12.18 18:51:00] [0000m.00s.335ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5] up to date
+[2016.12.18 18:51:00] [0000m.00s.426ms] [0] iCDB Server PI: Initializing plugins
+[2016.12.18 18:51:00] [0000m.00s.426ms] [0] iCDB Server PI: Plugins initialized
+[2016.12.18 18:51:00] [0000m.00s.426ms] [0] S: iCDB database loaded
+[2016.12.18 18:51:00] [0000m.00s.441ms] [0] S: Starting threads
+[2016.12.18 18:51:00] [0000m.00s.441ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.12.18 18:51:00] [0000m.00s.441ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.12.18 18:51:00] [0000m.00s.441ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.12.18 18:51:00] [0000m.00s.441ms] [0] IT: Session [3592] for host [WIN10] user [root] with process ID [2512] created
+[2016.12.18 18:51:00] [0000m.00s.441ms] [1] SC[3592]: Registered sub-client [DCDV] with ID [1] for session ID [3592] host [WIN10] user [root] process ID [2512]
+[2016.12.18 18:51:00] [0000m.00s.548ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:51:04] [0000m.04s.859ms] [0] IT: Session [3593] for host [WIN10] user [root] with process ID [6336] created
+[2016.12.18 18:51:04] [0000m.04s.859ms] [1] SC[3593]: Registered sub-client [ICDBC] with ID [1] for session ID [3593] host [WIN10] user [root] process ID [6336]
+[2016.12.18 18:51:04] [0000m.04s.900ms] [1] SC[3593]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3593] host [WIN10] user [root] process ID [6336]
+[2016.12.18 18:51:04] [0000m.04s.928ms] [1] CMT: There are [2] clients now: 3592, 3593
+[2016.12.18 18:51:06] [0000m.06s.846ms] [1] SC[3593]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3593] host [WIN10] user [root] process ID [6336]
+[2016.12.18 18:51:06] [0000m.06s.846ms] [1] SC[3593]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3593] host [WIN10] user [root] process ID [6336]
+[2016.12.18 18:51:06] [0000m.06s.942ms] [1] CMT: Removed client [3593]
+[2016.12.18 18:51:06] [0000m.06s.942ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:51:07] [0000m.07s.790ms] [0] IT: Session [3594] for host [WIN10] user [root] with process ID [6232] created
+[2016.12.18 18:51:07] [0000m.07s.790ms] [1] SC[3594]: Registered sub-client [Packager_262578] with ID [1] for session ID [3594] host [WIN10] user [root] process ID [6232]
+[2016.12.18 18:51:07] [0000m.07s.817ms] [1] CMT: There are [2] clients now: 3592, 3594
+[2016.12.18 18:51:08] [0000m.08s.201ms] [1] SC[3594]: UnRegistered sub-client [Packager_262578] with ID [1] for session ID [3594] host [WIN10] user [root] process ID [6232]
+[2016.12.18 18:51:08] [0000m.08s.297ms] [1] CMT: Removed client [3594]
+[2016.12.18 18:51:08] [0000m.08s.297ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:51:26] [0000m.26s.305ms] [0] DFAMT: File server access time: 1125 us
+[2016.12.18 18:53:10] [0002m.10s.670ms] [0] IT: Session [3595] for host [WIN10] user [root] with process ID [6520] created
+[2016.12.18 18:53:10] [0002m.10s.670ms] [1] SC[3595]: Registered sub-client [ICDBC] with ID [1] for session ID [3595] host [WIN10] user [root] process ID [6520]
+[2016.12.18 18:53:10] [0002m.10s.701ms] [1] SC[3595]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3595] host [WIN10] user [root] process ID [6520]
+[2016.12.18 18:53:10] [0002m.10s.749ms] [1] CMT: There are [2] clients now: 3592, 3595
+[2016.12.18 18:53:13] [0002m.13s.771ms] [1] SC[3595]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3595] host [WIN10] user [root] process ID [6520]
+[2016.12.18 18:53:13] [0002m.13s.771ms] [1] SC[3595]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3595] host [WIN10] user [root] process ID [6520]
+[2016.12.18 18:53:13] [0002m.13s.857ms] [1] CMT: Removed client [3595]
+[2016.12.18 18:53:13] [0002m.13s.857ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:53:14] [0002m.14s.822ms] [0] IT: Session [3596] for host [WIN10] user [root] with process ID [956] created
+[2016.12.18 18:53:14] [0002m.14s.822ms] [1] SC[3596]: Registered sub-client [Packager_387171] with ID [1] for session ID [3596] host [WIN10] user [root] process ID [956]
+[2016.12.18 18:53:14] [0002m.14s.865ms] [1] CMT: There are [2] clients now: 3592, 3596
+[2016.12.18 18:53:15] [0002m.15s.189ms] [1] SC[3596]: UnRegistered sub-client [Packager_387171] with ID [1] for session ID [3596] host [WIN10] user [root] process ID [956]
+[2016.12.18 18:53:15] [0002m.15s.261ms] [1] CMT: Removed client [3596]
+[2016.12.18 18:53:15] [0002m.15s.261ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:53:32] [0002m.31s.996ms] [0] IT: Session [3597] for host [WIN10] user [root] with process ID [4888] created
+[2016.12.18 18:53:32] [0002m.31s.996ms] [1] SC[3597]: Registered sub-client [ICDBC] with ID [1] for session ID [3597] host [WIN10] user [root] process ID [4888]
+[2016.12.18 18:53:32] [0002m.32s.007ms] [1] CMT: There are [2] clients now: 3592, 3597
+[2016.12.18 18:53:32] [0002m.32s.007ms] [1] SC[3597]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3597] host [WIN10] user [root] process ID [4888]
+[2016.12.18 18:53:34] [0002m.34s.328ms] [1] SC[3597]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3597] host [WIN10] user [root] process ID [4888]
+[2016.12.18 18:53:34] [0002m.34s.328ms] [1] SC[3597]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3597] host [WIN10] user [root] process ID [4888]
+[2016.12.18 18:53:34] [0002m.34s.363ms] [1] CMT: Removed client [3597]
+[2016.12.18 18:53:34] [0002m.34s.363ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:53:35] [0002m.35s.076ms] [0] IT: Session [3598] for host [WIN10] user [root] with process ID [4980] created
+[2016.12.18 18:53:35] [0002m.35s.087ms] [1] SC[3598]: Registered sub-client [Packager_411515] with ID [1] for session ID [3598] host [WIN10] user [root] process ID [4980]
+[2016.12.18 18:53:35] [0002m.35s.099ms] [1] CMT: There are [2] clients now: 3592, 3598
+[2016.12.18 18:53:35] [0002m.35s.340ms] [1] SC[3598]: UnRegistered sub-client [Packager_411515] with ID [1] for session ID [3598] host [WIN10] user [root] process ID [4980]
+[2016.12.18 18:53:35] [0002m.35s.421ms] [1] CMT: Removed client [3598]
+[2016.12.18 18:53:35] [0002m.35s.421ms] [1] CMT: There are [1] clients now: 3592
+[2016.12.18 18:58:03] [0007m.03s.162ms] [1] SC[3592]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3592] host [WIN10] user [root] process ID [2512]
+[2016.12.18 18:58:03] [0007m.03s.197ms] [1] CMT: Removed client [3592]
+[2016.12.18 18:58:03] [0007m.03s.197ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.12.18 18:58:05] [0007m.05s.001ms] [0] CMT: Starting server auto-close
+[2016.12.18 18:58:05] [0007m.05s.130ms] [0] S: Closing server
+[2016.12.18 18:58:05] [0007m.05s.149ms] [0] ProjectBackupManager: WARNING: Could not shutdown Project Backup engine - not started yet
+[2016.12.18 18:58:05] [0007m.05s.333ms] [0] iCDB Server PI: Closing plugins
+[2016.12.18 18:58:05] [0007m.05s.333ms] [0] iCDB Server PI: Plugins closed
+[2016.12.18 18:58:05] [0007m.05s.333ms] [0] iCDB Server PI: Unloading database
+[2016.12.18 18:58:05] [0007m.05s.333ms] [0] iCDB Server PI: Saving storage
+[2016.12.18 18:58:05] [0007m.05s.333ms] [0] iCDB Server PI: Closing database
+[2016.12.18 18:58:05] [0007m.05s.333ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[9%] data[84%]
+[2016.12.18 18:58:05] [0007m.05s.333ms] [1] iCDB Server PI: Stats: Database file size [141640 (138.3 kB)]
+[2016.12.18 18:58:05] [0007m.05s.369ms] [0] iCDB Server PI: Database closed
+[2016.12.18 18:58:05] [0007m.05s.369ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [182751] ticks
+[2016.12.18 18:58:05] [0007m.05s.369ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [69535] microseconds
+[2016.12.18 18:58:05] [0007m.05s.369ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [237]
+[2016.12.18 18:58:05] [0007m.05s.369ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [3408] commands per second
+[2016.12.18 18:58:05] [0007m.05s.369ms] [0] Single file [E:\2017\SWARM\HARDWARE\DWM_BOARD\Default\default.icdb\icdb.dat] closed with size [141640 (138.3 kB)]
+[2016.12.18 18:58:05] [0007m.05s.388ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.12.18 18:58:05] [0007m.05s.533ms] [0] S: STOP

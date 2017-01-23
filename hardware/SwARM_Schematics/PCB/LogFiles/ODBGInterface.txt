@@ -1,0 +1,44 @@
+
+                          Expedition PCB ODBG Interface
+                          -----------------------------
+
+                       04:04 PM Tuesday, December 20, 2016
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+
+
+Configuration file found. Using the following settings.
+        Use regular silkscreen data.
+        Output assembly data.
+        Do not output through drill drawing data.
+        Output part numbers.
+        Output Board Outline.
+        Do not flatten RF nets.
+        Do not output user layers.
+        Generate variant data combined for all variants.
+        Using Placement Outline for package outline
+
+Processing Board Outline
+Processing Layer Information
+Processing Packages
+Processing Components
+Processing Nets
+Processing Symbols
+Processing Feature Section
+    Processing Traces
+    Processing Vias
+    Processing Via Pads
+    Processing Component Holes
+    Processing Component Pads
+    Processing Fiducials
+    Processing Mounting Holes
+    Processing Test Points
+    Processing Component Holes
+    Processing Positive Planes
+    ActualPlaneShape
+    ActualPlaneShape
+    Processing Silkscreen Data
+    Processing Conductive Shapes
+    Processing Assembly Data
+    Processing Board Outline
+    Processing Text
+Process Complete

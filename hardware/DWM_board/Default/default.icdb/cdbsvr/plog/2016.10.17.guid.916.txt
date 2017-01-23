@@ -1,0 +1,31 @@
+[2016.10.17 10:04:25] [0000m.02s.277ms] [0] WELCOME
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] iCDB Database ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] Base flow version [7.9.4]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] Machine [PAULGWF-PC]  User [PAULGWF]  PID [916]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] Operating system [Microsoft Windows 7 Business Edition, 64-bit Service Pack 1 (build 7601)]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] Current working dir [F:\mentor\Project_template]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\Program Files (x86)\AMD APP\bin\x86_64;c:\Program Files (x86)\AMD APP\bin\x86;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] SDD_PLATFORM [win32]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] WDIR [C:\MentorGraphics\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [1] Local iCDB working dir [C:\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] WARNING: Database [F:\mentor\Project_template\Default\default.icdb\icdb.dat] was manually copied
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] File change time:        [2016-10-17 09.46.31]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] File modification time:  [2016-10-17 09.46.31]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Last change time:        [2016-10-11 13.17.40]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Last database open information:
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Time:             [2016-10-11 11.55.03]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Location:         [C:\Users\root\Documents\Project_template\Default\default.icdb\icdb.dat]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Machine:          [WIN10]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] User:             [root]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] PID:              [356]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Application:      [iCDB Server]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Operating system: [Microsoft Business Edition, 64-bit (build 9200)]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] WARNING: Regenerating database GUID
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Previous database GUID [1e4a-636f-efd8-6819-05b0-df75-5b0d-f750-75db-3bf8-e806-e5f5]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [3] Current database GUID  [f33d-86e2-c548-8410-96ad-408e-6ad4-0850-9e43-2f9d-9d3f-aa98]
+[2016.10.17 10:04:25] [0000m.02s.277ms] [0] .

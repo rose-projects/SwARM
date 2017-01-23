@@ -1,0 +1,33 @@
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] WELCOME
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] iCDB Project Backup ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] Base flow version [7.9.4]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] Machine [WIN10]  User [root]  PID [6892]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] Current working dir [C:\WINDOWS\system32]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] SDD_PLATFORM [win32]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] WDIR [C:\Users\root\Documents\WDIR\7.9.5;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\7.9.5\iCDB] on file system [NTFS]
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] iCDB database restored from backup: E:\2017\SwARM\hardware\DWM_board\Default\ProjectBackup\backups\2016-12-18 15.29.54 - auto.zip
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Creation time: 2016-12-18 15.29.54
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Type: Autosave
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Backup file size: 687 975 bytes (671.9 kB)
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Backup GUID: d385-01a2-9824-f97e-26d9-6587-6d96-5850-37cb-3bf8-e806-e5f5
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Creator: iCDB Server (2016-12-18 15.29.47-2492)
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Application name: iCDB Server (2016-12-18 15.29.47-2492)
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] User name: root
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Machine name: WIN10
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Description: Autosave
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Full flow name: Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] Flow ID: EE7.9.5; EE 7.9.5
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] GBS install ID: 30163; 30120; 45618
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] GBS build ID: 689985
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] iCDB version: 2709
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] iCDB database file size: 143 920 bytes (140.5 kB)
+[2016.12.18 18:50:46] [0000m.26s.366ms] [0] DONE
+[2016.12.18 18:50:46] [0000m.26s.384ms] [0] .

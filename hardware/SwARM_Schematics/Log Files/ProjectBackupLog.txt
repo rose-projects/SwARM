@@ -1,0 +1,105 @@
+[2016-11-22 02.16.38] Migrating iCDB upgrade backups from directory [SWARM_SCHEMATICS\Default\default.icdb\cdbback] to Project Backup format.
+[2016-11-22 02.16.38] Migrating iCDB upgrade backup file [2016-11-22 00.27.00-4824].
+[2016-11-22 02.16.38] Successfully created [Constraints Definition Upgrade] backup [2016-11-22 00.27.00 - consDefUpgr.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-22 02.16.38] Migrated iCDB content backup file [cdbback\2016-11-22 00.27.00-4824.zip] removed.
+[2016-11-22 02.16.38] Successfully migrated iCDB upgrade backup file [2016-11-22 00.27.00-4824] to Project Backup format [2016-11-22 00.27.00 - consDefUpgr.zip]
+[2016-11-22 02.16.39] Successfully created [AutoSave] backup [2016-11-22 02.16.38 - auto.zip] requested by [WIN10:root].
+[2016-11-22 17.00.27] Migrating iCDB upgrade backups from directory [SwARM_Schematics\Default\default.icdb\cdbback] to Project Backup format.
+[2016-11-22 17.00.27] Migrating iCDB upgrade backup file [2016-11-22 14.45.42-2108].
+[2016-11-22 17.00.27] Successfully created [Constraints Definition Upgrade] backup [2016-11-22 14.45.42 - consDefUpgr.zip] requested by [WIN10:root].
+[2016-11-22 17.00.27] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-18 15.18.35 - auto.zip].
+[2016-11-22 17.00.27] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-18 15.18.35 - auto.zip] removed.
+[2016-11-22 17.00.27] Removing excessive [Constraints Definition Upgrade] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-13 18.31.52 - consDefUpgr.zip].
+[2016-11-22 17.00.27] [Constraints Definition Upgrade] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-13 18.31.52 - consDefUpgr.zip] removed.
+[2016-11-22 17.00.27] Removing excessive [Constraints Definition Upgrade] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 00.27.00 - consDefUpgr.zip].
+[2016-11-22 17.00.27] [Constraints Definition Upgrade] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 00.27.00 - consDefUpgr.zip] removed.
+[2016-11-22 17.00.27] Migrated iCDB content backup file [cdbback\2016-11-22 14.45.42-2108.zip] removed.
+[2016-11-22 17.00.27] Successfully migrated iCDB upgrade backup file [2016-11-22 14.45.42-2108] to Project Backup format [2016-11-22 14.45.42 - consDefUpgr.zip]
+[2016-11-22 17.00.28] Successfully created [AutoSave] backup [2016-11-22 17.00.27 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-22 17.00.28] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-21 10.03.55 - auto.zip].
+[2016-11-22 17.00.28] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-21 10.03.55 - auto.zip] removed.
+[2016-11-23 08.47.34] Successfully created [AutoSave] backup [2016-11-23 08.47.34 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-23 08.47.34] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-21 21.09.56 - auto.zip].
+[2016-11-23 08.47.34] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-21 21.09.56 - auto.zip] removed.
+[2016-11-25 08.55.07] Successfully created [AutoSave] backup [2016-11-25 08.55.07 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-25 08.55.07] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 02.16.38 - auto.zip].
+[2016-11-25 08.55.07] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 02.16.38 - auto.zip] removed.
+[2016-11-25 13.41.21] Successfully created [AutoSave] backup [2016-11-25 13.41.21 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-25 13.41.21] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 17.00.27 - auto.zip].
+[2016-11-25 13.41.21] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-22 17.00.27 - auto.zip] removed.
+[2016-11-25 17.13.13] Successfully created [Project Repair] backup [2016-11-25 17.13.13 - repair.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-25 17.41.21] Successfully created [AutoSave] backup [2016-11-25 17.41.21 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-25 17.41.21] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-23 08.47.34 - auto.zip].
+[2016-11-25 17.41.21] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-23 08.47.34 - auto.zip] removed.
+[2016-11-26 08.38.49] Successfully created [AutoSave] backup [2016-11-26 08.38.49 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-26 08.38.49] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-25 08.55.07 - auto.zip].
+[2016-11-26 08.38.49] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-25 08.55.07 - auto.zip] removed.
+[2016-11-28 18.05.20] Successfully created [AutoSave] backup [2016-11-28 18.05.20 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-11-28 18.05.20] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-25 13.41.21 - auto.zip].
+[2016-11-28 18.05.20] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-25 13.41.21 - auto.zip] removed.
+[2016-12-01 19.01.02] Successfully created [AutoSave] backup [2016-12-01 19.01.01 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-01 19.01.02] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-25 17.41.21 - auto.zip].
+[2016-12-01 19.01.02] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-25 17.41.21 - auto.zip] removed.
+[2016-12-01 20.46.33] Successfully created [Project Repair] backup [2016-12-01 20.46.32 - repair.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-02 18.42.28] Successfully created [AutoSave] backup [2016-12-02 18.42.28 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-02 18.42.28] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-26 08.38.49 - auto.zip].
+[2016-12-02 18.42.28] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-26 08.38.49 - auto.zip] removed.
+[2016-12-03 16.29.47] Successfully created [AutoSave] backup [2016-12-03 16.29.47 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-03 16.29.47] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-11-28 18.05.20 - auto.zip].
+[2016-12-03 16.29.47] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-11-28 18.05.20 - auto.zip] removed.
+[2016-12-03 21.30.55] Successfully created [AutoSave] backup [2016-12-03 21.30.55 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-03 21.30.55] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-12-01 19.01.01 - auto.zip].
+[2016-12-03 21.30.55] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-12-01 19.01.01 - auto.zip] removed.
+[2016-12-04 19.52.56] Successfully created [AutoSave] backup [2016-12-04 19.52.55 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-04 19.52.56] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-12-02 18.42.28 - auto.zip].
+[2016-12-04 19.52.56] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-12-02 18.42.28 - auto.zip] removed.
+[2016-12-05 18.13.34] Successfully created [AutoSave] backup [2016-12-05 18.13.34 - auto.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-05 18.13.34] Removing excessive [AutoSave] backup file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\ProjectBackup\backups\2016-12-03 16.29.47 - auto.zip].
+[2016-12-05 18.13.34] [AutoSave] backup file [SwARM_Schematics\Default\ProjectBackup\backups\2016-12-03 16.29.47 - auto.zip] removed.
+[2016-12-06 10.54.36] Migrating iCDB upgrade backups from directory [SWARM_SCHEMATICS\Default\default.icdb\cdbback] to Project Backup format.
+[2016-12-06 10.54.36] Migrating iCDB upgrade backup file [2016-12-06 10.53.22-5584].
+[2016-12-06 10.54.36] Successfully created [Constraints Definition Upgrade] backup [2016-12-06 10.53.22 - consDefUpgr.zip] requested by [PAULGWF-PC:PAULGWF].
+[2016-12-06 10.54.36] Migrated iCDB content backup file [cdbback\2016-12-06 10.53.22-5584.zip] removed.
+[2016-12-06 10.54.36] Successfully migrated iCDB upgrade backup file [2016-12-06 10.53.22-5584] to Project Backup format [2016-12-06 10.53.22 - consDefUpgr.zip]
+[2016-12-06 10.54.36] Successfully created [AutoSave] backup [2016-12-06 10.54.36 - auto.zip] requested by [WIN10:root].
+[2016-12-06 15.33.08] Successfully created [AutoSave] backup [2016-12-06 15.33.08 - auto.zip] requested by [WIN10:root].
+[2016-12-14 01.54.05] Successfully created [AutoSave] backup [2016-12-14 01.54.05 - auto.zip] requested by [WIN10:root].
+[2016-12-18 13.57.39] Successfully created [AutoSave] backup [2016-12-18 13.57.39 - auto.zip] requested by [WIN10:root].
+[2016-12-18 13.57.39] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 10.54.36 - auto.zip].
+[2016-12-18 13.57.39] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 10.54.36 - auto.zip] removed.
+[2016-12-18 17.57.39] Successfully created [AutoSave] backup [2016-12-18 17.57.39 - auto.zip] requested by [WIN10:root].
+[2016-12-18 17.57.39] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 15.33.08 - auto.zip].
+[2016-12-18 17.57.39] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 15.33.08 - auto.zip] removed.
+[2016-12-20 12.01.57] Migrating iCDB upgrade backups from directory [SWARM_SCHEMATICS\Default\default.icdb\cdbback] to Project Backup format.
+[2016-12-20 12.01.57] Migrating iCDB upgrade backup file [2016-12-20 12.01.39-7004].
+[2016-12-20 12.01.58] Successfully created [Constraints Definition Upgrade] backup [2016-12-20 12.01.39 - consDefUpgr.zip] requested by [WIN10:root].
+[2016-12-20 12.01.58] Removing excessive [Constraints Definition Upgrade] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 10.53.22 - consDefUpgr.zip].
+[2016-12-20 12.01.58] [Constraints Definition Upgrade] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-06 10.53.22 - consDefUpgr.zip] removed.
+[2016-12-20 12.01.58] Migrated iCDB content backup file [cdbback\2016-12-20 12.01.39-7004.zip] removed.
+[2016-12-20 12.01.58] Successfully migrated iCDB upgrade backup file [2016-12-20 12.01.39-7004] to Project Backup format [2016-12-20 12.01.39 - consDefUpgr.zip]
+[2016-12-20 12.04.33] Successfully created [AutoSave] backup [2016-12-20 12.04.33 - auto.zip] requested by [WIN10:root].
+[2016-12-20 12.04.33] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-14 01.54.05 - auto.zip].
+[2016-12-20 12.04.33] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-14 01.54.05 - auto.zip] removed.
+[2016-12-20 16.04.33] Successfully created [AutoSave] backup [2016-12-20 16.04.33 - auto.zip] requested by [WIN10:root].
+[2016-12-20 16.04.33] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 13.57.39 - auto.zip].
+[2016-12-20 16.04.33] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 13.57.39 - auto.zip] removed.
+[2017-01-05 05.50.06] Migrating iCDB upgrade backups from directory [SWARM_SCHEMATICS\Default\default.icdb\cdbback] to Project Backup format.
+[2017-01-05 05.50.06] Migrating iCDB upgrade backup file [2017-01-05 05.48.55-4816].
+[2017-01-05 05.50.07] Successfully created [Database Upgrade] backup [2017-01-05 05.48.55 - upgrade.zip] requested by [WIN10:root].
+[2017-01-05 05.50.07] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 17.57.39 - auto.zip].
+[2017-01-05 05.50.07] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-18 17.57.39 - auto.zip] removed.
+[2017-01-05 05.50.07] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.04.33 - auto.zip].
+[2017-01-05 05.50.07] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.04.33 - auto.zip] removed.
+[2017-01-05 05.50.07] Removing excessive [Constraints Definition Upgrade] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.01.39 - consDefUpgr.zip].
+[2017-01-05 05.50.07] [Constraints Definition Upgrade] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 12.01.39 - consDefUpgr.zip] removed.
+[2017-01-05 05.50.07] Migrated iCDB content backup file [cdbback\2017-01-05 05.48.55-4816.zip] removed.
+[2017-01-05 05.50.07] Successfully migrated iCDB upgrade backup file [2017-01-05 05.48.55-4816] to Project Backup format [2017-01-05 05.48.55 - upgrade.zip]
+[2017-01-05 05.52.42] Successfully created [AutoSave] backup [2017-01-05 05.52.42 - auto.zip] requested by [WIN10:root].
+[2017-01-05 05.52.42] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 16.04.33 - auto.zip].
+[2017-01-05 05.52.42] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-20 16.04.33 - auto.zip] removed.
+[2017-01-10 00.16.37] Successfully created [AutoSave] backup [2017-01-10 00.16.37 - auto.zip] requested by [WIN10:root].
+[2017-01-10 00.16.37] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-28 13.14.38 - auto.zip].
+[2017-01-10 00.16.37] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2016-12-28 13.14.38 - auto.zip] removed.
+[2017-01-10 19.29.13] Successfully created [AutoSave] backup [2017-01-10 19.29.13 - auto.zip] requested by [WIN10:root].
+[2017-01-10 19.29.13] Removing excessive [AutoSave] backup file [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-03 15.06.26 - auto.zip].
+[2017-01-10 19.29.13] [AutoSave] backup file [SWARM_SCHEMATICS\Default\ProjectBackup\backups\2017-01-03 15.06.26 - auto.zip] removed.

@@ -1,0 +1,31 @@
+[2017.01.05 05:48:54] [0000m.27s.908ms] [0] WELCOME
+[2017.01.05 05:48:54] [0000m.27s.908ms] [1] iCDB Database ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2017.01.05 05:48:54] [0000m.27s.908ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2017.01.05 05:48:54] [0000m.27s.908ms] [1] Base flow version [7.9.4]
+[2017.01.05 05:48:54] [0000m.27s.908ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] Machine [WIN10]  User [root]  PID [6664]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] Current working dir [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\root\AppData\Local\Programs\Python\Python35-32\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] SDD_PLATFORM [win32]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] WDIR [C:\Users\root\Documents\WDIR\7.9.5;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\7.9.5\iCDB] on file system [NTFS]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] WARNING: Database [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat] was manually copied
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] File change time:        [2017-01-05 05.46.38]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] File modification time:  [2017-01-05 05.46.38]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Last change time:        [2016-12-20 17.17.03]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Last database open information:
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Time:             [2016-12-20 13.40.35]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Location:         [E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\Default\default.icdb\icdb.dat]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Machine:          [WIN10]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] User:             [root]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] PID:              [708]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Application:      [iCDB Server]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Operating system: [Microsoft Business Edition, 64-bit (build 9200)]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] WARNING: Regenerating database GUID
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Previous database GUID [1f08-65b5-ece6-a6c4-29f0-9587-9f09-5850-f3fb-3bf8-e806-e5f5]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [3] Current database GUID  [3f34-9fec-cbfd-3269-630d-d68b-30dd-6850-f73c-3bf8-e806-e5f5]
+[2017.01.05 05:48:54] [0000m.27s.923ms] [0] .

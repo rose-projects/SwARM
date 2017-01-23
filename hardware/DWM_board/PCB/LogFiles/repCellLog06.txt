@@ -1,0 +1,32 @@
+=======================================================================
+Expedition PCB - Pinnacle - Version 2015.0.676.129
+=======================================================================
+
+RELOAD CELLS
+
+Job Directory:  C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\PCB\
+
+
+Design Units:(mm)
+
+Replace Cell Log:   repCellLog06.txt
+
+Tue Nov 22 17:00:50 2016
+
+Reference Designator            Cell Name                         New Cell Name
+===============================================================================
+
+
+---------------  RELOAD CELLS  Tue Nov 22 17:00:50 2016  ---------------
+
+
+
+
+---------------    Tue Nov 22 17:00:50 2016  ---------------
+
+
+
+
+---------------    Tue Nov 22 17:01:07 2016  ---------------
+
+

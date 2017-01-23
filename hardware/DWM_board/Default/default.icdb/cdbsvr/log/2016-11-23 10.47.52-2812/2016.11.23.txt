@@ -1,0 +1,179 @@
+[2016.11.23 10:47:52] [0000m.00s.037ms] [0] WELCOME
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] Base flow version [7.9.4]
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.23 10:47:52] [0000m.00s.038ms] [1] Machine [PAULGWF-PC]  User [PAULGWF]  PID [2812]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] Operating system [Microsoft Windows 7 Business Edition, 64-bit Service Pack 1 (build 7601)]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] Current working dir [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\ProgramData\Oracle\Java\javapath;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\Program Files (x86)\AMD APP\bin\x86_64;c:\Program Files (x86)\AMD APP\bin\x86;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] SDD_PLATFORM [win32]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] WDIR [C:\MentorGraphics\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] Local iCDB working dir [C:\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.23 10:47:52] [0000m.00s.039ms] [2] S: Loading config files
+[2016.11.23 10:47:52] [0000m.00s.042ms] [1] Config file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.23 10:47:52] [0000m.00s.042ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.23 10:47:52] [0000m.00s.044ms] [3] S: Config loaded
+[2016.11.23 10:47:52] [0000m.00s.051ms] [0] S: Project path [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb] on file system [NTFS]
+[2016.11.23 10:47:52] [0000m.00s.051ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.23 10:47:52] [0000m.00s.051ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.23 10:47:52] [0000m.00s.051ms] [0] S: Multi-user mode (config)
+[2016.11.23 10:47:52] [0000m.00s.051ms] [0] S: Event polling mode autodetection
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] S: Started up automatically by iCDB Client: PAULGWF-PC:PAULGWF:6872
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] S: Auto close mode
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] S: Database ID [6fab-7879-2b14-1d73-40c4-4389-0c44-3850-8012-2fcd-adeb-aa98]
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] PathTranslator: BEGIN dumping
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] PathTranslator: END dumping
+[2016.11.23 10:47:52] [0000m.00s.057ms] [0] S: START
+[2016.11.23 10:47:52] [0000m.00s.058ms] [0] S: Server startup lock file created
+[2016.11.23 10:47:52] [0000m.00s.059ms] [0] S: Listening for client connections on port [10000]
+[2016.11.23 10:47:52] [0000m.00s.059ms] [0] S: Server network ID [PAULGWF-PC:137.194.23.230,PAULGWF-PC:10000]
+[2016.11.23 10:47:52] [0000m.00s.060ms] [0] S: Server GUID [473a-33ab-903b-c877-8c56-538d-c565-3850-da53-2fad-bdee-aa98]
+[2016.11.23 10:47:52] [0000m.00s.060ms] [0] S: Project GUID [6fab-7879-2b14-1d73-40c4-4389-0c44-3850-8012-2fcd-adeb-aa98]
+[2016.11.23 10:47:52] [0000m.00s.061ms] [0] S: Wrote data to server address file
+[2016.11.23 10:47:52] [0000m.00s.062ms] [0] S: Server startup lock file removed
+[2016.11.23 10:47:52] [0000m.00s.062ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.23 10:47:52] [0000m.00s.086ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.23 10:47:52] [0000m.00s.086ms] [0] S: Local disc access time: 24 us
+[2016.11.23 10:47:52] [0000m.00s.086ms] [0] S: File server access time: 27 us
+[2016.11.23 10:47:52] [0000m.00s.087ms] [0] Single file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\icdb.dat] size [154056 (150.4 kB)]
+[2016.11.23 10:47:52] [0000m.00s.087ms] [1] Single file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.23 10:47:52] [0000m.00s.088ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.23 10:47:52] [0000m.00s.088ms] [0] Database GUARD OK: [154056]
+[2016.11.23 10:47:52] [0000m.00s.089ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.23 10:47:52] [0000m.00s.089ms] [0] Database GUARD OK: [154056]
+[2016.11.23 10:47:52] [0000m.00s.089ms] [0] SingleFile: [2082-eac0-e454-ff6c] SFI version check [1009] [1009]
+[2016.11.23 10:47:52] [0000m.00s.093ms] [0] SingleFile: [2082-eac0-e454-ff6c] Database SFI header has been read in [4ms 6us]
+[2016.11.23 10:47:52] [0000m.00s.096ms] [0] iCDB Server PI: Server & plugin session [3317]
+[2016.11.23 10:47:52] [0000m.00s.096ms] [0] iCDB Server PI: Opening database [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb]
+[2016.11.23 10:47:52] [0000m.00s.096ms] [0] iCDB Server PI: Database [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb] opened
+[2016.11.23 10:47:52] [0000m.00s.108ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.23 10:47:52] [0000m.00s.108ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.23 10:47:52] [0000m.00s.150ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=e2e8-9cfb-1d22-5174-96ad-408e-6ad4-0850-5a22-2f9d-9d3f-aa98] up to date
+[2016.11.23 10:47:52] [0000m.00s.172ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.23 10:47:52] [0000m.00s.172ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.23 10:47:52] [0000m.00s.172ms] [0] S: iCDB database loaded
+[2016.11.23 10:47:52] [0000m.00s.173ms] [0] S: Starting threads
+[2016.11.23 10:47:52] [0000m.00s.173ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.23 10:47:52] [0000m.00s.173ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.23 10:47:52] [0000m.00s.174ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.23 10:47:52] [0000m.00s.175ms] [0] IT: Session [3318] for host [PAULGWF-PC] user [PAULGWF] with process ID [6872] created
+[2016.11.23 10:47:52] [0000m.00s.175ms] [1] SC[3318]: Registered sub-client [DCDV] with ID [1] for session ID [3318] host [PAULGWF-PC] user [PAULGWF] process ID [6872]
+[2016.11.23 10:47:52] [0000m.00s.273ms] [1] CMT: There are [1] clients now: 3318
+[2016.11.23 10:48:11] [0000m.19s.176ms] [0] DFAMT: File server access time: 38 us
+[2016.11.23 10:49:36] [0001m.44s.490ms] [0] IT: Session [3319] for host [PAULGWF-PC] user [PAULGWF] with process ID [6056] created
+[2016.11.23 10:49:36] [0001m.44s.490ms] [1] ProjectBackupManager: Client [ClientData[ClientNetAddress[PAULGWF-PC] # ClientUserName[PAULGWF] # ClientProcessID[6056] # SessionID[3319]] # SubClientData[SubClientName[] # SubClientID[0]]] set project file (.prj): local path [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj], global path [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\SwARM_Schematics.prj]
+[2016.11.23 10:49:36] [0001m.44s.502ms] [1] SC[3319]: Registered sub-client [Expedition PCB_8253154] with ID [1] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 10:49:36] [0001m.44s.532ms] [1] SC[3319]: Registered sub-client [EEVM] with ID [2] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 10:49:36] [0001m.44s.578ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 10:49:36] [0001m.44s.611ms] [1] SC[3319]: UnRegistered sub-client [EEVM] with ID [2] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 10:49:37] [0001m.45s.295ms] [1] SC[3319]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 11:28:34] [0040m.42s.059ms] [0] IT: Session [3320] for host [PAULGWF-PC] user [PAULGWF] with process ID [6408] created
+[2016.11.23 11:28:34] [0040m.42s.059ms] [1] SC[3320]: Registered sub-client [ICDBC] with ID [1] for session ID [3320] host [PAULGWF-PC] user [PAULGWF] process ID [6408]
+[2016.11.23 11:28:34] [0040m.42s.074ms] [1] SC[3320]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3320] host [PAULGWF-PC] user [PAULGWF] process ID [6408]
+[2016.11.23 11:28:34] [0040m.42s.154ms] [1] CMT: There are [3] clients now: 3318, 3319, 3320
+[2016.11.23 11:28:35] [0040m.43s.946ms] [1] SC[3320]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3320] host [PAULGWF-PC] user [PAULGWF] process ID [6408]
+[2016.11.23 11:28:35] [0040m.43s.948ms] [1] SC[3320]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3320] host [PAULGWF-PC] user [PAULGWF] process ID [6408]
+[2016.11.23 11:28:35] [0040m.43s.954ms] [1] CMT: Removed client [3320]
+[2016.11.23 11:28:35] [0040m.43s.954ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 11:28:36] [0040m.44s.490ms] [0] IT: Session [3321] for host [PAULGWF-PC] user [PAULGWF] with process ID [5824] created
+[2016.11.23 11:28:36] [0040m.44s.491ms] [1] SC[3321]: Registered sub-client [Packager_10593154] with ID [1] for session ID [3321] host [PAULGWF-PC] user [PAULGWF] process ID [5824]
+[2016.11.23 11:28:36] [0040m.44s.554ms] [1] CMT: There are [3] clients now: 3318, 3319, 3321
+[2016.11.23 11:28:36] [0040m.44s.767ms] [1] SC[3321]: UnRegistered sub-client [Packager_10593154] with ID [1] for session ID [3321] host [PAULGWF-PC] user [PAULGWF] process ID [5824]
+[2016.11.23 11:28:36] [0040m.44s.854ms] [1] CMT: Removed client [3321]
+[2016.11.23 11:28:36] [0040m.44s.854ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 12:01:17] [0073m.25s.983ms] [1] SC[3319]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:18] [0073m.25s.999ms] [1] SC[3319]: Registered sub-client [EEVM_EEVM_1635240] with ID [4] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:18] [0073m.25s.999ms] [1] SC[3319]: UnRegistered sub-client [EEVM_EEVM_1635240] with ID [4] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:18] [0073m.26s.030ms] [1] SC[3319]: Registered sub-client [JobPrefsDBPI_12554742] with ID [5] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:18] [0073m.26s.045ms] [1] SC[3319]: UnRegistered sub-client [JobPrefsDBPI_12554742] with ID [5] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:19] [0073m.27s.153ms] [1] SC[3319]: Registered sub-client [JobPrefsDBPI_12555865] with ID [6] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:19] [0073m.27s.163ms] [1] SC[3319]: UnRegistered sub-client [JobPrefsDBPI_12555865] with ID [6] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:19] [0073m.27s.381ms] [0] IT: Session [3322] for host [PAULGWF-PC] user [PAULGWF] with process ID [4832] created
+[2016.11.23 12:01:19] [0073m.27s.381ms] [1] SC[3322]: Registered sub-client [Packager_12556052] with ID [1] for session ID [3322] host [PAULGWF-PC] user [PAULGWF] process ID [4832]
+[2016.11.23 12:01:19] [0073m.27s.490ms] [1] CMT: There are [3] clients now: 3318, 3319, 3322
+[2016.11.23 12:01:19] [0073m.27s.693ms] [1] SC[3322]: UnRegistered sub-client [Packager_12556052] with ID [1] for session ID [3322] host [PAULGWF-PC] user [PAULGWF] process ID [4832]
+[2016.11.23 12:01:19] [0073m.27s.709ms] [1] CMT: Removed client [3322]
+[2016.11.23 12:01:19] [0073m.27s.709ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 12:01:20] [0073m.28s.239ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\s2\cdbcatlg\grpobj] - auto-saving it
+[2016.11.23 12:01:20] [0073m.28s.489ms] [0] IT: Session [3323] for host [PAULGWF-PC] user [PAULGWF] with process ID [6392] created
+[2016.11.23 12:01:20] [0073m.28s.489ms] [1] SC[3323]: Registered sub-client [Expedition_12557160] with ID [1] for session ID [3323] host [PAULGWF-PC] user [PAULGWF] process ID [6392]
+[2016.11.23 12:01:20] [0073m.28s.551ms] [1] SC[3323]: UnRegistered sub-client [Expedition_12557160] with ID [1] for session ID [3323] host [PAULGWF-PC] user [PAULGWF] process ID [6392]
+[2016.11.23 12:01:20] [0073m.28s.582ms] [1] CMT: There are [3] clients now: 3318, 3319, 3323
+[2016.11.23 12:01:20] [0073m.28s.582ms] [1] CMT: Removed client [3323]
+[2016.11.23 12:01:20] [0073m.28s.582ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 12:01:21] [0073m.29s.207ms] [0] IT: Session [3324] for host [PAULGWF-PC] user [PAULGWF] with process ID [6392] created
+[2016.11.23 12:01:21] [0073m.29s.207ms] [1] SC[3324]: Registered sub-client [JobPrefsDBPI_12557877] with ID [1] for session ID [3324] host [PAULGWF-PC] user [PAULGWF] process ID [6392]
+[2016.11.23 12:01:21] [0073m.29s.223ms] [1] SC[3324]: UnRegistered sub-client [JobPrefsDBPI_12557877] with ID [1] for session ID [3324] host [PAULGWF-PC] user [PAULGWF] process ID [6392]
+[2016.11.23 12:01:21] [0073m.29s.238ms] [1] CMT: There are [3] clients now: 3318, 3319, 3324
+[2016.11.23 12:01:21] [0073m.29s.238ms] [1] CMT: Removed client [3324]
+[2016.11.23 12:01:21] [0073m.29s.238ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 12:01:21] [0073m.29s.802ms] [0] IT: Session [3325] for host [PAULGWF-PC] user [PAULGWF] with process ID [6392] created
+[2016.11.23 12:01:21] [0073m.29s.802ms] [1] SC[3325]: Registered sub-client [JobPrefsDBPI_12558470] with ID [1] for session ID [3325] host [PAULGWF-PC] user [PAULGWF] process ID [6392]
+[2016.11.23 12:01:21] [0073m.29s.896ms] [1] CMT: There are [3] clients now: 3318, 3319, 3325
+[2016.11.23 12:01:22] [0073m.30s.036ms] [1] SC[3325]: UnRegistered sub-client [JobPrefsDBPI_12558470] with ID [1] for session ID [3325] host [PAULGWF-PC] user [PAULGWF] process ID [6392]
+[2016.11.23 12:01:22] [0073m.30s.114ms] [1] CMT: Removed client [3325]
+[2016.11.23 12:01:22] [0073m.30s.114ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 12:01:23] [0073m.31s.066ms] [0] IT: Session [3326] for host [PAULGWF-PC] user [PAULGWF] with process ID [6328] created
+[2016.11.23 12:01:23] [0073m.31s.066ms] [1] SC[3326]: Registered sub-client [JobPrefsDBPI_12559718] with ID [1] for session ID [3326] host [PAULGWF-PC] user [PAULGWF] process ID [6328]
+[2016.11.23 12:01:23] [0073m.31s.097ms] [1] CMT: There are [3] clients now: 3318, 3319, 3326
+[2016.11.23 12:01:23] [0073m.31s.097ms] [1] SC[3326]: Registered sub-client [Expedition_12559812] with ID [2] for session ID [3326] host [PAULGWF-PC] user [PAULGWF] process ID [6328]
+[2016.11.23 12:01:23] [0073m.31s.144ms] [1] SC[3326]: UnRegistered sub-client [JobPrefsDBPI_12559718] with ID [1] for session ID [3326] host [PAULGWF-PC] user [PAULGWF] process ID [6328]
+[2016.11.23 12:01:23] [0073m.31s.206ms] [1] SC[3326]: UnRegistered sub-client [Expedition_12559812] with ID [2] for session ID [3326] host [PAULGWF-PC] user [PAULGWF] process ID [6328]
+[2016.11.23 12:01:23] [0073m.31s.315ms] [1] CMT: Removed client [3326]
+[2016.11.23 12:01:23] [0073m.31s.315ms] [1] CMT: There are [2] clients now: 3318, 3319
+[2016.11.23 12:01:23] [0073m.31s.908ms] [1] SC[3319]: Registered sub-client [EEVM_EEVM_151472636] with ID [7] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:23] [0073m.31s.924ms] [1] SC[3319]: UnRegistered sub-client [EEVM_EEVM_151472636] with ID [7] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:23] [0073m.31s.924ms] [1] SC[3319]: Registered sub-client [EEVM_EEVM_151472636] with ID [8] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:23] [0073m.31s.924ms] [1] SC[3319]: UnRegistered sub-client [EEVM_EEVM_151472636] with ID [8] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:23] [0073m.31s.924ms] [1] SC[3319]: Registered sub-client [EEVM_EEVM_151472636] with ID [9] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:23] [0073m.31s.939ms] [1] SC[3319]: UnRegistered sub-client [EEVM_EEVM_151472636] with ID [9] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:24] [0073m.32s.048ms] [1] SC[3319]: UnRegistered sub-client [Expedition PCB_8253154] with ID [1] for session ID [3319] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:24] [0073m.32s.080ms] [1] CMT: Removed client [3319]
+[2016.11.23 12:01:24] [0073m.32s.080ms] [1] CMT: There are [1] clients now: 3318
+[2016.11.23 12:01:24] [0073m.32s.251ms] [0] IT: Session [3327] for host [PAULGWF-PC] user [PAULGWF] with process ID [6056] created
+[2016.11.23 12:01:24] [0073m.32s.251ms] [1] SC[3327]: Registered sub-client [Expedition PCB_12560935] with ID [1] for session ID [3327] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:24] [0073m.32s.298ms] [1] CMT: There are [2] clients now: 3318, 3327
+[2016.11.23 12:01:24] [0073m.32s.844ms] [1] SC[3327]: Registered sub-client [JobPrefsDBPI_12561559] with ID [2] for session ID [3327] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:24] [0073m.32s.860ms] [1] SC[3327]: UnRegistered sub-client [JobPrefsDBPI_12561559] with ID [2] for session ID [3327] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:01:24] [0073m.32s.860ms] [1] SC[3327]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3327] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:17:22] [0089m.30s.042ms] [1] SC[3318]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3318] host [PAULGWF-PC] user [PAULGWF] process ID [6872]
+[2016.11.23 12:17:22] [0089m.30s.058ms] [1] CMT: Removed client [3318]
+[2016.11.23 12:17:22] [0089m.30s.058ms] [1] CMT: There are [1] clients now: 3327
+[2016.11.23 12:17:40] [0089m.48s.216ms] [1] SC[3327]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3327] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:17:40] [0089m.48s.435ms] [1] SC[3327]: UnRegistered sub-client [Expedition PCB_12560935] with ID [1] for session ID [3327] host [PAULGWF-PC] user [PAULGWF] process ID [6056]
+[2016.11.23 12:17:40] [0089m.48s.528ms] [1] CMT: Removed client [3327]
+[2016.11.23 12:17:40] [0089m.48s.528ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.23 12:17:42] [0089m.50s.060ms] [0] CMT: Starting server auto-close
+[2016.11.23 12:17:42] [0089m.50s.169ms] [0] S: Closing server
+[2016.11.23 12:17:42] [0089m.50s.287ms] [0] iCDB Server PI: Closing plugins
+[2016.11.23 12:17:42] [0089m.50s.287ms] [0] iCDB Server PI: Plugins closed
+[2016.11.23 12:17:42] [0089m.50s.287ms] [0] iCDB Server PI: Unloading database
+[2016.11.23 12:17:42] [0089m.50s.287ms] [0] iCDB Server PI: Saving storage
+[2016.11.23 12:17:42] [0089m.50s.287ms] [0] iCDB Server PI: Closing database
+[2016.11.23 12:17:42] [0089m.50s.290ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[31%] data[84%]
+[2016.11.23 12:17:42] [0089m.50s.290ms] [1] iCDB Server PI: Stats: Database file size [214192 (209.2 kB)]
+[2016.11.23 12:17:42] [0089m.50s.292ms] [1] iCDB Server PI: WARNING: Database needs defragmentation!
+[2016.11.23 12:17:42] [0089m.50s.295ms] [0] iCDB Server PI: Database closed
+[2016.11.23 12:17:42] [0089m.50s.295ms] [0] iCDB Server PI: Defragmenting database
+[2016.11.23 12:17:42] [0089m.50s.295ms] [0] iCDB Server PI: Creating database [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb] backup to file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\cdbback\2016-11-23 12.17.42-2812-d.zip]
+[2016.11.23 12:17:42] [0089m.50s.412ms] [0] iCDB Server PI: Database backup: DONE
+[2016.11.23 12:17:42] [0089m.50s.418ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.23 12:17:42] [0089m.50s.418ms] [0] Database GUARD OK: [214192]
+[2016.11.23 12:17:42] [0089m.50s.419ms] [0] SingleFile: [2082-eac0-e454-ff6c] SFI version check [1009] [1009]
+[2016.11.23 12:17:42] [0089m.50s.425ms] [0] SingleFile: [2082-eac0-e454-ff6c] Database SFI header has been read in [6ms 656us]
+[2016.11.23 12:17:42] [0089m.50s.455ms] [1] iCDB Server PI: Stats: Database file sizes: before[214192 (209.2 kB)], after[118896 (116.1 kB)], gain[95296 (93.1 kB)]
+[2016.11.23 12:17:42] [0089m.50s.461ms] [0] Single file [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\icdb.dat] closed with size [118896 (116.1 kB)]
+[2016.11.23 12:17:42] [0089m.50s.461ms] [0] iCDB Server PI: Database defragmentation completed successfully
+[2016.11.23 12:17:42] [0089m.50s.461ms] [1] BackupTransaction: Removing database backup [C:\Users\PAULGWF\Documents\SwARM\hardware\SwARM_Schematics\Default\default.icdb\cdbback\2016-11-23 12.17.42-2812-d.zip]
+[2016.11.23 12:17:42] [0089m.50s.578ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [191768] ticks
+[2016.11.23 12:17:42] [0089m.50s.578ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [70291] microseconds
+[2016.11.23 12:17:42] [0089m.50s.578ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [447]
+[2016.11.23 12:17:42] [0089m.50s.578ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [6359] commands per second
+[2016.11.23 12:17:42] [0089m.50s.781ms] [0] S: STOP

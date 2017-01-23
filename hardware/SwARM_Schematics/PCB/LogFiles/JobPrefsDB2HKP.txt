@@ -1,0 +1,13 @@
+
+                     PCB Job Preferences to Design Data Log
+                     --------------------------------------
+
+                       04:01 PM Tuesday, December 20, 2016
+                                   Job Name: 
+
+
+Linear values will be specified in the following units: IN
+
+Creating Job Preferences Design Data file 'E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Output\pcbodb\user\layerstackup.usr'.
+
+Job Preferences Design Data file 'E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\Output\pcbodb\user\layerstackup.usr' was successfully created.

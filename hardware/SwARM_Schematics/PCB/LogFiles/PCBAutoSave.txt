@@ -1,0 +1,14 @@
+
+                                Autosave Log File
+                                -----------------
+
+                       07:19 PM Thursday, January 12, 2017
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+
+
+                               Autosave log closed
+                               -------------------
+
+                       07:28 PM Thursday, January 12, 2017
+          Job Name: E:\2017\SWARM\HARDWARE\SWARM_SCHEMATICS\PCB\PCB.pcb
+
