@@ -2,9 +2,6 @@
 #include "ch.h"
 #include "hal.h"
 
-// 0 for fast mode ; 1 for fast mode plus
-#define I2C_MODE 0
-
 // Fast Mode
 static const I2CConfig i2cfg = {
   STM32_TIMINGR_PRESC(0U) |
@@ -14,21 +11,9 @@ static const I2CConfig i2cfg = {
   0
 };
 
-// Fast Mode Plus
-static const I2CConfig i2cfg_plus = {
-  STM32_TIMINGR_PRESC(0U)  |
-  STM32_TIMINGR_SCLDEL(10U) | STM32_TIMINGR_SDADEL(0U) |
-  STM32_TIMINGR_SCLH(13U)   | STM32_TIMINGR_SCLL(146U),
-  0,
-  0
-};
 
 void initI2C(void) {
-	if(I2C_MODE == 0) {
-		i2cStart(&I2CD1, &i2cfg);
-	} else if (I2C_MODE == 1) {
-		i2cStart(&I2CD1, &i2cfg_plus);
-	}
+	i2cStart(&I2CD1, &i2cfg);
 }
 
 void writeByte(uint8_t address, uint8_t subAddress, uint8_t data) {
