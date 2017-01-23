@@ -177,11 +177,11 @@ void update_sub_coordinates(void) {
 	dist_goal += last_dist_error;
 	angle_goal += last_angle_error;
 
-	if (i == N_POINTS) {
-		state++;
-		i = 1;
-	} else {
-		i++;
-	}
+	if (i == 7)
+		state = 1;
+	else if (i == 14)
+		state = 2;
+
+	i++;
 }
 
