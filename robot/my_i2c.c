@@ -5,8 +5,6 @@
 // 0 for fast mode ; 1 for fast mode plus
 #define I2C_MODE 0
 
-// I2C interface 1
-
 // Fast Mode
 static const I2CConfig i2cfg = {
   STM32_TIMINGR_PRESC(0U) |
