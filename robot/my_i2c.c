@@ -16,7 +16,7 @@ static const I2CConfig i2cfg = {
   0
 };
 
-// Fast Mode PLus
+// Fast Mode Plus
 static const I2CConfig i2cfg_plus = {
   STM32_TIMINGR_PRESC(0U)  |
   STM32_TIMINGR_SCLDEL(10U) | STM32_TIMINGR_SDADEL(0U) |
@@ -25,13 +25,7 @@ static const I2CConfig i2cfg_plus = {
   0
 };
 
-
-// already set in board.h : useless ?
 void initI2C(void) {
-	palSetLineMode(LINE_MPU_I2C_SDA, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
-	palSetLineMode(LINE_MPU_I2C_SCL, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
-	palSetLineMode(LINE_MPU_INT,     PAL_MODE_INPUT);
-
 	if(I2C_MODE == 0) {
 		i2cStart(&I2CD1, &i2cfg);
 	} else if (I2C_MODE == 1) {
