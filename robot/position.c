@@ -2,6 +2,8 @@
 #include "hal.h"
 
 #include "position.h"
+#include "imu.h"
+#include "radiocomms.h"
 #include "wheel_constants.h"
 #include "asser.h"
 #include "coordination.h"
@@ -11,14 +13,26 @@
  * The calculation depends on wether we are rotating to the left or to the right
  */
 void update_position(){
-    // Calculating current angle value in radians
-    double angle_rad = angle*U_DEGREE_ANGLE*DEG_TO_RAD;
+	// Calculating current angle value in radians
+	double angle_rad = angle*U_DEGREE_ANGLE*DEG_TO_RAD;
 
-    // Updating orientation
-    orientation += angle_rad;
-    // Calculating last coordinates of the robot
-    x_pos += distance*cos(orientation);
-    y_pos += distance*sin(orientation);
-    last_dist_error = dist_error;
-    last_angle_error = angle_error;
+	// Updating orientation
+	orientation += angle_rad;
+	// angle fusion
+	orientation += azimuth;
+	orientation /= 2;
+
+	// Calculating last coordinates of the robot
+	x_pos += distance * cos(orientation);
+	y_pos += distance * sin(orientation);
+	last_dist_error = dist_error;
+	last_angle_error = angle_error;
+
+	// position fusion : mean with decawave
+	x_pos += radioData.x;
+	y_pos += radioData.y;
+	x_pos /= 2;
+	y_pos /= 2;
 }
+
+

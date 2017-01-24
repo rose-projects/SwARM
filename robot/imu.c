@@ -289,17 +289,17 @@ static THD_FUNCTION(imuThread, th_data) {
 			// they will be from the X axis of the scene in the future
 			if(mx == 0) {
 				if(my < 0) {
-					azimuth = PI/2;
+					azimuth = PI/2 - X_NORTH_DIFF;
 				} else { // y > 0
-					azimuth = - PI/2;
+					azimuth = - PI/2 - X_NORTH_DIFF;
 				}
 			} else if (mx < 0) {
-			azimuth = PI - atan(my/mx); 
+			azimuth = PI - atan(my/mx) - X_NORTH_DIFF; 
 			} else if (mx > 0) {
 				if (my < 0) {
-					azimuth = - atan(my/mx);
+					azimuth = - atan(my/mx) - X_NORTH_DIFF;
 				} else { // y > 0
-					azimuth = 2 * PI - atan(my/mx);
+					azimuth = 2 * PI - atan(my/mx) - X_NORTH_DIFF;
 				}
 			}
 		}
