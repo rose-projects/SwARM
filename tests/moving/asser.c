@@ -42,8 +42,8 @@ static THD_FUNCTION(asser_thd, arg) {
     int cmd_right;
     int cmd_dist;
     int cmd_angle;
-    int angle = 0;
-    int distance = 0;
+    int angle;
+    int distance;
 
     // 200 Hz calculation
     while(true){
