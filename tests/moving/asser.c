@@ -26,12 +26,8 @@
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
-volatile int cmd_dist;
-volatile int cmd_angle;
 volatile int dist_error = 0;
 volatile int angle_error = 0;
-volatile int angle = 0;
-volatile int distance = 0;
 static int dist_error_sum;
 static int dist_error_delta;
 static int dist_error_prev;
@@ -44,6 +40,10 @@ static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
     int cmd_left;
     int cmd_right;
+    int cmd_dist;
+    int cmd_angle;
+    int angle = 0;
+    int distance = 0;
 
     // 200 Hz calculation
     while(true){
@@ -165,7 +165,4 @@ void begin_new_asser(){
     // Reset angle and distance error integrals
     last_angle_error = 0;
     last_dist_error = 0;
-    // Reset ticks
-    tick_l = 0;
-    tick_r = 0;
 }
