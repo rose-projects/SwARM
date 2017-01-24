@@ -9,8 +9,8 @@
 // Set initial input parameters
 #define PI 3.14159265359
 #define NB_CALIB 0
-// hard coded angle diff(x, north)
-#define X_NORTH_DIFF (- PI/4) // north around -y
+// hard coded angle diff(X, north)
+#define X_NORTH_DIFF (-0.5)
 
 enum Mscale_t {
 	MFS_14BITS = 0, // 0.6 mG per LSB
@@ -287,22 +287,17 @@ static THD_FUNCTION(imuThread, th_data) {
 			my *= magscale[1]; 
 			mz *= magscale[2]; 
 
-			// all angles are from the north
-			// they will be from the X axis of the scene in the future
+			// all angles are from the X axis
 			if(mx == 0) {
 				if(my < 0) {
-					azimuth = PI/2 - X_NORTH_DIFF;
-				} else { // y > 0
 					azimuth = - PI/2 - X_NORTH_DIFF;
+				} else { // y >= 0
+					azimuth = PI/2 - X_NORTH_DIFF;
 				}
 			} else if (mx < 0) {
-			azimuth = PI - atan(my/mx) - X_NORTH_DIFF; 
+				azimuth = atan(my/mx) - X_NORTH_DIFF; 
 			} else if (mx > 0) {
-				if (my < 0) {
-					azimuth = - atan(my/mx) - X_NORTH_DIFF;
-				} else { // y > 0
-					azimuth = 2 * PI - atan(my/mx) - X_NORTH_DIFF;
-				}
+				azimuth = - PI + atan(my/mx) - X_NORTH_DIFF;
 			}
 		}
 
