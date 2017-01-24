@@ -86,8 +86,8 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 		t = 1;
 	}
 
-	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0])(r_dep + t*r_goal);
-	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1])(r_dep + t*r_goal);
+	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0]) * (r_dep + t*r_goal);
+	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1]) * (r_dep + t*r_goal);
 
 	pt_tan_dep[0] = dep_circle[0] +
 	                (r_dep*r_dep*(h[0]-dep_circle[0]) -
