@@ -166,8 +166,8 @@ void update_sub_coordinates(void) {
 	case 0:
 	case 2:
 		alpha = 2*asin(sqrt((x*x)+(y*y)) / (2*radius));
-		dist_goal = fabs(alpha)*radius*i/N_POINTS;
-		angle_goal = -L_MM*dist_goal/(radius*U_MM)*to_the_left;
+		dist_goal += fabs(alpha)*radius/N_POINTS;
+		angle_goal += -L_MM*dist_goal/(radius*U_MM)*to_the_left;
 		break;
 	}
 
