@@ -5,7 +5,7 @@
 #define N_POINTS 20
 
 void update_main_coordinates(int x_goal, int y_goal, double arrival_angle,
-	int r_dep, int r_goal);
+                             int r_dep, int r_goal);
 void update_sub_coordinates(void);
 
 extern volatile int last_angle_error;
