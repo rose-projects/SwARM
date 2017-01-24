@@ -41,9 +41,9 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	// testing order
 	x_goal = 200;
 	y_goal = 200;
-	goal_angle = M_PI / 4;
-	r_dep = 10;
-	r_goal = 1;
+	goal_angle = 120;
+	r_dep = 50;
+	r_goal = 20;
 
 	// Because of the method of the homothetic center, both circles cannot
 	// be of the same radius, this dirty hack solves this issue.
