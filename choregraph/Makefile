@@ -14,4 +14,8 @@ dist:
 	rm -rf dist/
 	electron-packager ./ --platform=darwin,linux --arch=x64 --out=./dist/
 
-.PHONY: all watch clean test run dist
+install:
+	npm install
+	./node_modules/.bin/electron-rebuild -$(electron -v)
+
+.PHONY: all watch clean test run dist install

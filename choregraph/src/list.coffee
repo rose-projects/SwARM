@@ -24,7 +24,7 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 
 		$(".#{className + '-name'}").click ->
 			index = parseInt($(this).parent().data("index"));
-			activate(index) if not data[index].activated
+			activate(index) if data[index]? and not data[index].activated
 		$(".#{className + '-delete'}").click ->
 			index = parseInt($(this).parent().parent().data("index"));
 			remove(index)
@@ -36,7 +36,7 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 				deselect(index, no)
 		$(".#{className + '-add'}").click add
 
-		onUpdate?(getActive())
+		onUpdate?(getActive()) if getActive()
 
 	# add an element
 	add = ->
@@ -52,6 +52,8 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 	remove = (index) ->
 		onRemove?(data[index])
 		data.splice(index, 1)
+		return update() if data.length == 0
+
 		for i in [0..data.length - 1]
 			data[i].index = i
 			data[i].name = nameGenerator i + 1

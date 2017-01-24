@@ -101,7 +101,12 @@ body {
 	padding: 0;
 	margin : 0;
 }
-
+.color-table, .move-table {
+	padding-bottom: 2vh;
+}
+.color-table td, .move-table td {
+	border-bottom: none !important;
+}
 
 @font-face {
   font-family: 'Kirvy';
