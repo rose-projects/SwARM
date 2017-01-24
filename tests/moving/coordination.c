@@ -12,21 +12,21 @@
 // return 1 if x >= 0, -1 otherwise
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
-volatile int dist_goal = 0; // PID->dist to next update_sub_coordinates call
-volatile int angle_goal = 0; // PID->tick diff: 0 is straigt, 246 is Pi/2
-volatile double orientation = 0; // orientation of the robot in rad
-volatile int x_pos = 0; // last measured position, used when calling update_
-volatile int y_pos = 0; // main_coordinates
+volatile int dist_goal = 0;        // PID->dist to next update_sub_coordinates call
+volatile int angle_goal = 0;       // PID->tick diff: 0 is straigt, 246 is Pi/2
+volatile double orientation = 0;   // orientation of the robot in rad
+volatile int x_pos = 0;            // last measured position, used when calling update_
+volatile int y_pos = 0;            // main_coordinates
 volatile int last_angle_error = 0; // computed in position.c
-volatile int last_dist_error = 0; // computed in position.c
+volatile int last_dist_error = 0;  // computed in position.c
 
-static double r_dep_, r_goal_; // radius of the departure and goal circles
+static double r_dep_, r_goal_;               // radius of the departure and goal circles
 static double x_goal_, y_goal_, goal_angle_; // variables in the new system
 static double pt_tan_dep[2], pt_tan_goal[2]; // tangent points
-static int t = 0; // 1 if inner tangent, -1 otherwise
-static int state = 0; // 0 departure circles, 1 straight line, 2 goal circle
-static int i; // i-th point out of N_POINTS in the trajectory
-static int to_the_left; // 1: going to the left, -1 to the right
+static int t = 0;                            // 1 if inner tangent, -1 otherwise
+static int state = 0;                        // 0 departure circles, 1 straight line, 2 goal circle
+static int i;                                // i-th point out of N_POINTS in the trajectory
+static int to_the_left;                      // 1: going to the left, -1 to the right
 
 // Called once to set the goalination
 void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
@@ -36,7 +36,7 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	int dep_circle[2] = {0};
 	int goal_circle[2] = {0};
 	int tmp1[2], tmp2[2]; // the 2 arrival circles we have to chose from
-	double h[2] = {0}; // homothetic center
+	double h[2] = {0};    // homothetic center
 
 	// testing order
 	x_goal = 200;
@@ -45,9 +45,8 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	r_dep = 10;
 	r_goal = 1;
 
-	/* Because of the method of the homothetic center, both circles cannot
-	 * be of the same radius, this dirty hack solves this issue.
-	 */
+	// Because of the method of the homothetic center, both circles cannot
+	// be of the same radius, this dirty hack solves this issue.
 	if (r_dep == r_goal) {
 		r_dep++;
 	}
@@ -60,19 +59,19 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	y_goal_ = (x_goal-x_pos)*sin(theta) + (y_goal-y_pos)*cos(theta);
 	goal_angle_ = goal_angle + theta;
 
-	/* choose the right circles */
-	/* hypothesis: the closest to the goal is the one we want.
+	/* 
+	 * choose the right circles
+	 * hypothesis: the closest to the goal is the one we want.
 	 * Some cases break this law, but they may not happen depending on the
 	 * choice of the choreography.
 	 */
+
 	dep_circle[0] = (x_goal_ >= 0 ? r_dep : -r_dep);
 	tmp1[0] = x_goal_ + r_goal * sin(goal_angle_);
 	tmp1[1] = y_goal_ - r_goal * cos(goal_angle_);
 	tmp2[0] = x_goal_ - r_goal * sin(goal_angle_);
 	tmp2[1] = y_goal_ + r_goal * cos(goal_angle_);
-	if (tmp1[0]*tmp1[0] + tmp1[1]*tmp1[1]
-		<= tmp2[0]*tmp2[0] + tmp2[1]*tmp2[1])
-	{
+	if (tmp1[0]*tmp1[0] + tmp1[1]*tmp1[1] <= tmp2[0]*tmp2[0] + tmp2[1]*tmp2[1]) {
 		goal_circle[0] = tmp1[0];
 		goal_circle[1] = tmp1[1];
 	}
@@ -88,10 +87,8 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 		t = 1;
 	}
 
-	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0])/
-		(r_dep + t*r_goal);
-	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1])/
-		(r_dep + t*r_goal);
+	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0])(r_dep + t*r_goal);
+	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1])(r_dep + t*r_goal);
 
 	pt_tan_dep[0] = dep_circle[0] +
 	                (r_dep*r_dep*(h[0]-dep_circle[0]) -
@@ -131,13 +128,11 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	i = 1;
 }
 
-/* Update distance and angle goals
- * Called every 50ms
- */
+// Update distance and angle goals : Called every 50ms
 void update_sub_coordinates(void) {
 	double x = 0, y = 0; // coordinate of the destination
-	double radius = 0; // radius of the trajectory
-	double alpha = 0; // angle of the trajectory
+	double radius = 0;   // radius of the trajectory
+	double alpha = 0;    // angle of the trajectory
 
 	switch (state) {
 	case 0:
