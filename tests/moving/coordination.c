@@ -43,7 +43,7 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	y_goal = 200;
 	goal_angle = M_PI / 4;
 	r_dep = 10;
-	r_goal = 0;
+	r_goal = 1;
 
 	/* Because of the method of the homothetic center, both circles cannot
 	 * be of the same radius, this dirty hack solves this issue.
@@ -172,7 +172,7 @@ void update_sub_coordinates(void) {
 	case 2:
 		alpha = 2*asin(sqrt((x*x)+(y*y)) / (2*radius));
 		dist_goal = fabs(alpha)*radius*i/N_POINTS;
-		angle_goal = L_MM*dist_goal/(radius*U_MM)*to_the_left;
+		angle_goal = -L_MM*dist_goal/(radius*U_MM)*to_the_left;
 		break;
 	}
 
@@ -184,7 +184,6 @@ void update_sub_coordinates(void) {
 	} else if (i == 14) {
 		state = 2;
 	}
-
 	i++;
 }
 
