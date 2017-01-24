@@ -6,9 +6,6 @@
 
 #include <math.h>
 
-#include "hal.h"
-#include "ch.h"
-
 // return 1 if x >= 0, -1 otherwise
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
@@ -54,10 +51,12 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	r_dep_ = r_dep;
 	r_goal_ = r_goal;
 
-	// cartesian system change
+	/* cartesian system change
+	 * note: convert rad angle to tick
+	 */
 	x_goal_ = (x_goal-x_pos)*cos(theta) - (y_goal-y_pos)*sin(theta);
 	y_goal_ = (x_goal-x_pos)*sin(theta) + (y_goal-y_pos)*cos(theta);
-	goal_angle_ = goal_angle + theta;
+	goal_angle_ = goal_angle + theta * U_DEGREE_ANGLE * (180.0/M_PI);
 
 	/* choose the right circles
 	 * hypothesis: the closest to the goal is the one we want.
