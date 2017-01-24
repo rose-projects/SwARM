@@ -39,6 +39,7 @@ void update_position(){
     // Calculating last coordinates of the robot
     x_pos += distance_current*cos(orientation);
     y_pos += distance_current*sin(orientation);
+
     // Updating dist and angle errors that must be covered 
     last_dist_error = dist_error;
     last_angle_error = angle_error;
