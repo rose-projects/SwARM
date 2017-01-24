@@ -9,7 +9,7 @@ void initMotors(){
     initPWM();
 
     // Setting the direction of the robot
-    GO_FORWARD
+    GO_FORWARD();
 
     // Disable both channels so that the robot stays still
     setLpwm(0);

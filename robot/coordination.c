@@ -48,8 +48,9 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	/* Because of the method of the homothetic center, both circles cannot
 	 * be of the same radius, this dirty hack solves this issue.
 	 */
-	if (r_dep == r_goal)
+	if (r_dep == r_goal){
 		r_dep++;
+    }
 
 	r_dep_ = r_dep;
 	r_goal_ = r_goal;
@@ -81,10 +82,12 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	 * the goal is in the right-hand quadrant
 	 * hypothesis2: r_dep > r_goal TODO: all cases
 	 */
-	if (goal_circle[0] == tmp1[0])
+	if (goal_circle[0] == tmp1[0]){
 		t = -1;
-	else
+    }
+	else{
 		t = 1;
+    }
 
 	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0])/
 		(r_dep + t*r_goal);
@@ -152,10 +155,12 @@ void update_sub_coordinates(void) {
 		x = x_goal_;
 		y = y_goal_;
 		radius = r_goal_;
-		if (x_goal_ >= 0)
+		if (x_goal_ >= 0){
 			to_the_left = t;
-		else
+        }
+		else{
 			to_the_left = -t;
+        }
 		break;
 	}
 
@@ -177,10 +182,14 @@ void update_sub_coordinates(void) {
 	dist_goal += last_dist_error;
 	angle_goal += last_angle_error;
 
-	if (i == 7)
+	if (i == 7){
 		state = 1;
-	else if (i == 14)
+    }
+	else {
+        if (i == 14){
 		state = 2;
+        }
+    }
 
 	i++;
 }
