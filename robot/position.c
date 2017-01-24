@@ -5,6 +5,7 @@
 #include "wheel_constants.h"
 #include "asser.h"
 #include "coordination.h"
+#include "coding_wheels.h"
 
 /*
  * Update position according to the coding wheels
