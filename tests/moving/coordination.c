@@ -17,76 +17,89 @@ volatile int y_pos = 0;            // main_coordinates
 volatile int last_angle_error = 0; // computed in position.c
 volatile int last_dist_error = 0;  // computed in position.c
 
-static double r_dep_, r_goal_;               // radius of the departure and goal circles
-static double x_goal_, y_goal_, goal_angle_; // variables in the new system
-static double pt_tan_dep[2], pt_tan_goal[2]; // tangent points
-static int t = 0;                            // 1 if inner tangent, -1 otherwise
-static int state = 0;                        // 0 departure circles, 1 straight line, 2 goal circle
+static double x_dest_, y_dest_, ori_dest_; // make the parameters global
+static double r_dep_, r_dest_;               // radius of the departure and destination circles
+static double pt_tan_dep[2], pt_tan_dest[2]; // tangent points
+static int is_inner_tan = 0;                 // 1 if inner tangent, -1 otherwise
+static int state = 0;                        // 0 departure circles, 1 straight line, 2 dest circle
 static int i;                                // i-th point out of N_POINTS in the trajectory
 static int to_the_left;                      // 1: going to the left, -1 to the right
 
-// Called once to set the goalination
-void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
-	int r_dep, int r_goal)
+// Called once to set the destination
+void update_main_coordinates(int x_dest, int y_dest, double ori_dest,
+                             int r_dep, int r_dest)
 {
-	double theta = M_PI/2 - orientation; // system rotation angle
 	int dep_circle[2] = {0};
-	int goal_circle[2] = {0};
-	int tmp1[2], tmp2[2]; // the 2 arrival circles we have to chose from
+	int dest_circle[2] = {0};
+	int tmp1[2], tmp2[2]; // the 2 circles we have to chose from
 	double h[2] = {0};    // homothetic center
 
 	// testing order
-	x_goal = 200;
-	y_goal = 200;
-	goal_angle = 120;
+	x_dest = 200;
+	y_dest = 200;
+	ori_dest = 120;
 	r_dep = 50;
-	r_goal = 20;
+	r_dest = 20;
 
-	// Because of the method of the homothetic center, both circles cannot
-	// be of the same radius, this dirty hack solves this issue.
-	if (r_dep == r_goal) {
+	/* Because of the method of the homothetic center, both circles cannot
+	 * be of the same radius, this dirty hack solves this issue.
+	 */
+	if (r_dep == r_dest) {
 		r_dep++;
 	}
 
+	x_dest_ = x_dest;
+	y_dest_ = y_dest;
 	r_dep_ = r_dep;
-	r_goal_ = r_goal;
-
-	/* cartesian system change
-	 * note: convert rad angle to tick
-	 */
-	x_goal_ = (x_goal-x_pos)*cos(theta) - (y_goal-y_pos)*sin(theta);
-	y_goal_ = (x_goal-x_pos)*sin(theta) + (y_goal-y_pos)*cos(theta);
-	goal_angle_ = goal_angle + theta * U_DEGREE_ANGLE * (180.0/M_PI);
+	r_dest_ = r_dest;
+	ori_dest_ = ori_dest;
 
 	/* choose the right circles
-	 * hypothesis: the closest to the goal is the one we want.
+	 * hypothesis: the closest to the destination is the one we want.
 	 * Some cases break this law, but they may not happen depending on the
 	 * choice of the choreography.
 	 */
-
-	dep_circle[0] = (x_goal_ >= 0 ? r_dep : -r_dep);
-	tmp1[0] = x_goal_ + r_goal * sin(goal_angle_);
-	tmp1[1] = y_goal_ - r_goal * cos(goal_angle_);
-	tmp2[0] = x_goal_ - r_goal * sin(goal_angle_);
-	tmp2[1] = y_goal_ + r_goal * cos(goal_angle_);
-	if (tmp1[0]*tmp1[0] + tmp1[1]*tmp1[1] <= tmp2[0]*tmp2[0] + tmp2[1]*tmp2[1]) {
-		goal_circle[0] = tmp1[0];
-		goal_circle[1] = tmp1[1];
+	tmp1[0] = x_dep_ + r_dep*sin(orientation);
+	tmp1[1] = y_dep_ - r_dep*cos(orientation);
+	tmp2[0] = x_dep_ - r_dep*sin(orientation);
+	tmp2[1] = y_dep_ + r_dep*cos(orientation);
+	if ((tmp1[0]-x_dest_)*(tmp1[0]-x_dest_) + (tmp1[1]-y_dest_)*(tmp1[1]-y_dest_) <=
+	    (tmp2[0]-x_dest_)*(tmp2[0]-x_dest_) + (tmp2[1]-y_dest_)*(tmp2[1]-y_dest_))
+	{
+		dep_circle[0] = tmp1[0];
+		dep_circle[1] = tmp1[1];
+	} else {
+		dep_circle[0] = tmp2[0];
+		dep_circle[1] = tmp2[1];
 	}
 
-	// find the tangent points
-	/* hypothesis1: the robot will never need to to go to the left if
+	tmp1[0] = x_dest_ + r_dest * sin(ori_dest_);
+	tmp1[1] = y_dest_ - r_dest * cos(ori_dest_);
+	tmp2[0] = x_dest_ - r_dest * sin(ori_dest_);
+	tmp2[1] = y_dest_ + r_dest * cos(ori_dest_);
+	if ((tmp1[0]-x_pos)*(tmp1[0]-x_pos) + (tmp1[1]-y_pos)*(tmp1[1]-y_pos) <=
+	    (tmp2[0]-x_pos)*(tmp2[0]-x_pos) + (tmp2[1]-y_pos)*(tmp2[1]-y_pos))
+	{
+		dest_circle[0] = tmp1[0];
+		dest_circle[1] = tmp1[1];
+	} else {
+		dest_circle[0] = tmp2[0];
+		dest_circle[1] = tmp2[1];
+	}
+
+	/* find the tangent points
+	 * hypothesis1: the robot will never need to to go to the left if
 	 * the goal is in the right-hand quadrant
-	 * hypothesis2: r_dep > r_goal TODO: all cases
+	 * hypothesis2: r_dep > r_dest TODO: all cases
 	 */
-	if (goal_circle[0] == tmp1[0]) {
+	if (dest_circle[0] == tmp1[0]) {
 		t = -1;
 	} else {
 		t = 1;
 	}
 
-	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0]) * (r_dep + t*r_goal);
-	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1]) * (r_dep + t*r_goal);
+	h[0] = (r_dep*dep_circle[0] + t*r_dest*dest_circle[0]) * (r_dep + t*r_dest);
+	h[1] = (r_dep*dep_circle[1] + t*r_dest*dest_circle[1]) * (r_dep + t*r_dest);
 
 	pt_tan_dep[0] = dep_circle[0] +
 	                (r_dep*r_dep*(h[0]-dep_circle[0]) -
@@ -105,22 +118,22 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	                ((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) +
 	                 (h[1]-dep_circle[1])*(h[1]-dep_circle[1]));
 
-	pt_tan_goal[0] = goal_circle[0] +
-	                 (r_goal*r_goal*(h[0]-goal_circle[0]) +
-	                  t*r_goal*(h[1]-goal_circle[0]) *
-	                  sqrt((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) +
-	                       (h[1]-goal_circle[1])*(h[1]-goal_circle[1]) -
-	                        r_goal*r_goal)) /
-	                 ((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) +
-	                  (h[1]-goal_circle[1])*(h[1]-goal_circle[1]));
-	pt_tan_goal[1] = goal_circle[1] +
-	                 (r_goal*r_goal*(h[1]-goal_circle[1]) -
-	                  t*r_goal*(h[0]-goal_circle[0]) *
-	                  sqrt((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) +
-	                       (h[1]-goal_circle[1])*(h[1]-goal_circle[1]) -
-	                        r_goal*r_goal)) /
-	                 ((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) +
-	                  (h[1]-goal_circle[1])*(h[1]-goal_circle[1]));
+	pt_tan_dest[0] = dest_circle[0] +
+	                 (r_dest*r_dest*(h[0]-dest_circle[0]) +
+	                  t*r_dest*(h[1]-dest_circle[0]) *
+	                  sqrt((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
+	                       (h[1]-dest_circle[1])*(h[1]-dest_circle[1]) -
+	                        r_dest*r_dest)) /
+	                 ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
+	                  (h[1]-dest_circle[1])*(h[1]-dest_circle[1]));
+	pt_tan_dest[1] = dest_circle[1] +
+	                 (r_dest*r_dest*(h[1]-dest_circle[1]) -
+	                  t*r_dest*(h[0]-dest_circle[0]) *
+	                  sqrt((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
+	                       (h[1]-dest_circle[1])*(h[1]-dest_circle[1]) -
+	                        r_dest*r_dest)) /
+	                 ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
+	                  (h[1]-dest_circle[1])*(h[1]-dest_circle[1]));
 
 	state = 0;
 	i = 1;
@@ -140,14 +153,14 @@ void update_sub_coordinates(void) {
 		to_the_left = -SIGN(x);
 		break;
 	case 1:
-		x = pt_tan_goal[0];
-		y = pt_tan_goal[1];
+		x = pt_tan_dest[0];
+		y = pt_tan_dest[1];
 		break;
 	case 2:
-		x = x_goal_;
-		y = y_goal_;
-		radius = r_goal_;
-		if (x_goal_ >= 0) {
+		x = x_dest_;
+		y = y_dest_;
+		radius = r_dest_;
+		if (x_dest_ >= 0) {
 			to_the_left = t;
 		} else {
 			to_the_left = -t;
@@ -157,8 +170,8 @@ void update_sub_coordinates(void) {
 
 	switch (state) {
 	case 1:
-		dist_goal = sqrt((pt_tan_goal[0]-pt_tan_dep[0]) *
-		                 (pt_tan_goal[0]-pt_tan_dep[0])) *
+		dist_goal = sqrt((pt_tan_dest[0]-pt_tan_dep[0]) *
+		                 (pt_tan_dest[0]-pt_tan_dep[0])) *
 		            i/N_POINTS;
 		angle_goal = 0;
 		break;
