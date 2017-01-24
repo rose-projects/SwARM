@@ -59,8 +59,7 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	y_goal_ = (x_goal-x_pos)*sin(theta) + (y_goal-y_pos)*cos(theta);
 	goal_angle_ = goal_angle + theta;
 
-	/* 
-	 * choose the right circles
+	/* choose the right circles
 	 * hypothesis: the closest to the goal is the one we want.
 	 * Some cases break this law, but they may not happen depending on the
 	 * choice of the choreography.
@@ -76,7 +75,7 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 		goal_circle[1] = tmp1[1];
 	}
 
-	/* find the tangent points */
+	// find the tangent points
 	/* hypothesis1: the robot will never need to to go to the left if
 	 * the goal is in the right-hand quadrant
 	 * hypothesis2: r_dep > r_goal TODO: all cases
@@ -128,7 +127,7 @@ void update_main_coordinates(int x_goal, int y_goal, double goal_angle,
 	i = 1;
 }
 
-// Update distance and angle goals : Called every 50ms
+// Update distance and angle goals: called every 50ms
 void update_sub_coordinates(void) {
 	double x = 0, y = 0; // coordinate of the destination
 	double radius = 0;   // radius of the trajectory
@@ -149,10 +148,11 @@ void update_sub_coordinates(void) {
 		x = x_goal_;
 		y = y_goal_;
 		radius = r_goal_;
-		if (x_goal_ >= 0)
+		if (x_goal_ >= 0) {
 			to_the_left = t;
-		else
+		} else {
 			to_the_left = -t;
+		}
 		break;
 	}
 
