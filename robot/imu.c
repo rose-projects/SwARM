@@ -9,6 +9,8 @@
 // Set initial input parameters
 #define PI 3.14159265359
 #define NB_CALIB 0
+// hard coded angle diff(x, north)
+#define X_NORTH_DIFF (- PI/4) // north around -y
 
 enum Mscale_t {
 	MFS_14BITS = 0, // 0.6 mG per LSB
