@@ -137,7 +137,7 @@ void update_sub_coordinates(void) {
 	case 0:
 		x = pt_tan_dep[0];
 		y = pt_tan_dep[1];
-		radius = r_goal_;
+		radius = r_dep_;
 		to_the_left = -SIGN(x);
 		break;
 	case 1:
