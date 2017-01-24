@@ -36,13 +36,13 @@ static THD_FUNCTION(moving_thd, arg) {
             chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "##########################\r\n");
             update_main_coordinates(0,0,0, 0, 0);
+            // Resetting enslavement error variables
+            begin_new_asser();
         }
         // Updating position, dist/angle error offset to add to next commands
         update_position();
         // Calculate next target position and update distance and angle goals
         update_sub_coordinates();
-        // Resetting enslavement error variables
-        begin_new_asser();
 
         // Ready for next iteration
         i++;

@@ -321,7 +321,7 @@
  * PC10 - GPIOC_SPI3_SCK        (alternate 6).
  * PC11 - GPIOC_SPI3_MISO       (alternate 6).
  * PC12 - GPIOC_SPI3_MOSI       (alternate 6).
- * PC13 - GPIOC_SWITCH_TAMPER   (input floating).
+ * PC13 - GPIOC_SWITCH_TAMPER   (input pull-down).
  * PC14 - GPIOC_OSC32_IN        (input floating).
  * PC15 - GPIOC_OSC32_OUT       (input floating).
  */
@@ -344,6 +344,7 @@
 #define VAL_GPIOC_OTYPER    0x00000000
 #define VAL_GPIOC_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOC_PUPDR     (PIN_PUDR_PULLUP(GPIOC_DCMI_D2) |               \
+                             PIN_PUDR_PULLDOWN(GPIOC_SWITCH_TAMPER) |       \
                              PIN_PUDR_PULLUP(GPIOC_DCMI_D3))
 #define VAL_GPIOC_ODR       0xFFFFFFF3
 #define VAL_GPIOC_AFRL      (PIN_AFIO_AF(GPIOC_ETH_RMII_MDC, 11) |          \
@@ -420,9 +421,9 @@
  * PE6  - GPIOE_6               (input pull-up).
  * PE7  - GPIOE_7               (input pull-up).
  * PE8  - GPIOE_8               (input pull-up).
- * PE9  - GPIOE_9               (input pull-up).
+ * PE9  - GPIOE_9               (input pull-down).
  * PE10 - GPIOE_10              (input pull-up).
- * PE11 - GPIOE_11              (input pull-up).
+ * PE11 - GPIOE_11              (input pull-down).
  * PE12 - GPIOE_12              (input pull-up).
  * PE13 - GPIOE_13              (input pull-up).
  * PE14 - GPIOE_14              (input pull-up).
@@ -453,9 +454,9 @@
                              PIN_PUDR_PULLUP(GPIOE_6) |                     \
                              PIN_PUDR_PULLUP(GPIOE_7) |                     \
                              PIN_PUDR_PULLUP(GPIOE_8) |                     \
-                             PIN_PUDR_PULLUP(GPIOE_9) |                     \
+                             PIN_PUDR_PULLDOWN(GPIOE_9) |                   \
                              PIN_PUDR_PULLUP(GPIOE_10) |                    \
-                             PIN_PUDR_PULLUP(GPIOE_11) |                    \
+                             PIN_PUDR_PULLDOWN(GPIOE_11) |                  \
                              PIN_PUDR_PULLUP(GPIOE_12) |                    \
                              PIN_PUDR_PULLUP(GPIOE_13) |                    \
                              PIN_PUDR_PULLUP(GPIOE_14) |                    \
@@ -473,7 +474,7 @@
  * PF3  - GPIOF_3               (input pull-up).
  * PF4  - GPIOF_4               (input pull-up).
  * PF5  - GPIOF_5               (input pull-up).
- * PF6  - GPIOF_STAT1           (output push-pull).
+ * PF6  - GPIOF_STAT1           (output push-pull, pull-down).
  * PF7  - GPIOF_STAT2           (output push-pull).
  * PF8  - GPIOF_STAT3           (output push-pull).
  * PF9  - GPIOF_CAM_PWR         (output push-pull).
@@ -508,6 +509,7 @@
                              PIN_PUDR_PULLUP(GPIOF_3) |                     \
                              PIN_PUDR_PULLUP(GPIOF_4) |                     \
                              PIN_PUDR_PULLUP(GPIOF_5) |                     \
+                             PIN_PUDR_PULLDOWN(GPIOF_STAT1) |               \
                              PIN_PUDR_PULLUP(GPIOF_10) |                    \
                              PIN_PUDR_PULLUP(GPIOF_12) |                    \
                              PIN_PUDR_PULLUP(GPIOF_13) |                    \
