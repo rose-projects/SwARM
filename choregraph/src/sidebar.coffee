@@ -1,6 +1,7 @@
 $ = require 'jquery'
 list = require '../lib/list'
 path = require '../lib/path'
+simu = require '../lib/simu'
 jade = require 'jade'
 jsonfile = require 'jsonfile'
 ipc = require('electron').ipcRenderer
@@ -137,7 +138,7 @@ $ ->
 		path.addRobot robot
 
 	robotList.update()
-
+	simu(path.paths())
 
 ipc.on 'closing', ->
 	jsonfile.writeFileSync __dirname+'/../dance.json', robots: robots
