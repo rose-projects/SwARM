@@ -6,5 +6,6 @@ extern volatile int y_pos;
 extern volatile double orientation;
 
 void update_position(void);
+void startFusion(void);
 
 #endif

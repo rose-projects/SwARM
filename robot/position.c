@@ -40,11 +40,9 @@ void update_position(){
 static THD_WORKING_AREA(wa_fusion, 64);
 static THD_FUNCTION(fusion_thd, arg) {
 	(void) arg;
+
 	// register for radio messages datas updates
-	  void chEvtRegisterMaskWithFlags(event_source_t *esp,
-                                  event_listener_t *elp,
-                                  eventmask_t events,
-                                  eventflags_t wflags);
+	chEvtRegisterMask (event_source_t *esp, event_listener_t *elp, eventmask_t events);
 
 	// 10 tuples [time, pos x, pos y]
 	int i = 0;
@@ -64,7 +62,7 @@ static THD_FUNCTION(fusion_thd, arg) {
 }
 
 // To be called from main to start the enslavement with some distance and goal
-void startFusion(){
+void startFusion(void){
 	// Starting the monitoring threads
 	(void)chThdCreateStatic(wa_fusion, sizeof(wa_fusion), NORMALPRIO, fusion_thd, NULL);
 }
