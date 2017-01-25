@@ -34,24 +34,33 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 				select(index, no)
 			else
 				deselect(index, no)
-		$(".#{className + '-add'}").click add
+		$(".#{className + '-add'}").click -> add()
 
 		onUpdate?(getActive()) if getActive()
 
 	# add an element
-	add = ->
-		data.push {
+	add = (index) ->
+		item = {
 			name: nameGenerator(data.length + 1)
 			index: data.length
 			selected: yes
 			activated: no
 		}
-		onAdd?(data[data.length - 1])
-		activate(data.length - 1)
+		if index?
+			data.splice(index, 0, item)
+			for i in [0..data.length - 1]
+				data[i].index = i
+				data[i].name = nameGenerator i + 1
+		else
+			data.push item
+			index = data.length - 1
+		onAdd?(data[index])
+		activate(index)
 	# remove an element
 	remove = (index) ->
-		onRemove?(data[index])
+		saved = $.extend({}, data[index])
 		data.splice(index, 1)
+		onRemove?(saved)
 		return update() if data.length == 0
 
 		for i in [0..data.length - 1]

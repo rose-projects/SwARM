@@ -1,66 +1,69 @@
 /* general */
 body {
-  padding: 0;
-  margin: 0;
-  font: 14px "Kirvy", Helvetica, Arial, sans-serif;
-  background: #deded8;
+	padding: 0;
+	margin: 0;
+	font: 14px "Kirvy", Helvetica, Arial, sans-serif;
+	background: #deded8;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 }
 .fa {
-    margin-left: 2vh;
-    margin-right: 2vh;
+	margin-left: 2vh;
+	margin-right: 2vh;
 }
 .btn {
-  margin: 2vmin 2vmin 2vmin 4vmin;
-  border-radius: 5px;
-  padding: 0.3vmin;
-  transition: .3s;
-  -webkit-transition: .3s;
-  -moz-transition: .3s;
-  -o-transition: .3s;
-  display: inline-block;
-  color: #3e3c41;
-  border: 2px #3e3c41 solid;
+	margin: 2vmin 2vmin 2vmin 4vmin;
+	border-radius: 5px;
+	padding: 0.3vmin;
+	transition: .3s;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-o-transition: .3s;
+	display: inline-block;
+	color: #3e3c41;
+	border: 2px #3e3c41 solid;
 }
 .btn:hover {
-  margin: 2vmin 2vmin 2vmin 4vmin;
-  background-color: #3e3c41;
-  color: #e8e3d4;
+	margin: 2vmin 2vmin 2vmin 4vmin;
+	background-color: #3e3c41;
+	color: #e8e3d4;
 }
 .disabled {
-    color: #ab271e;
-    border: 2px #ab271e solid;
+	color: #ab271e;
+	border: 2px #ab271e solid;
 }
 .disabled:hover {
-    color: #ab271e;
-    border: 2px #ab271e solid;
-    background: none;
+	color: #ab271e;
+	border: 2px #ab271e solid;
+	background: none;
 }
 .selected-btn, .selected-btn:hover {
 	background-color: #3e3c41;
-    color: #e8e3d4;
+	color: #e8e3d4;
 }
 
 /* content */
 .table-layout {
-    position: absolute;
+	position: absolute;
 	top: 5vw;
-    left: 2vw;
-    width: 66vw;
+	left: 2vw;
+	width: 66vw;
 	height: 41.25vw;
 	background-color: #f4f4ec;
 }
 
 .tools {
-    position: absolute;
-    top: -3vh;
-    left: 70vw;
-    height: 103vh;
-    width: 30vw;
-    background-color: #fefdfa;
-    box-sizing: border-box;
+	position: absolute;
+	top: -3vh;
+	left: 70vw;
+	height: 103vh;
+	width: 30vw;
+	background-color: #fefdfa;
+	box-sizing: border-box;
 	border: 2px #3e3c41 solid;
-    box-shadow: 0 -1px 40px rgba(32, 34, 34, 0.6);
-    min-height: 600px;
+	box-shadow: 0 -1px 40px rgba(32, 34, 34, 0.6);
+	min-height: 600px;
 }
 .selector {
 	position: relative;
@@ -82,20 +85,20 @@ body {
 }
 
 .points {
-    position: relative;
-    left: 1vw;
-    width: 20vw;
-    height: 67vh;
-    font-family: 'Menlo';
-    font-size: 1vw;
-    overflow-y: scroll;
+	position: relative;
+	left: 1vw;
+	width: 20vw;
+	height: 67vh;
+	font-family: 'Menlo';
+	font-size: 1vw;
+	overflow-y: scroll;
 }
 .robots {
-    position: absolute;
-    top: 10vh;
-    height: 93vh;
-    width: 30vw;
-    overflow-y: scroll;
+	position: absolute;
+	top: 10vh;
+	height: 93vh;
+	width: 30vw;
+	overflow-y: scroll;
 }
 .robots-content {
 	padding: 0;
@@ -109,35 +112,35 @@ body {
 }
 
 @font-face {
-  font-family: 'Kirvy';
-  font-style: normal;
-  font-weight: 500;
-  src: url(../fonts/Kirvy-Regular.otf);
+	font-family: 'Kirvy';
+	font-style: normal;
+	font-weight: 500;
+	src: url(../fonts/Kirvy-Regular.otf);
 }
 
 @font-face {
-  font-family: 'Kirvy';
-  font-style: normal;
-  font-weight: 700;
-  src: url(../fonts/Kirvy-Bold.otf);
+	font-family: 'Kirvy';
+	font-style: normal;
+	font-weight: 700;
+	src: url(../fonts/Kirvy-Bold.otf);
 }
 
 @font-face {
-  font-family: 'Kirvy';
-  font-style: normal;
-  font-weight: 300;
-  src: url(../fonts/Kirvy-Light.otf);
+	font-family: 'Kirvy';
+	font-style: normal;
+	font-weight: 300;
+	src: url(../fonts/Kirvy-Light.otf);
 }
 
 @font-face {
-  font-family: 'Kirvy';
-  font-style: italic;
-  font-weight: 100;
-  src: url(../fonts/Kirvy-Thin.otf);
+	font-family: 'Kirvy';
+	font-style: italic;
+	font-weight: 100;
+	src: url(../fonts/Kirvy-Thin.otf);
 }
 @font-face {
-  font-family: 'Menlo';
-  font-style: normal;
-  font-weight: 500;
-  src: url(../fonts/Menlo.ttf);
+	font-family: 'Menlo';
+	font-style: normal;
+	font-weight: 500;
+	src: url(../fonts/Menlo.ttf);
 }
