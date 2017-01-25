@@ -44,6 +44,23 @@ body {
 }
 
 /* content */
+.simu-ctrl {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70vw;
+	height: 3.5vh;
+	background-color: white;
+}
+.play-slider {
+	position: relative;
+	top:0.4vh;
+	width: 83%;
+}
+.simu-date {
+	margin-left: 1%;
+}
+
 .table-layout {
 	position: absolute;
 	top: 5vw;

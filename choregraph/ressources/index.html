@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="styles/font-awesome.css">
   </head>
   <body>
+    <div class="simu-ctrl">
+      <audio id="player">
+        <source src="audio.mp3" type="audio/mpeg">
+      </audio><span class="fa fa-stop stop-btn"></span><span class="fa fa-play play-btn"></span>
+      <input type="range" min="0" value="0" class="play-slider"><span class="simu-date">0</span>
+    </div>
     <div class="table-layout"></div>
     <canvas id="table" class="table-layout"></canvas>
     <div class="tools">
@@ -14,6 +20,7 @@
       <div class="robots"></div>
     </div>
     <script src="../lib/sidebar.js"></script>
+    <script src="../lib/simu.js"></script>
     <script src="../lib/path.js"></script>
     <script src="scripts/jscolor.js"></script>
   </body>

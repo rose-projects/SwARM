@@ -8,6 +8,13 @@ html(lang="fr")
 		link(rel='stylesheet', href='styles/list.css')
 		link(rel='stylesheet', href='styles/font-awesome.css')
 	body
+		div.simu-ctrl
+			audio#player
+				source(src="audio.mp3" type="audio/mpeg")
+			span.fa.fa-stop.stop-btn
+			span.fa.fa-play.play-btn
+			input(type="range" min="0" value="0").play-slider
+			span.simu-date 0
 		div.table-layout
 		canvas#table.table-layout
 		div.tools
@@ -18,5 +25,6 @@ html(lang="fr")
 			div.robots
 		
 		script(src="../lib/sidebar.js")
+		script(src="../lib/simu.js")
 		script(src="../lib/path.js")
 		script(src="scripts/jscolor.js")
