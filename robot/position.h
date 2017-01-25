@@ -1,9 +1,9 @@
 #ifndef POSITION_H
 #define POSITION_H
 
-extern volatile int x_pos;
-extern volatile int y_pos;
-extern volatile double orientation;
+extern int x_pos;
+extern int y_pos;
+extern double orientation;
 
 void update_position(void);
 

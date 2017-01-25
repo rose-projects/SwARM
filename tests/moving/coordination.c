@@ -11,27 +11,27 @@
 
 volatile int dist_goal = 0;        // PID->dist to next update_sub_coordinates call
 volatile int angle_goal = 0;       // PID->tick diff: 0 is straigt, 246 is Pi/2
-volatile double orientation = 0;   // orientation of the robot in rad
-volatile int x_pos = 0;            // last measured position, used when calling update_
-volatile int y_pos = 0;            // main_coordinates
 volatile int last_angle_error = 0; // computed in position.c
 volatile int last_dist_error = 0;  // computed in position.c
 
+double orientation = 0;   // orientation of the robot in rad
+int x_pos = 0;            // last measured position, used when calling update_
+int y_pos = 0;            // main_coordinates
+
 static int n_pts;                            // number of points before the dest
-static double x_dest, y_dest, ori_dest;      // make the parameters global
+static int x_dep, y_dep, x_dest, y_dest;     // make the parameters global
+static double ori_dest;
 static double r_dep, r_dest;                 // radius of the departure and destination circles
+static int dep_circle[2], dest_circle[2];
 static double pt_tan_dep[2], pt_tan_dest[2]; // tangent points
 static int is_inner_tan = 0;                 // 1 if inner tangent, -1 otherwise
-static int state = 0;                        // 0 departure circles, 1 straight line, 2 dest circle
 static int i;                                // i-th point out of n_pts in the trajectory
-static int to_the_left;                      // 1: going to the left, -1 to the right
+static int to_left;                          // 1: going to the left, -1 to the right
 
 // Called once to set the destination
 void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
                              int r_dep_, int r_dest_, int n_pts_)
 {
-	int dep_circle[2] = {0};
-	int dest_circle[2] = {0};
 	int tmp1[2], tmp2[2]; // the 2 circles we have to chose from
 	double h[2] = {0};    // homothetic center
 
@@ -49,6 +49,8 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 		r_dep_++;
 	}
 
+	x_dep = x_pos;
+	y_dep = y_pos;
 	x_dest = x_dest_;
 	y_dest = y_dest_;
 	ori_dest = ori_dest_;
@@ -61,10 +63,10 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	 * Some cases break this law, but they may not happen depending on the
 	 * choice of the choreography.
 	 */
-	tmp1[0] = x_pos + r_dep*sin(orientation);
-	tmp1[1] = y_pos - r_dep*cos(orientation);
-	tmp2[0] = x_pos - r_dep*sin(orientation);
-	tmp2[1] = y_pos + r_dep*cos(orientation);
+	tmp1[0] = x_dep + r_dep*sin(orientation);
+	tmp1[1] = y_dep - r_dep*cos(orientation);
+	tmp2[0] = x_dep - r_dep*sin(orientation);
+	tmp2[1] = y_dep + r_dep*cos(orientation);
 	if ((tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <=
 	    (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest))
 	{
@@ -79,8 +81,8 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	tmp1[1] = y_dest - r_dest*cos(ori_dest);
 	tmp2[0] = x_dest - r_dest*sin(ori_dest);
 	tmp2[1] = y_dest + r_dest*cos(ori_dest);
-	if ((tmp1[0]-x_pos)*(tmp1[0]-x_pos) + (tmp1[1]-y_pos)*(tmp1[1]-y_pos) <=
-	    (tmp2[0]-x_pos)*(tmp2[0]-x_pos) + (tmp2[1]-y_pos)*(tmp2[1]-y_pos))
+	if ((tmp1[0]-x_dep)*(tmp1[0]-x_dep) + (tmp1[1]-y_dep)*(tmp1[1]-y_dep) <=
+	    (tmp2[0]-x_dep)*(tmp2[0]-x_dep) + (tmp2[1]-y_dep)*(tmp2[1]-y_dep))
 	{
 		dest_circle[0] = tmp1[0];
 		dest_circle[1] = tmp1[1];
@@ -139,63 +141,71 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	                 ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
 	                  (h[1]-dest_circle[1])*(h[1]-dest_circle[1]));
 
-	state = 0;
 	i = 1;
 }
 
 // Update distance and angle goals: called every 50ms
 void update_sub_coordinates(void) {
-	double x = 0, y = 0; // coordinate of the destination
-	double radius = 0;   // radius of the trajectory
-	double alpha = 0;    // angle of the trajectory
+	double tot_len, dep_len, straight_len, dest_len;
+	double angle_dep, angle_dest;
 
-	switch (state) {
-	case 0:
-		x = pt_tan_dep[0];
-		y = pt_tan_dep[1];
-		radius = r_dep;
-		to_the_left = -SIGN(x);
-		break;
-	case 1:
-		x = pt_tan_dest[0];
-		y = pt_tan_dest[1];
-		break;
-	case 2:
-		x = x_dest;
-		y = y_dest;
-		radius = r_dest;
-		if (x_dest >= 0) {
-			to_the_left = is_inner_tan;
+	angle_dep = acos(
+	 ((dep_circle[0]-x_dep)*(dep_circle[0]-x_dep)+
+	  (dep_circle[1]-y_dep)*(dep_circle[1]-y_dep) -
+	  (pt_tan_dep[0]-x_dep)*(pt_tan_dep[0]-x_dep)+
+	  (pt_tan_dep[1]-y_dep)*(pt_tan_dep[1]-y_dep) -
+	  (pt_tan_dep[0]-dep_circle[0])*(pt_tan_dep[0]-dep_circle[0])+
+	  (pt_tan_dep[1]-dep_circle[1])*(pt_tan_dep[1]-dep_circle[1])) /
+	 (2*sqrt((pt_tan_dep[0]-x_dep)*(pt_tan_dep[0]-x_dep)+
+	         (pt_tan_dep[1]-y_dep)*(pt_tan_dep[1]-y_dep)) *
+	    sqrt((pt_tan_dep[0]-dep_circle[0])*(pt_tan_dep[0]-dep_circle[0])+
+	         (pt_tan_dep[1]-dep_circle[1])*(pt_tan_dep[1]-dep_circle[1]))));
+
+	angle_dest = acos(
+	 ((pt_tan_dest[0]-dest_circle[0])*(pt_tan_dest[0]-dest_circle[0])+
+	  (pt_tan_dest[1]-dest_circle[1])*(pt_tan_dest[1]-dest_circle[1]) -
+	  (x_dest-pt_tan_dest[0])*(x_dest-pt_tan_dest[0])+
+	  (y_dest-pt_tan_dest[1])*(y_dest-pt_tan_dest[1]) -
+	  (x_dest-dest_circle[0])*(x_dest-dest_circle[0])+
+	  (y_dest-dest_circle[1])*(y_dest-dest_circle[1])) /
+	 (2*sqrt((x_dest-pt_tan_dest[0])*(x_dest-pt_tan_dest[0])+
+	         (y_dest-pt_tan_dest[1])*(y_dest-pt_tan_dest[1])) *
+	    sqrt((x_dest-dest_circle[0])*(x_dest-dest_circle[0])+
+	         (y_dest-dest_circle[1])*(y_dest-dest_circle[1]))));
+
+	dep_len = r_dep * angle_dep;
+	straight_len = sqrt(
+	 (pt_tan_dest[0]-pt_tan_dep[0])*(pt_tan_dest[0]-pt_tan_dep[0]) +
+	 (pt_tan_dest[0]-pt_tan_dep[0])*(pt_tan_dest[0]-pt_tan_dep[0]));
+	dest_len = r_dest * angle_dest;
+	tot_len = dep_len + straight_len + dest_len;
+
+	if (i <= dep_len/tot_len) {
+		if ((pt_tan_dep[0]-x_dep)*(dep_circle[0]-x_dep) <=
+		    (dep_circle[0]-x_dep)*(pt_tan_dep[0]-x_dep))
+		{
+			to_left = 1;
 		} else {
-			to_the_left = -is_inner_tan;
+			to_left = -1;
 		}
-		break;
+		angle_goal += to_left*angle_dep/DEG_TO_RAD/U_DEGREE_ANGLE;
+		dist_goal += dep_len / n_pts;
+	} else if (i <= (dep_len + straight_len)/tot_len) {
+		dist_goal += straight_len;
+	} else {
+		if ((pt_tan_dest[0]-dest_circle[0])*(y_dest-dest_circle[1]) <=
+		    (x_dest-dest_circle[0])*(pt_tan_dest[1]-dest_circle[1]))
+		{
+			to_left = 1;
+		} else {
+			to_left = -1;
+		}
+		angle_goal += to_left*angle_dest/DEG_TO_RAD/U_DEGREE_ANGLE;
+		dist_goal += dest_len / n_pts;
 	}
 
-	switch (state) {
-	case 1:
-		dist_goal = sqrt((pt_tan_dest[0]-pt_tan_dep[0]) *
-		                 (pt_tan_dest[0]-pt_tan_dep[0])) *
-		            i/n_pts;
-		angle_goal = 0;
-		break;
-	case 0:
-	case 2:
-		alpha = 2*asin(sqrt((x*x)+(y*y)) / (2*radius));
-		dist_goal += fabs(alpha)*radius/n_pts;
-		angle_goal += -L_MM*dist_goal/(radius*U_MM)*to_the_left;
-		break;
-	}
-
-	dist_goal += last_dist_error;
 	angle_goal += last_angle_error;
+	dist_goal += last_dist_error;
 
-	// TODO: use computed values to have a constant speed
-	if (i == n_pts/3) {
-		state = 1;
-	} else if (i == 2*n_pts/3) {
-		state = 2;
-	}
 	i++;
 }
-

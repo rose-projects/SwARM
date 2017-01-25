@@ -14,11 +14,12 @@
 
 volatile int dist_goal = 0;        // PID->dist to next update_sub_coordinates call
 volatile int angle_goal = 0;       // PID->tick diff: 0 is straigt, 246 is Pi/2
-volatile double orientation = 0;   // orientation of the robot in rad
-volatile int x_pos = 0;            // last measured position, used when calling update_
-volatile int y_pos = 0;            // main_coordinates
 volatile int last_angle_error = 0; // computed in position.c
 volatile int last_dist_error = 0;  // computed in position.c
+
+double orientation = 0;   // orientation of the robot in rad
+int x_pos = 0;            // last measured position, used when calling update_
+int y_pos = 0;            // main_coordinates
 
 static double r_dep_, r_goal_;               // radius of the departure and goal circles
 static double x_goal_, y_goal_, goal_angle_; // variables in the new system
