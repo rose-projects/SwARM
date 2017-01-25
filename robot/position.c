@@ -12,8 +12,8 @@
  * The calculation depends on wether we are rotating to the left or to the right
  */
 void update_position(){
-    static int tick_l_prev = 0; // last tick count for left wheel
-    static int tick_r_prev = 0; // last tick conut for right wheel
+    static unsigned int tick_l_prev = 0; // last tick count for left wheel
+    static unsigned int tick_r_prev = 0; // last tick conut for right wheel
     unsigned int tick_l_current = tick_l; // current tick count for left wheel
     unsigned int tick_r_current = tick_r; // current tick count for right wheel
 

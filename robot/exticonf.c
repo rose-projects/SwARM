@@ -6,8 +6,8 @@
 EVENTSOURCE_DECL(deca_event);
 
 /* Wheels ticks init */
-volatile int tick_l = 0;
-volatile int tick_r = 0;
+volatile unsigned int tick_l = 0;
+volatile unsigned int tick_r = 0;
 
 /* Decawave EXTI callback */
 static void decaIRQ_cb(EXTDriver *extp, expchannel_t channel) {

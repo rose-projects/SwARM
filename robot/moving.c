@@ -7,7 +7,7 @@
 #include "position.h"
 #include "coordination.h"
 
-// We update robot position goal every 200 milliseconds
+// We update robot position goal every 50 milliseconds
 #define MOVING_THD_SLEEP 50
 
 // Moving control thread working area
