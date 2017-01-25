@@ -19,6 +19,7 @@ static THD_WORKING_AREA(working_area_moving_thd, 128);
 static THD_FUNCTION(moving_thd, arg) {
     (void) arg;
     int i = 0;
+    int n_pts = 42; // number of intermediary points, sets the arrival date
 
     /* 
      * Thread routine
@@ -26,8 +27,8 @@ static THD_FUNCTION(moving_thd, arg) {
      * it modifies on a periodic basis the  dist_goal and angle_goal values
      * so that the robot moves to the next position
      */
-    while(i<N_POINTS){
-        if((i%N_POINTS) == 0){
+    while(i<n_pts){
+        if((i%n_pts) == 0){
             chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "##########################\r\n");
@@ -35,7 +36,7 @@ static THD_FUNCTION(moving_thd, arg) {
             chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "##########################\r\n");
             chprintf(COUT, "##########################\r\n");
-            update_main_coordinates(0,0,0, 0, 0);
+            update_main_coordinates(0,0,0,0,0,42);
             // Resetting enslavement error variables
             begin_new_asser();
         }
