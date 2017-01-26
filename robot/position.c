@@ -41,8 +41,9 @@ static THD_WORKING_AREA(wa_fusion, 64);
 static THD_FUNCTION(fusion_thd, arg) {
 	(void) arg;
 
+	event_listener_t * dwm_update;
 	// register for radio messages datas updates
-	chEvtRegisterMask (event_source_t *esp, event_listener_t *elp, eventmask_t events);
+	chEvtRegisterMask (&radioEvent, dwm_update, EVENT_MASK(0));
 
 	// 10 tuples [time, pos x, pos y]
 	int i = 0;
@@ -50,15 +51,15 @@ static THD_FUNCTION(fusion_thd, arg) {
 	float x_pos_dwm[10];
 	float y_pos_dwm[10];
 	
-	// wait for DWM message
-	chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+	while(1) {
+		// wait for DWM message
+		chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
 
+		time[i] = chVTGetSystemTime();
 
-	time chVTGetSystemTime();
-	date = chThd
-	x_pos += radioData.x;
-	y_pos += radioData.y;
-
+		x_pos += radioData.x;
+		y_pos += radioData.y;
+	}
 }
 
 // To be called from main to start the enslavement with some distance and goal

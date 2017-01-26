@@ -181,6 +181,7 @@ CP   = $(TRGT)objcopy
 AS   = $(TRGT)gcc -x assembler-with-cpp
 AR   = $(TRGT)ar
 OD   = $(TRGT)objdump
+GDB  = $(TRGT)gdb
 SZ   = $(TRGT)size
 HEX  = $(CP) -O ihex
 BIN  = $(CP) -O binary
@@ -228,7 +229,7 @@ RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
 debugserver:
-	JLinkGDBServer -if swd -device "STM32F302R6T6" -LocalhostOnly
+	JLinkGDBServer -if swd -device "STM32F302R6" -LocalhostOnly -speed 4000
 
 debug: all
 	$(GDB) build/$(PROJECT).elf

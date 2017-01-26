@@ -8,7 +8,7 @@
 
 // Set initial input parameters
 #define PI 3.14159265359
-#define NB_CALIB 0
+#define NB_CALIB 1
 // hard coded angle diff(X, north)
 #define X_NORTH_DIFF (-0.5)
 
