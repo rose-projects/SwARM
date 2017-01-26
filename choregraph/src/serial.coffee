@@ -4,18 +4,48 @@ $ = require 'jquery'
 port = null
 connected = no
 onConnected = null
+commandList = []
 
 intRead = (cl, def) ->
 	val = parseInt $(".#{cl}").val()
 	return if isNaN(val) then def else val
 
 flashRobot = (id, robot) ->
-	console.log 'flashing robot', robot.index, 'to ID', id
-	$('.flash-console').show().text('')
-	$('.darkscreen').show()
-		.click ->
-			$('.darkscreen').hide()
-			$('.flash-console').hide()
+	if port? and port?.isOpen()
+		console.log 'flashing robot', robot.index, 'to ID', id
+		$('.flash-console').show().append("<br> => Flashing dance from robot #{robot.index+1} to ID #{id} ...<br><br>")
+		$('.darkscreen').show()
+			.click ->
+				$('.darkscreen').hide()
+				$('.flash-console').hide()
+
+		commandList= ["clear #{id}\r\n"]
+
+		cmd = "moves #{id}"
+		cmdCnt = 0
+		for mv in robot.moves
+			cmd += " #{mv.date} #{mv.x} #{mv.y} #{mv.angle} #{mv.startradius} #{mv.endradius}"
+			cmdCnt++
+			if cmdCnt == 5
+				cmdCnt = 0
+				commandList.push cmd + '\r\n'
+				cmd = "moves #{id}"
+		commandList.push(cmd + '\r\n') unless cmdCnt == 0
+
+		cmd = "colors #{id}"
+		cmdCnt = 0
+		for cl in robot.colors
+			cmd += " #{cl.date} #{cl.h} #{cl.s} #{cl.v} #{cl.fade}"
+			cmdCnt++
+			if cmdCnt == 5
+				cmdCnt = 0
+				commandList.push cmd + '\r\n'
+				cmd = "colors #{id}"
+		commandList.push(cmd + '\r\n') unless cmdCnt == 0
+
+		commandList.push "flash #{id}\r\n"
+		$('.flash-console').append "#{commandList[0]}<br>"
+		port.write commandList.shift()
 
 module.exports = ->
 	$ ->
@@ -39,10 +69,12 @@ module.exports = ->
 				onConnected?()
 
 				port.on 'data', (data) ->
+					$('.flash-console').append "#{data}<br>" unless data[0..4] is 'POS :'
+
 					if data[0..1] is 'OK'
-						console.log 'OK'
-					else if data[0..1] is 'KO'
-						console.log 'KO'
+						if commandList.length > 0
+							$('.flash-console').append "#{commandList[0]}<br>"
+							port.write commandList.shift()
 				port.flush()
 
 			port.on 'error', (err) -> alert err.message

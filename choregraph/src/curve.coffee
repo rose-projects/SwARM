@@ -1,77 +1,104 @@
 computeInterpoints = (lastMove, move) ->
-	x_goal = move.x
-	y_goal = move.y
-	goal_angle = move.angle*180/Math.PI
-	x_pos = lastMove.x
-	y_pos = lastMove.y
+	x_dest = move.x
+	y_dest = move.y
+	ori_dest = move.angle*Math.PI/180
+	x_dep = lastMove.x
+	y_dep = lastMove.y
 	r_dep = move.startradius
-	r_goal = move.endradius
+	r_dest = move.endradius
 
 	# system rotation angle
-	theta = Math.PI/2 - lastMove.angle*180/Math.PI
+	orientation = lastMove.angle*Math.PI/180
 	dep_circle = [0, 0]
-	goal_circle = [0, 0]
+	dest_circle = [0, 0]
 	# the 2 arrival circles we have to chose from
 	tmp1 = [0, 0]
 	tmp2 = [0, 0]
 	# homothetic center
 	h = [0, 0]
+	# result points
+	pt_tan_dep = []
+	pt_tan_dest = []
 
 	# Because of the method of the homothetic center, both circles cannot
 	# be of the same radius, this dirty hack solves this issue.
-	r_dep++ if r_dep == r_goal
-
-	# cartesian system change
-	x_goal_ = (x_goal-x_pos)*Math.cos(theta) - (y_goal-y_pos)*Math.sin(theta)
-	y_goal_ = (x_goal-x_pos)*Math.sin(theta) + (y_goal-y_pos)*Math.cos(theta)
-	goal_angle_ = goal_angle + theta
+	r_dep++ if r_dep == r_dest
 
 	# choose the right circles
-	# hypothesis: the closest to the goal is the one we want.
+	# hypothesis: the closest to the destination is the one we want.
 	# Some cases break this law, but they may not happen depending on the
 	# choice of the choreography.
-	dep_circle[0] = if x_goal_ >= 0 then r_dep else -r_dep
-	tmp1[0] = x_goal_ + r_goal * Math.sin(goal_angle_)
-	tmp1[1] = y_goal_ - r_goal * Math.cos(goal_angle_)
-	tmp2[0] = x_goal_ - r_goal * Math.sin(goal_angle_)
-	tmp2[1] = y_goal_ + r_goal * Math.cos(goal_angle_)
-	if tmp1[0]*tmp1[0] + tmp1[1]*tmp1[1] <= tmp2[0]*tmp2[0] + tmp2[1]*tmp2[1]
-		goal_circle[0] = tmp1[0]
-		goal_circle[1] = tmp1[1]
+	tmp1[0] = x_dep + r_dep*Math.sin(orientation)
+	tmp1[1] = y_dep - r_dep*Math.cos(orientation)
+	tmp2[0] = x_dep - r_dep*Math.sin(orientation)
+	tmp2[1] = y_dep + r_dep*Math.cos(orientation)
+	if (tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <= (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest)
+		dep_circle[0] = tmp1[0]
+		dep_circle[1] = tmp1[1]
+	else
+		dep_circle[0] = tmp2[0]
+		dep_circle[1] = tmp2[1]
+
+	tmp1[0] = x_dest + r_dest*Math.sin(ori_dest)
+	tmp1[1] = y_dest - r_dest*Math.cos(ori_dest)
+	tmp2[0] = x_dest - r_dest*Math.sin(ori_dest)
+	tmp2[1] = y_dest + r_dest*Math.cos(ori_dest)
+	if (tmp1[0]-x_dep)*(tmp1[0]-x_dep) + (tmp1[1]-y_dep)*(tmp1[1]-y_dep) <= (tmp2[0]-x_dep)*(tmp2[0]-x_dep) + (tmp2[1]-y_dep)*(tmp2[1]-y_dep)
+		dest_circle[0] = tmp1[0]
+		dest_circle[1] = tmp1[1]
+	else
+		dest_circle[0] = tmp2[0]
+		dest_circle[1] = tmp2[1]
 
 	# find the tangent points
 	# hypothesis1: the robot will never need to to go to the left if
-	# the goal is in the right-hand quadrant
-	# hypothesis2: r_dep > r_goal TODO: all cases
-	if goal_circle[0] == tmp1[0]
-		t = -1
+	# the goal is in the right-hand quadrant, nor behind it
+	# hypothesis2: r_dep > r_dest TODO: all cases
+	if (dest_circle[0] == tmp1[0])
+		is_inner_tan = -1
 	else
-		t = 1
+		is_inner_tan = 1
 
-	h[0] = (r_dep*dep_circle[0] + t*r_goal*goal_circle[0]) / (r_dep + t*r_goal)
-	h[1] = (r_dep*dep_circle[1] + t*r_goal*goal_circle[1]) / (r_dep + t*r_goal)
+	h[0] = (r_dep*dest_circle[0] + is_inner_tan*r_dest*dep_circle[0]) / (r_dep + is_inner_tan*r_dest)
+	h[1] = (r_dep*dest_circle[1] + is_inner_tan*r_dest*dep_circle[1]) / (r_dep + is_inner_tan*r_dest)
 
-	pt_tan_dep = []
-	pt_tan_goal = []
-	pt_tan_dep[0] = dep_circle[0] + (r_dep*r_dep*(h[0]-dep_circle[0]) - r_dep*(h[1]-dep_circle[1]) * Math.sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]) - r_dep*r_dep)) / ((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]))
-	pt_tan_dep[1] = dep_circle[1] + (r_dep*r_dep*(h[1]-dep_circle[1]) + r_dep*(h[0]-dep_circle[0]) * Math.sqrt((h[0]-dep_circle[0])*(h[0] -  dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]) - r_dep*r_dep)) / ((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]))
-	pt_tan_goal[0] = goal_circle[0] + (r_goal*r_goal*(h[0]-goal_circle[0]) + t*r_goal*(h[1]-goal_circle[0]) * Math.sqrt((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) + (h[1]-goal_circle[1])*(h[1]-goal_circle[1]) - r_goal*r_goal)) / ((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) + (h[1]-goal_circle[1])*(h[1]-goal_circle[1]))
-	pt_tan_goal[1] = goal_circle[1] + (r_goal*r_goal*(h[1]-goal_circle[1]) - t*r_goal*(h[0]-goal_circle[0]) * Math.sqrt((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) + (h[1]-goal_circle[1])*(h[1]-goal_circle[1]) - r_goal*r_goal)) / ((h[0]-goal_circle[0])*(h[0]-goal_circle[0]) + (h[1]-goal_circle[1])*(h[1]-goal_circle[1]))
+	pt_tan_dep[0] = dep_circle[0] + (r_dep*r_dep*(h[0]-dep_circle[0]) - r_dep*(h[1]-dep_circle[1])*Math.sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]) - r_dep*r_dep)) / ((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]))
+	pt_tan_dep[1] = dep_circle[1] + (r_dep*r_dep*(h[1]-dep_circle[1]) + r_dep*(h[0]-dep_circle[0]) * Math.sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]) - r_dep*r_dep)) / ((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) + (h[1]-dep_circle[1])*(h[1]-dep_circle[1]))
+
+	pt_tan_dest[0] = dest_circle[0] + (r_dest*r_dest*(h[0]-dest_circle[0]) + is_inner_tan*r_dest*(h[1]-dest_circle[1]) * Math.sqrt((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) + (h[1]-dest_circle[1])*(h[1]-dest_circle[1]) - r_dest*r_dest)) / ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) + (h[1]-dest_circle[1])*(h[1]-dest_circle[1]))
+	pt_tan_dest[1] = dest_circle[1] + (r_dest*r_dest*(h[1]-dest_circle[1]) - is_inner_tan*r_dest*(h[0]-dest_circle[0]) * Math.sqrt((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) + (h[1]-dest_circle[1])*(h[1]-dest_circle[1]) - r_dest*r_dest)) / ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) + (h[1]-dest_circle[1])*(h[1]-dest_circle[1]))
 
 	return {
-		pt1:
-			x: x_pos + (x_goal - x_pos)*1/4
-			y: y_pos + (y_goal - y_pos)*1/4
-		pt2:
-			x: x_pos + (x_goal - x_pos)*3/4
-			y: y_pos + (y_goal - y_pos)*3/4
+		center1:
+			x: dep_circle[0]
+			y: dep_circle[1]
+		center2:
+			x: dest_circle[0]
+			y: dest_circle[1]
+		end1:
+			x: pt_tan_dep[0]
+			y: pt_tan_dep[1]
+		start2:
+			x: pt_tan_dest[0]
+			y: pt_tan_dest[1]
 	}
 
 module.exports = (paper, cm2width, cm2height) ->
+	addCenterPointArc = (path, start, center, end) ->
+		middle =
+			x: (start.x + end.x)/2
+			y: (start.y + end.y)/2
+		middleToCenterDist = Math.sqrt((middle.x - center.x)**2 + (middle.y - center.y)**2)
+		radius = Math.sqrt((start.x - center.x)**2 + (start.y - center.y)**2)
+		through =
+			x: center.x + (middle.x - center.x)*radius/middleToCenterDist
+			y: center.y + (middle.y - center.y)*radius/middleToCenterDist
+		path.arcTo(new paper.Point(cm2width(through.x), cm2height(through.y)), new paper.Point(cm2width(end.x), cm2height(end.y)))
+
 	buildCurve = (path, lastMove, move) ->
 		r = computeInterpoints(lastMove, move)
-		path.add new paper.Point(cm2width(r.pt1.x), cm2height(r.pt1.y))
-		path.add new paper.Point(cm2width(r.pt2.x), cm2height(r.pt2.y))
-		path.add new paper.Point(cm2width(move.x), cm2height(move.y))
+		addCenterPointArc(path, lastMove, r.center1, r.end1)
+		path.add new paper.Point(cm2width(r.start2.x), cm2height(r.start2.y))
+		addCenterPointArc(path, r.start2, r.center2, move)
 
 	return {buildCurve: buildCurve}

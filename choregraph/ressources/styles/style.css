@@ -67,7 +67,7 @@ body {
 	left: 2vw;
 	width: 66vw;
 	height: 41.25vw;
-	background-color: #f4f4ec;
+	background: url('../images/area-bg.svg');
 }
 
 .serialport {
@@ -156,6 +156,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
 }
 .flash-console {
 	position: absolute;
@@ -170,6 +171,8 @@ body {
 	border: 5px #e6dfdf solid;
 	border-radius: 2vw;
 	padding: 3vh;
+	display: none;
+	overflow-y: scroll;
 }
 @font-face {
 	font-family: 'Kirvy';

@@ -113,7 +113,7 @@ robotList.onUpdate (item) ->
 	path.paths()[item.index].update()
 
 	$('.flash-btn').click ->
-		serial.flashRobot parseInt($('.flash-id').val()), item
+		serial.flashRobot parseInt($('.flash-id').val()), item if serial.connected()
 
 robotList.onRemove((item) -> path.paths()[item.index].remove())
 robotList.onActivated((item) -> path.paths()[item.index].update())
