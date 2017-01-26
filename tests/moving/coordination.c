@@ -66,9 +66,11 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	if ((tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <=
 	    (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest))
 	{
+		dep_to_left = -1;
 		dep_circle[0] = tmp1[0];
 		dep_circle[1] = tmp1[1];
 	} else {
+		dep_to_left = 1;
 		dep_circle[0] = tmp2[0];
 		dep_circle[1] = tmp2[1];
 	}
@@ -80,9 +82,11 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	if ((tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <=
 	    (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest))
 	{
+		dept_to_left = -1;
 		dest_circle[0] = tmp1[0];
 		dest_circle[1] = tmp1[1];
 	} else {
+		dest_to_right = 1;
 		dest_circle[0] = tmp2[0];
 		dest_circle[1] = tmp2[1];
 	}
@@ -136,21 +140,6 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	        r_dest*r_dest)) /
 	 ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
 	  (h[1]-dest_circle[1])*(h[1]-dest_circle[1]));
-
-	if ((pt_tan_dep[0]-x_dep)*(dep_circle[1]-y_dep) <=
-	    (pt_tan_dep[1]-y_dep)*(dep_circle[0]-x_dep))
-	{
-		dep_to_left = 1;
-	} else {
-		dep_to_left = -1;
-	}
-	if ((x_dest-pt_tan_dest[0])*(y_dest-pt_tan_dest[1]) <=
-	    (y_dest-pt_tan_dest[1])*(x_dest-pt_tan_dest[0]))
-	{
-		dest_to_left = 1;
-	} else {
-		dest_to_left = -1;
-	}
 
 	angle_dep = acos(
 	 (((dep_circle[0]-x_dep)*(dep_circle[0]-x_dep)+
