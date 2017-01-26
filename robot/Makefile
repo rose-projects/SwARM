@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -Og -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -172,6 +172,7 @@ MCU  = cortex-m4
 TRGT = arm-none-eabi-
 CC   = $(TRGT)gcc
 CPPC = $(TRGT)g++
+GDB  = $(TRGT)gdb
 # Enable loading with g++ only if you need C++ runtime support.
 # NOTE: You can use C++ even without C++ support if you are careful. C++
 #       runtime support makes code size explode.
@@ -227,10 +228,10 @@ ULIBS =
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
-debugserver:
-	JLinkGDBServer -if swd -device "STM32F302R6T6" -LocalhostOnly
+startgdbserver:
+	JLinkGDBServer -if swd -device "STM32F302R6" -LocalhostOnly
 
-debug: all
+gdb: all
 	$(GDB) build/$(PROJECT).elf
 
-.PHONY: debug debugserver
+.PHONY: gdb startgdbserver

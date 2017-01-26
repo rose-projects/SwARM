@@ -1,6 +1,8 @@
 #include "ch.h"
 #include "hal.h"
 
+#include "RTT/SEGGER_RTT.h"
+
 #include "asser.h"
 #include "coding_wheels.h"
 #include "wheel_constants.h"
@@ -111,8 +113,13 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_right = MIN(cmd_right, MAX_POWER);
 
         // Updating PWM signals
-        setLpwm(cmd_left);
-        setRpwm(cmd_right);
+        setLpwm(200);
+        setRpwm(200);
+
+        printf("cmd_left %d\r\n", cmd_left);
+        printf("cmd_right %d\r\n", cmd_right);
+        printf("tick_l %d\r\n", tick_l);
+        printf("tick_r %d\r\n", tick_r);
 
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);

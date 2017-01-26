@@ -16,3 +16,14 @@ end
 define hook-quit
     set confirm off
 end
+
+# User defined shortcut for target init define flash
+define flash
+    dont-repeat
+    mon halt
+    mon reset
+    mon reset
+    load
+    b main
+    cont
+end

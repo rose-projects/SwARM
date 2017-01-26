@@ -38,6 +38,9 @@ static THD_FUNCTION(moving_thd, arg) {
         // Ready for next iteration
         i++;
 
+        dist_goal = 200;
+        angle_goal = 0;
+
         // Go to sleep
         chThdSleepMilliseconds(MOVING_THD_SLEEP);
     }

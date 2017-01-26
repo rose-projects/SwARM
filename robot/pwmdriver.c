@@ -28,7 +28,7 @@ void initPWM(void) {
 	TIM16->ARR = PWM_MAX;
 	TIM16->PSC = 72000/(PWM_FREQUENCY*PWM_MAX) - 1; // setup prescaler
 	TIM16->CCR1 = 0;
-	TIM16->CCER = 0x01; // enable CC1
+	TIM16->CCER = 0x03; // enable CC1
 	TIM16->EGR = 0x01; // generate an update event to load the setup values
 	TIM16->CR1 = 0x81; // enable counter
 }
