@@ -2,13 +2,14 @@ $ = require 'jquery'
 list = require '../lib/list'
 path = require '../lib/path'
 simu = require '../lib/simu'
+serial = require('../lib/serial')()
 jade = require 'jade'
 jsonfile = require 'jsonfile'
 ipc = require('electron').ipcRenderer
 app = require('electron').remote.app
 
 createMoveList = (rb) ->
-	l = list('robots-content', rb.moves, 'ajouter un point', (i) -> "Point #{i}")
+	l = list('points', rb.moves, 'ajouter un point', (i) -> "Point #{i}")
 	l.onAdd (item) ->
 		item.date = 0
 		item.x = 100
@@ -18,7 +19,7 @@ createMoveList = (rb) ->
 		item.endradius = 20
 		path.paths()[rb.index].update()
 	l.onUpdate (item) ->
-		$('.robots-content-content').html jade.renderFile __dirname + '/../views/move.jade', move: item
+		$('.points-content').html jade.renderFile __dirname + '/../views/move.jade', move: item
 		$('#date').change ->
 			val = parseInt($('#date').val())
 			item.date = val unless isNaN(val)
@@ -52,7 +53,7 @@ createMoveList = (rb) ->
 	return l
 
 createColorList = (rb) ->
-	l = list('robots-content', rb.colors, 'ajouter une couleur', (i) -> "Couleur #{i}")
+	l = list('points', rb.colors, 'ajouter une couleur', (i) -> "Couleur #{i}")
 	l.onAdd (item) ->
 		item.date = 0
 		item.h = 0
@@ -62,7 +63,7 @@ createColorList = (rb) ->
 		item.fade = 1
 		path.paths()[rb.index].update()
 	l.onUpdate (item) ->
-		$('.robots-content-content').html jade.renderFile __dirname + '/../views/color.jade', color: item
+		$('.points-content').html jade.renderFile __dirname + '/../views/color.jade', color: item
 		picker = new window.jscolor(document.getElementById('color'))
 		picker.fromHSV(item.h*360/255, item.s*100/255, item.v*100/255)
 
@@ -102,11 +103,17 @@ robotList.onAdd (item) ->
 	item.colorsList = createColorList(item)
 
 robotList.onUpdate (item) ->
+	$('.robots-content').html jade.renderFile __dirname + '/../views/robot.jade',
+		robot: item
+		connected: serial.connected()
 	if mode is 'moves'
 		item.movesList.update()
 	else
 		item.colorsList.update()
 	path.paths()[item.index].update()
+
+	$('.flash-btn').click ->
+		serial.flashRobot parseInt($('.flash-id').val()), item
 
 robotList.onRemove((item) -> path.paths()[item.index].remove())
 robotList.onActivated((item) -> path.paths()[item.index].update())
@@ -139,6 +146,7 @@ $ ->
 
 	robotList.update()
 	simu(path.paths())
+	serial.onConnected -> robotList.update()
 
 ipc.on 'closing', ->
 	jsonfile.writeFileSync __dirname+'/../dance.json', robots: robots

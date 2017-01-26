@@ -17,12 +17,23 @@ html(lang="fr")
 			span.simu-date 0
 		div.table-layout
 		canvas#table.table-layout
+		div.serialport
+			select.serialpath
+			| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			span.beacon baudrate : &nbsp;
+			input.baudrate(type="number" value="38400")
+			| &nbsp;&nbsp;&nbsp;&nbsp;
+			a.btn.serial-btn &nbsp;&nbsp;OK&nbsp;&nbsp;
+			
 		div.tools
 			div.selector
 				a.btn.selected-btn.moves-mode Mouvements
 				a.btn.colors-mode Couleurs
 			br
 			div.robots
+		
+		div.darkscreen
+		div.flash-console
 		
 		script(src="../lib/sidebar.js")
 		script(src="../lib/simu.js")

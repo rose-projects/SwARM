@@ -30,12 +30,12 @@ body {
 	color: #e8e3d4;
 }
 .disabled {
-	color: #ab271e;
-	border: 2px #ab271e solid;
+	color: #a8a8a8;
+	border: 2px #a8a8a8 solid;
 }
 .disabled:hover {
-	color: #ab271e;
-	border: 2px #ab271e solid;
+	color: #a8a8a8;
+	border: 2px #a8a8a8 solid;
 	background: none;
 }
 .selected-btn, .selected-btn:hover {
@@ -68,6 +68,17 @@ body {
 	width: 66vw;
 	height: 41.25vw;
 	background-color: #f4f4ec;
+}
+
+.serialport {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 70vw;
+	height: 7vh;
+	padding-top: 0;
+	background: white;
+	text-align: center;
 }
 
 .tools {
@@ -127,7 +138,39 @@ body {
 .color-table td, .move-table td {
 	border-bottom: none !important;
 }
+.points {
+    font-size: 2vh;
+    background-color: #fdfff7;
+	font-family: 'Kirvy';
+	width: 28vw;
+	height: auto !important;
+}
+.flash-robot {
+	text-align: center;
+}
 
+.darkscreen {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.flash-console {
+	position: absolute;
+	left: 30vw;
+	top: 15vh;
+	width: 40vw;
+	height: 70vh;
+	background: rgb(50, 50, 50);
+	font-family: 'Menlo';
+	color: rgb(90, 218, 83);
+	overflow-y: scroll;
+	border: 5px #e6dfdf solid;
+	border-radius: 2vw;
+	padding: 3vh;
+}
 @font-face {
 	font-family: 'Kirvy';
 	font-style: normal;
