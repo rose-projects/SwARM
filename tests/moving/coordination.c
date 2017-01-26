@@ -39,7 +39,7 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	double h[2] = {0};    // homothetic center
 
 	/* Because of the method of the homothetic center, both circles cannot
-	 * be of the same radius, this dirty hack solves this issue.
+	 * be of the same radius, this dirty hack solves the issue.
 	 */
 	if (r_dep_ == r_dest_) {
 		r_dep_++;
@@ -77,8 +77,8 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	tmp1[1] = y_dest - r_dest*cos(ori_dest);
 	tmp2[0] = x_dest - r_dest*sin(ori_dest);
 	tmp2[1] = y_dest + r_dest*cos(ori_dest);
-	if ((tmp1[0]-x_dep)*(tmp1[0]-x_dep) + (tmp1[1]-y_dep)*(tmp1[1]-y_dep) <=
-	    (tmp2[0]-x_dep)*(tmp2[0]-x_dep) + (tmp2[1]-y_dep)*(tmp2[1]-y_dep))
+	if ((tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <=
+	    (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest))
 	{
 		dest_circle[0] = tmp1[0];
 		dest_circle[1] = tmp1[1];
