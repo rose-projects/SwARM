@@ -82,7 +82,7 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	if ((tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <=
 	    (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest))
 	{
-		dept_to_left = -1;
+		dest_to_left = -1;
 		dest_circle[0] = tmp1[0];
 		dest_circle[1] = tmp1[1];
 	} else {
@@ -96,7 +96,7 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	 * the goal is in the right-hand quadrant, nor behind it
 	 * hypothesis2: r_dep > r_dest TODO: all cases
 	 */
-	if (dest_circle[0] == tmp1[0]) {
+	if (dep_to_left * dest_to_left == 1) {
 		is_inner_tan = -1;
 	} else {
 		is_inner_tan = 1;
