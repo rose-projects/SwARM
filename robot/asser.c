@@ -29,6 +29,8 @@
 static THD_WORKING_AREA(working_area_asser_thd, 128);
 volatile int dist_error = 0;
 volatile int angle_error = 0;
+volatile int cmd_left = 100;
+volatile int cmd_right = 100;
 static int dist_error_sum;
 static int dist_error_delta;
 static int dist_error_prev;
@@ -39,8 +41,6 @@ static int angle_error_prev;
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
-    int cmd_left;
-    int cmd_right;
     int cmd_dist;
     int cmd_angle;
     int angle;

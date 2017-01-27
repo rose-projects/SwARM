@@ -123,9 +123,12 @@ CSRC = $(STARTUPSRC) \
        $(RADIOSRC) \
        $(DRIVERSRC) \
        $(RTTSRC) \
+	   $(CHIBIOS)/os/various/shell.c \
+	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(IMU) \
        $(MOVING) \
-       battery.c led.c main.c
+       battery.c led.c main.c RTT/RTT_streams.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -155,7 +158,8 @@ TCPPSRC =
 ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
-         $(HALINC) $(PLATFORMINC) $(BOARDINC) \
+         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
+		 $(CHIBIOS)/os/hal/lib/streams \
          $(CHIBIOS)/os/various .
 
 #

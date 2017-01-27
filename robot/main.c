@@ -1,25 +1,133 @@
 #include "ch.h"
 #include "hal.h"
 #include "RTT/SEGGER_RTT.h"
+#include "RTT/RTT_streams.h"
+#include "shell.h"
+#include "chprintf.h"
+
+#include <stdlib.h>
+
 #include "exticonf.h"
 #include "compdriver.h"
 #include "pwmdriver.h"
 #include "motors.h"
 #include "asser.h"
 #include "moving.h"
+#include "coding_wheels.h"
+
+#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
+#define TEST_WA_SIZE    THD_WORKING_AREA_SIZE(256)
+
+static RTTStream rttStream;  
+
+static void cmd_mtr_l_p(BaseSequentialStream *chp, int argc, char *argv[]) {
+
+    if ((argc == 0) || (argc > 1)){
+        chprintf(chp,"wrong use of motors command, RTFIM plz\r\n");
+        return;
+    }
+    else{
+        cmd_left = atoi(argv[0]);
+        cmd_left = (cmd_left <= 200) ? cmd_left : 200;
+        setLpwm(cmd_left);
+        chprintf(chp,"cmd_left %d\r\n", cmd_left);
+
+    }
+    return;
+}
+
+static void cmd_mtr_r_p(BaseSequentialStream *chp, int argc, char *argv[]) {
+
+
+    if ((argc == 0) || (argc > 1)){
+        chprintf(chp,"wrong use of motors command, RTFIM plz\r\n");
+        return;
+    }
+    else{
+        cmd_right = atoi(argv[0]);
+        cmd_right = (cmd_right <= 200) ? cmd_right : 200;
+        setRpwm(cmd_right);
+        chprintf(chp,"cmd_right %d\r\n", cmd_right);
+
+    }
+    return;
+}
+
+static void cmd_tick(BaseSequentialStream *chp, int argc, char *argv[]) {
+
+    (void) argv;
+
+    if (argc > 0){
+        chprintf(chp,"wrong use of ticks command, RTFIM plz\r\n");
+        return;
+    }
+    else{
+        chprintf(chp,"tick_l %d\r\n", tick_l);
+        chprintf(chp,"tick_r %d\r\n", tick_r);
+
+    }
+    return;
+}
+
+static void cmd_forward(BaseSequentialStream *chp, int argc, char *argv[]) {
+
+    if ((argc == 0) || (argc > 1)){
+        chprintf(chp,"wrong use of rotation command, RTFIM plz\r\n");
+        return;
+    }
+    else{
+        if(atoi(argv[0]) == 0){
+            GO_REVERSE();
+        }
+        else{
+            GO_FORWARD(); 
+        }
+    }
+    return;
+}
+
+static const ShellCommand commands[] = {
+    {"l", cmd_mtr_l_p},
+    {"r", cmd_mtr_r_p},
+    {"t", cmd_tick},
+    {"f", cmd_forward},
+    {NULL, NULL}
+};
+
+static const ShellConfig shell_cfg1 = {
+    (BaseSequentialStream *) &rttStream,
+    commands
+};
 
 int main(void) {
-	halInit();
-	chSysInit();
+    thread_t * shelltp = NULL;
+    halInit();
+    chSysInit();
 
-	initExti();
-	initComparators();
+    initExti();
+    initComparators();
     initMotors();
-	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
+    SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
+    RTTObjectInit(&rttStream, 0);
+    palSetLine(LINE_MTR_LED_R);
+    palSetLine(LINE_MTR_LED_L);
 
-    start_asservs();
-    start_moving();
+    shellInit();
 
-	while (true)
-		chThdSleepMilliseconds(500);
+    while (true){
+        if (!shelltp) {
+            /* Spawns a new shell.*/
+            shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
+        }
+        else {
+            /* If the previous shell exited.*/
+            if (chThdTerminatedX(shelltp)) {
+                /* Recovers memory of the previous shell.*/
+                chThdRelease(shelltp);
+                shelltp = NULL;
+
+            }
+        }
+        chThdSleepMilliseconds(100);
+    }
 }

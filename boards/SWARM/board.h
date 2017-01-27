@@ -154,7 +154,7 @@
  * GPIOA setup:
  *
  * PA0  - VBAT_PROBE                (analog).
- * PA1  - MTR_LED_L                 (output push-pull).
+ * PA1  - MTR_LED_L                 (output push-pull, pull-up).
  * PA2  - MTR_PHASE_L               (output push-pull).
  * PA3  - MTR_ENABLE_L              (alternate 9).
  * PA4  - PIN4                      (input floating).
@@ -189,7 +189,8 @@
 #define VAL_GPIOA_OTYPER    0x00000000
 #define VAL_GPIOA_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
-                                     PIN_PUPDR_PULLDOWN(GPIOA_SWCLK))
+                                     PIN_PUPDR_PULLDOWN(GPIOA_SWCLK)|       \
+                                     PIN_PUPDR_PULLUP(GPIOA_MTR_LED_L))
 #define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
                                      PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
