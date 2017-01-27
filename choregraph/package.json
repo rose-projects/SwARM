@@ -1,5 +1,5 @@
 {
-  "name": "choragraph",
+  "name": "choregraph",
   "version": "0.1.0",
   "description": "dance editor for SwARM project",
   "main": "lib/main.js",

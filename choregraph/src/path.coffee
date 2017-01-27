@@ -7,7 +7,7 @@ width2cm = (value) -> value*800/paper.view.size.width
 height2cm = (value) -> 500 - value*500/paper.view.size.height
 vec2angle = (vec) ->
 	rad = Math.atan2(vec.x, vec.y)
-	return Math.round(450-rad*180/Math.PI) % 360
+	return Math.round(270+rad*180/Math.PI) % 360
 hsv2rgb = (h, s, v) ->
 	rgb = []
 
@@ -69,7 +69,7 @@ robotPath = (robot) ->
 		point.segments[2].point = new paper.Point(cm2width(move.x + 8), cm2height(move.y));
 		point.segments[2].handleIn = new paper.Point(0, 0);
 		point.segments[2].handleOut = new paper.Point(0, 0);
-		point.rotate(move.angle, pt)
+		point.rotate(-move.angle, pt)
 
 		rb = new paper.Path.Circle pt, cm2width(35)
 		rb.strokeColor = "black"
