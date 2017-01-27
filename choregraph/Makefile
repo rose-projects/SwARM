@@ -10,7 +10,7 @@ clean:
 run: all
 	electron .
 
-dist:
+dist: all
 	rm -rf dist/
 	electron-packager ./ --platform=darwin,linux --arch=x64 --out=./dist/
 
