@@ -1,6 +1,7 @@
 #include "ch.h"
 #include "hal.h"
 #include "coding_wheels.h"
+#include "compdriver.h"
 
 // Events sources
 EVENTSOURCE_DECL(deca_event);
@@ -22,8 +23,16 @@ static void decaIRQ_cb(EXTDriver *extp, expchannel_t channel) {
 static void Lcoder_cb(EXTDriver *extp, expchannel_t channel) {
 	(void)extp;
 	(void)channel;
+    volatile int comp2 = comp2out;
 
+    if(comp2){
+        setDAC1value(64);
+    }
+    else{
+        setDAC1value(238);
+    }
     tick_l++;
+
 }
 /* Right encoder wheel EXTI callback */
 static void Rcoder_cb(EXTDriver *extp, expchannel_t channel) {
@@ -58,7 +67,7 @@ static const EXTConfig extcfg = {
 		{EXT_CH_MODE_DISABLED, NULL}, // 19 : RTC tamper
 		{EXT_CH_MODE_DISABLED, NULL}, // 20 : RTC wakeup
 		{EXT_CH_MODE_DISABLED, NULL}, // 21 : COMP1 output
-		{EXT_CH_MODE_RISING_EDGE | EXT_CH_MODE_AUTOSTART, Lcoder_cb}, // 22 : COMP2 output
+		{EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART, Lcoder_cb}, // 22 : COMP2 output
 		{EXT_CH_MODE_DISABLED, NULL}, // 23 : I2C1 wakeup
 		{EXT_CH_MODE_DISABLED, NULL}, // 24 : I2C2 wakeup
 		{EXT_CH_MODE_DISABLED, NULL}, // 25 : USART1 wakeup
