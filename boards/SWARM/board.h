@@ -190,7 +190,8 @@
 #define VAL_GPIOA_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
                                      PIN_PUPDR_PULLDOWN(GPIOA_SWCLK))
-#define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
+#define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn)|       \
+                                     PIN_ODR_HIGH(GPIOA_MTR_LED_L))
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
                                      PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_SWDIO, 0U) |         \
@@ -282,7 +283,7 @@
 #define VAL_GPIOC_OTYPER    0x00000000
 #define VAL_GPIOC_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOC_PUPDR     0x00000000
-#define VAL_GPIOC_ODR       0x00000000
+#define VAL_GPIOC_ODR                PIN_ODR_HIGH(GPIOC_MTR_LED_R) 
 #define VAL_GPIOC_AFRL      0x00000000
 #define VAL_GPIOC_AFRH              (PIN_AFIO_AF(GPIOC_DWM_SPI_CLK, 6U) |   \
                                      PIN_AFIO_AF(GPIOC_DWM_SPI_MISO, 6U) |  \
