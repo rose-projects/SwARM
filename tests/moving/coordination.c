@@ -79,8 +79,8 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	tmp1[1] = y_dest - r_dest*cos(ori_dest);
 	tmp2[0] = x_dest - r_dest*sin(ori_dest);
 	tmp2[1] = y_dest + r_dest*cos(ori_dest);
-	if ((tmp1[0]-x_dest)*(tmp1[0]-x_dest) + (tmp1[1]-y_dest)*(tmp1[1]-y_dest) <=
-	    (tmp2[0]-x_dest)*(tmp2[0]-x_dest) + (tmp2[1]-y_dest)*(tmp2[1]-y_dest))
+	if ((tmp1[0]-x_dep)*(tmp1[0]-x_dep) + (tmp1[1]-y_dep)*(tmp1[1]-y_dep) <=
+	    (tmp2[0]-x_dep)*(tmp2[0]-x_dep) + (tmp2[1]-y_dep)*(tmp2[1]-y_dep))
 	{
 		dest_to_left = -1;
 		dest_circle[0] = tmp1[0];
@@ -108,16 +108,16 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	       (r_dep + is_inner_tan*r_dest);
 
 	pt_tan_dep[0] = dep_circle[0] +
-	 (r_dep*r_dep*(h[0]-dep_circle[0]) -
-	  r_dep*(h[1]-dep_circle[1]) *
+	 (r_dep*r_dep*(h[0]-dep_circle[0]) +
+	  dep_to_left*r_dep*(h[1]-dep_circle[1]) *
 	  sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) +
 	       (h[1]-dep_circle[1])*(h[1]-dep_circle[1]) -
 	        r_dep*r_dep)) /
 	 ((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) +
 	  (h[1]-dep_circle[1])*(h[1]-dep_circle[1]));
 	pt_tan_dep[1] = dep_circle[1] +
-	 (r_dep*r_dep*(h[1]-dep_circle[1]) +
-	  r_dep*(h[0]-dep_circle[0]) *
+	 (r_dep*r_dep*(h[1]-dep_circle[1]) -
+	  dep_to_left*r_dep*(h[0]-dep_circle[0]) *
 	  sqrt((h[0]-dep_circle[0])*(h[0]-dep_circle[0]) +
 	       (h[1]-dep_circle[1])*(h[1]-dep_circle[1]) -
 	       r_dep*r_dep)) /
@@ -125,16 +125,16 @@ void update_main_coordinates(int x_dest_, int y_dest_, double ori_dest_,
 	  (h[1]-dep_circle[1])*(h[1]-dep_circle[1]));
 
 	pt_tan_dest[0] = dest_circle[0] +
-	 (r_dest*r_dest*(h[0]-dest_circle[0]) +
-	  is_inner_tan*r_dest*(h[1]-dest_circle[1]) *
+	 (r_dest*r_dest*(h[0]-dest_circle[0]) -
+	  is_inner_tan*dest_to_left*r_dest*(h[1]-dest_circle[1]) *
 	  sqrt((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
 	       (h[1]-dest_circle[1])*(h[1]-dest_circle[1]) -
 	        r_dest*r_dest)) /
 	 ((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
 	  (h[1]-dest_circle[1])*(h[1]-dest_circle[1]));
 	pt_tan_dest[1] = dest_circle[1] +
-	 (r_dest*r_dest*(h[1]-dest_circle[1]) -
-	  is_inner_tan*r_dest*(h[0]-dest_circle[0]) *
+	 (r_dest*r_dest*(h[1]-dest_circle[1]) +
+	  is_inner_tan*dest_to_left*r_dest*(h[0]-dest_circle[0]) *
 	  sqrt((h[0]-dest_circle[0])*(h[0]-dest_circle[0]) +
 	       (h[1]-dest_circle[1])*(h[1]-dest_circle[1]) -
 	        r_dest*r_dest)) /
