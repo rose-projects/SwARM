@@ -7,6 +7,8 @@
 #include "motors.h"
 #include "asser.h"
 #include "moving.h"
+#include "test_motors.h"
+#include "led.h"
 
 int main(void) {
 	halInit();
@@ -15,10 +17,10 @@ int main(void) {
 	initExti();
 	initComparators();
     initMotors();
+    initLEDs();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
-    start_asservs();
-    start_moving();
+    test_motors();
 
 	while (true)
 		chThdSleepMilliseconds(500);
