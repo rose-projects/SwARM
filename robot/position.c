@@ -8,6 +8,15 @@
 #include "asser.h"
 #include "coordination.h"
 
+// mean of the ten last position (plus delta)
+float x_pos_cw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+float y_pos_dw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+float x_pos_cw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+float y_pos_dw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+// position in circular buffer
+int i = 0;
+
 /*
  * Update position according to the coding wheels
  * The calculation depends on wether we are rotating to the left or to the right
@@ -19,21 +28,12 @@ void update_position(){
 
 	// Updating orientation
 	orientation += angle_rad;
-	// angle fusion
-	real_orientation = orientation + azimuth;
-	real_orientation /= 2;
 
 	// Calculating last coordinates of the robot
 	x_pos += distance * cos(orientation);
 	y_pos += distance * sin(orientation);
 	last_dist_error = dist_error;
 	last_angle_error = angle_error;
-
-	// position fusion : mean with decawave
-	x_pos += radioData.x;
-	y_pos += radioData.y;
-	x_pos /= 2;
-	y_pos /= 2;
 }
 
 // position and orientation fusion thread
@@ -43,7 +43,7 @@ static THD_FUNCTION(fusion_thd, arg) {
 
 	event_listener_t * dwm_update;
 	// register for radio messages datas updates
-	chEvtRegisterMask (&radioEvent, dwm_update, EVENT_MASK(0));
+	chEvtRegisterMask(&radioEvent, dwm_update, EVENT_MASK(0));
 
 	// 10 tuples [time, pos x, pos y]
 	int i = 0;
@@ -53,12 +53,20 @@ static THD_FUNCTION(fusion_thd, arg) {
 	
 	while(1) {
 		// wait for DWM message
-		chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+		chEvtWaitAll(EVENT_MASK(0));
 
 		time[i] = chVTGetSystemTime();
 
-		x_pos += radioData.x;
-		y_pos += radioData.y;
+		// position fusion : mean with decawave
+		x_pos_dwm += radioData.x;
+		y_pos_dwm += radioData.y;
+		x_pos_dwm /= 2;
+		y_pos_dwm /= 2;
+		// angle fusion
+		real_orientation = orientation + azimuth;
+		real_orientation /= 2;
+
+		i++;
 	}
 }
 
