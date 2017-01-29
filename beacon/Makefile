@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -Og -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -107,7 +107,8 @@ vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
 RADIOSRC = radiocomms.c decaplatform.c decafunctions.c deca_device.c deca_params_init.c
-DRIVERSRC = flash.c usbconf.c exticonf.c
+DRIVERSRC = flash.c exticonf.c usbconf.c
+RTTSRC = ../robot/RTT_streams.c ../robot/SEGGER_RTT_printf.c ../robot/RTT/SEGGER_RTT.c
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -120,7 +121,6 @@ CSRC = $(STARTUPSRC) \
        $(BOARDSRC) \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
-       $(RADIOSRC) \
        $(DRIVERSRC) \
        main.c robot.c nonvolatile.c battery.c led.c
 
@@ -182,7 +182,7 @@ OD   = $(TRGT)objdump
 SZ   = $(TRGT)size
 HEX  = $(CP) -O ihex
 BIN  = $(CP) -O binary
-
+GDB  = $(TRGT)gdb
 # ARM-specific options here
 AOPT =
 
@@ -226,9 +226,11 @@ RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
 debugserver:
-	JLinkGDBServer -if swd -device "STM32F302R6T6" -LocalhostOnly
+	JLinkGDBServer -if swd -device "STM32F302R6" -LocalhostOnly
 
 debug: all
+	-killall JLinkGDBServer
+	JLinkGDBServer -if swd -device "STM32F302R6" -LocalhostOnly&
 	$(GDB) build/$(PROJECT).elf
 
 .PHONY: debug debugserver

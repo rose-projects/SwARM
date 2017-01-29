@@ -39,8 +39,8 @@
 #define STM32_NO_INIT                       FALSE
 #define STM32_PVD_ENABLE                    FALSE
 #define STM32_PLS                           STM32_PLS_LEV0
-#define STM32_HSI_ENABLED                   FALSE
-#define STM32_LSI_ENABLED                   FALSE
+#define STM32_HSI_ENABLED                   TRUE
+#define STM32_LSI_ENABLED                   TRUE
 #define STM32_HSE_ENABLED                   TRUE
 #define STM32_LSE_ENABLED                   FALSE
 #define STM32_SW                            STM32_SW_PLL
@@ -58,6 +58,8 @@
 #define STM32_I2C1SW                        STM32_I2C1SW_SYSCLK
 #define STM32_TIM1SW                        STM32_TIM1SW_PCLK2
 #define STM32_RTCSEL                        STM32_RTCSEL_NOCLOCK
+#define STM32_USB_CLOCK_REQUIRED            TRUE
+#define STM32_USBPRE                        STM32_USBPRE_DIV1P5
 
 /*
  * ADC driver system settings.
@@ -159,7 +161,7 @@
  */
 #define STM32_SERIAL_USE_USART1             FALSE
 #define STM32_SERIAL_USE_USART2             FALSE
-#define STM32_SERIAL_USE_USART3             FALSE
+#define STM32_SERIAL_USE_USART3             TRUE
 #define STM32_SERIAL_USART1_PRIORITY        12
 #define STM32_SERIAL_USART2_PRIORITY        12
 #define STM32_SERIAL_USART3_PRIORITY        12
@@ -191,7 +193,7 @@
  */
 #define STM32_UART_USE_USART1               FALSE
 #define STM32_UART_USE_USART2               FALSE
-#define STM32_UART_USE_USART3               FALSE
+#define STM32_UART_USE_USART3               TRUE
 #define STM32_UART_USART1_IRQ_PRIORITY      12
 #define STM32_UART_USART2_IRQ_PRIORITY      12
 #define STM32_UART_USART3_IRQ_PRIORITY      12
@@ -203,8 +205,10 @@
 /*
  * USB driver system settings.
  */
-#define STM32_USB_USE_USB1 TRUE
-
+#define STM32_USB_USE_USB1                  TRUE
+#define STM32_USB_LOW_POWER_ON_SUSPEND      FALSE
+#define STM32_USB_USB1_HP_IRQ_PRIORITY      13
+#define STM32_USB_USB1_LP_IRQ_PRIORITY      14
 
 /*
  * WDG driver system settings.
