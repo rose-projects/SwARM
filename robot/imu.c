@@ -9,6 +9,7 @@
 // Set initial input parameters
 #define PI 3.14159265359
 #define NB_CALIB 1
+
 // hard coded angle diff(X, north)
 #define X_NORTH_DIFF (-0.5)
 
@@ -129,7 +130,7 @@ static int readMagData(int16_t * data) {
 
 // CALIBRATION PART
 static void mag_self_test(void) {
-
+	int x, y, z;
 	// x/y/z mag register data
 	int16_t datas[6];
 
@@ -144,7 +145,10 @@ static void mag_self_test(void) {
 
 	// get self test datas 
 	if(!readMagData(datas)) {
-		printf("self-test datas : x: %d y: %d y: %d\n", datas[0], datas[1], datas[2]);
+		x = (int)(100 * datas[0]);
+		y = (int)(100 * datas[1]);
+		z = (int)(100 * datas[2]);
+		printf("self-test datas : x: %d y: %d y: %d\n", x, y, z);
 	} else {
 		printf("can't get self-test datas\n");
 	}
@@ -233,12 +237,21 @@ static int imu_calibration(int times) {
 	int i = 0;
 	float magBias[3];
 	float magScale[3];
+	int xb, yb, zb;
+	int xs, ys, zs;
 	
 	for(i = 0; i < times; i++) {
 		printf("Mag Calibration n° %d : Wave device in a figure eight until done!\n", i);
 		mag_calibration(magBias, magScale);
-		printf("calibration datas : \n Mag Bias: %f, %f, %f,\n Mag Scale %f, %f, %f,\n\n",\
-			magBias[0],magBias[1],magBias[2],magScale[0],magScale[1],magScale[2]);
+
+		// print casts
+		xb = (int)(100 * magBias[0]);
+		yb = (int)(100 * magBias[1]);
+		zb = (int)(100 * magBias[2]);
+		xs = (int)(100 * magScale[0]);
+		ys = (int)(100 * magScale[1]);
+		zs = (int)(100 * magScale[2]);
+		printf("calibration datas : \n Mag Bias: %d, %d, %d,\n Mag Scale %d, %d, %d,\n\n",xb,yb,zb,xs,ys,zs);
 
 		// sum for mean
 		magbias[0] += magBias[0];
@@ -257,9 +270,15 @@ static int imu_calibration(int times) {
 	magscale[1] /= times;
 	magscale[2] /= times;
 
-	printf(" MagBias :\n%f\n%f\n%f\n MagScale :\n%f\n%f\n%f\n", \
-		magbias[0], magbias[1], magbias[2], magscale[0], magscale[1], magscale[2]);
 
+	// print casts
+	xb = (int)(100 * magbias[0]);
+	yb = (int)(100 * magbias[1]);
+	zb = (int)(100 * magbias[2]);
+	xs = (int)(100 * magscale[0]);
+	ys = (int)(100 * magscale[1]);
+	zs = (int)(100 * magscale[2]);
+	printf(" MagBias :\n%d\n%d\n%d\n MagScale :\n%d\n%d\n%d\n",xb,yb,zb,xs,ys,zs);
 	return 0;
 }
 
@@ -270,13 +289,12 @@ static THD_FUNCTION(imuThread, th_data) {
 	(void) th_data;
 	chRegSetThreadName("IMU");
 
-	// x/y/z mag register data
-	int16_t datas[6];
+	int x, y, z, dir = 0;
 
 	// actual reading loop
 	while(1) {
 		// Read the x/y/z adc values
-		if(!readMagData(datas)) {
+		if(!readMagData(magOutput)) {
 
 			// Include factory calibration per data sheet and user environmental corrections
 			// get actual magnetometer valuez in milliGauss, this depends on scale being set
@@ -301,6 +319,12 @@ static THD_FUNCTION(imuThread, th_data) {
 			}
 		}
 
+		x = (int)(100 * magOutput[0]);
+		y = (int)(100 * magOutput[1]);
+		z = (int)(100 * magOutput[2]);
+		printf("x: %d, y: %d, z: %d\n", x, y, z);
+		dir = (int)(100 * azimuth);
+		printf("%d\n", dir);
 		// at 100 Hz ODR, new mag data is available every 1 ms
 		// we use 10 millisecond : we don't need such precision
 		chThdSleepMilliseconds(10);
@@ -310,6 +334,8 @@ static THD_FUNCTION(imuThread, th_data) {
 // actual called function
 // print all values in loop
 int initIMU(void) {
+
+	initI2C();
 
 	// Read the WHO_AM_I register for MPU-9250, this is a good test of communication
 	uint8_t whoami = readByte(MPU9250_ADDRESS, WHO_AM_I_MPU9250);
