@@ -72,20 +72,20 @@ static void updateState(int voltage) {
 		if(voltage > BATTERY_VERYLOW_HTHRES)
 			batteryState = BATTERY_LOW;
 	}
-	
+
 	// display battery state
 	switch (batteryState) {
 	case BATTERY_HIGH:
 		setLEDs(0, 50, 0);
 		break;
 	case BATTERY_OK:
-		setLEDs(25, 25, 0);
+		setLEDs(30, 10, 0);
 		break;
 	case BATTERY_LOW:
-		setLEDs(33, 17, 0);
+		setLEDs(50, 5, 0);
 		break;
 	case BATTERY_VERYLOW:
-		setLEDs(40, 0, 0);
+		setLEDs(30, 0, 0);
 	}
 }
 
@@ -111,7 +111,7 @@ static THD_FUNCTION(batteryThread, th_data) {
 			i = 0;
 		}
 
-		chThdSleepMilliseconds(1000);
+		chThdSleepMilliseconds(800);
 	}
 }
 

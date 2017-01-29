@@ -3,8 +3,8 @@
 #include "ch.h"
 #include "chevents.h"
 
-#include "../shared/radioconf.h"
 #include "usbconf.h"
+#include "../shared/radioconf.h"
 #include "robot.h"
 #include "radiocomms.h"
 

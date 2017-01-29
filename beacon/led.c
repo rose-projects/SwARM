@@ -26,7 +26,7 @@ void setLEDs(uint8_t r, uint8_t g, uint8_t b) {
 	spiSend(&SPID2, 4, data);
 
 	// generate data for one LED
-	data[0] = 0;
+	data[0] = 0x00;
 	// inverse data to compensate level shifter
 	data[1] = ~((uint8_t)(b*B_COEFF));
 	data[2] = ~((uint8_t)(g*G_COEFF));

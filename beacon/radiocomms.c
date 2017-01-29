@@ -1,16 +1,16 @@
 #include "ch.h"
 #include "chvt.h"
 #include "chevents.h"
+#include "chprintf.h"
 
-#include "exticonf.h"
 #include "usbconf.h"
+#include "exticonf.h"
 #include "../shared/decafunctions.h"
 #include "../shared/decadriver/deca_device_api.h"
 #include "../shared/decadriver/deca_regs.h"
 #include "../shared/radioconf.h"
 #include "nonvolatile.h"
 #include "robot.h"
-#include "battery.h"
 
 // event triggered when new robot locations are available
 EVENTSOURCE_DECL(radioEvent);
@@ -157,9 +157,6 @@ static int slaveBeaconRead(int msgID, int addr, uint64_t timeInFrame) {
 static void slaveBeaconTask(void) {
 	int ret;
 	int beaconReadTime = deviceUID == 253 ? TIMESLOT_LENGTH : TIMESLOT_LENGTH*2;
-
-	// only slave beacons are battery powered
-	initBattery();
 
 	dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
 
