@@ -66,7 +66,7 @@ void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
 	 * Find the closest circle, if an error is detected at the end,
 	 * change circles.
 	 */
-	dep_cos = cos(orientation);
+	dep_cos = sin(M_PI_2 - orientation);
 	dep_sin = sin(orientation);
 	tmp1[0] = x_dep + r_dep*dep_sin;
 	tmp1[1] = y_dep - r_dep*dep_cos;
@@ -86,7 +86,7 @@ void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
 		c_dep[1] = tmp2[1];
 	}
 
-	dest_cos = cos(ori_dest);
+	dest_cos = sin(M_PI_2 - ori_dest);
 	dest_sin = sin(ori_dest);
 	tmp3[0] = x_dest + r_dest*dest_sin;
 	tmp3[1] = y_dest - r_dest*dest_cos;
