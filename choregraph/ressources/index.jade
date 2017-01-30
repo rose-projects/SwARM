@@ -26,6 +26,13 @@ html(lang="fr")
 			a.btn.serial-btn &nbsp;&nbsp;OK&nbsp;&nbsp;
 			
 		div.tools
+			div.buttons
+				a.btn.dance-btn.disabled 
+					span.fa.fa-music
+					| Danser !
+				a.btn.shell-btn.disabled
+					span.fa.fa-terminal
+					| Shell
 			div.selector
 				a.btn.selected-btn.moves-mode Mouvements
 				a.btn.colors-mode Couleurs
@@ -34,7 +41,7 @@ html(lang="fr")
 		
 		div.darkscreen
 		div.flash-console
-		
+		input.shell-input
 		script(src="../lib/sidebar.js")
 		script(src="../lib/simu.js")
 		script(src="../lib/path.js")

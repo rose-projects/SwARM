@@ -5,25 +5,56 @@ port = null
 connected = no
 onConnected = null
 commandList = []
+dancing = no
 
 intRead = (cl, def) ->
 	val = parseInt $(".#{cl}").val()
 	return if isNaN(val) then def else val
 
+showSerialWindow = (textToAppend) ->
+	$('.flash-console').show().append(textToAppend)
+	$('.darkscreen').show()
+		.click ->
+			$('.darkscreen').hide()
+			$('.flash-console').hide()
+			$('.shell-input').hide()
+
+toggleDancing = ->
+	if port? and port?.isOpen()
+		commandList = []
+
+		dancing = not dancing
+		$('.dance-btn').html(if dancing then '<span class="fa fa-stop"></span> Stop' else '<span class="fa fa-music"></span> Danser !')
+			.css('font-family', 'Kirvy')
+		command = if dancing then 'dance' else 'stop'
+		showSerialWindow('<br>')
+		port.write command + '\r\n'
+
+		# start/stop simu at the same time
+		if dancing
+			$('.stop-btn').click()
+			$('.play-btn').click()
+		else
+			$('.stop-btn').click()
+
+showShell = ->
+	if port? and port?.isOpen()
+		showSerialWindow('<br>')
+		$('.shell-input').show().focus()
+			.keyup (e) ->
+				if e.keyCode == 13
+					port.write($('.shell-input').val() + '\r\n')
+					$('.shell-input').val('')
+
 flashRobot = (id, robot) ->
 	if port? and port?.isOpen()
-		console.log 'flashing robot', robot.index, 'to ID', id
-		$('.flash-console').show().append("<br> => Flashing dance from robot #{robot.index+1} to ID #{id} ...<br><br>")
-		$('.darkscreen').show()
-			.click ->
-				$('.darkscreen').hide()
-				$('.flash-console').hide()
+		showSerialWindow("<br> => Flashing dance from robot #{robot.index+1} to ID #{id} ...<br><br>")
 
 		commandList= ["clear #{id}\r\n"]
 
 		cmd = "moves #{id}"
 		cmdCnt = 0
-		for mv in robot.moves
+		for mv in robot.moves when move.index != 0
 			cmd += " #{mv.date} #{mv.x} #{mv.y} #{mv.angle} #{mv.startradius} #{mv.endradius}"
 			cmdCnt++
 			if cmdCnt == 5
@@ -44,7 +75,7 @@ flashRobot = (id, robot) ->
 		commandList.push(cmd + '\r\n') unless cmdCnt == 0
 
 		commandList.push "flash #{id}\r\n"
-		$('.flash-console').append "#{commandList[0]}<br>"
+		#$('.flash-console').append "#{commandList[0]}<br>"
 		port.write commandList.shift()
 
 module.exports = ->
@@ -57,6 +88,8 @@ module.exports = ->
 			for p in ports.reverse()
 				$('.serialpath').append "<option value=\"#{p.comName}\">#{p.comName}</option>"
 
+		$('.dance-btn').click toggleDancing
+		$('.shell-btn').click showShell
 		$('.serial-btn').click ->
 			connected = no
 			port.close() if port? and port?.isOpen()
@@ -67,13 +100,16 @@ module.exports = ->
 			port.on 'open', ->
 				connected = yes
 				onConnected?()
+				$('.shell-btn').removeClass 'disabled'
+				$('.dance-btn').removeClass 'disabled'
 
 				port.on 'data', (data) ->
-					$('.flash-console').append "#{data}<br>" unless data[0..4] is 'POS :'
+					unless data[0..4] is 'POS :'
+						$('.flash-console').append("#{data}<br>").scrollTop($('.flash-console')[0].scrollHeight)
 
 					if data[0..1] is 'OK'
 						if commandList.length > 0
-							$('.flash-console').append "#{commandList[0]}<br>"
+							#$('.flash-console').append "#{commandList[0]}<br>"
 							port.write commandList.shift()
 				port.flush()
 

@@ -93,6 +93,16 @@ body {
 	box-shadow: 0 -1px 40px rgba(32, 34, 34, 0.6);
 	min-height: 600px;
 }
+.buttons {
+	position: relative;
+	text-align: center;
+	font-size: 3vh;
+	top: 2vh;
+	font-family: 'Kirvy';
+}
+.buttons .btn {
+	padding-right: 2vh;
+}
 .selector {
 	position: relative;
 	text-align: center;
@@ -123,8 +133,8 @@ body {
 }
 .robots {
 	position: absolute;
-	top: 10vh;
-	height: 93vh;
+	top: 18vh;
+	height: 85vh;
 	width: 30vw;
 	overflow-y: scroll;
 }
@@ -173,6 +183,16 @@ body {
 	padding: 3vh;
 	display: none;
 	overflow-y: scroll;
+}
+.shell-input {
+	position: absolute;
+	display: none;
+	top: 93vh;
+	left: 31.5vw;
+	width: 40vw;
+}
+.dance-btn {
+	font-family: 'Kirvy';
 }
 @font-face {
 	font-family: 'Kirvy';

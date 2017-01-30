@@ -176,7 +176,6 @@ robotPath = (robot) ->
 				h = current.h + (next.h - current.h)*(date - (next.date - next.fade))/next.fade
 				s = current.s + (next.s - current.s)*(date - (next.date - next.fade))/next.fade
 				v = current.v + (next.v - current.v)*(date - (next.date - next.fade))/next.fade
-				console.log current.h, next.h, date, next.fade, next.date
 				color = hsv2rgb(h, s, v)
 			else
 				color = robot.colors[index].rgb
@@ -220,7 +219,6 @@ robotPath = (robot) ->
 	addPoint = (point, insert) ->
 		if insert
 			index = Math.floor(path.getNearestLocation(point).index/3) + 1
-			console.log index
 			robot.movesList.add(index)
 		else
 			index = robot.moves.length
