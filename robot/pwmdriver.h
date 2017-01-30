@@ -9,7 +9,7 @@ void initPWM(void);
 #define PWM_MAX 200
 
 /* set left motor PWM duty cycle (from 0 to PWM_MAX) */
-#define setLpwm(val) do { TIM15->CCR2 = val; } while(0)
+#define setLpwm(val) do { TIM15->CCR1 = val; TIM15->CCR2 = val; } while(0)
 
 /* set right motor PWM duty cycle (from 0 to PWM_MAX) */
 #define setRpwm(val) do { TIM16->CCR1 = val; } while(0)

@@ -25,6 +25,6 @@ int main(void) {
 	startRadio();
 	printf("Ah oui oui oui oui oui !\n");
 
-	while (true)
-		chThdSleepMilliseconds(500);
+	while(1)
+		chThdSleepMilliseconds(1000);
 }

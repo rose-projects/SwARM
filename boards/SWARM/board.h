@@ -172,10 +172,10 @@
  */
 #define VAL_GPIOA_MODER             (PIN_MODE_ANALOG(GPIOA_VBAT_PROBE) |    \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_LED_L)   |   \
-                                     PIN_MODE_OUTPUT(GPIOA_MTR_PHASE_L) |   \
+                                     PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_L) |   \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_L)|\
                                      PIN_MODE_INPUT(GPIOA_PIN4) |           \
-                                     PIN_MODE_OUTPUT(GPIOA_MTR_PHASE_R) |   \
+                                     PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_R) |   \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_R)|\
                                      PIN_MODE_ANALOG(GPIOA_MTR_TRA_L) |     \
                                      PIN_MODE_INPUT(GPIOA_PIN8) |           \
@@ -192,6 +192,7 @@
                                      PIN_PUPDR_PULLDOWN(GPIOA_SWCLK))
 #define VAL_GPIOA_ODR       		(PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
+									 PIN_AFIO_AF(GPIOA_MTR_PHASE_L, 9U) |  \
                                      PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_SWDIO, 0U) |         \
                                      PIN_AFIO_AF(GPIOA_SWCLK, 0U))

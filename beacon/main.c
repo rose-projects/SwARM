@@ -44,8 +44,8 @@ int main(void) {
 	thread_t *sh = NULL;
 
 	// initialize ChibiOS
-	halInit();
 	chSysInit();
+	halInit();
 	shellInit();
 
 	// initialize hardware
