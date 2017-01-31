@@ -73,7 +73,7 @@ int writeOffset(struct distOffset *offset) {
 	int i = 0;
 
 	// search for an old calibration matching the UID or an empty slot
-	while(i < MAX_CALIBRATION && offsets[i].uid != offset->uid && offsets[i].uid != 0)
+	while(i < MAX_CALIBRATION && offsets[i].uid != offset->uid && offsets[i].uid != 0xFFFFFFFF)
 		i++;
 
 	if(i == MAX_CALIBRATION) {

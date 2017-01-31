@@ -71,14 +71,11 @@ static void answerBeaconRead(void) {
 static void synchronizeSlaveBeacon(void) {
 	int ret;
 
-	// listen to master beacon
-	switchToChannel(MB_CHANNEL);
-	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
-
 	// clear distances as they will be outdated
 	for(ret = 0; ret < MAX_CONNECTED_ROBOTS; ret++)
 		robots[ret].mbDist = 0;
 
+	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
 	sofTS = -1;
 	while(sofTS == -1) {
 		if((ret = decaReceive(RADIO_BUF_LEN, radioBuffer, DWT_START_RX_IMMEDIATE)) < 0) {
@@ -155,7 +152,7 @@ static int slaveBeaconRead(int msgID, int addr, uint64_t timeInFrame) {
 }
 
 static void slaveBeaconTask(void) {
-	int ret;
+	int ret, i, timeInFrame;
 	int beaconReadTime = deviceUID == 253 ? TIMESLOT_LENGTH : TIMESLOT_LENGTH*2;
 
 	dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
@@ -166,11 +163,10 @@ static void slaveBeaconTask(void) {
 			synchronizeSlaveBeacon();
 		} else {
 			ret = slaveBeaconRead(SOF_MSG_ID, 0xFF, FRAME_LENGTH);
-			if(ret > 0)
+			if(ret > 0) {
 				parseSOF(ret);
-
-			// if something went wrong, restart synchronisation
-			if(sbConnected == 0 || ret < 0) {
+			} else {
+				// if something went wrong, restart synchronisation
 				sofTS = -1;
 				chThdSleepMilliseconds(FRAME_LENGTH - 4);
 				continue;
@@ -181,24 +177,20 @@ static void slaveBeaconTask(void) {
 		if(slaveBeaconRead(BEACON_READ_MSG_ID, deviceUID, beaconReadTime) > 0) {
 			answerBeaconRead();
 		} else { // no valid message received
-			chThdSleepMilliseconds(FRAME_LENGTH - 4);
+			chThdSleepMilliseconds(FRAME_LENGTH - TIMESLOT_LENGTH*3);
 			continue;
 		}
 
-		// start ranging if any robot is registered
-		if(robotIDs[0] != 0) {
-			int i = 0;
-			int timeInFrame = 3*TIMESLOT_LENGTH + 2*beaconReadTime;
+		// range all connected robots
+		i = 0;
+		timeInFrame = 3*TIMESLOT_LENGTH + beaconReadTime;
 
-			switchToChannel(deviceUID == 253 ? SB1_CHANNEL : SB2_CHANNEL);
-			while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0 && robotIDs[i] <= MAX_CONNECTED_ROBOTS) {
-				dwt_setdelayedtrxtime((sofTS  + timeInFrame*MS_TO_DWT) >> 8);
-				robots[robotIDs[i] - 1].mbDist = rangeRobot(robotIDs[i], 0);
+		while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0 && robotIDs[i] <= MAX_CONNECTED_ROBOTS) {
+			dwt_setdelayedtrxtime((sofTS  + timeInFrame*MS_TO_DWT) >> 8);
+			robots[robotIDs[i] - 1].mbDist = rangeRobot(robotIDs[i], 0);
 
-				timeInFrame += TIMESLOT_LENGTH;
-				i++;
-			}
-			switchToChannel(MB_CHANNEL);
+			timeInFrame += 3*TIMESLOT_LENGTH;
+			i++;
 		}
 	}
 }
@@ -231,14 +223,14 @@ static void sendSOF(void) {
 	radioBuffer[5] = date >> 8;
 
 	while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
-		radioBuffer[i + 4] = robotIDs[i];
+		radioBuffer[i + 6] = robotIDs[i];
 		i++;
 	}
 
 	if(sofTS == -1) // on first frame, send start-of-frame immediately
-		decaSend(i + 4, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
+		decaSend(i + 6, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
 	else // send start-of-frame precisely FRAME_LENGTH ms after last start-of-frame
-		masterBeaconSend(FRAME_LENGTH, 0, i + 4);
+		masterBeaconSend(FRAME_LENGTH, 0, i + 6);
 
 	sofTS = getTXtimestamp();
 	sofSystime = chVTGetSystemTime();
@@ -322,8 +314,10 @@ static void masterBeaconTask(void) {
 	// clear restartMB flag
 	restartMB = 0;
 
-	// generate a session ID
+	// wait a bit for serial over USB to be available
 	chThdSleepMilliseconds(500);
+
+	// generate a session ID
 	radioBuffer[0] = 0;
 	radioBuffer[1] = 0;
 	decaSend(2, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
@@ -344,14 +338,14 @@ static void masterBeaconTask(void) {
 		if(sbConnected == 0x03) {
 			trilateralizeRobots();
 			// send radio event (new distances and robots locations available)
-		    chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+			chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
 		}
 
 		// send data to the robots and measure distances
 		dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
 		i=0;
 		while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
-			dwt_setdelayedtrxtime((sofTS  + (i + 3)*TIMESLOT_LENGTH*MS_TO_DWT) >> 8);
+			dwt_setdelayedtrxtime((sofTS  + (i + 1)*3*TIMESLOT_LENGTH*MS_TO_DWT) >> 8);
 			robots[robotIDs[i] - 1].mbDist =
 				rangeRobot(robotIDs[i], serializeRobotData(&radioBuffer[2], robotIDs[i]));
 			// distance = 0 means robot didn't respond or an error happened

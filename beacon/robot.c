@@ -78,6 +78,9 @@ static int sendPayload(int id, int size) {
 	result = chEvtWaitAnyTimeout(ALL_EVENTS, CH_CFG_ST_FREQUENCY); // timeout = 1 sec
 	chEvtUnregister(&payloadEvent, &evt_listener);
 
+	// clear flags
+	robots[id - 1].flags = 0;
+
 	return result;
 }
 
@@ -214,7 +217,7 @@ void storeMoves(BaseSequentialStream *chp, int argc, char **argv) {
 	// check parameters : maximum is 6 points at once
 	if(argc > 1 && (argc - 1) % 6 == 0 && argc < 38 && atoi(argv[0]) != 0) {
 		int i, id = atoi(argv[0]);
-		int dataLength = (argc - 1) % 6;
+		int dataLength = (argc - 1) / 6;
 
 		for(i=0; i<dataLength; i++) {
 			int date = atoi(argv[i*6 + 1]);
@@ -248,13 +251,15 @@ void storeColors(BaseSequentialStream *chp, int argc, char **argv) {
 	// check parameters : maximum is 6 color points at once
 	if(argc > 1 && (argc - 1) % 5 == 0 && argc < 32 && atoi(argv[0]) != 0) {
 		int i, id = atoi(argv[0]);
-		int dataLength = (argc - 1) % 5;
+		int dataLength = (argc - 1) / 5;
 
 		for(i=0; i<dataLength; i++) {
 			int date = atoi(argv[i*5 + 1]);
 			int h = atoi(argv[i*5 + 2]), s = atoi(argv[i*5 + 3]), v = atoi(argv[i*5 + 4]);
 			int fadeTime = atoi(argv[i*5 + 5]);
-
+			if(fadeTime == 0)
+				fadeTime = 1;
+				
 			payloadBuffer[i*6] = date;
 			payloadBuffer[i*6 + 1] = date >> 8;
 			payloadBuffer[i*6 + 2] = h;

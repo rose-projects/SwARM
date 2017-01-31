@@ -11,42 +11,43 @@
 #define B_COEFF 0.8
 
 // adapted from http://stackoverflow.com/a/14733008
-static void hsv2rgb(uint8_t h, uint8_t s, uint8_t v, uint8_t *r, uint8_t *g, uint8_t *b) {
-    unsigned int region, rem, p, q, t;
+static void hsv2rgb(int h, int s, int v, uint8_t *r, uint8_t *g, uint8_t *b) {
+	unsigned int region;
+	int rem, p, q, t;
 
-    if (s == 0) {
-        *r = v;
-        *g = v;
-        *b = v;
+	if (s == 0) {
+		*r = v;
+		*g = v;
+		*b = v;
 		return;
-    } else {
-	    region = h / 43;
-	    rem = (h - (region * 43)) * 6;
+	}
 
-	    p = v*(255 - s) >> 8;
-	    q = v*((255 - (s * rem)) >> 8) >> 8;
-	    t = v*(255 - (s * (255 - rem) >> 8)) >> 8;
+	region = h / 43;
+	rem = (h - (region * 43)) * 6;
 
-	    switch (region) {
-	    case 0:
-	        *r = v; *g = t; *b = p;
-	        break;
-	    case 1:
-	        *r = q; *g = v; *b = p;
-	        break;
-	    case 2:
-	        *r = p; *g = v; *b = t;
-	        break;
-	    case 3:
-	        *r = p; *g = q; *b = v;
-	        break;
-	    case 4:
-	        *r = t; *g = p; *b = v;
-	        break;
-	    default:
-	        *r = v; *g = p; *b = q;
-	        break;
-	    }
+	p = v*(255 - s) >> 8;
+	q = v*(255 - (s*rem >> 8)) >> 8;
+	t = v*(255 - (s*(255 - rem) >> 8)) >> 8;
+
+	switch (region) {
+	case 0:
+		*r = v; *g = t; *b = p;
+		break;
+	case 1:
+		*r = q; *g = v; *b = p;
+		break;
+	case 2:
+		*r = p; *g = v; *b = t;
+		break;
+	case 3:
+		*r = p; *g = q; *b = v;
+		break;
+	case 4:
+		*r = t; *g = p; *b = v;
+		break;
+	default:
+		*r = v; *g = p; *b = q;
+		break;
 	}
 }
 
@@ -88,13 +89,11 @@ static struct color **goal;
 
 // refresh period (in ms) : defines fader steps length
 #define REFRESH_PERIOD 5
-// returns 1 if x>0, -1 if x<0 and 0 if x=0
-#define SIGN(x) ((x > 0) - (x < 0))
 
-static THD_WORKING_AREA(waFader, 128);
+static THD_WORKING_AREA(waFader, 256);
 static THD_FUNCTION(faderThread, th_data) {
-	uint8_t h = 0, s = 0, v = 0, htarget, starget, vtarget;
-	int hstep, sstep, vstep;
+	uint8_t htarget, starget, vtarget;
+	float hstep, sstep, vstep, h = 0, s = 0, v = 0;
 
 	(void) th_data;
 	chRegSetThreadName("Fader");
@@ -107,9 +106,9 @@ static THD_FUNCTION(faderThread, th_data) {
 			vtarget = (*goal)->v;
 
 			if((*goal)->fadeTime != 0) {
-				hstep = (htarget - h)/((*goal)->fadeTime*100/REFRESH_PERIOD) + SIGN(htarget - h);
-				sstep = (starget - s)/((*goal)->fadeTime*100/REFRESH_PERIOD) + SIGN(starget - s);
-				vstep = (vtarget - v)/((*goal)->fadeTime*100/REFRESH_PERIOD) + SIGN(vtarget - v);
+				hstep = (htarget - h)/((*goal)->fadeTime*100/REFRESH_PERIOD);
+				sstep = (starget - s)/((*goal)->fadeTime*100/REFRESH_PERIOD);
+				vstep = (vtarget - v)/((*goal)->fadeTime*100/REFRESH_PERIOD);
 			} else {
 				hstep = 255;
 				sstep = 255;

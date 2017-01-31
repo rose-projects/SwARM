@@ -2,10 +2,10 @@
 #define RADIOCONF_H
 
 /* Delay between ranging poll RX and response TX */
-#define POLL_TO_RESP_DLY 600*UUS_TO_DWT_TIME
+#define POLL_TO_RESP_DLY 800*UUS_TO_DWT_TIME
 
 /* Delay between poll and RX activation */
-#define POLL_TO_RESP_RX 400
+#define POLL_TO_RESP_RX 600
 
 /* RX timeout in us */
 #define RX_TIMEOUT 1000
@@ -23,7 +23,7 @@
 #define TIMESLOT_LENGTH 2
 
 /* maximum supported number of connected robots */
-#define MAX_CONNECTED_ROBOTS 48
+#define MAX_CONNECTED_ROBOTS 15
 
 // Radio message IDs
 #define SOF_MSG_ID 0x23

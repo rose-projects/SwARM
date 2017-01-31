@@ -193,6 +193,7 @@
 #define VAL_GPIOA_ODR       		(PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
 									 PIN_AFIO_AF(GPIOA_MTR_PHASE_L, 9U) |  \
+									 PIN_AFIO_AF(GPIOA_MTR_PHASE_R, 1U) |  \
                                      PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_SWDIO, 0U) |         \
                                      PIN_AFIO_AF(GPIOA_SWCLK, 0U))

@@ -10,6 +10,7 @@
 #include "radiocomms.h"
 #include "led.h"
 #include "dance.h"
+#include "RTT/SEGGER_RTT.h"
 
 // event triggered when new data has been received
 EVENTSOURCE_DECL(radioEvent);
@@ -52,14 +53,14 @@ static void parseSOF(int sofLength) {
 	}
 
 	// save date
-	date = radioBuffer[4] & (radioBuffer[5] << 8);
+	date = radioBuffer[4] | (radioBuffer[5] << 8);
 
 	// search for the robot's ID in the list
 	while(i < sofLength && radioBuffer[i] != deviceID)
 		i++;
 
 	// if found, robot is known to be active by master beacon
-	if(i != sofLength)
+	if(i < sofLength)
 		registered = i - 5;
 	else
 		registered = 0;
@@ -100,7 +101,6 @@ static void synchronizeRadio(void) {
 	int ret, frameCounter = 0, retryDelay = 0;
 
 	// listen to master beacon
-	switchToChannel(MB_CHANNEL);
 	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
 
 	setColor(33, 255, 128);
@@ -166,7 +166,7 @@ static void rangingResponse(int sendStatus) {
 	decaSend(4 + sendStatus, radioBuffer, 1, DWT_START_TX_DELAYED);
 }
 
-static THD_WORKING_AREA(waRadio, 256);
+static THD_WORKING_AREA(waRadio, 512);
 static THD_FUNCTION(radioThread, th_data) {
 	event_listener_t evt_listener;
 	int ret;
@@ -198,13 +198,13 @@ static THD_FUNCTION(radioThread, th_data) {
 			}
 		}
 
-		ret = messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH);
+		ret = messageRead(RANGING_MSG_ID, deviceID, (registered*3)*TIMESLOT_LENGTH);
 		if(ret > 0) {
 			parseRadioData();
 			rangingResponse(1);
 
 			// send radio event (new data available)
-		    chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+			chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
 
 			// process payload
 			if(radioData.flags & RB_FLAGS_PTSTR)
@@ -216,15 +216,12 @@ static THD_FUNCTION(radioThread, th_data) {
 		} else {
 			sofTS = -1;
 		}
-		switchToChannel(SB1_CHANNEL);
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+4)*TIMESLOT_LENGTH) > 0) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered*3+1)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}
-		switchToChannel(SB2_CHANNEL);
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+6)*TIMESLOT_LENGTH) > 0) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered*3+2)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}
-		switchToChannel(MB_CHANNEL);
 	}
 }
 

@@ -42,11 +42,11 @@ void writeStoredData(void) {
 
 	// write moves in flash
 	ret += flashWrite((flashaddr_t) danceMoves, (char*) movesBuffer, sizeof(struct move)*storedMoves);
-	ret += flashWrite((flashaddr_t) &danceMovesCnt, (char*) storedMoves, sizeof(storedMoves));
+	ret += flashWrite((flashaddr_t) &danceMovesCnt, (char*) &storedMoves, sizeof(storedMoves));
 
 	// write colors in flash
 	ret += flashWrite((flashaddr_t) danceColors, (char*) colorsBuffer, sizeof(struct color)*storedColors);
-	ret += flashWrite((flashaddr_t) &danceColorsCnt, (char*) storedColors, sizeof(storedColors));
+	ret += flashWrite((flashaddr_t) &danceColorsCnt, (char*) &storedColors, sizeof(storedColors));
 	chSysUnlock();
 
 	storedMoves = 0;
@@ -96,7 +96,7 @@ void storeColors(uint8_t* buffer, int pointCnt) {
 	storedColors += pointCnt;
 }
 
-static THD_WORKING_AREA(waSequencer, 128);
+static THD_WORKING_AREA(waSequencer, 256);
 static THD_FUNCTION(sequencerThread, th_data) {
 	event_listener_t evt_listener;
 	int i, date;
@@ -119,11 +119,15 @@ static THD_FUNCTION(sequencerThread, th_data) {
 				currentMove = &danceMoves[i];
 
 			// find the next color to display
+			i = 0;
 			while(i < danceColorsCnt && danceColors[i].date < date)
 				i++;
 			// if found and we have to start fading, set as the current goal
-			if(i < danceMovesCnt && (danceColors[i].date - danceColors[i].fadeTime) >= date)
+			if(i < danceColorsCnt && (danceColors[i].date - danceColors[i].fadeTime) <= date)
 				currentColor = &danceColors[i];
+		} else {
+			currentColor = &danceColors[0];
+			currentMove = &danceMoves[0];
 		}
 		chThdSleepMilliseconds(50);
 	}
