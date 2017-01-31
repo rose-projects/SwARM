@@ -12,7 +12,8 @@ run: all
 
 dist: all
 	rm -rf dist/
-	electron-packager ./ --platform=darwin,linux --arch=x64 --out=./dist/
+	electron-packager ./ --platform=darwin --arch=x64 --out=./dist/ --icon swarm.icns
+	electron-packager ./ --platform=linux --arch=x64 --out=./dist/
 
 install:
 	npm install

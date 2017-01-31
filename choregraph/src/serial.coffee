@@ -54,7 +54,7 @@ flashRobot = (id, robot) ->
 
 		cmd = "moves #{id}"
 		cmdCnt = 0
-		for mv in robot.moves when move.index != 0
+		for mv in robot.moves when mv.index != 0
 			cmd += " #{mv.date} #{mv.x} #{mv.y} #{mv.angle} #{mv.startradius} #{mv.endradius}"
 			cmdCnt++
 			if cmdCnt == 5
@@ -75,6 +75,7 @@ flashRobot = (id, robot) ->
 		commandList.push(cmd + '\r\n') unless cmdCnt == 0
 
 		commandList.push "flash #{id}\r\n"
+		console.log commandList
 		#$('.flash-console').append "#{commandList[0]}<br>"
 		port.write commandList.shift()
 
