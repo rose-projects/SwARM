@@ -18,6 +18,9 @@
 #define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
 #define TEST_WA_SIZE    THD_WORKING_AREA_SIZE(256)
 
+volatile int cmd_left = 0;
+volatile int cmd_right = 0;
+
 static RTTStream rttStream;  
 
 static void cmd_mtr_l_p(BaseSequentialStream *chp, int argc, char *argv[]) {
@@ -86,11 +89,34 @@ static void cmd_forward(BaseSequentialStream *chp, int argc, char *argv[]) {
     return;
 }
 
+static void cmd_test_ticks(BaseSequentialStream *chp, int argc, char *argv[]) {
+
+    (void) argv;
+
+    if (argc > 0){
+        chprintf(chp,"wrong use of rotation tt, RTFIM plz\r\n");
+        return;
+    }
+    else{
+        chprintf(chp, "Testing the counter of the coding wheels\r\n");
+        int tick_left = tick_l;
+        int tick_right = tick_r;
+        chThdSleepMilliseconds(10000);
+        int tick_left_1 = (tick_l - tick_left)/10;
+        int tick_right_1 = (tick_r - tick_right)/10;
+        chprintf(chp, "tick_l freq Hz: %d\r\n", tick_left_1); 
+        chprintf(chp, "tick_r freq Hz: %d\r\n", tick_right_1); 
+
+    }
+    return;
+}
+
 static const ShellCommand commands[] = {
     {"l", cmd_mtr_l_p},
     {"r", cmd_mtr_r_p},
     {"t", cmd_tick},
     {"f", cmd_forward},
+    {"tt", cmd_test_ticks},
     {NULL, NULL}
 };
 
