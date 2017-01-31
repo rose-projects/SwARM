@@ -1,4 +1,5 @@
 #include "ch.h"
+#include "hal.h"
 #include "pwmdriver.h"
 
 // approximative frequency of the PWM (in kHz)
@@ -48,4 +49,9 @@ void initPWM(void) {
     TIM16->CCER  = 0x01;   // enable CC1
     TIM16->EGR   = 0x01;   // generate an update event to load the setup values
     TIM16->CR1 = 0x81; // enable counter
+
+    palSetLineMode(LINE_MTR_PHASE_L, PAL_MODE_ALTERNATE(9));
+    palSetLineMode(LINE_MTR_ENABLE_L, PAL_MODE_ALTERNATE(9));
+    palSetLineMode(LINE_MTR_PHASE_R, PAL_MODE_ALTERNATE(1));
+    palSetLineMode(LINE_MTR_ENABLE_R, PAL_MODE_ALTERNATE(1));
 }
