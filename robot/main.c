@@ -20,7 +20,8 @@ int main(void) {
     initLEDs();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
-    test_motors();
+    setRpwm(100);
+    setLpwm(100);
 
 	while (true)
 		chThdSleepMilliseconds(500);
