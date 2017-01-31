@@ -11,26 +11,21 @@
 #include "coordination.h"
 
 // ASSER frequency in Hz
-#define ASSER_FREQ 200
+#define ASSER_FREQ_HZ 200
 // ASSER THREADS sleep time in ms
-#define ASSER_THD_SLEEP (1000/ASSER_FREQ)
-// PID coefficients for angle and distance
-#define P_ANGLE 1.33333333
-#define I_ANGLE 0.03333333
-#define D_ANGLE 0.8
-#define P_DIST 3.33333333
-#define I_DIST 0.0001
-#define D_DIST 9
+#define ASSER_THD_SLEEP (1000/ASSER_FREQ_HZ)
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX(a,b) ((a>b) ? a : b)
 #define MAX_POWER 200
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
+
+// Error on the last commands, shared with moving_thread
 volatile int dist_error = 0;
 volatile int angle_error = 0;
-volatile int cmd_left = 100;
-volatile int cmd_right = 100;
+
+// Errors of the enslavement
 static int dist_error_sum;
 static int dist_error_delta;
 static int dist_error_prev;
@@ -45,6 +40,14 @@ static THD_FUNCTION(asser_thd, arg) {
     int cmd_angle;
     int angle;
     int distance;
+
+    // PID coefficients for angle and distance
+    const double P_ANGLE = 1.33333333;
+    const double I_ANGLE = 0.03333333;
+    const double D_ANGLE = 0.8;
+    const double P_DIST = 3.33333333;
+    const double I_DIST = 0.0001;
+    const double D_DIST = 9;
 
     // 200 Hz calculation
     while(true){

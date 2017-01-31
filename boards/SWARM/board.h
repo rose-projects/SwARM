@@ -154,12 +154,12 @@
  * GPIOA setup:
  *
  * PA0  - VBAT_PROBE                (analog).
- * PA1  - MTR_LED_L                 (output push-pull, pull-up).
- * PA2  - MTR_PHASE_L               (output push-pull).
- * PA3  - MTR_ENABLE_L              (alternate 9).
+ * PA1  - MTR_LED_L                 (output push-pull).
+ * PA2  - MTR_PHASE_L               (output push-pull, pull-down).
+ * PA3  - MTR_ENABLE_L              (output push-pull, pull-down).
  * PA4  - PIN4                      (input floating).
- * PA5  - MTR_PHASE_R               (output push-pull).
- * PA6  - MTR_ENABLE_R              (alternate 1).
+ * PA5  - MTR_PHASE_R               (output push-pull, pull-down).
+ * PA6  - MTR_ENABLE_R              (output push-pull, pull-down).
  * PA7  - MTR_TRA_L                 (analog) comparator ADC
  * PA8  - PIN8                      (input floating).
  * PA9  - USB_VBUS                  (input floating) auto set by usb init
@@ -173,10 +173,10 @@
 #define VAL_GPIOA_MODER             (PIN_MODE_ANALOG(GPIOA_VBAT_PROBE) |    \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_LED_L)   |   \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_PHASE_L) |   \
-                                     PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_L)|\
+                                     PIN_MODE_OUTPUT(GPIOA_MTR_ENABLE_L)|   \
                                      PIN_MODE_INPUT(GPIOA_PIN4) |           \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_PHASE_R) |   \
-                                     PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_R)|\
+                                     PIN_MODE_OUTPUT(GPIOA_MTR_ENABLE_R)|\
                                      PIN_MODE_ANALOG(GPIOA_MTR_TRA_L) |     \
                                      PIN_MODE_INPUT(GPIOA_PIN8) |           \
                                      PIN_MODE_INPUT(GPIOA_USB_VBUS) |       \
@@ -190,8 +190,12 @@
 #define VAL_GPIOA_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
                                      PIN_PUPDR_PULLDOWN(GPIOA_SWCLK)|       \
-                                     PIN_PUPDR_PULLUP(GPIOA_MTR_LED_L))
-#define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn))
+                                     PIN_PUPDR_PULLDOWN(GPIOA_MTR_PHASE_L)| \
+                                     PIN_PUPDR_PULLDOWN(GPIOA_MTR_ENABLE_L)|\
+                                     PIN_PUPDR_PULLDOWN(GPIOA_MTR_PHASE_R)| \
+                                     PIN_PUPDR_PULLDOWN(GPIOA_MTR_ENABLE_R))
+#define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn)|       \
+                                     PIN_ODR_HIGH(GPIOA_MTR_LED_L))
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
                                      PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_SWDIO, 0U) |         \
@@ -283,7 +287,7 @@
 #define VAL_GPIOC_OTYPER    0x00000000
 #define VAL_GPIOC_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOC_PUPDR     0x00000000
-#define VAL_GPIOC_ODR       0x00000000
+#define VAL_GPIOC_ODR                PIN_ODR_HIGH(GPIOC_MTR_LED_R) 
 #define VAL_GPIOC_AFRL      0x00000000
 #define VAL_GPIOC_AFRH              (PIN_AFIO_AF(GPIOC_DWM_SPI_CLK, 6U) |   \
                                      PIN_AFIO_AF(GPIOC_DWM_SPI_MISO, 6U) |  \
