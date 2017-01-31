@@ -11,7 +11,6 @@
 #include "dance.h"
 
 int main(void) {
-	int i;
 	halInit();
 	chSysInit();
 
@@ -25,13 +24,6 @@ int main(void) {
 
 	startRadio();
 	printf("Ah oui oui oui oui oui !\n");
-	while (1)
-		for (i = 0; i < 400; i++) {
-			setRpwm(i);
-			setLpwm(i);
-			chThdSleepMilliseconds(25);
-		}
-
 
 	while(1)
 		chThdSleepMilliseconds(1000);
