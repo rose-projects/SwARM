@@ -14,5 +14,4 @@ void initMotors(){
     // Disable both channels so that the robot stays still
     setLpwm(0);
     setRpwm(0);
-
 }
