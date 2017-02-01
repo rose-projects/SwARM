@@ -408,13 +408,13 @@ void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv) {
 	(void) argv;
 
 	if(sbConnected & 0x01)
-		chprintf(chp, "Slave beacon 1 ... connected\n");
+		chprintf(chp, "SB 1 ... connected\n");
 	else
-		chprintf(chp, "Slave beacon 1 ... NOT connected\n");
+		chprintf(chp, "SB 1 ... NOT connected\n");
 	if(sbConnected & 0x02)
-		chprintf(chp, "Slave beacon 2 ... connected\n");
+		chprintf(chp, "SB 2 ... connected\n");
 	else
-		chprintf(chp, "Slave beacon 2 ... NOT connected\n");
+		chprintf(chp, "SB 2 ... NOT connected\n");
 
 	for(i=0; i<MAX_CONNECTED_ROBOTS; i++)
 		if(robotIDs[i] != 0)

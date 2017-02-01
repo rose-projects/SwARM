@@ -203,7 +203,7 @@ void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
 	int x, y;
 
 	if(argc != 2) {
-		chprintf(chp, "USAGE : beacon <SB1 X> <SB2 Y>\n");
+		chprintf(chp, "USAGE : beacon SB1_X SB2_Y\n");
 		return;
 	}
 
@@ -214,7 +214,7 @@ void setBeaconPosition(BaseSequentialStream *chp, int argc, char **argv) {
 		sb2Y = y;
 		chprintf(chp, "OK\n");
 	} else {
-		chprintf(chp, "SB1 X and SB2 Y can't be 0\n");
+		chprintf(chp, "KO\n");
 	}
 }
 
