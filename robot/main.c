@@ -16,13 +16,15 @@ int main(void) {
 
 	initExti();
 	initComparators();
-	initMotors();
+	initAsser();
 	initLEDs();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
-	setRpwm(100);
-	setLpwm(100);
+    chThdSleepMilliseconds(3000);
 
-	while (true)
-		chThdSleepMilliseconds(500);
+    dist_goal = 200;
+    angle_goal = 200;
+
+    while (true)
+        chThdSleepMilliseconds(500);
 }

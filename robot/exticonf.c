@@ -11,11 +11,24 @@ volatile unsigned int tick_l = 0;
 volatile unsigned int tick_r = 0;
 
 static virtual_timer_t l_vt;
+static unsigned int cnt_tick_l = 1;
+static virtual_timer_t r_vt;
+static unsigned int cnt_tick_r = 1;
 
 static void l_cb(void * arg){
     (void) arg;
 
-    extChannelEnableI(&EXTD1, 22);
+    chSysLockFromISR();
+    cnt_tick_l = 1;
+    chSysUnlockFromISR();
+}
+
+static void r_cb(void * arg){
+    (void) arg;
+
+    chSysLockFromISR();
+    cnt_tick_r = 1;
+    chSysUnlockFromISR();
 }
 
 /* Decawave EXTI callback */
@@ -32,18 +45,26 @@ static void Lcoder_cb(EXTDriver *extp, expchannel_t channel) {
     (void)extp;
     (void)channel;
 
-    extChannelDisableI(&EXTD1, 22);
-    chVTSetI(&l_vt, MS2ST(1), l_cb, NULL);
-
-    tick_l++;
-
+    chSysLockFromISR();
+    if(cnt_tick_l){
+        cnt_tick_l = 0;
+        tick_l++;
+        chVTSetI(&l_vt, 2, l_cb, NULL);
+    }
+    chSysUnlockFromISR();
 }
 /* Right encoder wheel EXTI callback */
 static void Rcoder_cb(EXTDriver *extp, expchannel_t channel) {
     (void)extp;
     (void)channel;
 
-    tick_r++;
+    chSysLockFromISR();
+    if(cnt_tick_r){
+        cnt_tick_r = 0;
+        tick_r++;
+        chVTSetI(&r_vt, 2, r_cb, NULL);
+    }
+    chSysUnlockFromISR();
 }
 
 // external interrupts configuration

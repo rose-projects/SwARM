@@ -6,13 +6,13 @@
 
 void test_motors(void){
     // Starting value for the PWMs
-    unsigned int pwm_pwr = 140;
+    unsigned int pwm_pwr = 200;
     // Time to sleep between two PWM values
     const unsigned int sleep_ms = 2000;
     // V value for HSV of the LEDs, it makes them toggle
     unsigned int v_hsv = 128;
 
-    for(int i=0;i<14;i++){
+    for(int i=0;i<20;i++){
         setLpwm(pwm_pwr);
         setRpwm(pwm_pwr);
         setColor(pwm_pwr, 255, v_hsv);

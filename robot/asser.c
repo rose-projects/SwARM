@@ -2,7 +2,6 @@
 #include "hal.h"
 
 #include "RTT/SEGGER_RTT.h"
-
 #include "asser.h"
 #include "coding_wheels.h"
 #include "wheel_constants.h"
@@ -10,13 +9,8 @@
 #include "motors.h"
 #include "coordination.h"
 
-// ASSER frequency in Hz
-#define ASSER_FREQ_HZ 200
-// ASSER THREADS sleep time in ms
-#define ASSER_THD_SLEEP (1000/ASSER_FREQ_HZ)
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX(a,b) ((a>b) ? a : b)
-#define MAX_POWER 200
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
@@ -36,13 +30,12 @@ static int angle_error_prev;
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
-    int cmd_left;
-    int cmd_right;
-    int cmd_dist;
-    int cmd_angle;
-    int angle;
-    int distance;
 
+    // ASSER frequency in Hz
+    const unsigned int ASSER_FREQ_HZ = 200;
+    // ASSER THREADS sleep time in ms
+    const unsigned int ASSER_THD_SLEEP = (1000/ASSER_FREQ_HZ);
+    
     // PID coefficients for angle and distance
     const double P_ANGLE = 1.33333333;
     const double I_ANGLE = 0.03333333;
@@ -50,6 +43,13 @@ static THD_FUNCTION(asser_thd, arg) {
     const double P_DIST = 3.33333333;
     const double I_DIST = 0.0001;
     const double D_DIST = 9;
+
+    int cmd_left; // left wheel PWM command
+    int cmd_right; // right wheel PWM command
+    int cmd_dist; // distance command calculated by enslavement
+    int cmd_angle; // angle command calculated by enslavement
+    int angle; // current angle
+    int distance; // current distance
 
     // 200 Hz calculation
     while(true){
@@ -82,7 +82,7 @@ static THD_FUNCTION(asser_thd, arg) {
         /*
          * Limiting all cmd values so that they don't exceed the maximum value
          * that the pwmEnableChannel can interpret without ambiguosity
-         * The maximmun value they can take is 200 so MAX_POWER should be less 
+         * The maximmun value they can take is 200 so PWM_MAX should be less 
          * than 200
          * Also if the value is negative, the wheel they control will move in
          * reverse
@@ -101,7 +101,7 @@ static THD_FUNCTION(asser_thd, arg) {
         }
 
         int cmd_max = MAX(cmd_right, cmd_left);
-        int offset = cmd_max - MIN(cmd_max, MAX_POWER);
+        int offset = cmd_max - MIN(cmd_max, PWM_MAX);
 
         cmd_left = cmd_left - offset;
         cmd_right = cmd_right - offset;
@@ -114,12 +114,12 @@ static THD_FUNCTION(asser_thd, arg) {
             cmd_right = 0;
         }
 
-        cmd_left = MIN(cmd_left, MAX_POWER);
-        cmd_right = MIN(cmd_right, MAX_POWER);
+        cmd_left = MIN(cmd_left, PWM_MAX);
+        cmd_right = MIN(cmd_right, PWM_MAX);
 
         // Updating PWM signals
-        setLpwm(200);
-        setRpwm(200);
+        setLpwm(cmd_left);
+        setRpwm(cmd_right);
 
         printf("cmd_left %d\r\n", cmd_left);
         printf("cmd_right %d\r\n", cmd_right);
@@ -132,7 +132,7 @@ static THD_FUNCTION(asser_thd, arg) {
 }
 
 // To be called from main to start a basic enslavement
-void start_asservs(){
+void initAsser(){
     // Motors init
     initMotors();
 
