@@ -434,8 +434,10 @@ void resetDate(void) {
 }
 
 void restartRadio(void) {
+	int j;
+	
 	restartMB = 1;
-	for(int j=0; j<MAX_CONNECTED_ROBOTS; j++)
+	for(j=0; j<MAX_CONNECTED_ROBOTS; j++)
 		robotIDs[j] = 0;
 
 	chEvtBroadcastFlags(&deca_event, EVENT_MASK(0));
