@@ -7,8 +7,8 @@
 #define NB_LED 2
 // correction coefficients to get closer to the target color
 #define R_COEFF 1
-#define G_COEFF 0.8
-#define B_COEFF 0.8
+#define G_COEFF 0.9
+#define B_COEFF 0.4
 
 // adapted from http://stackoverflow.com/a/14733008
 static void hsv2rgb(int h, int s, int v, uint8_t *r, uint8_t *g, uint8_t *b) {

@@ -84,37 +84,62 @@ static int sendPayload(int id, int size) {
 	return result;
 }
 
-static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist, int *id) {
-	if(argc == 2 && (*dist = atoi(argv[1])) > 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[0]) > 0)) {
+static int checkCalibrate(BaseSequentialStream *chp, int argc, char **argv, int *dist1, int *dist2, int *id) {
+	if(argc == 3 && (*dist1 = atoi(argv[1])) > 0 && (*dist2 = atoi(argv[2])) > 0 && *dist1 != *dist2
+		&& atoi(argv[0]) < MAX_CONNECTED_ROBOTS && (*id = atoi(argv[0]) > 0))
+	{
 		return 0;
 	} else {
-		chprintf(chp, "USAGE : **cal <ROBOT ID> <ACTUAL DISTANCE> (where ACTUAL DISTANCE is in cm)\n");
+		chprintf(chp, "USAGE : **cal ID ACTUAL_DISTANCE_1 ACTUAL_DISTANCE_2 (where ACTUAL_DISTANCE_X is in cm)\n");
 		return -1;
 	}
 }
-static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance, int16_t *dist, int16_t *offset) {
+
+static void calibrateRobot(BaseSequentialStream *chp, int expectedDistance1, int expectedDistance2,
+	int16_t *dist, int16_t *offset, int16_t *coeff)
+{
 	event_listener_t evt_listener;
-	int averageDistance = 0, i;
+	int averageDistance1 = 0, averageDistance2 = 0, i;
 
 	chEvtRegisterMask(&radioEvent, &evt_listener, EVENT_MASK(0));
-	chprintf(chp, "The 3 beacons must be connected, don't move the robot\nCalibrating ...");
 
+	if(*coeff == 0) {
+		*coeff = 1000;
+		return;
+	}
+
+	chprintf(chp, "The 3 beacons must be connected, don't move the robot\nCalibrating 1st point ...");
 	for(i=0; i<40; i++) {
 		// wait for a measure
 		chEvtWaitAny(ALL_EVENTS);
-		averageDistance += *dist - *offset;
+		averageDistance1 += ((*dist - *offset)*1000)/(*coeff);
 	}
-	*offset = expectedDistance - averageDistance/40;
+	chprintf(chp, " OK\n");
 
-	chprintf(chp, " done. Offset = %d cm\n", *offset);
+	for(i=10; i>0; i--) {
+		chprintf(chp, "Next measure in %ds\n", i);
+		chThdSleepMilliseconds(1000);
+	}
+
+	chprintf(chp, "Calibrating 2nd point ...");
+	for(i=0; i<40; i++) {
+		// wait for a measure
+		chEvtWaitAny(ALL_EVENTS);
+		averageDistance2 += ((*dist - *offset)*1000)/(*coeff);
+	}
+
+	*coeff = ((expectedDistance2 - expectedDistance1)*40000)/(averageDistance2 - averageDistance1);
+	*offset = expectedDistance1 - averageDistance1*(*coeff)/40000;
+
+	chprintf(chp, " OK. Offset = %d cm, coeff = %d\n", *offset, *coeff);
 	chEvtUnregister(&radioEvent, &evt_listener);
 }
 
 void mbCalibrate(BaseSequentialStream *chp, int argc, char **argv) {
-	int expectedDistance, robotID;
+	int expectedDistance1, expectedDistance2, robotID;
 	struct distOffset offset;
 
-	if(checkCalibrate(chp, argc, argv, &expectedDistance, &robotID) < 0)
+	if(checkCalibrate(chp, argc, argv, &expectedDistance1, &expectedDistance2, &robotID) < 0)
 		return;
 
 	// load current offsets in RAM
@@ -122,16 +147,19 @@ void mbCalibrate(BaseSequentialStream *chp, int argc, char **argv) {
 	offset.mb = robots[robotID -1].offsets->mb;
 	offset.sb1 = robots[robotID -1].offsets->sb1;
 	offset.sb2 = robots[robotID -1].offsets->sb2;
+	offset.mbCoeff = robots[robotID -1].offsets->mbCoeff;
+	offset.sb1Coeff = robots[robotID -1].offsets->sb1Coeff;
+	offset.sb2Coeff = robots[robotID -1].offsets->sb2Coeff;
 
-	calibrateRobot(chp, expectedDistance, &robots[robotID -1].mbDist, &offset.mb);
+	calibrateRobot(chp, expectedDistance1, expectedDistance2, &robots[robotID -1].mbDist, &offset.mb, &offset.mbCoeff);
 	writeOffset(&offset);
 }
 
 void sb1Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
-	int expectedDistance, robotID;
+	int expectedDistance1, expectedDistance2, robotID;
 	struct distOffset offset;
 
-	if(checkCalibrate(chp, argc, argv, &expectedDistance, &robotID) < 0)
+	if(checkCalibrate(chp, argc, argv, &expectedDistance1, &expectedDistance2, &robotID) < 0)
 		return;
 
 	// load current offsets in RAM
@@ -139,16 +167,19 @@ void sb1Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 	offset.mb = robots[robotID -1].offsets->mb;
 	offset.sb1 = robots[robotID -1].offsets->sb1;
 	offset.sb2 = robots[robotID -1].offsets->sb2;
+	offset.mbCoeff = robots[robotID -1].offsets->mbCoeff;
+	offset.sb1Coeff = robots[robotID -1].offsets->sb1Coeff;
+	offset.sb2Coeff = robots[robotID -1].offsets->sb2Coeff;
 
-	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb1Dist, &offset.sb1);
+	calibrateRobot(chp, expectedDistance1, expectedDistance2, &robots[robotID -1].sb1Dist, &offset.sb1, &offset.sb1Coeff);
 	writeOffset(&offset);
 }
 
 void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
-	int expectedDistance, robotID;
+	int expectedDistance1, expectedDistance2, robotID;
 	struct distOffset offset;
 
-	if(checkCalibrate(chp, argc, argv, &expectedDistance, &robotID) < 0)
+	if(checkCalibrate(chp, argc, argv, &expectedDistance1, &expectedDistance2, &robotID) < 0)
 		return;
 
 	// load current offsets in RAM
@@ -156,8 +187,11 @@ void sb2Calibrate(BaseSequentialStream *chp, int argc, char **argv) {
 	offset.mb = robots[robotID -1].offsets->mb;
 	offset.sb1 = robots[robotID -1].offsets->sb1;
 	offset.sb2 = robots[robotID -1].offsets->sb2;
+	offset.mbCoeff = robots[robotID -1].offsets->mbCoeff;
+	offset.sb1Coeff = robots[robotID -1].offsets->sb1Coeff;
+	offset.sb2Coeff = robots[robotID -1].offsets->sb2Coeff;
 
-	calibrateRobot(chp, expectedDistance, &robots[robotID -1].sb2Dist, &offset.sb2);
+	calibrateRobot(chp, expectedDistance1, expectedDistance2, &robots[robotID -1].sb2Dist, &offset.sb2, &offset.sb2Coeff);
 	writeOffset(&offset);
 }
 
@@ -259,7 +293,7 @@ void storeColors(BaseSequentialStream *chp, int argc, char **argv) {
 			int fadeTime = atoi(argv[i*5 + 5]);
 			if(fadeTime == 0)
 				fadeTime = 1;
-				
+
 			payloadBuffer[i*6] = date;
 			payloadBuffer[i*6 + 1] = date >> 8;
 			payloadBuffer[i*6 + 2] = h;
@@ -287,4 +321,39 @@ void writeStoredData(BaseSequentialStream *chp, int argc, char **argv) {
 		}
 	}
 	chprintf(chp, "KO\n");
+}
+
+void dumpRobotData(BaseSequentialStream *chp, int argc, char **argv) {
+	if(argc == 1 && atoi(argv[0]) != 0 && atoi(argv[0]) < MAX_CONNECTED_ROBOTS) {
+		int id = atoi(argv[0]) - 1;
+
+		if(robots[id].offsets != NULL) {
+			chprintf(chp, "UID      = %d\n", robots[id].offsets->uid);
+			chprintf(chp, "offsets  = %d, %d, %d\n", robots[id].offsets->mb, robots[id].offsets->sb1, robots[id].offsets->sb2);
+		}
+
+		chprintf(chp, "x        = %d cm\n", robots[id].x);
+		chprintf(chp, "y        = %d cm\n", robots[id].y);
+		chprintf(chp, "MB dist  = %d cm\n", robots[id].mbDist);
+		chprintf(chp, "SB1 dist = %d cm\n", robots[id].sb1Dist);
+		chprintf(chp, "SB2 dist = %d cm\n", robots[id].sb2Dist);
+
+		chprintf(chp, "status  = %d", robots[id].status);
+		switch(robots[id].status & RB_STATUS_BATT) {
+		case BATTERY_HIGH:
+			printf(" (battery: high)\n");
+			break;
+		case BATTERY_OK:
+			printf(" (battery: ok)\n");
+			break;
+		case BATTERY_LOW:
+			printf(" (battery: low)\n");
+			break;
+		case BATTERY_VERYLOW:
+			printf(" (battery: very low !)\n");
+			break;
+		}
+	} else {
+		chprintf(chp, "KO\n");
+	}
 }

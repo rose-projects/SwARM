@@ -1,6 +1,7 @@
 #include "ch.h"
 #include "hal.h"
 #include "radiocomms.h"
+#include "../shared/radioconf.h"
 #include "led.h"
 
 // sample to battery voltage (in 0.01V) conversion coeff
@@ -9,19 +10,15 @@
 #define SAMPLES_HISTORY 16
 static adcsample_t samples[SAMPLES_HISTORY];
 
-// battery states and transition thresholds
-#define BATTERY_HIGH 3
+// battery transition thresholds
 #define BATTERY_HIGH_LTHRES 380
 
-#define BATTERY_OK 2
 #define BATTERY_OK_HTHRES 390
 #define BATTERY_OK_LTHRES 340
 
-#define BATTERY_LOW 1
 #define BATTERY_LOW_HTHRES 350
 #define BATTERY_LOW_LTHRES 300
 
-#define BATTERY_VERYLOW 0
 #define BATTERY_VERYLOW_HTHRES 310
 
 int batteryState = BATTERY_OK;
@@ -76,7 +73,7 @@ static void updateState(int voltage) {
 
 	// set battery state flag in status
 	chSysLock(); // lock to guarantee atomicity
-	radioData.status &= 0xFC;
+	radioData.status &= ~RB_STATUS_BATT;
 	radioData.status |= batteryState;
 	chSysUnlock();
 

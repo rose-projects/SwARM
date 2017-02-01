@@ -8,7 +8,7 @@
 #include "../shared/radioconf.h"
 #include "usbconf.h"
 
-#define MAX_CALIBRATION 50
+#define MAX_CALIBRATION 20
 
 /* ID of the beacon : 0 for mb, 253 for sb1, 254 for sb2 */
 int deviceUID __attribute__((section(".flashdata")));
@@ -54,7 +54,7 @@ static int writeFlash(void) {
 struct distOffset* loadOffsets(uint32_t uid) {
 	int i;
 	struct distOffset offset = {
-		uid, -200, -200, -200
+		uid, -200, -200, -200, 1000, 1000, 1000
 	};
 
 	for(i = 0; i<MAX_CALIBRATION; i++)
@@ -89,6 +89,9 @@ int writeOffset(struct distOffset *offset) {
 	offsetsInRAM[i].mb = offset->mb;
 	offsetsInRAM[i].sb1 = offset->sb1;
 	offsetsInRAM[i].sb2 = offset->sb2;
+	offsetsInRAM[i].mbCoeff = offset->mbCoeff;
+	offsetsInRAM[i].sb1Coeff = offset->sb1Coeff;
+	offsetsInRAM[i].sb2Coeff = offset->sb2Coeff;
 	if(writeFlash()) {
 		printf("Couln't write flash.\n");
 		return -1;

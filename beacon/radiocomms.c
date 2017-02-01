@@ -240,7 +240,7 @@ static void sendSOF(void) {
 }
 
 static void readSlaveBeacon(int beaconID) {
-	int ret, i, j=0;
+	int ret, dist, i, j=0;
 	radioBuffer[0] = BEACON_READ_MSG_ID;
 	radioBuffer[1] = beaconID;
 
@@ -248,12 +248,13 @@ static void readSlaveBeacon(int beaconID) {
 	if(ret > 0 && radioBuffer[0] == BEACON_READ_MSG_ID && radioBuffer[1] == 0) {
 		// read and store distances
 		for(i=2; i<ret; i+=2) {
+			dist = radioBuffer[i] + (radioBuffer[i + 1] << 8);
 			if(beaconID == 253) {
-				robots[robotIDs[j] - 1].sb1Dist = radioBuffer[i] + (radioBuffer[i + 1] << 8);
-				robots[robotIDs[j] - 1].sb1Dist += robots[robotIDs[j] - 1].offsets->sb1;
+				dist = dist*robots[robotIDs[j] - 1].offsets->sb1Coeff/1000;
+				robots[robotIDs[j] - 1].sb1Dist = dist + robots[robotIDs[j] - 1].offsets->sb1;
 			} else {
-				robots[robotIDs[j] - 1].sb2Dist = radioBuffer[i] + (radioBuffer[i + 1] << 8);
-				robots[robotIDs[j] - 1].sb2Dist += robots[robotIDs[j] - 1].offsets->sb2;
+				dist = dist*robots[robotIDs[j] - 1].offsets->sb2Coeff/1000;
+				robots[robotIDs[j] - 1].sb2Dist = dist + robots[robotIDs[j] - 1].offsets->sb2;
 			}
 			j++;
 		}
@@ -335,11 +336,11 @@ static void masterBeaconTask(void) {
 		readSlaveBeacon(254);
 
 		// compute robots locations if all the beacons are available
-		if(sbConnected == 0x03) {
+		if(sbConnected == 0x03)
 			trilateralizeRobots();
-			// send radio event (new distances and robots locations available)
-			chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
-		}
+
+		// send radio event (new distances and robots locations available)
+		chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
 
 		// send data to the robots and measure distances
 		dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
@@ -353,6 +354,7 @@ static void masterBeaconTask(void) {
 				printf("robot %d disconnected\n", robotIDs[i]);
 				robotIDs[i] = 0; // mark robot as disconnected
 			} else {
+				robots[robotIDs[i] - 1].mbDist = robots[robotIDs[i] - 1].mbDist*robots[robotIDs[i] - 1].offsets->mbCoeff/1000;
 				robots[robotIDs[i] - 1].mbDist += robots[robotIDs[i] - 1].offsets->mb;
 				robots[robotIDs[i] - 1].status = radioBuffer[4];
 				// if additional payload was sent to the robot

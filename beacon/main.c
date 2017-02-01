@@ -26,6 +26,7 @@ static const ShellCommand MBshCmds[] = {
 	{"moves", storeMoves},
 	{"colors", storeColors},
 	{"flash", writeStoredData},
+	{"robot", dumpRobotData},
 	{NULL, NULL}
 };
 

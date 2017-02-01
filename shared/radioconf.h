@@ -39,8 +39,12 @@
 #define RB_FLAGS_CLR 0x10   // clear stored data
 
 // status bits :
-#define RB_STATUS_BATT1 0x01 // battery state
-#define RB_STATUS_BATT2 0x02 // battery state
+#define RB_STATUS_BATT 0x03 // battery state
 #define RB_STATUS_WOK 0x04 // write OK
+
+#define BATTERY_VERYLOW 0
+#define BATTERY_LOW 1
+#define BATTERY_OK 2
+#define BATTERY_HIGH 3
 
 #endif
