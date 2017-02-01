@@ -92,7 +92,6 @@ static struct color **goal;
 
 static THD_WORKING_AREA(waFader, 256);
 static THD_FUNCTION(faderThread, th_data) {
-<<<<<<< HEAD
 	uint8_t htarget = 0, starget = 0, vtarget = 0;
 	float hstep = 0, sstep = 0, vstep = 0, h = 0, s = 0, v = 0;
 

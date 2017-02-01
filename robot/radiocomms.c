@@ -10,6 +10,7 @@
 #include "radiocomms.h"
 #include "led.h"
 #include "dance.h"
+#include "imu.h"
 #include "RTT/SEGGER_RTT.h"
 
 // event triggered when new data has been received
@@ -212,11 +213,15 @@ static THD_FUNCTION(radioThread, th_data) {
 				storeMoves(&radioBuffer[7], (ret - 7)/11);
 			else if(radioData.flags & RB_FLAGS_CLSTR)
 				storeColors(&radioBuffer[7], (ret - 7)/6);
-			else if(radioData.flags & RB_FLAGS_WF)
+			else if(radioData.flags & RB_FLAGS_WF) {
+				saveIMUcalibration();
 				writeStoredData();
+				writeIMUcalibration();
+			}
 		} else {
 			sofTS = -1;
 		}
+
 		if(messageRead(RANGING_MSG_ID, deviceID, (registered*3+1)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}

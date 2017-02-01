@@ -17,6 +17,7 @@ int main(void) {
 	chSysInit();
 
 	// initialize hardware
+	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 	initExti();
 	initComparators();
 	initPWM();
@@ -24,7 +25,6 @@ int main(void) {
 	initBattery();
 	initSequencer();
 	initIMU();
-	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
 	// start radio thread
 	startRadio();

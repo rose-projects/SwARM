@@ -1,3 +1,4 @@
+#include <string.h>
 #include "ch.h"
 #include "hal.h"
 #include "chevents.h"
@@ -95,6 +96,14 @@ void storeColors(uint8_t* buffer, int pointCnt) {
 		colorsBuffer[storedColors + i].fadeTime =  buffer[i*6 + 5];
 	}
 	storedColors += pointCnt;
+}
+
+void saveDance(void) {
+	storedMoves = danceMovesCnt > MAX_MOVE_POINTS ? 0 : danceMovesCnt;
+	storedColors = danceColorsCnt > MAX_COLOR_POINTS ? 0 : danceColorsCnt;
+
+	memcpy(movesBuffer, danceMoves, sizeof(struct move)*danceMovesCnt);
+	memcpy(colorsBuffer, danceColors, sizeof(struct color)*danceColorsCnt);
 }
 
 static THD_WORKING_AREA(waSequencer, 256);

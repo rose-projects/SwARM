@@ -9,6 +9,8 @@ void writeStoredData(void);
 void storeMoves(uint8_t* buffer, int pointCnt);
 /* store dance color points before writing them */
 void storeColors(uint8_t* buffer, int pointCnt);
+/* copy dance from flash to RAM buffers */
+void saveDance(void);
 
 struct move {
 	uint16_t date; // in 0.1s
