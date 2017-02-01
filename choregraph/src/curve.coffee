@@ -1,3 +1,7 @@
+# When the departure and destination are aligned, if the orientations differ
+# by 1 degree, arcTo fails to draw the path and crashes.
+# The same happens when the circles are too close.
+
 computeInterpoints = (lastMove, move) ->
 	x_dep = lastMove.x
 	y_dep = lastMove.y
@@ -69,7 +73,7 @@ computeInterpoints = (lastMove, move) ->
 	# find the tangent points
 	# hypothesis1: the robot will never need to to go to the left if
 	# the goal is in the right-hand quadrant, nor behind it
-	for i in [0..1]
+	for i in [0..1] # at most 2 pass, if at least one error is detected
 		if dep_l*dest_l == 1
 			is_inner_tan = -1
 		else
@@ -89,6 +93,8 @@ computeInterpoints = (lastMove, move) ->
 		# Correct the error if the wrong circle was chosen. Happens when
 		# the direction goes through the opposite circle.
 		if (pt_tan_dest[0]-pt_tan_dep[0])*dep_cos + (pt_tan_dest[1]-pt_tan_dep[1])*dep_sin > 0 and (pt_tan_dep[0]-x_dep)*dep_cos + (pt_tan_dep[1]-y_dep)*dep_sin < 0
+
+
 			dep_l *= -1
 			if dep_c[0] == tmp1[0] and dep_c[1] == tmp1[1]
 				dep_c[0] = tmp2[0]
@@ -99,6 +105,8 @@ computeInterpoints = (lastMove, move) ->
 			continue
 
 		if (pt_tan_dest[0]-pt_tan_dep[0])*dest_cos + (pt_tan_dest[1]-pt_tan_dep[1])*dest_sin > 0 and (x_dest-pt_tan_dest[0])*dest_cos + (y_dest-pt_tan_dest[1])*dest_sin < 0
+
+
 			dest_l *= -1
 			if dest_c[0] == tmp3[0] and dest_c[0] == tmp3[0]
 				dest_c[0] = tmp4[0]
@@ -108,7 +116,6 @@ computeInterpoints = (lastMove, move) ->
 				dest_c[1] = tmp3[1]
 			continue
 		break	
-
 	return {
 		center1:
 			x: dep_c[0]
