@@ -18,9 +18,9 @@ int main(void) {
 
 	// initialize hardware
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
+	initPWM();
 	initExti();
 	initComparators();
-	initPWM();
 	initLEDs();
 	initBattery();
 	initSequencer();
