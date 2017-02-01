@@ -5,12 +5,12 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -Og -ggdb -fomit-frame-pointer -falign-functions=16 -std=c11
 endif
 
 # C specific options here (added to USE_OPT).
 ifeq ($(USE_COPT),)
-  USE_COPT =
+  USE_COPT = -DCHPRINTF_USE_FLOAT=1
 endif
 
 # C++ specific options here (added to USE_OPT).
@@ -71,7 +71,7 @@ endif
 
 # Enables the use of FPU on Cortex-M4 (no, softfp, hard).
 ifeq ($(USE_FPU),)
-  USE_FPU = hard
+  USE_FPU = no
 endif
 
 #
@@ -83,17 +83,17 @@ endif
 #
 
 # Define project name here
-PROJECT = SwARM
+PROJECT = imu
 
 # Imported source files and paths
-CHIBIOS = ../ChibiOS
-BOARD = ../boards/SWARM
+CHIBIOS = ../../ChibiOS
+BOARD = ../../boards/OLIMEX_E407_REV_E_JTAG
 
 # Startup files.
-include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f3xx.mk
+include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f4xx.mk
 # HAL-OSAL files (optional).
 include $(CHIBIOS)/os/hal/hal.mk
-include $(CHIBIOS)/os/hal/ports/STM32/STM32F3xx/platform.mk
+include $(CHIBIOS)/os/hal/ports/STM32/STM32F4xx/platform.mk
 include $(BOARD)/board.mk
 include $(CHIBIOS)/os/hal/osal/rt/osal.mk
 # RTOS files (optional).
@@ -101,18 +101,12 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= ../shared/STM32F302R6.ld
-
-vpath %.c ../shared/decadriver/
-vpath %.c ../shared/
-
-RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
-DRIVERSRC = pwmdriver.c exticonf.c compdriver.c flash.c
-RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
-IMU = my_i2c.c imu.c
+LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
+MYSRC = usbcfg.c terminal.c my_i2c.c imu.c main.c
+
 CSRC = $(STARTUPSRC) \
        $(KERNSRC) \
        $(PORTSRC) \
@@ -120,11 +114,8 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
-       $(RADIOSRC) \
-       $(DRIVERSRC) \
-       $(RTTSRC) \
-	   $(IMU) \
-       main.c battery.c led.c dance.c
+       $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+       $(MYSRC)
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -154,8 +145,7 @@ TCPPSRC =
 ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
-         $(HALINC) $(PLATFORMINC) $(BOARDINC) \
-         $(CHIBIOS)/os/various .
+         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(CHIBIOS)/os/hal/lib/streams
 
 #
 # Project, sources and paths
@@ -166,11 +156,9 @@ INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
 #
 
 MCU  = cortex-m4
-
-#TRGT = arm-elf-
 TRGT = arm-none-eabi-
-CC   = $(TRGT)gcc
-CPPC = $(TRGT)g++
+CC   = ccache $(TRGT)gcc
+CPPC = ccache $(TRGT)g++
 # Enable loading with g++ only if you need C++ runtime support.
 # NOTE: You can use C++ even without C++ support if you are careful. C++
 #       runtime support makes code size explode.
@@ -181,6 +169,7 @@ AS   = $(TRGT)gcc -x assembler-with-cpp
 AR   = $(TRGT)ar
 OD   = $(TRGT)objdump
 SZ   = $(TRGT)size
+DBG  = $(TRGT)gdb
 HEX  = $(CP) -O ihex
 BIN  = $(CP) -O binary
 
@@ -191,45 +180,39 @@ AOPT =
 TOPT = -mthumb -DTHUMB
 
 # Define C warning options here
-CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes
+CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Werror
 
 # Define C++ warning options here
-CPPWARN = -Wall -Wextra -Wundef
+CPPWARN = -Wall -Wextra -Wundef -Werror
 
 #
 # Compiler settings
 ##############################################################################
 
+RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
+include $(RULESPATH)/rules.mk
+
 ##############################################################################
 # Start of user section
 #
 
-# List all user C define here, like -D_DEBUG=1
-UDEFS =
+startgdbserver:
+	JLinkGDBServer -if swd -device "STM32F407ZG" -LocalhostOnly
 
-# Define ASM defines here
-UADEFS =
+gdb:
+	$(DBG) build/$(PROJECT).elf
 
-# List all user directories here
-UINCDIR =
+serial:
+	picocom -b 38400 -f n -y n -d 8 --imap lfcrlf /dev/cu.usbmodem311
 
-# List the user directory to look for the libraries here
-ULIBDIR =
+record:
+	echo "press CTRL + C to stop data recording...\r\n"
+	echo "x,y,z" > data.csv
+	cat /dev/cu.usbmodem311 >> data.csv
 
-# List all user libraries here
-ULIBS =
-
+plot:
+	echo "ploting..."
+	python ./visual.py
 #
 # End of user defines
 ##############################################################################
-
-RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
-include $(RULESPATH)/rules.mk
-
-debugserver:
-	JLinkGDBServer -if swd -device "STM32F302R6T6" -LocalhostOnly
-
-debug: all
-	$(GDB) build/$(PROJECT).elf
-
-.PHONY: debug debugserver

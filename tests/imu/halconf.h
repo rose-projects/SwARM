@@ -31,6 +31,13 @@
 #include "mcuconf.h"
 
 /**
+ * @brief   Enables the TM subsystem.
+ */
+#if !defined(HAL_USE_TM) || defined(__DOXYGEN__)
+#define HAL_USE_TM                  TRUE
+#endif
+
+/**
  * @brief   Enables the PAL subsystem.
  */
 #if !defined(HAL_USE_PAL) || defined(__DOXYGEN__)
@@ -41,7 +48,7 @@
  * @brief   Enables the ADC subsystem.
  */
 #if !defined(HAL_USE_ADC) || defined(__DOXYGEN__)
-#define HAL_USE_ADC                 TRUE
+#define HAL_USE_ADC                 FALSE
 #endif
 
 /**
@@ -62,7 +69,7 @@
  * @brief   Enables the EXT subsystem.
  */
 #if !defined(HAL_USE_EXT) || defined(__DOXYGEN__)
-#define HAL_USE_EXT                 TRUE
+#define HAL_USE_EXT                 FALSE
 #endif
 
 /**
@@ -139,14 +146,14 @@
  * @brief   Enables the SERIAL over USB subsystem.
  */
 #if !defined(HAL_USE_SERIAL_USB) || defined(__DOXYGEN__)
-#define HAL_USE_SERIAL_USB          FALSE
+#define HAL_USE_SERIAL_USB          TRUE
 #endif
 
 /**
  * @brief   Enables the SPI subsystem.
  */
 #if !defined(HAL_USE_SPI) || defined(__DOXYGEN__)
-#define HAL_USE_SPI                 TRUE
+#define HAL_USE_SPI                 FALSE
 #endif
 
 /**
@@ -160,7 +167,7 @@
  * @brief   Enables the USB subsystem.
  */
 #if !defined(HAL_USE_USB) || defined(__DOXYGEN__)
-#define HAL_USE_USB                 FALSE
+#define HAL_USE_USB                 TRUE
 #endif
 
 /**
@@ -179,7 +186,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(ADC_USE_WAIT) || defined(__DOXYGEN__)
-#define ADC_USE_WAIT                TRUE
+#define ADC_USE_WAIT                FALSE
 #endif
 
 /**
@@ -198,7 +205,7 @@
  * @brief   Sleep mode related APIs inclusion switch.
  */
 #if !defined(CAN_USE_SLEEP_MODE) || defined(__DOXYGEN__)
-#define CAN_USE_SLEEP_MODE          TRUE
+#define CAN_USE_SLEEP_MODE          FALSE
 #endif
 
 /*===========================================================================*/
@@ -333,7 +340,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(SPI_USE_WAIT) || defined(__DOXYGEN__)
-#define SPI_USE_WAIT                TRUE
+#define SPI_USE_WAIT                FALSE
 #endif
 
 /**

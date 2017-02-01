@@ -9,6 +9,7 @@
 #include "battery.h"
 #include "radiocomms.h"
 #include "dance.h"
+#include "imu.h"
 
 int main(void) {
 	// initialize ChibiOS
@@ -22,6 +23,7 @@ int main(void) {
 	initLEDs();
 	initBattery();
 	initSequencer();
+	initIMU();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
 	// start radio thread
