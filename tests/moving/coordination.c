@@ -29,10 +29,15 @@ static int dep_to_left, dest_to_left;       // 1/-1 going to the left or right
 static float angle_dep, angle_dest;
 static int tot_len, dep_len, straight_len, dest_len;
 
+#ifdef DEBUG
+int db_pt_tan_dep[2], db_pt_tan_dest[2]; // debug
+#endif // DEBUG
+
 // Called once to set the destination
 void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
                              int r_dep_, int r_dest_, int n_pts_)
 {
+	int j; // loop index
 	int tmp1[2], tmp2[2], tmp3[2], tmp4[2]; // possible circles
 	int h[2] = {0};                         // homothetic center
 	int dirty_hack = 1;                     // solves r_dep < re_dest
@@ -107,10 +112,11 @@ void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
 	}
 
 	/* find the tangent points
-	 * hypothesis: the robot will never need to to go to the left if
-	 * the goal is in the right-hand quadrant, nor behind it
+	 * Hypothesis: the robot will never need to to go to the left if
+	 * the goal is in the right-hand quadrant, nor behind it.
+	 * At most two passes are needed.
 	 */
-	for (;;) {
+	for (j = 0; j < 2; j++) {
 		if (dep_to_left * dest_to_left == 1) {
 			is_inner_tan = -1;
 		} else {
@@ -164,12 +170,12 @@ void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
 		    (pt_tan_dep[1]-y_dep)*dep_sin < 0)
 		{
 			dep_to_left *= -1;
-			if (c_dep[0] == tmp1[0]) {
+			if (c_dep[0] == tmp1[0] && c_dep[1] == tmp1[1]) {
 				c_dep[0] = tmp2[0];
 				c_dep[1] = tmp2[1];
 			} else {
-				c_dep[0] = tmp3[0];
-				c_dep[1] = tmp3[1];
+				c_dep[0] = tmp1[0];
+				c_dep[1] = tmp1[1];
 			}
 			continue;
 		}
@@ -178,7 +184,7 @@ void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
 		   (y_dest-pt_tan_dest[1])*dest_sin < 0)
 		{
 			dest_to_left *= -1;
-			if (c_dest[0] == tmp3[0]) {
+			if (c_dest[0] == tmp3[0] && c_dest[1] == tmp3[1]) {
 				c_dest[0] = tmp4[0];
 				c_dest[1] = tmp4[1];
 			} else {
@@ -246,6 +252,13 @@ void update_main_coordinates(int x_dest_, int y_dest_, float ori_dest_,
 	}
 
 	i = 1;
+
+#ifdef DEBUG
+	db_pt_tan_dep[0] = pt_tan_dep[0];
+	db_pt_tan_dep[1] = pt_tan_dep[1];
+	db_pt_tan_dest[0] = pt_tan_dest[0];
+	db_pt_tan_dest[1] = pt_tan_dest[1];
+#endif //DEBUG
 }
 
 // Update distance and angle goals: called every 50ms
