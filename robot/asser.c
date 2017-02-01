@@ -2,7 +2,6 @@
 #include "hal.h"
 
 #include "RTT/SEGGER_RTT.h"
-
 #include "asser.h"
 #include "coding_wheels.h"
 #include "wheel_constants.h"
@@ -10,13 +9,8 @@
 #include "motors.h"
 #include "coordination.h"
 
-// ASSER frequency in Hz
-#define ASSER_FREQ_HZ 200
-// ASSER THREADS sleep time in ms
-#define ASSER_THD_SLEEP (1000/ASSER_FREQ_HZ)
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX(a,b) ((a>b) ? a : b)
-#define MAX_POWER 200
 
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_asser_thd, 128);
@@ -36,18 +30,23 @@ static int angle_error_prev;
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
     (void) arg;
-    int cmd_dist;
-    int cmd_angle;
-    int angle;
-    int distance;
-
+    // ASSER frequency in Hz
+    const unsigned int ASSER_FREQ_HZ = 200;
+    // ASSER THREADS sleep time in ms
+    const unsigned int ASSER_THD_SLEEP_MS = (1000/ASSER_FREQ_HZ);
+    
     // PID coefficients for angle and distance
-    const double P_ANGLE = 1.33333333;
-    const double I_ANGLE = 0.03333333;
-    const double D_ANGLE = 0.8;
-    const double P_DIST = 3.33333333;
-    const double I_DIST = 0.0001;
-    const double D_DIST = 9;
+    const double P_ANGLE = 2;
+    const double I_ANGLE = 0.002;
+    const double D_ANGLE = 5;
+    const double P_DIST = 1.33333333;
+    const double I_DIST = 0.002;
+    const double D_DIST = 5;
+
+    int cmd_dist; // distance command calculated by enslavement
+    int cmd_angle; // angle command calculated by enslavement
+    int angle; // current angle
+    int distance; // current distance
 
     // 200 Hz calculation
     while(true){
@@ -80,57 +79,68 @@ static THD_FUNCTION(asser_thd, arg) {
         /*
          * Limiting all cmd values so that they don't exceed the maximum value
          * that the pwmEnableChannel can interpret without ambiguosity
-         * The maximmun value they can take is 200 so MAX_POWER should be less 
+         * The maximmun value they can take is 200 so PWM_MAX should be less 
          * than 200
          * Also if the value is negative, the wheel they control will move in
          * reverse
          */
 
-        // Calculating cmd values
+        /*
+         * Calculating motor commands value
+         * Firt we have the basic sum and difference 
+         * Then we normalize the values so obtained so that they don't exceed 
+         * PWM_MAX/2 and are above -PWM_MAX/2 and mimic the truncations so that
+         * the values are still "proportionate" after normalization 
+         */
         cmd_left = cmd_dist - cmd_angle;
         cmd_right = cmd_dist + cmd_angle;
 
-        // Standardizing command values regarding their sign
-        if(cmd_left < 0){
-            cmd_left = 0;
-        }
-        if(cmd_right < 0){
-            cmd_right = 0;
-        }
-
         int cmd_max = MAX(cmd_right, cmd_left);
-        int offset = cmd_max - MIN(cmd_max, MAX_POWER);
+        int cmd_min = MIN(cmd_right, cmd_left);
+        int offset_pos = 0;
+        int offset_neg = 0;
 
-        cmd_left = cmd_left - offset;
-        cmd_right = cmd_right - offset;
-
-        // Standardizing command values regarding their sign
-        if(cmd_left < 0){
-            cmd_left = 0;
-        }
-        if(cmd_right < 0){
-            cmd_right = 0;
+        if(cmd_max > 200){
+            offset_pos = cmd_max - PWM_MAX/2;
         }
 
-        cmd_left = MIN(cmd_left, MAX_POWER);
-        cmd_right = MIN(cmd_right, MAX_POWER);
+        if(cmd_min < -200){
+            offset_neg = cmd_min + PWM_MAX/2;
+        }
 
-        // Updating PWM signals
-        setLpwm(200);
-        setRpwm(200);
+        cmd_left = cmd_left - offset_pos - offset_neg;
+        cmd_right = cmd_right - offset_pos - offset_neg;
 
-        printf("cmd_left %d\r\n", cmd_left);
-        printf("cmd_right %d\r\n", cmd_right);
+        if(cmd_left >= 0){
+            cmd_left = MIN(cmd_left, PWM_MAX/2);
+        }
+        else{
+            cmd_left = MAX(cmd_left, -PWM_MAX/2);
+        }
+
+        if(cmd_right >= 0){
+            cmd_right = MIN(cmd_right, PWM_MAX/2);
+        }
+        else{
+            cmd_right = MAX(cmd_right, -PWM_MAX/2);
+        }
+
         printf("tick_l %d\r\n", tick_l);
         printf("tick_r %d\r\n", tick_r);
+        printf("cmd_left %d\r\n", cmd_left);
+        printf("cmd_right %d\r\n", cmd_right);
+        
+        // Updating PWM signals
+        setLpwm(cmd_left);
+        setRpwm(cmd_right);
 
         // Go to sleep
-        chThdSleepMilliseconds(ASSER_THD_SLEEP);
+        chThdSleepMilliseconds(ASSER_THD_SLEEP_MS);
     }
 }
 
 // To be called from main to start a basic enslavement
-void start_asservs(){
+void initAsser(){
     // Motors init
     initMotors();
 

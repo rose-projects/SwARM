@@ -1,7 +1,7 @@
 #ifndef ASSER_H
 #define ASSER_H
 
-void start_asservs(void);
+void initAsser(void);
 void begin_new_asser(void);
 
 extern volatile int dist_goal;

@@ -15,8 +15,7 @@
 #include "moving.h"
 #include "coding_wheels.h"
 
-#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
-#define TEST_WA_SIZE    THD_WORKING_AREA_SIZE(256)
+#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2304)
 
 volatile int cmd_left = 0;
 volatile int cmd_right = 0;
@@ -56,7 +55,7 @@ static void cmd_mtr_r_p(BaseSequentialStream *chp, int argc, char *argv[]) {
     return;
 }
 
-static void cmd_tick(BaseSequentialStream *chp, int argc, char *argv[]) {
+static void cmd_status(BaseSequentialStream *chp, int argc, char *argv[]) {
 
     (void) argv;
 
@@ -67,7 +66,8 @@ static void cmd_tick(BaseSequentialStream *chp, int argc, char *argv[]) {
     else{
         chprintf(chp,"tick_l %d\r\n", tick_l);
         chprintf(chp,"tick_r %d\r\n", tick_r);
-
+        chprintf(chp,"cmd_left %d\r\n", cmd_left);
+        chprintf(chp,"cmd_right %d\r\n", cmd_right);
     }
     return;
 }
@@ -111,12 +111,28 @@ static void cmd_test_ticks(BaseSequentialStream *chp, int argc, char *argv[]) {
     return;
 }
 
+static void cmd_asser_angle(BaseSequentialStream *chp, int argc, char *argv[]) {
+
+    (void) argv;
+
+    if (argc > 0){
+        chprintf(chp,"wrong use of asser command, RTFIM plz\r\n");
+        return;
+    }
+    else{
+        chprintf(chp, "Testing the asser on the wheels\r\n");
+        angle_goal = 492;
+    }
+    return;
+}
+
 static const ShellCommand commands[] = {
     {"l", cmd_mtr_l_p},
     {"r", cmd_mtr_r_p},
-    {"t", cmd_tick},
+    {"s", cmd_status},
     {"f", cmd_forward},
     {"tt", cmd_test_ticks},
+    {"aa", cmd_asser_angle},
     {NULL, NULL}
 };
 
@@ -140,20 +156,21 @@ int main(void) {
 
     shellInit();
 
+    chThdSleepMilliseconds(2000);
+
     while (true){
         if (!shelltp) {
-            /* Spawns a new shell.*/
-            shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
+            // Spawns a new shell
+            shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO-1);
         }
         else {
-            /* If the previous shell exited.*/
+            // If the previous shell exited
             if (chThdTerminatedX(shelltp)) {
-                /* Recovers memory of the previous shell.*/
+                // Recovers memory of the previous shell
                 chThdRelease(shelltp);
                 shelltp = NULL;
-
             }
         }
-        chThdSleepMilliseconds(100);
+        chThdSleepMilliseconds(500);
     }
 }

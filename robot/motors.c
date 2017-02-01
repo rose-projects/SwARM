@@ -5,6 +5,10 @@
 #include "pwmdriver.h"
 
 void initMotors(){
-    // Initializing the PWMs controlling the motors
-    initPWM();
+	// Initializing the PWMs controlling the motors
+	initPWM();
+
+    // Setting both motors so that they dont move
+    setLpwm(0);
+    setRpwm(0);
 }
