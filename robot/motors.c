@@ -5,6 +5,6 @@
 #include "pwmdriver.h"
 
 void initMotors(){
-    // Initializing the PWMs controlling the motors
-    initPWM();
+	// Initializing the PWMs controlling the motors
+	initPWM();
 }
