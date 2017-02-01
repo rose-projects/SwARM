@@ -69,7 +69,7 @@ computeInterpoints = (lastMove, move) ->
 	# find the tangent points
 	# hypothesis1: the robot will never need to to go to the left if
 	# the goal is in the right-hand quadrant, nor behind it
-	while true
+	for i in [0..1]
 		if dep_l*dest_l == 1
 			is_inner_tan = -1
 		else
@@ -86,11 +86,11 @@ computeInterpoints = (lastMove, move) ->
 		pt_tan_dest[0] = dest_c[0] + (r_dest**2*(h[0]-dest_c[0]) - dirty_hack*is_inner_tan*dest_l*r_dest*(h[1]-dest_c[1])*Math.sqrt((h[0]-dest_c[0])**2 + (h[1]-dest_c[1])**2 - r_dest**2)) / ((h[0]-dest_c[0])**2 + (h[1]-dest_c[1])**2)
 		pt_tan_dest[1] = dest_c[1] + (r_dest**2*(h[1]-dest_c[1]) + dirty_hack*is_inner_tan*dest_l*r_dest*(h[0]-dest_c[0])*Math.sqrt((h[0]-dest_c[0])**2 + (h[1]-dest_c[1])**2 - r_dest**2)) / ((h[0]-dest_c[0])**2 + (h[1]-dest_c[1])**2)
 
-		# Correct the error if the wrong circle was chosen. Hapens when
+		# Correct the error if the wrong circle was chosen. Happens when
 		# the direction goes through the opposite circle.
 		if (pt_tan_dest[0]-pt_tan_dep[0])*dep_cos + (pt_tan_dest[1]-pt_tan_dep[1])*dep_sin > 0 and (pt_tan_dep[0]-x_dep)*dep_cos + (pt_tan_dep[1]-y_dep)*dep_sin < 0
 			dep_l *= -1
-			if dep_c[0] == tmp1[0]
+			if dep_c[0] == tmp1[0] and dep_c[1] == tmp1[1]
 				dep_c[0] = tmp2[0]
 				dep_c[1] = tmp2[1]
 			else
@@ -100,16 +100,15 @@ computeInterpoints = (lastMove, move) ->
 
 		if (pt_tan_dest[0]-pt_tan_dep[0])*dest_cos + (pt_tan_dest[1]-pt_tan_dep[1])*dest_sin > 0 and (x_dest-pt_tan_dest[0])*dest_cos + (y_dest-pt_tan_dest[1])*dest_sin < 0
 			dest_l *= -1
-			if dest_c[0] == tmp3[0]
+			if dest_c[0] == tmp3[0] and dest_c[0] == tmp3[0]
 				dest_c[0] = tmp4[0]
 				dest_c[1] = tmp4[1]
 			else
 				dest_c[0] = tmp3[0]
 				dest_c[1] = tmp3[1]
 			continue
+		break	
 
-		break
-	
 	return {
 		center1:
 			x: dep_c[0]
