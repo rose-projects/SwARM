@@ -151,6 +151,7 @@ static void synchronizeRadio(void) {
 	releaseColor();
 }
 
+// reply to the beacons
 static void rangingResponse(int sendStatus) {
 	// Retrieve poll reception timestamp
 	uint64_t rxTS = getRXtimestamp();

@@ -18,30 +18,28 @@
 
 #define FLASHDATA_PAGE 15
 
-/** @brief Address in the flash memory */
+/* Address in the flash memory */
 typedef uintptr_t flashaddr_t;
 
-/**
- * @brief Erase the flash @p page.
- * @details The page is checked for errors after erase.
- * @note The page is deleted regardless of its current state.
+/* Erase the flash page.
+ * The page is checked for errors after erase.
+ * Note:  The page is deleted regardless of its current state.
  *
- * @param page Page which is going to be erased.
- * @return FLASH_RETURN_SUCCESS         No error erasing the page.
- * @return FLASH_RETURN_BAD_FLASH       Flash cell error.
- * @return FLASH_RETURN_NO_PERMISSION   Access denied.
+ * argument : page Page which is going to be erased.
+ * returns : FLASH_RETURN_SUCCESS         No error erasing the page.
+ *           FLASH_RETURN_BAD_FLASH       Flash cell error.
+ *           FLASH_RETURN_NO_PERMISSION   Access denied.
  */
 int flashPageErase(uint8_t page);
 
-/**
- * @brief Copy data from a @p buffer to the flash memory.
- * @warning The flash memory area receiving the data must be erased.
- * @warning The @p buffer must be at least @p size bytes long.
- * @param address First address in the flash memory where to copy the data to.
- * @param buffer Buffer containing the data to copy.
- * @param size Size of the data to be copied in bytes.
- * @return FLASH_RETURN_SUCCESS         No error.
- * @return FLASH_RETURN_NO_PERMISSION   Access denied.
+/* Copy data from a @p buffer to the flash memory.
+ * Warning : * The flash memory area receiving the data must be erased.
+ *           * buffer must be at least size bytes long.
+ * arguments : address First address in the flash memory where to copy the data to.
+ *             buffer Buffer containing the data to copy.
+ *             size Size of the data to be copied in bytes.
+ * returns : FLASH_RETURN_SUCCESS         No error.
+ *           FLASH_RETURN_NO_PERMISSION   Access denied.
  */
 int flashWrite(flashaddr_t address, const char* buffer, size_t size);
 

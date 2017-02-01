@@ -14,8 +14,7 @@ void startRadio(void);
 /* shell callback, USAGE : list */
 void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv);
 
-/* reset master beacon radio communication
- * (useful after a flash write) */
+/* reset master beacon radio communication (useful after a flash write) */
 void restartRadio(void);
 
 /* reset date counter (for dance timing sync) */

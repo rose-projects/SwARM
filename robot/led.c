@@ -173,5 +173,5 @@ void initLEDs(void) {
 	setColor(33, 255, 128);
 
 	// create fader thread
-	chThdCreateStatic(waFader, sizeof(waFader), NORMALPRIO-1, faderThread, NULL);
+	chThdCreateStatic(waFader, sizeof(waFader), NORMALPRIO-2, faderThread, NULL);
 }

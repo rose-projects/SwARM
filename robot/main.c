@@ -11,9 +11,11 @@
 #include "dance.h"
 
 int main(void) {
+	// initialize ChibiOS
 	halInit();
 	chSysInit();
 
+	// initialize hardware
 	initExti();
 	initComparators();
 	initPWM();
@@ -22,6 +24,7 @@ int main(void) {
 	initSequencer();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
+	// start radio thread
 	startRadio();
 	printf("Ah oui oui oui oui oui !\n");
 

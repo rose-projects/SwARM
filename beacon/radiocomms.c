@@ -93,6 +93,7 @@ static void synchronizeSlaveBeacon(void) {
 	dwt_setrxtimeout(RX_TIMEOUT);
 }
 
+// measure the distance from the beacon to a robot and send some data if needed
 static int rangeRobot(int robotUID, int dataLength) {
 	int ret;
 
@@ -239,6 +240,7 @@ static void sendSOF(void) {
 	chSysUnlock();
 }
 
+// retrieve distances collected by a slave beacon
 static void readSlaveBeacon(int beaconID) {
 	int ret, dist, i, j=0;
 	radioBuffer[0] = BEACON_READ_MSG_ID;
@@ -273,6 +275,7 @@ static void readSlaveBeacon(int beaconID) {
 	}
 }
 
+// ask for any robot to join the system
 static void pollNewRobot(int nextIndex) {
 	int id = 0, ret, i;
 	// find an available ID
@@ -360,6 +363,7 @@ static void masterBeaconTask(void) {
 				// if additional payload was sent to the robot
 				if(robotIDs[i] == payloadID) {
 					payloadID = 0;
+					// signal that payload has been successfully sent
 					chEvtBroadcastFlags(&payloadEvent, EVENT_MASK(0));
 				}
 			}
@@ -431,5 +435,8 @@ void resetDate(void) {
 
 void restartRadio(void) {
 	restartMB = 1;
+	for(int j=0; j<MAX_CONNECTED_ROBOTS; j++)
+		robotIDs[j] = 0;
+
 	chEvtBroadcastFlags(&deca_event, EVENT_MASK(0));
 }

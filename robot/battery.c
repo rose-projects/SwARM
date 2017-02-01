@@ -8,7 +8,7 @@
 #define PROBE_TO_VBAT 450/4096
 
 #define SAMPLES_HISTORY 16
-static adcsample_t samples[SAMPLES_HISTORY];
+static adcsample_t sample;
 
 // battery transition thresholds
 #define BATTERY_HIGH_LTHRES 380
@@ -84,27 +84,24 @@ static void updateState(int voltage) {
 
 static THD_WORKING_AREA(waBattery, 128);
 static THD_FUNCTION(batteryThread, th_data) {
-	int i = 0, voltage;
+	int i = 0, voltage = 0;
 
 	(void) th_data;
 	chRegSetThreadName("Battery");
 
 	while(1) {
 		// start a conversion
-		adcConvert(&ADCD1, &adcconf, &samples[i], 1);
+		adcConvert(&ADCD1, &adcconf, &sample, 1);
+		voltage += sample;
 
 		// compute voltage when SAMPLES_HISTORY samples has been collected
 		if(++i == SAMPLES_HISTORY) {
-			voltage = 0;
-			for(i=0;i<SAMPLES_HISTORY; i++)
-				voltage += samples[i]*PROBE_TO_VBAT;
-			voltage = voltage/SAMPLES_HISTORY;
-
-			updateState(voltage);
+			updateState(voltage/SAMPLES_HISTORY);
 			i = 0;
+			voltage = 0;
 		}
 
-		chThdSleepMilliseconds(1000);
+		chThdSleepMilliseconds(800);
 	}
 }
 

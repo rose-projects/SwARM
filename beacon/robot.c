@@ -256,7 +256,7 @@ void storeMoves(BaseSequentialStream *chp, int argc, char **argv) {
 		for(i=0; i<dataLength; i++) {
 			int date = atoi(argv[i*6 + 1]);
 			int x = atoi(argv[i*6 + 2]), y = atoi(argv[i*6 + 3]);
-			int angle = atoi(argv[i*6 + 4]);
+			int angle = (atoi(argv[i*6 + 4]) << 8)/360;
 			int rs = atoi(argv[i*6 + 5]), re = atoi(argv[i*6 + 6]);
 
 			payloadBuffer[i*11] = date;

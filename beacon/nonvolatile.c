@@ -10,15 +10,16 @@
 
 #define MAX_CALIBRATION 20
 
-/* ID of the beacon : 0 for mb, 253 for sb1, 254 for sb2 */
+// ID of the beacon : 0 for mb, 253 for sb1, 254 for sb2
 int deviceUID __attribute__((section(".flashdata")));
-/* distance offsets in flash */
+// decawave modules calibration data
 struct distOffset offsets[MAX_CALIBRATION] __attribute__((section(".flashdata")));
 
-/* Flash data RAM instance to save data while erasing flash sector */
+// RAM buffers to save data while erasing flash page
 static int deviceUIDinRAM;
 static struct distOffset offsetsInRAM[MAX_CALIBRATION];
 
+// copy data from flash to buffers in RAM and erase flash page
 static int saveAndErase(void) {
 	int ret;
 
@@ -34,6 +35,7 @@ static int saveAndErase(void) {
 	return ret;
 }
 
+// write data in flash from buffers in RAM
 static int writeFlash(void) {
 	int ret;
 
@@ -51,6 +53,7 @@ static int writeFlash(void) {
 	return ret;
 }
 
+// load calibration data stored in flash (and create an entry if necessary)
 struct distOffset* loadOffsets(uint32_t uid) {
 	int i;
 	struct distOffset offset = {
@@ -69,6 +72,7 @@ struct distOffset* loadOffsets(uint32_t uid) {
 		return &offsets[0];
 }
 
+// write calibration data
 int writeOffset(struct distOffset *offset) {
 	int i = 0;
 

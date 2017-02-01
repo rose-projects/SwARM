@@ -42,6 +42,7 @@
 #define RB_STATUS_BATT 0x03 // battery state
 #define RB_STATUS_WOK 0x04 // write OK
 
+// battery state codes
 #define BATTERY_VERYLOW 0
 #define BATTERY_LOW 1
 #define BATTERY_OK 2

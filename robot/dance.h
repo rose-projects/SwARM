@@ -27,6 +27,8 @@ struct color {
 	uint8_t fadeTime; // in 0.1s
 };
 
+/* pointers to current step in the dance
+ * WARNING : read only, omitted const to avoid compiler's optimisation */
 extern struct move *currentMove;
 extern struct color *currentColor;
 

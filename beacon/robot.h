@@ -65,7 +65,9 @@ void clearStoredData(BaseSequentialStream *chp, int argc, char **argv);
 /* write previously stored data on a robot in its flash
  * USAGE : flash <ROBOT ID> */
 void writeStoredData(BaseSequentialStream *chp, int argc, char **argv);
-/* dump available data about the robot
+
+/* dump available data about a robot
  * USAGE : robot <ROBOT ID> */
 void dumpRobotData(BaseSequentialStream *chp, int argc, char **argv);
+
 #endif

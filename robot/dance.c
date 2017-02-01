@@ -11,7 +11,7 @@
 #define MAX_MOVE_POINTS 64
 #define MAX_COLOR_POINTS 110
 
-// stored moves in RAM
+// RAM buffers storing data to be written in flash
 struct move movesBuffer[MAX_MOVE_POINTS];
 struct color colorsBuffer[MAX_COLOR_POINTS];
 
@@ -25,6 +25,7 @@ struct color danceColors[MAX_COLOR_POINTS] __attribute__((section(".flashdata"))
 int danceMovesCnt __attribute__((section(".flashdata")));
 int danceColorsCnt __attribute__((section(".flashdata")));
 
+// pointers to the current steps in the dance
 struct move *currentMove;
 struct color *currentColor;
 
