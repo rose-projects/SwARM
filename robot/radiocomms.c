@@ -9,6 +9,9 @@
 #include "../shared/radioconf.h"
 #include "radiocomms.h"
 #include "led.h"
+#include "dance.h"
+#include "imu.h"
+#include "RTT/SEGGER_RTT.h"
 
 // event triggered when new data has been received
 EVENTSOURCE_DECL(radioEvent);
@@ -22,7 +25,10 @@ static int sessionID = -1;
 
 // timestamp of the last start-of-frame
 static int64_t sofTS = -1;
-static systime_t sofSystime = -1;
+static systime_t sofSystime = 0xFFFFFFFF;
+
+// current date (timing for the dance)
+static uint16_t date = 0;
 
 // registered position (indicates when to listen)
 static int registered = 0;
@@ -31,7 +37,7 @@ static int registered = 0;
 struct robotData radioData;
 
 static void parseSOF(int sofLength) {
-	int i = 4;
+	int i = 6;
 
 	// get start-of-frame reception time
 	sofTS = getRXtimestamp();
@@ -47,31 +53,33 @@ static void parseSOF(int sofLength) {
 		return;
 	}
 
+	// save date
+	date = radioBuffer[4] | (radioBuffer[5] << 8);
+
 	// search for the robot's ID in the list
 	while(i < sofLength && radioBuffer[i] != deviceID)
 		i++;
 
 	// if found, robot is known to be active by master beacon
-	if(i != sofLength)
-		registered = i - 3;
+	if(i < sofLength)
+		registered = i - 5;
 	else
 		registered = 0;
 }
 
 static void parseRadioData(void) {
-	radioData.H = radioBuffer[2];
-	radioData.S = radioBuffer[3];
-	radioData.V = radioBuffer[4];
-	radioData.x = radioBuffer[5];
-	radioData.x &= radioBuffer[6] << 8;
-	radioData.y = radioBuffer[7];
-	radioData.y &= radioBuffer[8] << 8;
-	radioData.goalX = radioBuffer[9];
-	radioData.goalX &= radioBuffer[10] << 8;
-	radioData.goalY = radioBuffer[11];
-	radioData.goalY &= radioBuffer[12] << 8;
-	radioData.goalSpeed = radioBuffer[13];
-	radioData.flags = radioBuffer[14];
+	radioData.x = radioBuffer[2];
+	radioData.x &= radioBuffer[3] << 8;
+	radioData.y = radioBuffer[4];
+	radioData.y &= radioBuffer[5] << 8;
+	radioData.flags = radioBuffer[6];
+
+	if(radioData.flags & RB_FLAGS_CLR) {
+		clearStoredData();
+	} else if(radioData.flags & RB_FLAGS_WF) {
+		radioData.status |= RB_STATUS_WOK;
+	}
+
 	radioBuffer[2] = radioData.status;
 }
 
@@ -94,7 +102,6 @@ static void synchronizeRadio(void) {
 	int ret, frameCounter = 0, retryDelay = 0;
 
 	// listen to master beacon
-	switchToChannel(MB_CHANNEL);
 	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
 
 	setColor(33, 255, 128);
@@ -145,6 +152,7 @@ static void synchronizeRadio(void) {
 	releaseColor();
 }
 
+// reply to the beacons
 static void rangingResponse(int sendStatus) {
 	// Retrieve poll reception timestamp
 	uint64_t rxTS = getRXtimestamp();
@@ -160,7 +168,7 @@ static void rangingResponse(int sendStatus) {
 	decaSend(4 + sendStatus, radioBuffer, 1, DWT_START_TX_DELAYED);
 }
 
-static THD_WORKING_AREA(waRadio, 256);
+static THD_WORKING_AREA(waRadio, 512);
 static THD_FUNCTION(radioThread, th_data) {
 	event_listener_t evt_listener;
 	int ret;
@@ -192,24 +200,45 @@ static THD_FUNCTION(radioThread, th_data) {
 			}
 		}
 
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+2)*TIMESLOT_LENGTH) == 15) {
+		ret = messageRead(RANGING_MSG_ID, deviceID, (registered*3)*TIMESLOT_LENGTH);
+		if(ret > 0) {
 			parseRadioData();
 			rangingResponse(1);
+
 			// send radio event (new data available)
-		    chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+			chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+
+			// process payload
+			if(radioData.flags & RB_FLAGS_PTSTR)
+				storeMoves(&radioBuffer[7], (ret - 7)/11);
+			else if(radioData.flags & RB_FLAGS_CLSTR)
+				storeColors(&radioBuffer[7], (ret - 7)/6);
+			else if(radioData.flags & RB_FLAGS_WF) {
+				saveIMUcalibration();
+				writeStoredData();
+				writeIMUcalibration();
+			}
 		} else {
 			sofTS = -1;
 		}
-		switchToChannel(SB1_CHANNEL);
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+4)*TIMESLOT_LENGTH) > 0) {
+
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered*3+1)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}
-		switchToChannel(SB2_CHANNEL);
-		if(messageRead(RANGING_MSG_ID, deviceID, (registered+6)*TIMESLOT_LENGTH) > 0) {
+		if(messageRead(RANGING_MSG_ID, deviceID, (registered*3+2)*TIMESLOT_LENGTH) > 0) {
 			rangingResponse(0);
 		}
-		switchToChannel(MB_CHANNEL);
 	}
+}
+
+uint16_t getDate(void) {
+	uint16_t dateSinceSOF;
+
+	if(sofSystime == 0xFFFFFFFF)
+	 	return 0;
+
+	dateSinceSOF = chVTTimeElapsedSinceX(sofSystime)*10/CH_CFG_ST_FREQUENCY;
+	return date*512/499.2 + dateSinceSOF;
 }
 
 void startRadio(void) {
