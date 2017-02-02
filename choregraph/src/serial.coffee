@@ -44,7 +44,6 @@ showShell = ->
 			.keyup (e) ->
 				if e.keyCode == 13
 					port.write($('.shell-input').val() + '\r\n')
-					$('.shell-input').val('')
 
 flashRobot = (id, robot) ->
 	if port? and port?.isOpen()
