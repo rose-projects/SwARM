@@ -1,0 +1,8 @@
+div.points
+div.flash-robot
+  span ID :&nbsp;
+  input(type="number" value="#{robot.index + 1}" min="0" max="20" step="1").flash-id
+  | &nbsp;&nbsp;&nbsp;
+  a(class="#{connected ? '' : 'disabled' }").btn.flash-btn
+    | Envoyer
+    span.fa.fa-download
