@@ -47,7 +47,7 @@ createMoveList = (rb) ->
 	l.onRemove ->
 		path.paths()[rb.index].update()
 	l.onActivated(-> path.paths()[rb.index].update())
-	l.onDesactivated(-> path.paths()[rb.index].update())
+	l.onDeactivated(-> path.paths()[rb.index].update())
 	l.onSelected(-> path.paths()[rb.index].update())
 	l.onDeselected(-> path.paths()[rb.index].update())
 	return l
@@ -83,7 +83,7 @@ createColorList = (rb) ->
 			path.paths()[rb.index].update()
 	l.onRemove(-> path.paths()[rb.index].update())
 	l.onActivated(-> path.paths()[rb.index].update())
-	l.onDesactivated(-> path.paths()[rb.index].update())
+	l.onDeactivated(-> path.paths()[rb.index].update())
 	l.onSelected(-> path.paths()[rb.index].update())
 	l.onDeselected(-> path.paths()[rb.index].update())
 	return l
@@ -117,7 +117,7 @@ robotList.onUpdate (item) ->
 
 robotList.onRemove((item) -> path.paths()[item.index].remove())
 robotList.onActivated((item) -> path.paths()[item.index].update())
-robotList.onDesactivated((item) -> path.paths()[item.index].update())
+robotList.onDeactivated((item) -> path.paths()[item.index].update())
 robotList.onSelected((item) -> path.paths()[item.index].update())
 robotList.onDeselected((item) -> path.paths()[item.index].update())
 

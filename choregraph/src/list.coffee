@@ -7,7 +7,7 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 	onAdd = null
 	onRemove = null
 	onActivated = null
-	onDesactivated = null
+	onDeactivated = null
 	onSelected = null
 	onDeselected = null
 
@@ -72,7 +72,7 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 	activate = (index) ->
 		for item in data when item.activated
 			item.activated = no
-			onDesactivated?(item)
+			onDeactivated?(item)
 		data[index]?.activated = yes
 		update()
 		onActivated?(data[index])
@@ -82,7 +82,7 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 		data[index]?.selected = yes
 		update() if mustUpdate
 		onSelected?(data[index])
-	# when the item checkbox is desactivated
+	# when the item checkbox is deactivated
 	deselect = (index, mustUpdate) ->
 		data[index]?.selected = no
 		update() if mustUpdate
@@ -102,7 +102,7 @@ module.exports = (className, data, addMsg, nameGenerator) ->
 		onAdd: (callback) -> onAdd = callback
 		onRemove: (callback) -> onRemove = callback
 		onActivated: (callback) -> onActivated = callback
-		onDesactivated: (callback) -> onDesactivated = callback
+		onDeactivated: (callback) -> onDeactivated = callback
 		onSelected: (callback) -> onSelected = callback
 		onDeselected: (callback) -> onDeselected = callback
 	}
