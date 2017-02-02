@@ -62,6 +62,9 @@ void trilateralizeRobots(void) {
 		if(robot->mbDist != 0 && robot->sb1Dist != 0 && robot->sb2Dist != 0) {
 			computeTrilateralisation(robot->mbDist, robot->sb1Dist, robot->sb2Dist, &robot->x, &robot->y);
 			printf(" %d %d", robot->x, robot->y);
+		} else {
+			robot->x = 0;
+			robot->y = 0;
 		}
 	}
 	printf("\n");

@@ -339,8 +339,14 @@ static void masterBeaconTask(void) {
 		readSlaveBeacon(254);
 
 		// compute robots locations if all the beacons are available
-		if(sbConnected == 0x03)
+		if(sbConnected == 0x03) {
 			trilateralizeRobots();
+		} else {
+			for (i = 0; i < MAX_CONNECTED_ROBOTS; i++) {
+				robots[i].x = 0;
+				robots[i].y = 0;
+			}
+		}
 
 		// send radio event (new distances and robots locations available)
 		chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
@@ -435,7 +441,7 @@ void resetDate(void) {
 
 void restartRadio(void) {
 	int j;
-	
+
 	restartMB = 1;
 	for(j=0; j<MAX_CONNECTED_ROBOTS; j++)
 		robotIDs[j] = 0;
