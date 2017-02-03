@@ -1,6 +1,10 @@
 #ifndef RADIOCOMMS_H
 #define RADIOCOMMS_H
 
+#include "ch.h"
+#include "chvt.h"
+#include "chevents.h"
+
 /* container for data received/sent to master beacon */
 struct robotData {
 	// sent to the robot

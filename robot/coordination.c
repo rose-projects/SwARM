@@ -66,15 +66,15 @@ int updatemaincoordinates(void)
 	/* Because of the method of the homothetic center, both circles cannot
 	 * be of the same radius, this hack solves the issue.
 	 */
-	if (rdep_ == rdest_) {
-		rdep_++;
+	if (rdep == rdest) {
+		rdep++;
 	}
 
 	/* choose the right circles
 	 * Find the closest circle, if an error is detected at the end,
 	 * change circles.
 	 */
-	depcos = sin(M_PI2 - orientation);
+	depcos = sin(M_PI_2 - orientation);
 	depsin = sin(orientation);
 	tmp1[0] = xdep + rdep*depsin;
 	tmp1[1] = ydep - rdep*depcos;
@@ -92,7 +92,7 @@ int updatemaincoordinates(void)
 		cdep[1] = tmp2[1];
 	}
 
-	destcos = sin(M_PI2 - oridest);
+	destcos = sin(M_PI_2 - oridest);
 	destsin = sin(oridest);
 	tmp3[0] = xdest + rdest*destsin;
 	tmp3[1] = ydest - rdest*destcos;
@@ -236,7 +236,7 @@ int updatemaincoordinates(void)
 	totlen = deplen + straightlen + destlen;
 
 	date = getDate();
-	npts = (dest->date - date) / 50;
+	npts = (currentMove->date - date) / 50;
 	depnpts = (deplen/totlen) * npts;
 	if (depnpts == 0) {
 		depnpts++;
@@ -249,6 +249,8 @@ int updatemaincoordinates(void)
 	if (destnpts == 0) {
 		destnpts++;
 	}
+
+	return npts;
 
 #ifdef DEBUG
 	dbtandep[0] = tandep[0];

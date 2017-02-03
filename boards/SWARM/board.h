@@ -173,7 +173,6 @@
 #define VAL_GPIOA_MODER             (PIN_MODE_ANALOG(GPIOA_VBAT_PROBE) |    \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_LED_L)   |   \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_L) |   \
-<<<<<<< HEAD
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_L)|   \
                                      PIN_MODE_INPUT(GPIOA_PIN4) |           \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_R) |   \
@@ -190,7 +189,6 @@
 #define VAL_GPIOA_OTYPER    0x00000000
 #define VAL_GPIOA_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
-<<<<<<< HEAD
                                      PIN_PUPDR_PULLDOWN(GPIOA_SWCLK)|       \
                                      PIN_PUPDR_PULLDOWN(GPIOA_MTR_PHASE_L)| \
                                      PIN_PUPDR_PULLDOWN(GPIOA_MTR_ENABLE_L)|\
