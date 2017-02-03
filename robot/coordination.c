@@ -261,12 +261,12 @@ int updatemaincoordinates(void)
 // Update distance and angle goals: called every 50ms
 void updatesubcoordinates(void) {
 	if (i <= depnpts) {
-		angle_goal += depleft*angledep*L_MM/(U_MM*depnpts);
+		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
 	} else if (i <= depnpts + straightnpts) {
 		dist_goal += straightlen / straightnpts;
 	} else {
-		angle_goal += destleft*angledest *L_MM/(U_MM*destnpts);
+		angle_goal += destleft*angledest/(U_RAD*destnpts);
 		dist_goal += destlen / destnpts;
 	}
 
