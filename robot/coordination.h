@@ -9,4 +9,3 @@ extern int last_dist_error;
 extern int pt; // current point sub point
 
 #endif // COORDINATION_H
-

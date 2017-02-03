@@ -25,21 +25,22 @@ static int xdep, ydep, xdest, ydest;        // make the parameters global
 static int rdep, rdest, npts;
 static float oridest;
 static int depnpts, straightnpts, destnpts; // number of points in each section
-static int cdep[2], cdest[2];               // center of the circles
 static int tandep[2], tandest[2];           // tangent points
 static int isinnertan;                      // 1/-1 inner or outer tangent
 static int depleft, destleft;               // 1/-1 going to the left or right
 static float angledep, angledest;
 static int totlen, deplen, straightlen, destlen;
 
-#ifdef DEBUG
+#ifdef DEBUG_ACH
+static int dbcdep[2], dbcdest[2];
 int dbtandep[2], dbtandest[2];
-#endif // DEBUG
+#endif // DEBUG_ACH
 
 // Called once to set the destination, return the number of points
 int compute_traj(void)
 {
 	int j; // loop index
+	static int cdep[2], cdest[2];           // center of the circles
 	int tmp1[2], tmp2[2], tmp3[2], tmp4[2]; // possible circles
 	int h[2] = {0};                         // homothetic center
 	int dirtyhack = 1;                      // solves rdep < re_dest
@@ -195,6 +196,13 @@ int compute_traj(void)
 		break;
 	}
 
+#ifdef DEBUG_ACH
+	dbcdep[0] = cdep[0];
+	dbcdep[1] = cdep[1];
+	dbcdest[0] = cdest[0];
+	dbcdest[1] = cdest[1];
+#endif // DEBUG_ACH
+
 	dep_cdep2[0] = cdep[0] - xdep;
 	dep_cdep2[1] = cdep[1] - ydep;
 	dep_cdep2[0] *= dep_cdep2[0];
@@ -253,12 +261,12 @@ int compute_traj(void)
 
 	return npts;
 
-#ifdef DEBUG
+#ifdef DEBUG_ACH
 	dbtandep[0] = tandep[0];
 	dbtandep[1] = tandep[1];
 	dbtandest[0] = tandest[0];
 	dbtandest[1] = tandest[1];
-#endif //DEBUG
+#endif // DEBUG_ACH
 }
 
 // Update distance and angle goals: called every 50ms
@@ -266,11 +274,33 @@ void update_goal(void) {
 	if (pt <= depnpts) {
 		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
+#ifdef DEBUG_ACH
+		x_pos += dbcdep[0] +
+			(cos(angledep/depnpts) + sin(angledep/depnpts))*
+			depleft*(x_pos-dbcdep[0]);
+		y_pos += dbcdep[1] +
+			(cos(angledep/depnpts) + sin(angledep/depnpts))*
+			depleft*(y_pos-dbcdep[1]);
+		orientation += depleft * (angledep/depnpts);
+#endif // DEBUG_ACH
 	} else if (pt <= depnpts + straightnpts) {
 		dist_goal += straightlen / straightnpts;
+#ifdef DEBUG_ACH
+		x_pos += straightlen * cos(orientation);
+		y_pos += straightlen * sin(orientation);
+#endif // DEBUG_ACH
 	} else {
 		angle_goal += destleft*angledest/(U_RAD*destnpts);
 		dist_goal += destlen / destnpts;
+#ifdef DEBUG_ACH
+		x_pos += dbcdest[0] +
+			(cos(angledest/destnpts) + sin(angledest/destnpts))*
+			destleft*(x_pos-dbcdest[0]);
+		y_pos += dbcdest[1] +
+			(cos(angledest/destnpts) + sin(angledest/destnpts))*
+			destleft*(y_pos-dbcdest[1]);
+		orientation += destleft * (angledest/depnpts);
+#endif // DEBUG_ACH
 	}
 
 	angle_goal += last_angle_error;

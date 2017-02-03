@@ -31,7 +31,10 @@ static THD_FUNCTION(moving_thd, arg) {
 			npts = compute_traj();
 		}
 		// dist/angle error offset to add to next commands
+#ifndef DEBUG_ACH
 		update_position();
+#endif // DEBUG_ACH
+
 		// update distance and angle goals
 		if (npts - pt < ADVANCE_TIME) {
 			update_goal();
