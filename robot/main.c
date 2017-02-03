@@ -11,6 +11,7 @@
 #include "motors.h"
 #include "asser.h"
 #include "moving.h"
+#include "position.h"
 
 int main(void) {
 	halInit();
@@ -28,6 +29,7 @@ int main(void) {
     start_asservs();
     start_moving();
 	printf("Ah oui oui oui oui oui !\n");
+	startFusion();
 
 	while (true)
 		chThdSleepMilliseconds(500);

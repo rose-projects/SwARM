@@ -8,19 +8,16 @@
 #include "asser.h"
 #include "coordination.h"
 
-// mean of the ten last position (plus delta)
-float x_pos_cw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-float y_pos_dw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-float x_pos_cw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-float y_pos_dw[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+// Update position according to the coding wheels
+// The calculation depends on wether we are rotating to the left or to the right
 
-// position in circular buffer
-int i = 0;
-
-/*
- * Update position according to the coding wheels
- * The calculation depends on wether we are rotating to the left or to the right
- */
+int absolute(int value) {
+	if (value < 0) {
+		return -value;
+	} else {
+		return value;  
+	}
+}
 
 void update_position(){
 	// Calculating current angle value in radians
@@ -28,6 +25,14 @@ void update_position(){
 
 	// Updating orientation
 	orientation += angle_rad;
+
+	// angle fusion
+	if(absolute(orientation - azimuth) >= 1) {
+		orientation = azimuth;
+	} else {
+		orientation += azimuth;
+		orientation /= 2;
+	}
 
 	// Calculating last coordinates of the robot
 	x_pos += distance * cos(orientation);
@@ -41,32 +46,34 @@ static THD_WORKING_AREA(wa_fusion, 64);
 static THD_FUNCTION(fusion_thd, arg) {
 	(void) arg;
 
-	event_listener_t * dwm_update;
+	int real_x_pos, real_y_pos;
+	int old_x_pos, old_y_pos;
+
+	event_listener_t * dwm_update = NULL;
 	// register for radio messages datas updates
 	chEvtRegisterMask(&radioEvent, dwm_update, EVENT_MASK(0));
-
-	// 10 tuples [time, pos x, pos y]
-	int i = 0;
-	systime_t time[10];
-	float x_pos_dwm[10];
-	float y_pos_dwm[10];
 	
 	while(1) {
 		// wait for DWM message
 		chEvtWaitAll(EVENT_MASK(0));
 
-		time[i] = chVTGetSystemTime();
+		// 0,0 is the special code for no data
+		if(radioData.x != 0 && radioData.y != 0) {
 
-		// position fusion : mean with decawave
-		x_pos_dwm += radioData.x;
-		y_pos_dwm += radioData.y;
-		x_pos_dwm /= 2;
-		y_pos_dwm /= 2;
-		// angle fusion
-		real_orientation = orientation + azimuth;
-		real_orientation /= 2;
+			// position fusion : mean with decawave
+			real_x_pos = (radioData.x + old_x_pos) / 2;
+			real_y_pos = (radioData.y + old_y_pos) / 2;
+			real_x_pos += distance * cos(orientation);
+			real_y_pos += distance * sin(orientation);
 
-		i++;
+			// backup position for next message
+			old_x_pos = x_pos;
+			old_y_pos = y_pos;
+
+			// update real position
+			x_pos = real_x_pos;
+			y_pos = real_y_pos;
+		}
 	}
 }
 
