@@ -7,16 +7,16 @@
 #include "position.h"
 #include "coordination.h"
 
-// We update robot position goal every 50 milliseconds
-#define MOVING_THD_SLEEP 50
-
 // Moving control thread working area
 static THD_WORKING_AREA(working_area_moving_thd, 128);
 
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
 	(void) arg;
-	int i = 0;
+	// We update robot position goal every 50 milliseconds
+	const int UPDATE_SUB_MS = 50; 
+	const int UPDATE_TRAJ = 20; // * 50ms = 1s
+	int i = 0, npts = 0;
 
 	/* 
 	 * Thread routine
@@ -24,25 +24,20 @@ static THD_FUNCTION(moving_thd, arg) {
 	 * it modifies on a periodic basis the  dist_goal and angle_goal values
 	 * so that the robot moves to the next position
 	 */
-	while(i<N_POINTS){
-		if((i%N_POINTS) == 0){
-			update_main_coordinates(0,0,0,0,0);
+	npts = updatemaincoordinates();
+	for (i = 0; i < npts; i++) {
+		if (i % UPDATE_TRAJ == 0) {
+			npts = updatemaincoordinates();
+			i = 0;
 		}
-		// Updating position, dist/angle error offset to add to next commands
+		// dist/angle error offset to add to next commands
 		update_position();
-		// Calculate next target position and update distance and angle goals
-		update_sub_coordinates();
+		// update distance and angle goals
+		updatesubcoordinates();
 		// Resetting enslavement error variables
 		begin_new_asser();
 
-		// Ready for next iteration
-		i++;
-
-		dist_goal = 200;
-		angle_goal = 0;
-
-		// Go to sleep
-		chThdSleepMilliseconds(MOVING_THD_SLEEP);
+		chThdSleepMilliseconds(UPDATE_SUB_MS);
 	}
 }
 
