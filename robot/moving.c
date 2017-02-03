@@ -15,41 +15,41 @@ static THD_WORKING_AREA(working_area_moving_thd, 128);
 
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
-    (void) arg;
-    int i = 0;
+	(void) arg;
+	int i = 0;
 
-    /* 
-     * Thread routine
-     * it takes care of the trajectory  control:
-     * it modifies on a periodic basis the  dist_goal and angle_goal values
-     * so that the robot moves to the next position
-     */
-    while(i<N_POINTS){
-        if((i%N_POINTS) == 0){
-            update_main_coordinates(0,0,0,0,0);
-        }
-        // Updating position, dist/angle error offset to add to next commands
-        update_position();
-        // Calculate next target position and update distance and angle goals
-        update_sub_coordinates();
-        // Resetting enslavement error variables
-        begin_new_asser();
+	/* 
+	 * Thread routine
+	 * it takes care of the trajectory  control:
+	 * it modifies on a periodic basis the  dist_goal and angle_goal values
+	 * so that the robot moves to the next position
+	 */
+	while(i<N_POINTS){
+		if((i%N_POINTS) == 0){
+			update_main_coordinates(0,0,0,0,0);
+		}
+		// Updating position, dist/angle error offset to add to next commands
+		update_position();
+		// Calculate next target position and update distance and angle goals
+		update_sub_coordinates();
+		// Resetting enslavement error variables
+		begin_new_asser();
 
-        // Ready for next iteration
-        i++;
+		// Ready for next iteration
+		i++;
 
-        dist_goal = 200;
-        angle_goal = 0;
+		dist_goal = 200;
+		angle_goal = 0;
 
-        // Go to sleep
-        chThdSleepMilliseconds(MOVING_THD_SLEEP);
-    }
+		// Go to sleep
+		chThdSleepMilliseconds(MOVING_THD_SLEEP);
+	}
 }
 
 // To be called from main to start the enslavement with some distance and goal
 void start_moving(){
-    // Starting the monitoring threads
-    (void)chThdCreateStatic(working_area_moving_thd, \
-            sizeof(working_area_moving_thd),
-            NORMALPRIO, moving_thd, NULL);
+	// Starting the monitoring threads
+	(void)chThdCreateStatic(working_area_moving_thd, \
+		sizeof(working_area_moving_thd),
+		NORMALPRIO, moving_thd, NULL);
 }
