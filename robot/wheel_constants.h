@@ -16,6 +16,8 @@
 #define U_MM                    (WHEEL_ROTATION_MM/TICKS_PER_ROTATION)
 // Equivalent to a one tick difference in the rotation of the two wheels
 #define U_DEGREE_ANGLE          (360*U_MM/(2*M_PI*L_MM))
+// Equivalent to a one tick difference in the rotation of the two wheels
+#define U_RAD                   ((M_PI*M_PI*L_MM)/(180*U_MM))
 // Distance between the two wheels, width of the robots
 #define L_MM                    (115)
 // Wheel's radius
