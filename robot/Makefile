@@ -101,13 +101,13 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= robot.ld
+LDSCRIPT= ../shared/STM32F302R6.ld
 
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
 RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
-DRIVERSRC = pwmdriver.c exticonf.c compdriver.c
+DRIVERSRC = pwmdriver.c exticonf.c compdriver.c flash.c
 RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
 IMU = my_i2c.c imu.c
 MOVING =  motors.c asser.c coordination.c moving.c position.c

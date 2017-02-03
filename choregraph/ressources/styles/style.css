@@ -1,0 +1,229 @@
+/* general */
+body {
+	padding: 0;
+	margin: 0;
+	font: 14px "Kirvy", Helvetica, Arial, sans-serif;
+	background: #deded8;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+.fa {
+	margin-left: 2vh;
+	margin-right: 2vh;
+}
+.btn {
+	margin: 2vmin 2vmin 2vmin 4vmin;
+	border-radius: 5px;
+	padding: 0.3vmin;
+	transition: .3s;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-o-transition: .3s;
+	display: inline-block;
+	color: #3e3c41;
+	border: 2px #3e3c41 solid;
+}
+.btn:hover {
+	margin: 2vmin 2vmin 2vmin 4vmin;
+	background-color: #3e3c41;
+	color: #e8e3d4;
+}
+.disabled {
+	color: #a8a8a8;
+	border: 2px #a8a8a8 solid;
+}
+.disabled:hover {
+	color: #a8a8a8;
+	border: 2px #a8a8a8 solid;
+	background: none;
+}
+.selected-btn, .selected-btn:hover {
+	background-color: #3e3c41;
+	color: #e8e3d4;
+}
+
+/* content */
+.simu-ctrl {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70vw;
+	height: 3.5vh;
+	background-color: white;
+}
+.play-slider {
+	position: relative;
+	top:0.4vh;
+	width: 83%;
+}
+.simu-date {
+	margin-left: 1%;
+}
+
+.table-layout {
+	position: absolute;
+	top: 5vw;
+	left: 2vw;
+	width: 66vw;
+	height: 41.25vw;
+	background: url('../images/area-bg.svg');
+}
+
+.serialport {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 70vw;
+	height: 7vh;
+	padding-top: 0;
+	background: white;
+	text-align: center;
+}
+
+.tools {
+	position: absolute;
+	top: -3vh;
+	left: 70vw;
+	height: 103vh;
+	width: 30vw;
+	background-color: #fefdfa;
+	box-sizing: border-box;
+	border: 2px #3e3c41 solid;
+	box-shadow: 0 -1px 40px rgba(32, 34, 34, 0.6);
+	min-height: 600px;
+}
+.buttons {
+	position: relative;
+	text-align: center;
+	font-size: 3vh;
+	top: 2vh;
+	font-family: 'Kirvy';
+}
+.buttons .btn {
+	padding-right: 2vh;
+}
+.selector {
+	position: relative;
+	text-align: center;
+	font-size: 3vh;
+	top: 4vh;
+}
+.selector a, .selector a:hover {
+	margin: 0;
+	padding-left: 1vh;
+	padding-right: 1vh;
+	height: 4vh;
+}
+.moves-mode {
+	border-radius: 5px 0 0 5px;
+}
+.colors-mode {
+	border-radius: 0 5px 5px 0;
+}
+
+.points {
+	position: relative;
+	left: 1vw;
+	width: 20vw;
+	height: 67vh;
+	font-family: 'Menlo';
+	font-size: 1vw;
+	overflow-y: scroll;
+}
+.robots {
+	position: absolute;
+	top: 18vh;
+	height: 85vh;
+	width: 30vw;
+	overflow-y: scroll;
+}
+.robots-content {
+	padding: 0;
+	margin : 0;
+}
+.color-table, .move-table {
+	padding-bottom: 2vh;
+}
+.color-table td, .move-table td {
+	border-bottom: none !important;
+}
+.points {
+    font-size: 2vh;
+    background-color: #fdfff7;
+	font-family: 'Kirvy';
+	width: 28vw;
+	height: auto !important;
+}
+.flash-robot {
+	text-align: center;
+}
+
+.darkscreen {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+.flash-console {
+	position: absolute;
+	left: 30vw;
+	top: 15vh;
+	width: 40vw;
+	height: 70vh;
+	background: rgb(50, 50, 50);
+	font-family: 'Menlo';
+	color: rgb(90, 218, 83);
+	overflow-y: scroll;
+	border: 5px #e6dfdf solid;
+	border-radius: 2vw;
+	padding: 3vh;
+	display: none;
+	overflow-y: scroll;
+}
+.shell-input {
+	position: absolute;
+	display: none;
+	top: 93vh;
+	left: 31.5vw;
+	width: 40vw;
+}
+.dance-btn {
+	font-family: 'Kirvy';
+}
+@font-face {
+	font-family: 'Kirvy';
+	font-style: normal;
+	font-weight: 500;
+	src: url(../fonts/Kirvy-Regular.otf);
+}
+
+@font-face {
+	font-family: 'Kirvy';
+	font-style: normal;
+	font-weight: 700;
+	src: url(../fonts/Kirvy-Bold.otf);
+}
+
+@font-face {
+	font-family: 'Kirvy';
+	font-style: normal;
+	font-weight: 300;
+	src: url(../fonts/Kirvy-Light.otf);
+}
+
+@font-face {
+	font-family: 'Kirvy';
+	font-style: italic;
+	font-weight: 100;
+	src: url(../fonts/Kirvy-Thin.otf);
+}
+@font-face {
+	font-family: 'Menlo';
+	font-style: normal;
+	font-weight: 500;
+	src: url(../fonts/Menlo.ttf);
+}

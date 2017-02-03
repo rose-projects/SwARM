@@ -1,0 +1,68 @@
+.list {
+    margin-top: 2vh;
+    font-size: 2.5vh;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    border-spacing: 0;
+}
+.list input, .list select {
+    font-size: 2vh;
+    height: 2.5vh;
+}
+.list tr {
+    height: 3vh;
+    margin:0;
+    padding: 0;
+}
+.list td {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-bottom: 2px #3e3c41 solid;
+    margin: 0;
+    padding: 0;
+}
+.list-element, .add-element {
+    position: relative;
+    height: 3vh;
+    margin: 0;
+    padding: 0.5vh;
+}
+.list-element {
+    padding-left: 1.5vw;
+}
+.selected-list-element {
+    background-color: #3e3c41;
+    color: #fefdfa;
+}
+.list-add {
+    text-align: center;
+    border-bottom: none !important;
+}
+.add-element-btn, .add-element-btn:hover {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fa-trash {
+    position: absolute;
+    right: 1vw;
+    color: #e4342a;
+}
+.selected-list-element .fa-trash {
+    color: #f2665e;
+}
+.list-checkbox {
+    margin-right: 2vw;
+}
+
+.list-content {
+    padding: 1vw;
+    padding-bottom: 0;
+	padding-right: 0;
+    font-size: 2vh;
+    box-sizing: border-box;
+    box-shadow: 0 -1px 1.5vw rgba(32, 34, 34, 0.4) inset;
+    background-color: #fdfff7;
+}

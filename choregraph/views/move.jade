@@ -1,0 +1,29 @@
+table.move-table
+	tr
+		td: label(for="date") Date :&nbsp;
+		td: input(type="number" min="0" step="1" value="#{move.date}")#date
+	tr
+		td: label(for="x-goal") X :&nbsp;
+		td
+			input(type="number" min="0" step="1" value="#{move.x}")#x-goal
+			| &nbsp;cm
+	tr
+		td: label(for="y-goal") Y :&nbsp;
+		td
+			input(type="number" min="0" step="1" value="#{move.y}")#y-goal
+			| &nbsp;cm
+	tr
+		td: label(for="angle") Angle :&nbsp;
+		td
+			input(type="number" min="0" max="359" step="1" value="#{move.angle}")#angle
+			| &nbsp;&deg;
+	tr
+		td: label(for="start-radius") Rayon de d&eacute;part :&nbsp;
+		td
+			input(type="number" min="0" step="1" value="#{move.startradius}")#start-radius
+			| &nbsp;cm
+	tr
+		td: label(for="end-radius") Rayon d'arriv&eacute;e :&nbsp;
+		td
+			input(type="number" min="0" step="1" value="#{move.endradius}")#end-radius
+			| &nbsp;cm

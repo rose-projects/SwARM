@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Choregraph</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/list.css">
+    <link rel="stylesheet" href="styles/font-awesome.css">
+  </head>
+  <body>
+    <div class="simu-ctrl">
+      <audio id="player">
+        <source src="audio.mp3" type="audio/mpeg">
+      </audio><span class="fa fa-stop stop-btn"></span><span class="fa fa-play play-btn"></span>
+      <input type="range" min="0" value="0" class="play-slider"><span class="simu-date">0</span>
+    </div>
+    <div class="table-layout"></div>
+    <canvas id="table" class="table-layout"></canvas>
+    <div class="serialport">
+      <select class="serialpath"></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="beacon">baudrate : &nbsp;</span>
+      <input type="number" value="38400" class="baudrate">&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn serial-btn">&nbsp;&nbsp;OK&nbsp;&nbsp;</a>
+    </div>
+    <div class="tools">
+      <div class="buttons"><a class="btn dance-btn disabled"> <span class="fa fa-music"></span>Danser !</a><a class="btn shell-btn disabled"><span class="fa fa-terminal"></span>Shell</a></div>
+      <div class="selector"><a class="btn selected-btn moves-mode">Mouvements</a><a class="btn colors-mode">Couleurs</a></div><br>
+      <div class="robots"></div>
+    </div>
+    <div class="darkscreen"></div>
+    <div class="flash-console"></div>
+    <input class="shell-input">
+    <script src="../lib/sidebar.js"></script>
+    <script src="../lib/simu.js"></script>
+    <script src="../lib/path.js"></script>
+    <script src="scripts/jscolor.js"></script>
+  </body>
+</html>

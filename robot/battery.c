@@ -1,27 +1,24 @@
 #include "ch.h"
 #include "hal.h"
 #include "radiocomms.h"
+#include "../shared/radioconf.h"
 #include "led.h"
 
 // sample to battery voltage (in 0.01V) conversion coeff
 #define PROBE_TO_VBAT 450/4096
 
 #define SAMPLES_HISTORY 16
-static adcsample_t samples[SAMPLES_HISTORY];
+static adcsample_t sample;
 
-// battery states and transition thresholds
-#define BATTERY_HIGH 3
+// battery transition thresholds
 #define BATTERY_HIGH_LTHRES 380
 
-#define BATTERY_OK 2
 #define BATTERY_OK_HTHRES 390
 #define BATTERY_OK_LTHRES 340
 
-#define BATTERY_LOW 1
 #define BATTERY_LOW_HTHRES 350
 #define BATTERY_LOW_LTHRES 300
 
-#define BATTERY_VERYLOW 0
 #define BATTERY_VERYLOW_HTHRES 310
 
 int batteryState = BATTERY_OK;
@@ -76,7 +73,7 @@ static void updateState(int voltage) {
 
 	// set battery state flag in status
 	chSysLock(); // lock to guarantee atomicity
-	radioData.status &= 0xFC;
+	radioData.status &= ~RB_STATUS_BATT;
 	radioData.status |= batteryState;
 	chSysUnlock();
 
@@ -87,27 +84,24 @@ static void updateState(int voltage) {
 
 static THD_WORKING_AREA(waBattery, 128);
 static THD_FUNCTION(batteryThread, th_data) {
-	int i = 0, voltage;
+	int i = 0, voltage = 0;
 
 	(void) th_data;
 	chRegSetThreadName("Battery");
 
 	while(1) {
 		// start a conversion
-		adcConvert(&ADCD1, &adcconf, &samples[i], 1);
+		adcConvert(&ADCD1, &adcconf, &sample, 1);
+		voltage += sample;
 
 		// compute voltage when SAMPLES_HISTORY samples has been collected
 		if(++i == SAMPLES_HISTORY) {
-			voltage = 0;
-			for(i=0;i<SAMPLES_HISTORY; i++)
-				voltage += samples[i]*PROBE_TO_VBAT;
-			voltage = voltage/SAMPLES_HISTORY;
-
-			updateState(voltage);
+			updateState(voltage/SAMPLES_HISTORY);
 			i = 0;
+			voltage = 0;
 		}
 
-		chThdSleepMilliseconds(1000);
+		chThdSleepMilliseconds(800);
 	}
 }
 

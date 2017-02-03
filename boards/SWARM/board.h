@@ -163,7 +163,7 @@
  * PA7  - MTR_TRA_L                 (analog) comparator ADC
  * PA8  - PIN8                      (input floating).
  * PA9  - USB_VBUS                  (input floating) auto set by usb init
- * PA10 - USB_CONNECT               (input floating) auto set by usb init
+ * PA10 - USB_CONNECT               (output push-pull).
  * PA11 - USB_DM                    (input floating) auto set by usb init
  * PA12 - USB_DP                    (input floating) auto set by usb init
  * PA13 - SWDIO                     (alternate 0 pull-up).
@@ -173,22 +173,24 @@
 #define VAL_GPIOA_MODER             (PIN_MODE_ANALOG(GPIOA_VBAT_PROBE) |    \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_LED_L)   |   \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_L) |   \
+<<<<<<< HEAD
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_L)|   \
                                      PIN_MODE_INPUT(GPIOA_PIN4) |           \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_R) |   \
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_R)|\
                                      PIN_MODE_ANALOG(GPIOA_MTR_TRA_L) |     \
                                      PIN_MODE_INPUT(GPIOA_PIN8) |           \
-                                     PIN_MODE_INPUT(GPIOA_USB_VBUS) |       \
-                                     PIN_MODE_INPUT(GPIOA_USB_CONNECT) |    \
-                                     PIN_MODE_INPUT(GPIOA_USB_DM) |         \
-                                     PIN_MODE_INPUT(GPIOA_USB_DP) |         \
+                                     PIN_MODE_ANALOG(GPIOA_USB_VBUS) |       \
+                                     PIN_MODE_OUTPUT(GPIOA_USB_CONNECT) |   \
+                                     PIN_MODE_ANALOG(GPIOA_USB_DM) |         \
+                                     PIN_MODE_ANALOG(GPIOA_USB_DP) |         \
                                      PIN_MODE_ALTERNATE(GPIOA_SWDIO) |      \
                                      PIN_MODE_ALTERNATE(GPIOA_SWCLK) |      \
                                      PIN_MODE_OUTPUT(GPIOA_DWM_SPI_CSn))
 #define VAL_GPIOA_OTYPER    0x00000000
 #define VAL_GPIOA_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
+<<<<<<< HEAD
                                      PIN_PUPDR_PULLDOWN(GPIOA_SWCLK)|       \
                                      PIN_PUPDR_PULLDOWN(GPIOA_MTR_PHASE_L)| \
                                      PIN_PUPDR_PULLDOWN(GPIOA_MTR_ENABLE_L)|\
@@ -209,7 +211,7 @@
  * PB0  - MTR_TRA_R                 (analog).
  * PB1  - LED_IR_C                  (output push-pull).
  * PB2  - PIN2                      (input floating).
- * PB3  - DWM_WAKEUP                (output push-pull).
+ * PB3  - DWM_WAKEUP                (input floating).
  * PB4  - PIN4                      (input floating).
  * PB5  - PIN5                      (input floating).
  * PB6  - PIN6                      (input floating).
@@ -226,7 +228,7 @@
 #define VAL_GPIOB_MODER             (PIN_MODE_ANALOG(GPIOB_MTR_TRA_R) |     \
                                      PIN_MODE_OUTPUT(GPIOB_LED_IR_C) |      \
                                      PIN_MODE_INPUT(GPIOB_PIN2) |           \
-                                     PIN_MODE_OUTPUT(GPIOB_DWM_WAKEUP) |    \
+                                     PIN_MODE_INPUT(GPIOB_DWM_WAKEUP) |    \
                                      PIN_MODE_INPUT(GPIOB_PIN4) |           \
                                      PIN_MODE_INPUT(GPIOB_PIN5) |           \
                                      PIN_MODE_INPUT(GPIOB_PIN6) |           \
@@ -247,7 +249,7 @@
 #define VAL_GPIOB_AFRL      0x00000000
 #define VAL_GPIOB_AFRH              (PIN_AFIO_AF(GPIOB_MPU_I2C_SCL, 4U) |   \
                                      PIN_AFIO_AF(GPIOB_MPU_I2C_SDA, 4U) |   \
-                                     PIN_AFIO_AF(GPIOB_LED_SPI_CK, 5U) |    \
+                                     PIN_AFIO_AF(GPIOB_LED_SPI_CK, 5U)  |   \
                                      PIN_AFIO_AF(GPIOB_LED_SPI_DO, 5U))
 
 /*
