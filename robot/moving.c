@@ -15,7 +15,7 @@ static THD_WORKING_AREA(working_area_moving_thd, 128);
 static THD_FUNCTION(moving_thd, arg) {
 	(void) arg;
 	// We update robot position goal every 50 milliseconds
-	const int UPDATE_SUB_MS = 50; 
+	const int UPDATE_GOAL_MS = 50; 
 	const int UPDATE_TRAJ = 20; // * 50ms = 1s
 	int pt = 0, npts = 0;
 
@@ -25,21 +25,21 @@ static THD_FUNCTION(moving_thd, arg) {
 	 * it modifies on a periodic basis the  dist_goal and angle_goal values
 	 * so that the robot moves to the next position
 	 */
-	npts = update_main_coordinates();
+	npts = compute_traj();
 	for (pt = 0; pt < npts; pt++) {
 		if (pt % UPDATE_TRAJ == 0) {
-			npts = update_main_coordinates();
+			npts = compute_traj();
 		}
 		// dist/angle error offset to add to next commands
 		update_position();
 		// update distance and angle goals
 		if (npts - pt < ADVANCE_TIME) {
-			update_sub_coordinates();
+			update_goal();
 		}
 		// Resetting enslavement error variables
 		begin_new_asser();
 
-		chThdSleepMilliseconds(UPDATE_SUB_MS);
+		chThdSleepMilliseconds(UPDATE_GOAL_MS);
 	}
 }
 

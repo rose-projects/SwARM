@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "coordination.h"
 #include "wheel_constants.h"
 #include "asser.h"
@@ -6,18 +8,16 @@
 #include "radiocomms.h"
 #include "dance.h"
 
-#include <math.h>
-
 // return 1 if x >= 0, -1 otherwise
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
 volatile int dist_goal = 0;        // PID
 volatile int angle_goal = 0;       // PID->tick diff: 0 is straigt, 246 is Pi/2
-volatile int last_angle_error = 0; // computed in position.c
-volatile int last_dist_error = 0;  // computed in position.c
+int last_angle_error = 0;          // computed in position.c
+int last_dist_error = 0;           // computed in position.c
 
-double orientation = 0;   // orientation of the robot in rad
-int x_pos = 0, y_pos = 0; // last measured position
+double orientation = 0;            // orientation of the robot in rad
+int x_pos = 0, y_pos = 0;          // last measured position
 
 int pt = 0;                        // current sub point
 
@@ -37,7 +37,7 @@ int dbtandep[2], dbtandest[2];
 #endif // DEBUG
 
 // Called once to set the destination, return the number of points
-int update_main_coordinates(void)
+int compute_traj(void)
 {
 	int j; // loop index
 	int tmp1[2], tmp2[2], tmp3[2], tmp4[2]; // possible circles
@@ -54,7 +54,7 @@ int update_main_coordinates(void)
 	int dest_tan2[2];                 // (tandest[] - Xdest)^2
 	uint16_t date = 0;
 
-	pt = 1;
+	pt = 0;
 
 	xdep = x_pos;
 	ydep = y_pos;
@@ -262,7 +262,7 @@ int update_main_coordinates(void)
 }
 
 // Update distance and angle goals: called every 50ms
-void update_sub_coordinates(void) {
+void update_goal(void) {
 	if (pt <= depnpts) {
 		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
