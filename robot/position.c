@@ -8,6 +8,11 @@
 #include "asser.h"
 #include "coordination.h"
 
+#define TRUST_DWM 0.8
+
+volatile int x_pos_update;
+volatile int y_pos_update;
+
 // Update position according to the coding wheels
 // The calculation depends on wether we are rotating to the left or to the right
 
@@ -37,6 +42,10 @@ void update_position(){
 	// Calculating last coordinates of the robot
 	x_pos += distance * cos(orientation);
 	y_pos += distance * sin(orientation);
+
+	x_pos_update += distance * cos(orientation);
+	y_pos_update += distance * sin(orientation);
+
 	last_dist_error = dist_error;
 	last_angle_error = angle_error;
 }
@@ -60,11 +69,16 @@ static THD_FUNCTION(fusion_thd, arg) {
 		// 0,0 is the special code for no data
 		if(radioData.x != 0 && radioData.y != 0) {
 
+			chSysLockFromISR();
 			// position fusion : mean with decawave
-			real_x_pos = (radioData.x + old_x_pos) / 2;
-			real_y_pos = (radioData.y + old_y_pos) / 2;
-			real_x_pos += distance * cos(orientation);
-			real_y_pos += distance * sin(orientation);
+			real_x_pos = ((TRUST_DWM * radioData.x) + ((1 - TRUST_DWM) * old_x_pos)) / 2;
+			real_y_pos = ((TRUST_DWM * radioData.y) + ((1 - TRUST_DWM) * old_y_pos)) / 2;
+			
+			real_x_pos += x_pos_update;
+			real_y_pos += y_pos_update;
+			
+			x_pos_update = 0;
+			y_pos_update = 0;
 
 			// backup position for next message
 			old_x_pos = x_pos;
@@ -73,6 +87,8 @@ static THD_FUNCTION(fusion_thd, arg) {
 			// update real position
 			x_pos = real_x_pos;
 			y_pos = real_y_pos;
+
+			chSysUnlockFromISR();
 		}
 	}
 }
