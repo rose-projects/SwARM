@@ -1,19 +1,21 @@
 #include "ch.h"
 #include "chvt.h"
 #include "chevents.h"
+#include "chprintf.h"
 
-#include "exticonf.h"
 #include "usbconf.h"
+#include "exticonf.h"
 #include "../shared/decafunctions.h"
 #include "../shared/decadriver/deca_device_api.h"
 #include "../shared/decadriver/deca_regs.h"
 #include "../shared/radioconf.h"
 #include "nonvolatile.h"
 #include "robot.h"
-#include "battery.h"
 
 // event triggered when new robot locations are available
 EVENTSOURCE_DECL(radioEvent);
+// event triggered when payload has been sent and robot's answer received
+EVENTSOURCE_DECL(payloadEvent);
 
 // RX/TX buffer
 #define RADIO_BUF_LEN 100
@@ -32,6 +34,7 @@ static int sbConnected = 0;
 // master beacon specific :
 static uint8_t sessionID; // session ID, randomly generated ID at each startup of the MB
 static int restartMB = 0; // soft reset for master beacon radio task
+static uint16_t date = 0;
 
 static void parseSOF(int sofLength) {
 	int i;
@@ -45,10 +48,10 @@ static void parseSOF(int sofLength) {
 	           || ((radioBuffer[3] & 0x02) != 0 && deviceUID == 254);
 
 	// retrieve active robots list, for ranging
-	for(i=4; i < sofLength; i++) {
-		robotIDs[i-4] = radioBuffer[i];
+	for(i=6; i < sofLength; i++) {
+		robotIDs[i-6] = radioBuffer[i];
 	}
-	robotIDs[sofLength - 4] = 0;
+	robotIDs[sofLength - 6] = 0;
 }
 
 static void answerBeaconRead(void) {
@@ -68,14 +71,11 @@ static void answerBeaconRead(void) {
 static void synchronizeSlaveBeacon(void) {
 	int ret;
 
-	// listen to master beacon
-	switchToChannel(MB_CHANNEL);
-	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
-
 	// clear distances as they will be outdated
 	for(ret = 0; ret < MAX_CONNECTED_ROBOTS; ret++)
 		robots[ret].mbDist = 0;
 
+	dwt_setrxtimeout(SYNC_RX_TIMEOUT);
 	sofTS = -1;
 	while(sofTS == -1) {
 		if((ret = decaReceive(RADIO_BUF_LEN, radioBuffer, DWT_START_RX_IMMEDIATE)) < 0) {
@@ -93,6 +93,7 @@ static void synchronizeSlaveBeacon(void) {
 	dwt_setrxtimeout(RX_TIMEOUT);
 }
 
+// measure the distance from the beacon to a robot and send some data if needed
 static int rangeRobot(int robotUID, int dataLength) {
 	int ret;
 
@@ -152,11 +153,8 @@ static int slaveBeaconRead(int msgID, int addr, uint64_t timeInFrame) {
 }
 
 static void slaveBeaconTask(void) {
-	int ret;
+	int ret, i, timeInFrame;
 	int beaconReadTime = deviceUID == 253 ? TIMESLOT_LENGTH : TIMESLOT_LENGTH*2;
-
-	// only slave beacons are battery powered
-	initBattery();
 
 	dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
 
@@ -166,11 +164,10 @@ static void slaveBeaconTask(void) {
 			synchronizeSlaveBeacon();
 		} else {
 			ret = slaveBeaconRead(SOF_MSG_ID, 0xFF, FRAME_LENGTH);
-			if(ret > 0)
+			if(ret > 0) {
 				parseSOF(ret);
-
-			// if something went wrong, restart synchronisation
-			if(sbConnected == 0 || ret < 0) {
+			} else {
+				// if something went wrong, restart synchronisation
 				sofTS = -1;
 				chThdSleepMilliseconds(FRAME_LENGTH - 4);
 				continue;
@@ -181,24 +178,20 @@ static void slaveBeaconTask(void) {
 		if(slaveBeaconRead(BEACON_READ_MSG_ID, deviceUID, beaconReadTime) > 0) {
 			answerBeaconRead();
 		} else { // no valid message received
-			chThdSleepMilliseconds(FRAME_LENGTH - 4);
+			chThdSleepMilliseconds(FRAME_LENGTH - TIMESLOT_LENGTH*3);
 			continue;
 		}
 
-		// start ranging if any robot is registered
-		if(robotIDs[0] != 0) {
-			int i = 0;
-			int timeInFrame = 3*TIMESLOT_LENGTH + 2*beaconReadTime;
+		// range all connected robots
+		i = 0;
+		timeInFrame = 3*TIMESLOT_LENGTH + beaconReadTime;
 
-			switchToChannel(deviceUID == 253 ? SB1_CHANNEL : SB2_CHANNEL);
-			while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0 && robotIDs[i] <= MAX_CONNECTED_ROBOTS) {
-				dwt_setdelayedtrxtime((sofTS  + timeInFrame*MS_TO_DWT) >> 8);
-				robots[robotIDs[i] - 1].mbDist = rangeRobot(robotIDs[i], 0);
+		while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0 && robotIDs[i] <= MAX_CONNECTED_ROBOTS) {
+			dwt_setdelayedtrxtime((sofTS  + timeInFrame*MS_TO_DWT) >> 8);
+			robots[robotIDs[i] - 1].mbDist = rangeRobot(robotIDs[i], 0);
 
-				timeInFrame += TIMESLOT_LENGTH;
-				i++;
-			}
-			switchToChannel(MB_CHANNEL);
+			timeInFrame += 3*TIMESLOT_LENGTH;
+			i++;
 		}
 	}
 }
@@ -227,23 +220,29 @@ static void sendSOF(void) {
 	radioBuffer[1] = 0xFF;
 	radioBuffer[2] = sessionID;
 	radioBuffer[3] = sbConnected;
+	radioBuffer[4] = date;
+	radioBuffer[5] = date >> 8;
 
 	while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
-		radioBuffer[i + 4] = robotIDs[i];
+		radioBuffer[i + 6] = robotIDs[i];
 		i++;
 	}
 
 	if(sofTS == -1) // on first frame, send start-of-frame immediately
-		decaSend(i + 4, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
+		decaSend(i + 6, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
 	else // send start-of-frame precisely FRAME_LENGTH ms after last start-of-frame
-		masterBeaconSend(FRAME_LENGTH, 0, i + 4);
+		masterBeaconSend(FRAME_LENGTH, 0, i + 6);
 
 	sofTS = getTXtimestamp();
 	sofSystime = chVTGetSystemTime();
+	chSysLock(); // make sure increment is atomic
+	date++;
+	chSysUnlock();
 }
 
+// retrieve distances collected by a slave beacon
 static void readSlaveBeacon(int beaconID) {
-	int ret, i, j=0;
+	int ret, dist, i, j=0;
 	radioBuffer[0] = BEACON_READ_MSG_ID;
 	radioBuffer[1] = beaconID;
 
@@ -251,12 +250,13 @@ static void readSlaveBeacon(int beaconID) {
 	if(ret > 0 && radioBuffer[0] == BEACON_READ_MSG_ID && radioBuffer[1] == 0) {
 		// read and store distances
 		for(i=2; i<ret; i+=2) {
+			dist = radioBuffer[i] + (radioBuffer[i + 1] << 8);
 			if(beaconID == 253) {
-				robots[robotIDs[j] - 1].sb1Dist = radioBuffer[i] + (radioBuffer[i + 1] << 8);
-				robots[robotIDs[j] - 1].sb1Dist += robots[robotIDs[j] - 1].offsets->sb1;
+				dist = dist*robots[robotIDs[j] - 1].offsets->sb1Coeff/1000;
+				robots[robotIDs[j] - 1].sb1Dist = dist + robots[robotIDs[j] - 1].offsets->sb1;
 			} else {
-				robots[robotIDs[j] - 1].sb2Dist = radioBuffer[i] + (radioBuffer[i + 1] << 8);
-				robots[robotIDs[j] - 1].sb2Dist += robots[robotIDs[j] - 1].offsets->sb2;
+				dist = dist*robots[robotIDs[j] - 1].offsets->sb2Coeff/1000;
+				robots[robotIDs[j] - 1].sb2Dist = dist + robots[robotIDs[j] - 1].offsets->sb2;
 			}
 			j++;
 		}
@@ -275,6 +275,7 @@ static void readSlaveBeacon(int beaconID) {
 	}
 }
 
+// ask for any robot to join the system
 static void pollNewRobot(int nextIndex) {
 	int id = 0, ret, i;
 	// find an available ID
@@ -317,8 +318,10 @@ static void masterBeaconTask(void) {
 	// clear restartMB flag
 	restartMB = 0;
 
-	// generate a session ID
+	// wait a bit for serial over USB to be available
 	chThdSleepMilliseconds(500);
+
+	// generate a session ID
 	radioBuffer[0] = 0;
 	radioBuffer[1] = 0;
 	decaSend(2, radioBuffer, 1, DWT_START_TX_IMMEDIATE);
@@ -338,24 +341,37 @@ static void masterBeaconTask(void) {
 		// compute robots locations if all the beacons are available
 		if(sbConnected == 0x03) {
 			trilateralizeRobots();
-			// send radio event (new distances and robots locations available)
-		    chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
+		} else {
+			for (i = 0; i < MAX_CONNECTED_ROBOTS; i++) {
+				robots[i].x = 0;
+				robots[i].y = 0;
+			}
 		}
+
+		// send radio event (new distances and robots locations available)
+		chEvtBroadcastFlags(&radioEvent, EVENT_MASK(0));
 
 		// send data to the robots and measure distances
 		dwt_setrxaftertxdelay(POLL_TO_RESP_RX);
 		i=0;
 		while(i < MAX_CONNECTED_ROBOTS && robotIDs[i] != 0) {
-			dwt_setdelayedtrxtime((sofTS  + (i + 3)*TIMESLOT_LENGTH*MS_TO_DWT) >> 8);
+			dwt_setdelayedtrxtime((sofTS  + (i + 1)*3*TIMESLOT_LENGTH*MS_TO_DWT) >> 8);
 			robots[robotIDs[i] - 1].mbDist =
-				rangeRobot(robotIDs[i], serializeRobotData(radioBuffer, robotIDs[i]));
+				rangeRobot(robotIDs[i], serializeRobotData(&radioBuffer[2], robotIDs[i]));
 			// distance = 0 means robot didn't respond or an error happened
 			if(robots[robotIDs[i] - 1].mbDist == 0) {
 				printf("robot %d disconnected\n", robotIDs[i]);
 				robotIDs[i] = 0; // mark robot as disconnected
 			} else {
+				robots[robotIDs[i] - 1].mbDist = robots[robotIDs[i] - 1].mbDist*robots[robotIDs[i] - 1].offsets->mbCoeff/1000;
 				robots[robotIDs[i] - 1].mbDist += robots[robotIDs[i] - 1].offsets->mb;
 				robots[robotIDs[i] - 1].status = radioBuffer[4];
+				// if additional payload was sent to the robot
+				if(robotIDs[i] == payloadID) {
+					payloadID = 0;
+					// signal that payload has been successfully sent
+					chEvtBroadcastFlags(&payloadEvent, EVENT_MASK(0));
+				}
 			}
 			i++;
 		}
@@ -401,19 +417,14 @@ void dumpConnectedDevices(BaseSequentialStream *chp, int argc, char **argv) {
 	(void) argc;
 	(void) argv;
 
-	if(deviceUID != 0) {
-		chprintf(chp, "available only on master beacon\n");
-		return;
-	}
-
 	if(sbConnected & 0x01)
-		chprintf(chp, "Slave beacon 1 ... connected\n");
+		chprintf(chp, "SB 1 ... connected\n");
 	else
-		chprintf(chp, "Slave beacon 1 ... NOT connected\n");
+		chprintf(chp, "SB 1 ... NOT connected\n");
 	if(sbConnected & 0x02)
-		chprintf(chp, "Slave beacon 2 ... connected\n");
+		chprintf(chp, "SB 2 ... connected\n");
 	else
-		chprintf(chp, "Slave beacon 2 ... NOT connected\n");
+		chprintf(chp, "SB 2 ... NOT connected\n");
 
 	for(i=0; i<MAX_CONNECTED_ROBOTS; i++)
 		if(robotIDs[i] != 0)
@@ -424,7 +435,16 @@ void startRadio(void) {
 	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO+1, radioThread, NULL);
 }
 
+void resetDate(void) {
+	date = 0;
+}
+
 void restartRadio(void) {
+	int j;
+
 	restartMB = 1;
+	for(j=0; j<MAX_CONNECTED_ROBOTS; j++)
+		robotIDs[j] = 0;
+
 	chEvtBroadcastFlags(&deca_event, EVENT_MASK(0));
 }
