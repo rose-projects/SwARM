@@ -11,27 +11,6 @@ EVENTSOURCE_DECL(deca_event);
 volatile unsigned int tick_l = 0;
 volatile unsigned int tick_r = 0;
 
-static virtual_timer_t l_vt;
-static unsigned int cnt_tick_l = 1;
-static virtual_timer_t r_vt;
-static unsigned int cnt_tick_r = 1;
-
-static void l_cb(void * arg){
-    (void) arg;
-
-    chSysLockFromISR();
-    cnt_tick_l = 1;
-    chSysUnlockFromISR();
-}
-
-static void r_cb(void * arg){
-    (void) arg;
-
-    chSysLockFromISR();
-    cnt_tick_r = 1;
-    chSysUnlockFromISR();
-}
-
 /* Decawave EXTI callback */
 static void decaIRQ_cb(EXTDriver *extp, expchannel_t channel) {
     (void)extp;
@@ -45,45 +24,27 @@ static void decaIRQ_cb(EXTDriver *extp, expchannel_t channel) {
 static void Lcoder_cb(EXTDriver *extp, expchannel_t channel) {
     (void)extp;
     (void)channel;
-    static unsigned int cnt = 0;
 
-    chSysLockFromISR();
-    if(cnt_tick_l){
-        cnt_tick_l = 0;
-        if(cnt%2 == 0){
-            if(cmd_left >=0){
-                tick_l++;
-            }
-            else{
-                tick_l--;
-            }
-        }
-        cnt++;
-        chVTSetI(&l_vt, 2, l_cb, NULL);
+    if(up_l){
+        down(0);
     }
-    chSysUnlockFromISR();
+    else{
+        up(0);
+    }
+    tick_l++;
 }
 /* Right encoder wheel EXTI callback */
 static void Rcoder_cb(EXTDriver *extp, expchannel_t channel) {
     (void)extp;
     (void)channel;
-    static unsigned int cnt = 0;
 
-    chSysLockFromISR();
-    if(cnt_tick_r){
-        cnt_tick_r = 0;
-        if(cnt%2 == 0){
-            if(cmd_right >=0){
-                tick_r++;
-            }
-            else{
-                tick_r--;
-            }
-        }
-        cnt++;
-        chVTSetI(&r_vt, 2, r_cb, NULL);
+    if(up_r){
+        down(1);
     }
-    chSysUnlockFromISR();
+    else{
+        up(1);
+    }
+    tick_r++;
 }
 
 // external interrupts configuration

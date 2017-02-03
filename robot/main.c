@@ -154,6 +154,9 @@ int main(void) {
     palSetLine(LINE_MTR_LED_R);
     palSetLine(LINE_MTR_LED_L);
 
+    up(0);
+    up(1);
+
     shellInit();
 
     chThdSleepMilliseconds(2000);
