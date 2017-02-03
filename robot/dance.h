@@ -1,6 +1,9 @@
 #ifndef DANCE_H
 #define DANCE_H
 
+/* change move before we reach the end to achieve fluid movement */
+extern const int ADVANCE_TIME;
+
 /* empty dance point storages in RAM */
 void clearStoredData(void);
 /* write dance downloaded in RAM to the flash */

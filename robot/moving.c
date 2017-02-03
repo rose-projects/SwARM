@@ -6,6 +6,7 @@
 #include "asser.h"
 #include "position.h"
 #include "coordination.h"
+#include "dance.h"
 
 // Moving control thread working area
 static THD_WORKING_AREA(working_area_moving_thd, 128);
@@ -16,7 +17,7 @@ static THD_FUNCTION(moving_thd, arg) {
 	// We update robot position goal every 50 milliseconds
 	const int UPDATE_SUB_MS = 50; 
 	const int UPDATE_TRAJ = 20; // * 50ms = 1s
-	int i = 0, npts = 0;
+	int pt = 0, npts = 0;
 
 	/* 
 	 * Thread routine
@@ -24,16 +25,17 @@ static THD_FUNCTION(moving_thd, arg) {
 	 * it modifies on a periodic basis the  dist_goal and angle_goal values
 	 * so that the robot moves to the next position
 	 */
-	npts = updatemaincoordinates();
-	for (i = 0; i < npts; i++) {
-		if (i % UPDATE_TRAJ == 0) {
-			npts = updatemaincoordinates();
-			i = 0;
+	npts = update_main_coordinates();
+	for (pt = 0; pt < npts; pt++) {
+		if (pt % UPDATE_TRAJ == 0) {
+			npts = update_main_coordinates();
 		}
 		// dist/angle error offset to add to next commands
 		update_position();
 		// update distance and angle goals
-		updatesubcoordinates();
+		if (npts - pt < ADVANCE_TIME) {
+			update_sub_coordinates();
+		}
 		// Resetting enslavement error variables
 		begin_new_asser();
 
@@ -44,7 +46,7 @@ static THD_FUNCTION(moving_thd, arg) {
 // To be called from main to start the enslavement with some distance and goal
 void start_moving(){
 	// Starting the monitoring threads
-	(void)chThdCreateStatic(working_area_moving_thd, \
+	(void)chThdCreateStatic(working_area_moving_thd,
 		sizeof(working_area_moving_thd),
 		NORMALPRIO, moving_thd, NULL);
 }

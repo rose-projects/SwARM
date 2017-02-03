@@ -8,9 +8,12 @@
 #include "RTT/SEGGER_RTT.h"
 #include "radiocomms.h"
 #include "dance.h"
+#include "coordination.h"
 
 #define MAX_MOVE_POINTS 64
 #define MAX_COLOR_POINTS 110
+
+const int ADVANCE_TIME = 2; // in 0.1s
 
 // RAM buffers storing data to be written in flash
 struct move movesBuffer[MAX_MOVE_POINTS];
@@ -113,7 +116,6 @@ static THD_FUNCTION(sequencerThread, th_data) {
 
 	(void) th_data;
 	chRegSetThreadName("Sequencer");
-	chEvtRegisterMask(&radioEvent, &evt_listener, EVENT_MASK(0));
 
 	while(1) {
 		// if dance is enabled
@@ -122,19 +124,28 @@ static THD_FUNCTION(sequencerThread, th_data) {
 
 			// find the next point to execute
 			i = 0;
-			while(i < danceMovesCnt && danceMoves[i].date < date)
+			// + ADVANCE_TIME to load the next point in advance
+			while(i < danceMovesCnt &&
+			      danceMoves[i].date + ADVANCE_TIME < date)
+			{
 				i++;
+			}
 			// if found, set as the current goal
-			if(i < danceMovesCnt)
+			if(i < danceMovesCnt && &danceMoves[i] != currentMove) {
 				currentMove = &danceMoves[i];
+				update_main_coordinates();
+			}
 
 			// find the next color to display
 			i = 0;
 			while(i < danceColorsCnt && danceColors[i].date < date)
 				i++;
 			// if found and we have to start fading, set as the current goal
-			if(i < danceColorsCnt && (danceColors[i].date - danceColors[i].fadeTime) <= date)
+			if(i < danceColorsCnt &&
+			   (danceColors[i].date - danceColors[i].fadeTime) <= date)
+			{
 				currentColor = &danceColors[i];
+			}
 		} else {
 			currentColor = &danceColors[0];
 			currentMove = &danceMoves[0];

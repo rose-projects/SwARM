@@ -231,14 +231,18 @@ static THD_FUNCTION(radioThread, th_data) {
 	}
 }
 
-uint16_t getDate(void) {
+uint16_t getDateMs(void) {
 	uint16_t dateSinceSOF;
 
-	if(sofSystime == 0xFFFFFFFF)
+	if (sofSystime == 0xFFFFFFFF)
 	 	return 0;
 
-	dateSinceSOF = chVTTimeElapsedSinceX(sofSystime)*10/CH_CFG_ST_FREQUENCY;
-	return date*512/499.2 + dateSinceSOF;
+	dateSinceSOF = chVTTimeElapsedSinceX(sofSystime)*1000/CH_CFG_ST_FREQUENCY;
+	return date*100*512/499.2 + dateSinceSOF;
+}
+
+uint16_t getDate(void) {
+	return getDate() / 100;
 }
 
 void startRadio(void) {

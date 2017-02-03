@@ -24,7 +24,10 @@ extern event_source_t radioEvent;
 /* initialize decawave module and start radio communication thread */
 void startRadio(void);
 
+/* get date (for dance sync) in ms (returns 0 if the radio in not synchronized) */
+uint16_t getDateMs(void);
+
 /* get date (for dance sync) in 0.1s (returns 0 if the radio in not synchronized) */
 uint16_t getDate(void);
 
-#endif
+#endif // RODIOCOMMS_H

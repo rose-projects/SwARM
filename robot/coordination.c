@@ -19,7 +19,8 @@ volatile int last_dist_error = 0;  // computed in position.c
 double orientation = 0;   // orientation of the robot in rad
 int x_pos = 0, y_pos = 0; // last measured position
 
-static int i;                               // i-th point of the trajectory
+int pt = 0;                        // current sub point
+
 static int xdep, ydep, xdest, ydest;        // make the parameters global
 static int rdep, rdest, npts;
 static float oridest;
@@ -36,7 +37,7 @@ int dbtandep[2], dbtandest[2];
 #endif // DEBUG
 
 // Called once to set the destination, return the number of points
-int updatemaincoordinates(void)
+int update_main_coordinates(void)
 {
 	int j; // loop index
 	int tmp1[2], tmp2[2], tmp3[2], tmp4[2]; // possible circles
@@ -53,7 +54,7 @@ int updatemaincoordinates(void)
 	int dest_tan2[2];                 // (tandest[] - Xdest)^2
 	uint16_t date = 0;
 
-	i = 1;
+	pt = 1;
 
 	xdep = x_pos;
 	ydep = y_pos;
@@ -235,7 +236,7 @@ int updatemaincoordinates(void)
 	destlen = rdest * angledest;
 	totlen = deplen + straightlen + destlen;
 
-	date = getDate();
+	date = getDateMs();
 	npts = (currentMove->date - date) / 50;
 	depnpts = (deplen/totlen) * npts;
 	if (depnpts == 0) {
@@ -261,11 +262,11 @@ int updatemaincoordinates(void)
 }
 
 // Update distance and angle goals: called every 50ms
-void updatesubcoordinates(void) {
-	if (i <= depnpts) {
+void update_sub_coordinates(void) {
+	if (pt <= depnpts) {
 		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
-	} else if (i <= depnpts + straightnpts) {
+	} else if (pt <= depnpts + straightnpts) {
 		dist_goal += straightlen / straightnpts;
 	} else {
 		angle_goal += destleft*angledest/(U_RAD*destnpts);
@@ -275,5 +276,5 @@ void updatesubcoordinates(void) {
 	angle_goal += last_angle_error;
 	dist_goal += last_dist_error;
 
-	i++;
+	pt++;
 }
