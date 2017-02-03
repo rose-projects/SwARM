@@ -2,21 +2,13 @@
 #include "hal.h"
 
 // number of LED module to drive, from 1 to 8
-#define NB_LED 2
+#define NB_LED 1
 // correction coefficients to get closer to the target color
 #define R_COEFF 1
-#define G_COEFF 0.8
-#define B_COEFF 0.8
+#define G_COEFF 0.9
+#define B_COEFF 0.6
 
-/*
- * data  = [start][LED1]...[LEDn][end]
- * start = 0x00 : 32 bits
- * LED   = [brightness : 0xE0(204) + value : 8bits]
- *         [blue : 8bits][green : 8 bits][red : 8 bits]
- * end   = 0xFF : n/2 bits
- * (Note : all data are inverted because of the LED's level shifter)
- */
-// set the LEDs at the same color (HSV color space)
+// set the status LEDs color
 void setLEDs(uint8_t r, uint8_t g, uint8_t b) {
 	int i;
 	// data to send to SPI
@@ -26,7 +18,7 @@ void setLEDs(uint8_t r, uint8_t g, uint8_t b) {
 	spiSend(&SPID2, 4, data);
 
 	// generate data for one LED
-	data[0] = 0;
+	data[0] = 0x00;
 	// inverse data to compensate level shifter
 	data[1] = ~((uint8_t)(b*B_COEFF));
 	data[2] = ~((uint8_t)(g*G_COEFF));
