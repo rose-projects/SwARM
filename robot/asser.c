@@ -35,14 +35,14 @@ static THD_FUNCTION(asser_thd, arg) {
     const unsigned int ASSER_FREQ_HZ = 200;
     // ASSER THREADS sleep time in ms
     const unsigned int ASSER_THD_SLEEP = (1000/ASSER_FREQ_HZ);
-    
+
     // PID coefficients for angle and distance
-    const double P_ANGLE = 1.33333333;
-    const double I_ANGLE = 0.03333333;
-    const double D_ANGLE = 0.8;
-    const double P_DIST = 3.33333333;
-    const double I_DIST = 0.0001;
-    const double D_DIST = 9;
+    const double P_ANGLE = 2;
+    const double I_ANGLE = 0.002;
+    const double D_ANGLE = 5;
+    const double P_DIST = 1.3333333;
+    const double I_DIST = 0.002;
+    const double D_DIST = 5;
 
     int cmd_left; // left wheel PWM command
     int cmd_right; // right wheel PWM command
@@ -79,43 +79,50 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_angle = P_ANGLE*angle_error + I_ANGLE*angle_error_sum \
                     + D_ANGLE*angle_error_delta;
 
-        /*
-         * Limiting all cmd values so that they don't exceed the maximum value
-         * that the pwmEnableChannel can interpret without ambiguosity
-         * The maximmun value they can take is 200 so PWM_MAX should be less 
-         * than 200
-         * Also if the value is negative, the wheel they control will move in
-         * reverse
-         */
-
         // Calculating cmd values
         cmd_left = cmd_dist - cmd_angle;
         cmd_right = cmd_dist + cmd_angle;
 
-        // Standardizing command values regarding their sign
-        if(cmd_left < 0){
-            cmd_left = 0;
-        }
-        if(cmd_right < 0){
-            cmd_right = 0;
-        }
+        /* 
+         * Calculating motor commands value
+         * Firt we have the basic sum and difference
+         * Then we normalize the values so obtained so that they don't exceed
+         * PWM_MAX/2 and are above -PWM_MAX/2 and mimic the truncations so that
+         * the values are still "proportionate" after normalization
+         */
 
+        // Standardizing command values regarding their sign
         int cmd_max = MAX(cmd_right, cmd_left);
-        int offset = cmd_max - MIN(cmd_max, PWM_MAX);
+        int cmd_min = MIN(cmd_right, cmd_left);
+        int offset_pos = 0;
+        int offset_neg = 0;
 
-        cmd_left = cmd_left - offset;
-        cmd_right = cmd_right - offset;
+        if(cmd_max > 200){
+            offset_pos = cmd_max - PWM_MAX/2;
+        }
 
-        // Standardizing command values regarding their sign
-        if(cmd_left < 0){
+
+        if(cmd_min < -200){
+            offset_neg = cmd_min + PWM_MAX/2;
+        }
+
+
+        cmd_left = cmd_left - offset_pos - offset_neg;
+        cmd_right = cmd_right - offset_pos - offset_neg;
+
+        if(cmd_left >= 0){
+            cmd_left = MIN(cmd_left, PWM_MAX/2);
+        }
+        else{ 
             cmd_left = 0;
         }
-        if(cmd_right < 0){
+
+        if(cmd_right >= 0){
+            cmd_right = MIN(cmd_right, PWM_MAX/2);
+        }
+        else{
             cmd_right = 0;
         }
-
-        cmd_left = MIN(cmd_left, PWM_MAX);
-        cmd_right = MIN(cmd_right, PWM_MAX);
 
         // Updating PWM signals
         setLpwm(cmd_left);
