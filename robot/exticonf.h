@@ -3,10 +3,10 @@
 
 #include "ch.h"
 
-// Events sources
-extern event_source_t deca_event; // sent on decawave IRQ rising edge
+// Events sources: sent on decawave IRQ rising edge
+extern event_source_t deca_event;
 
-/* enable external interrupts */
+// enable external interrupts
 void initExti(void);
 
-#endif
+#endif // EXTICONF_H
