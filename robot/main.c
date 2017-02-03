@@ -27,7 +27,10 @@ int main(void) {
 
     chThdSleepMilliseconds(3000);
 
-    dist_goal = 200;
+    up(0);
+    up(1);
+
+    dist_goal = 2000;
     angle_goal = 0;
 
     while (true)
