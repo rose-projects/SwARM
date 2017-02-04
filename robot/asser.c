@@ -30,13 +30,13 @@ static int angle_error_prev;
 // Enslavement calculations
 static THD_FUNCTION(asser_thd, arg) {
 	(void) arg;
-	const unsigned int ASSER_FREQ_HZ = 200;
+	const unsigned int ASSER_FREQ_HZ = 500;
 	const unsigned int ASSER_THD_SLEEP_MS = (1000/ASSER_FREQ_HZ);
 	
 	// PID coefficients for angle and distance
 	const double P_ANGLE = 2;
-	const double I_ANGLE = 0.002;
-	const double D_ANGLE = 5;
+	const double I_ANGLE = 0.0008;
+	const double D_ANGLE = 20;
 	const double P_DIST = 1.33333333;
 	const double I_DIST = 0.002;
 	const double D_DIST = 5;
@@ -111,13 +111,13 @@ static THD_FUNCTION(asser_thd, arg) {
 		if(cmd_left >= 0){
 			cmd_left = MIN(cmd_left, PWM_MAX/2);
 		} else{
-			cmd_left = MAX(cmd_left, -PWM_MAX/2);
+			cmd_left = 0;
 		}
 
 		if(cmd_right >= 0){
 			cmd_right = MIN(cmd_right, PWM_MAX/2);
 		} else{
-			cmd_right = MAX(cmd_right, -PWM_MAX/2);
+			cmd_right = 0;
 		}
 
 		printf("tick_l %d\r\n", tick_l);

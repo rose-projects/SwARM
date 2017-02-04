@@ -18,18 +18,20 @@ int main(void) {
 	chSysInit();
 
 	initExti();
-	initMotors();
+    initAsser();
 	initADC();
-	initSwarmShell();
+	//initSwarmShell();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 	palSetLine(LINE_MTR_LED_R);
 	palSetLine(LINE_MTR_LED_L);
 
+    angle_goal = 0;
+    dist_goal = 0;
 
 	chThdSleepMilliseconds(2000);
 
 	while (true){
-        swarmShellLife();
+        //swarmShellLife();
 		chThdSleepMilliseconds(500);
 	}
 }
