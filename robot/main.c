@@ -27,8 +27,8 @@ int main(void) {
 	//initLEDs();
 	initSequencer();
 
-	//startRadio();
-	start_moving();
+	startRadio();
+	//start_moving();
 	printf("Started!\n");
 
 	while(1)
