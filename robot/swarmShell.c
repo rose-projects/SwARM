@@ -13,6 +13,9 @@
 
 static RTTStream rttStream;  
 
+// This command sets left motor pwm
+// Ex: l 100 
+// Ex: l -100
 static void cmd_mtr_l_p(BaseSequentialStream *chp, int argc, char *argv[]) {
 
 	if ((argc == 0) || (argc > 1)){
@@ -28,6 +31,9 @@ static void cmd_mtr_l_p(BaseSequentialStream *chp, int argc, char *argv[]) {
 	return;
 }
 
+// This command sets right motor pwm
+// Ex: r 100 
+// Ex: r -100
 static void cmd_mtr_r_p(BaseSequentialStream *chp, int argc, char *argv[]) {
 
 	if ((argc == 0) || (argc > 1)){
@@ -43,6 +49,9 @@ static void cmd_mtr_r_p(BaseSequentialStream *chp, int argc, char *argv[]) {
 	return;
 }
 
+// This command prints out the status of the robot regarding the motors and the
+// wheels
+// Ex: s
 static void cmd_status(BaseSequentialStream *chp, int argc, char *argv[]) {
 
 	(void) argv;
@@ -59,6 +68,9 @@ static void cmd_status(BaseSequentialStream *chp, int argc, char *argv[]) {
 	return;
 }
 
+// This command prints out the medium value of ticks per second, calculated
+// in 10 seconds
+// Ex: tt
 static void cmd_test_ticks(BaseSequentialStream *chp, int argc, char *argv[]) {
 
 	(void) argv;
@@ -80,26 +92,12 @@ static void cmd_test_ticks(BaseSequentialStream *chp, int argc, char *argv[]) {
 	return;
 }
 
-static void cmd_asser_angle(BaseSequentialStream *chp, int argc, char *argv[]) {
-
-	(void) argv;
-
-	if (argc > 0){
-		chprintf(chp,"Usage: <command>\r\n");
-		return;
-	} else{
-		chprintf(chp, "Testing the asser on the wheels\r\n");
-		angle_goal = 492;
-	}
-	return;
-}
 
 static const ShellCommand commands[] = {
 	{"l", cmd_mtr_l_p},
 	{"r", cmd_mtr_r_p},
 	{"s", cmd_status},
 	{"tt", cmd_test_ticks},
-	{"aa", cmd_asser_angle},
 	{NULL, NULL}
 };
 
