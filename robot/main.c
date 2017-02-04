@@ -29,7 +29,7 @@ int main(void) {
 
 	//startRadio();
 	start_moving();
-	printf("C'est oui !\n");
+	printf("Started!\n");
 
 	while(1)
 		chThdSleepMilliseconds(500);

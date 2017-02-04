@@ -10,6 +10,7 @@
 
 #ifdef DEBUG_ACH
 #include "RTT/SEGGER_RTT.h"
+int dbori;
 #endif // DEBUG_ACH
 
 // Moving control thread working area
@@ -31,6 +32,9 @@ static THD_FUNCTION(moving_thd, arg) {
 	 */
 	npts = compute_traj();
 	for (pt = 0; pt < npts; pt++) {
+#ifdef DEBUG_ACH
+		printf("pt: %d\n", pt);
+#endif // DEBUG
 		if (pt % UPDATE_TRAJ == 0) {
 			npts = compute_traj();
 		}
@@ -40,7 +44,8 @@ static THD_FUNCTION(moving_thd, arg) {
 #else
 		printf("x_pos: %d\n", x_pos);
 		printf("y_pos: %d\n", y_pos);
-		printf("orientation: %d\n", orientation);
+		dbori = (int) orientation;
+		printf("orientation: %d\n", dbori);
 #endif // DEBUG_ACH
 
 		// update distance and angle goals
@@ -60,7 +65,9 @@ void start_moving(){
 	x_pos = 500;
 	y_pos = 300;
 	orientation = (3.1415*3)/2;
-	printf("start: x_pos: %d, y_pos: %d, orientation: %d\n");
+	dbori = (int) orientation;
+	printf("start: x_pos: %d, y_pos: %d, orientation: %d\n",
+		x_pos, y_pos, dbori);
 #endif // DEBUG_ACH
 
 	// Starting the monitoring threads
