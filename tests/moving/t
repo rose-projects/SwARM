@@ -1,0 +1,2 @@
+gcc -Og -lm test_coord.c
+

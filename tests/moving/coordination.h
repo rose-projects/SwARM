@@ -1,12 +1,11 @@
 #ifndef COORDINATION_H
 #define COORDINATION_H
 
-void update_main_coordinates(int x_goal, int y_goal, float arrival_angle,
-                             int r_dep, int r_goal, int n_pts);
-void update_sub_coordinates(void);
+int compute_traj(void);
+void update_goal(void);
 
-extern volatile int last_angle_error;
-extern volatile int last_dist_error;
+extern int last_angle_error;
+extern int last_dist_error;
+extern int pt; // current point sub point
 
 #endif // COORDINATION_H
-

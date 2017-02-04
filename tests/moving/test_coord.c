@@ -6,30 +6,26 @@
 #include "wheel_constants.h"
 
 extern int x_pos, y_pos;
-extern double orientation;
+extern float orientation;
 extern int angle_goal, dist_goal;
-extern int db_pt_tan_dep[2], db_pt_tan_dest[2];
+extern int dbtandep[2], dbtandest[2];
 
 int
 main(int argc, char *argv[])
 {
-	int x, y;
+	(void) argv;
 
-	if (argc != 2) {
-		printf("Usage: ./a.out <number of points>\n");
+	if (argc != 1) {
+		printf("Usage: ./a.out\n");
 		return -1;
 	}
 
 	x_pos = 100;
 	y_pos = 100;
-
-	x = x_pos;
-	y = y_pos;
 	orientation = M_PI_2;
 
-
-	update_main_coordinates(200, 200, 120, 50, 20, atoi(argv[1]));
-	printf("%d %d\n", db_pt_tan_dep[0], db_pt_tan_dep[1]);
-	printf("%d %d\n", db_pt_tan_dest[0], db_pt_tan_dest[1]);
+	compute_traj();
+	printf("%d %d\n", dbtandep[0], dbtandep[1]);
+	printf("%d %d\n", dbtandest[0], dbtandest[1]);
 	return 0;
 }
