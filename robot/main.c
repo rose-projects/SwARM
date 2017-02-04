@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 #include "exticonf.h"
-#include "compdriver.h"
+#include "adcconf.h"
 #include "pwmdriver.h"
 #include "motors.h"
 #include "asser.h"
@@ -139,15 +139,12 @@ int main(void) {
 	chSysInit();
 
 	initExti();
-	initComparators();
 	initMotors();
+	initADC();
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 	RTTObjectInit(&rttStream, 0);
 	palSetLine(LINE_MTR_LED_R);
 	palSetLine(LINE_MTR_LED_L);
-
-	up(0);
-	up(1);
 
 	shellInit();
 
