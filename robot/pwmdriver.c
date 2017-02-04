@@ -20,7 +20,7 @@ void initPWM(void) {
 	TIM15->PSC   = CLK_KHZ/(PWM_FREQUENCY_KHZ * PWM_MAX) - 1; // setup prescaler
 	TIM15->CCR1  = PWM_MAX/2; // turn off motors at startup
 	TIM15->CCR2  = PWM_MAX/2; // turn off motors at startup
-	TIM15->CCER  = 0x13;      // enable CC2 and CC1
+	TIM15->CCER  = 0x31;      // enable CC2 and CC1
 	TIM15->EGR   = 0x01;      // generate an update event to load the setup values
 	TIM15->CR1   = 0x81;      // enable counter
 
@@ -32,7 +32,7 @@ void initPWM(void) {
 	TIM16->ARR   = PWM_MAX - 1;
 	TIM16->PSC   = CLK_KHZ/(PWM_FREQUENCY_KHZ * PWM_MAX) - 1; // setup prescaler
 	TIM16->CCR1  = PWM_MAX/2; // turn off motors at startup
-	TIM16->CCER  = 0x01;      // enable CC1
+	TIM16->CCER  = 0x03;      // enable CC1
 	TIM16->CNT   = 0;
 	TIM16->EGR   = 0x01;      // generate an update event to load the setup values
 	TIM16->CR1   = 0x80;
@@ -45,7 +45,7 @@ void initPWM(void) {
 	TIM2->ARR   = PWM_MAX - 1;
 	TIM2->PSC   = CLK_KHZ/(PWM_FREQUENCY_KHZ * PWM_MAX) - 1; // setup prescaler
 	TIM2->CCR1  = PWM_MAX/2;  // turn off motors at startup
-	TIM2->CCER  = 0x03;       // enable CC1
+	TIM2->CCER  = 0x01;       // enable CC1
 	TIM2->EGR   = 0x01;       // generate an update event to load the setup values
 	TIM2->CNT   = 0;
 	TIM2->CR1   = 0x81;       // enable counter
