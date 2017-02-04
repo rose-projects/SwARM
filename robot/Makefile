@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -Og -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -101,16 +101,17 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= robot.ld
+LDSCRIPT= ../shared/STM32F302R6.ld
 
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
-RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
-DRIVERSRC = pwmdriver.c exticonf.c
-RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c RTT/RTT_streams.c
-IMU = my_i2c.c imu.c
-MOVING =  motors.c asser.c coordination.c moving.c position.c adcconf.c
+RADIOSRC  = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
+DRIVERSRC = pwmdriver.c exticonf.c adcconf.c flash.c
+RTTSRC    = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c RTT/RTT_streams.c
+IMU       = my_i2c.c imu.c
+MOVING    = asser.c coordination.c moving.c position.c
+
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -128,7 +129,7 @@ CSRC = $(STARTUPSRC) \
 	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(IMU) \
        $(MOVING) \
-       led.c main.c swarmShell.c
+       swarmShell.c led.c dance.c main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

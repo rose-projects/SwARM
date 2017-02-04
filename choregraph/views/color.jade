@@ -1,0 +1,10 @@
+table.color-table
+	tr
+		td: label(for="date") Date :&nbsp;
+		td: input(type="number" min="0" step="1" value="#{color.date}")#date
+	tr
+		td: label(for="color") Couleur :&nbsp;
+		td: input#color.jscolor
+	tr
+		td: label(for="fade") Fondu :&nbsp;
+		td: input(type="number" min="0" max="255" step="1" value="#{color.fade}")#fade

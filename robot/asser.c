@@ -6,7 +6,6 @@
 #include "coding_wheels.h"
 #include "wheel_constants.h"
 #include "pwmdriver.h"
-#include "motors.h"
 #include "coordination.h"
 
 #define MIN(a,b) ((a>b) ? b : a)
@@ -135,9 +134,6 @@ static THD_FUNCTION(asser_thd, arg) {
 
 // To be called from main to start a basic enslavement
 void initAsser(){
-	// Motors init
-	initMotors();
-
 	// Starting the monitoring threads
 	(void)chThdCreateStatic(working_area_asser_thd,
 			sizeof(working_area_asser_thd),

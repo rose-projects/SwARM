@@ -7,7 +7,7 @@
 #include "hal.h"
 #include "decadriver/deca_device_api.h"
 
-// 2.6MHz SPI configuration, CPHA=0, CPOL=0
+// 2.25MHz SPI configuration, CPHA=0, CPOL=0
 static const SPIConfig slowspiconfig = {
 	NULL,
 	GPIOA,
@@ -15,12 +15,12 @@ static const SPIConfig slowspiconfig = {
 	SPI_CR1_BR_1 | SPI_CR1_BR_0,
 	0
 };
-// 10.4MHz SPI configuration, CPHA=0, CPOL=0
+// 18MHz SPI configuration, CPHA=0, CPOL=0
 static const SPIConfig spiconfig = {
 	NULL,
 	GPIOA,
 	GPIOA_DWM_SPI_CSn,
-	SPI_CR1_BR_0,
+	0,
 	0
 };
 
@@ -28,7 +28,7 @@ void initDecaPlatform(void) {
 	// make sure chip select is not active
 	palSetLine(LINE_DWM_CSn);
 
-	// init SPI1 with SPI clock at 2.6MHz
+	// init SPI3 with SPI clock at 2.6MHz
 	spiStart(&SPID3, &slowspiconfig);
 }
 

@@ -33,12 +33,6 @@ static adcsample_t samples[ADC_CHANNELS];
 
 #define BATTERY_VERYLOW_HTHRES 310
 
-enum {
-	BATTERY_VERYLOW,
-	BATTERY_LOW,
-	BATTERY_OK,
-	BATTERY_HIGH
-};
 static int batteryState = BATTERY_OK;
 
 volatile unsigned int tick_l = 0, tick_r = 0;

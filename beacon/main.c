@@ -12,7 +12,7 @@
 
 static THD_WORKING_AREA(waShell, 1024);
 
-static const ShellCommand shCmds[] = {
+static const ShellCommand MBshCmds[] = {
 	{"mbcal",   mbCalibrate},
 	{"sb1cal",   sb1Calibrate},
 	{"sb2cal",   sb2Calibrate},
@@ -20,31 +20,54 @@ static const ShellCommand shCmds[] = {
 	{"getid",   getDeviceUID},
 	{"list", dumpConnectedDevices},
 	{"beacon", setBeaconPosition},
+	{"dance", startDance},
+	{"stop", stopDance},
+	{"clear", clearStoredData},
+	{"moves", storeMoves},
+	{"colors", storeColors},
+	{"flash", writeStoredData},
+	{"robot", dumpRobotData},
 	{NULL, NULL}
 };
 
-static const ShellConfig shConfig = {
-	(BaseSequentialStream *) &SDU1,
-	shCmds
+static const ShellCommand SBshCmds[] = {
+	{"setid",   setDeviceUID},
+	{"getid",   getDeviceUID},
+	{NULL, NULL}
 };
 
+static ShellConfig shConfig = {
+	(BaseSequentialStream *) &SDU1,
+	SBshCmds
+};
 
 int main(void) {
+	thread_t *sh = NULL;
+
 	// initialize ChibiOS
-	halInit();
 	chSysInit();
+	halInit();
 	shellInit();
+
 	// initialize hardware
 	initExti();
-	initUSB();
 	initLEDs();
+	initBattery();
+	initUSB();
 
 	// start radio thread
 	startRadio();
 
+	// extend command set on master beacon
+	if(deviceUID == 0)
+		shConfig.sc_commands = MBshCmds;
+
+	// show that the system is started before battery level kicks in
+	setLEDs(0, 0, 40);
+
 	while(1) {
-		if (SDU1.config->usbp->state == USB_ACTIVE) {
-			shellCreateStatic(&shConfig, waShell, 512, NORMALPRIO);
+		if(!sh && SDU1.config->usbp->state == USB_ACTIVE) {
+			sh = shellCreateStatic(&shConfig, waShell, 1024, NORMALPRIO);
 		}
 		chThdSleepMilliseconds(1000);
 	}
