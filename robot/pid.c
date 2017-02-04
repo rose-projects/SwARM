@@ -2,7 +2,7 @@
 #include "hal.h"
 
 #include "RTT/SEGGER_RTT.h"
-#include "asser.h"
+#include "pid.h"
 #include "coding_wheels.h"
 #include "wheel_constants.h"
 #include "pwmdriver.h"
@@ -12,7 +12,7 @@
 #define MAX(a,b) ((a>b) ? a : b)
 
 // Enslavement thread working area
-static THD_WORKING_AREA(working_area_asser_thd, 128);
+static THD_WORKING_AREA(working_area_pid_thd, 128);
 
 // Error on the last commands, shared with moving_thread
 volatile int dist_error = 0;
@@ -27,10 +27,10 @@ static int angle_error_delta;
 static int angle_error_prev;
 
 // Enslavement calculations
-static THD_FUNCTION(asser_thd, arg) {
+static THD_FUNCTION(pid_thd, arg) {
 	(void) arg;
-	const unsigned int ASSER_FREQ_HZ = 1000;
-	const unsigned int ASSER_THD_SLEEP_MS = (1000/ASSER_FREQ_HZ);
+	const unsigned int PID_FREQ_HZ = 1000;
+	const unsigned int PID_THD_SLEEP_MS = (1000/PID_FREQ_HZ);
     const int RAMP = 10;  // Corresponds to maximum delta between two consecutive commands
 	
 	// PID coefficients for angle and distance
@@ -38,8 +38,8 @@ static THD_FUNCTION(asser_thd, arg) {
 	const double I_ANGLE = 0.0004;
 	const double D_ANGLE = 40;
 	const double P_DIST = 1.33333333;
-	const double I_DIST = 0.002;
-	const double D_DIST = 5;
+	const double I_DIST = 0.0004;
+	const double D_DIST = 25;
 
 	int cmd_dist;  // distance command calculated by enslavement
 	int cmd_angle; // angle command calculated by enslavement
@@ -143,23 +143,23 @@ static THD_FUNCTION(asser_thd, arg) {
 		setLpwm(cmd_left);
 		setRpwm(cmd_right);
 
-		chThdSleepMilliseconds(ASSER_THD_SLEEP_MS);
+		chThdSleepMilliseconds(PID_THD_SLEEP_MS);
 	}
 }
 
 // To be called from main to start a basic enslavement
-void initAsser(){
+void initPID(){
 	// Starting the monitoring threads
-	(void)chThdCreateStatic(working_area_asser_thd,
-			sizeof(working_area_asser_thd),
-			NORMALPRIO, asser_thd, NULL);
+	(void)chThdCreateStatic(working_area_pid_thd,
+			sizeof(working_area_pid_thd),
+			NORMALPRIO, pid_thd, NULL);
 }
 
 /*
  * This function resets the variables that are used to enslave the two motors of
  * the robot. It is called everytime dist_goal and angle_goal are changed
  */
-void begin_new_asser(){
+void begin_new_pid(){
 	// Reset angle related variables
 	angle_error = 0;
 	angle_error_sum = 0;

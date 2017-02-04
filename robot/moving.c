@@ -3,7 +3,7 @@
 
 #include "moving.h"
 #include "coding_wheels.h"
-#include "asser.h"
+#include "pid.h"
 #include "position.h"
 #include "coordination.h"
 
@@ -33,7 +33,7 @@ static THD_FUNCTION(moving_thd, arg) {
         // Calculate next target position and update distance and angle goals
         update_sub_coordinates();
         // Resetting enslavement error variables
-        begin_new_asser();
+        begin_new_pid();
 
         // Ready for next iteration
         i++;

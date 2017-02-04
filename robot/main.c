@@ -5,7 +5,7 @@
 #include "exticonf.h"
 #include "adcconf.h"
 #include "pwmdriver.h"
-#include "asser.h"
+#include "pid.h"
 #include "coding_wheels.h"
 #include "swarmShell.h"
 
@@ -22,21 +22,42 @@ int main(void) {
     initPWM();
     initExti();
     initADC();
-    initAsser();
-    //initSwarmShell();
+    initPID();
 
     chThdSleepMilliseconds(2000);
 
 
+    int k;
     int i;
-    for(i = 0; i<28; i++){
-        //swarmShellLife();
-        chThdSleepMilliseconds(50);
-        dist_goal += 50;
-        i++;
-        printf("cmd_left %d\r\n", cmd_left);
-        printf("cmd_right %d\r\n", cmd_right);
+    int j;
+    for(k = 0; k<4; k++){
+            printf("kieme tour%d\r\n", k);
+            // 15cm straight line
+            for(i = 0; i<5; i++){
+                printf("iieme tour%d\r\n", i);
+                printf("cmd_left %d\r\n", cmd_left);
+                printf("cmd_right %d\r\n", cmd_right);
+                printf("dist_goal %d\r\n", dist_goal);
+                printf("tick_l %d\r\n", tick_l);
+                printf("tick_r %d\r\n", tick_r);
+                dist_goal += 41;
+                chThdSleepMilliseconds(50);
+            }
+            chThdSleepMilliseconds(200);
+            printf("tick_l %d\r\n", tick_l);
+            printf("tick_r %d\r\n", tick_r);
+
+            // 90 degrees angle
+            for(j=0; j<10; j++){
+                printf("jieme tour%d\r\n", j);
+                angle_goal += 25;
+                chThdSleepMilliseconds(60);
+            }
     }
-    while(1)
+    printf("tick_l %d\r\n", tick_l);
+    printf("tick_r %d\r\n", tick_r);
+
+    while(1){
         chThdSleepMilliseconds(500);
+    }
 }

@@ -1,8 +1,8 @@
-#ifndef ASSER_H
-#define ASSER_H
+#ifndef PID_H
+#define PID_H
 
-void initAsser(void);
-void begin_new_asser(void);
+void initPID(void);
+void begin_new_pid(void);
 
 extern volatile int dist_goal;
 extern volatile int angle_goal;
