@@ -42,8 +42,8 @@ static THD_FUNCTION(moving_thd, arg) {
 #ifndef DEBUG_ACH
 		update_position();
 #else
-		printf("x_pos: %d\n", x_pos);
-		printf("y_pos: %d\n", y_pos);
+		printf("x_pos: %d\t", x_pos);
+		printf("y_pos: %d\t", y_pos);
 		dbori = orientation * 100;
 		printf("orientation: %d\n", dbori);
 #endif // DEBUG_ACH

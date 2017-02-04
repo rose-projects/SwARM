@@ -20,7 +20,11 @@ int last_angle_error = 0;          // computed in position.c
 int last_dist_error = 0;           // computed in position.c
 
 float orientation;                 // orientation of the robot in rad
+#ifndef DEBUG_ACH
 int x_pos, y_pos;                  // last measured position
+#else
+volatile int x_pos, y_pos;
+#endif // DEBUG_ACH
 
 int pt = 0;                        // current sub point
 
@@ -42,6 +46,9 @@ int dbtandep[2], dbtandest[2];
 // Called once to set the destination, return the number of points
 int compute_traj(void)
 {
+#ifdef DEBUG_ACH
+	printf("Compute trajectory\n");
+#endif // DEBUG_ACH
 	int j; // loop index
 	static int cdep[2], cdest[2];           // center of the circles
 	int tmp1[2], tmp2[2], tmp3[2], tmp4[2]; // possible circles
@@ -56,13 +63,6 @@ int compute_traj(void)
 	int tan_cdep2[2], tan_cdest2[2];  // (cdep[] - tandep[])^2
 	int tan_dep2[2];                  // (Xdep - tandep[])^2
 	int dest_tan2[2];                 // (tandest[] - Xdest)^2
-#ifndef DEBUG_ACH
-	uint16_t date = 0;
-#else
-	volatile uint16_t date = 0;
-
-	printf("Compute trajectory\n");
-#endif // DEBUG_ACH
 
 	pt = 0;
 
@@ -253,8 +253,7 @@ int compute_traj(void)
 	destlen = rdest * angledest;
 	totlen = deplen + straightlen + destlen;
 
-	date = getDateMs();
-	npts = (currentMove->date - date) / 50;
+	npts = (currentMove->date * 100 - getDateMs()) / 50;
 	depnpts = deplen * npts / totlen;
 	if (depnpts == 0) {
 		depnpts++;
