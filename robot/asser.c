@@ -83,7 +83,7 @@ static THD_FUNCTION(asser_thd, arg) {
         cmd_left = cmd_dist - cmd_angle;
         cmd_right = cmd_dist + cmd_angle;
 
-        /* 
+        /*
          * Calculating motor commands value
          * Firt we have the basic sum and difference
          * Then we normalize the values so obtained so that they don't exceed
@@ -113,7 +113,7 @@ static THD_FUNCTION(asser_thd, arg) {
         if(cmd_left >= 0){
             cmd_left = MIN(cmd_left, PWM_MAX/2);
         }
-        else{ 
+        else{
             cmd_left = 0;
         }
 
@@ -128,10 +128,12 @@ static THD_FUNCTION(asser_thd, arg) {
         setLpwm(cmd_left);
         setRpwm(cmd_right);
 
-        printf("cmd_left %d\r\n", cmd_left);
+#ifdef DEBUG_PWG
+		printf("cmd_left %d\r\n", cmd_left);
         printf("cmd_right %d\r\n", cmd_right);
         printf("tick_l %d\r\n", tick_l);
         printf("tick_r %d\r\n", tick_r);
+#endif // DEBUG_PWG
 
         // Go to sleep
         chThdSleepMilliseconds(ASSER_THD_SLEEP);

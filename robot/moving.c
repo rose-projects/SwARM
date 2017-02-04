@@ -15,11 +15,11 @@ static THD_WORKING_AREA(working_area_moving_thd, 128);
 static THD_FUNCTION(moving_thd, arg) {
 	(void) arg;
 	// We update robot position goal every 50 milliseconds
-	const int UPDATE_GOAL_MS = 50; 
+	const int UPDATE_GOAL_MS = 50;
 	const int UPDATE_TRAJ = 20; // * 50ms = 1s
 	int pt = 0, npts = 0;
 
-	/* 
+	/*
 	 * Thread routine
 	 * it takes care of the trajectory  control:
 	 * it modifies on a periodic basis the  dist_goal and angle_goal values
@@ -48,8 +48,12 @@ static THD_FUNCTION(moving_thd, arg) {
 
 // To be called from main to start the enslavement with some distance and goal
 void start_moving(){
+#ifdef DEBUG_ACH
+	x_pos = 500;
+	y_pos = 300;
+	orientation = (3.1415*3)/2;
+#endif // DEBUG_ACH
+
 	// Starting the monitoring threads
-	(void)chThdCreateStatic(working_area_moving_thd,
-		sizeof(working_area_moving_thd),
-		NORMALPRIO, moving_thd, NULL);
+	chThdCreateStatic(working_area_moving_thd, sizeof(working_area_moving_thd), NORMALPRIO, moving_thd, NULL);
 }

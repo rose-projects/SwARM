@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -Og -ggdb -fomit-frame-pointer -falign-functions=16 -DDEBUG_ACH
+  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16 -DDEBUG_ACH
 endif
 
 # C specific options here (added to USE_OPT).
@@ -125,7 +125,7 @@ CSRC = $(STARTUPSRC) \
        $(RTTSRC) \
        $(IMU) \
        $(MOVING) \
-       battery.c led.c main.c test_motors.c
+       battery.c led.c main.c test_motors.c dance.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

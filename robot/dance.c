@@ -111,7 +111,6 @@ void saveDance(void) {
 
 static THD_WORKING_AREA(waSequencer, 256);
 static THD_FUNCTION(sequencerThread, th_data) {
-	event_listener_t evt_listener;
 	int i, date;
 
 	(void) th_data;
@@ -133,7 +132,7 @@ static THD_FUNCTION(sequencerThread, th_data) {
 			// if found, set as the current goal
 			if(i < danceMovesCnt && &danceMoves[i] != currentMove) {
 				currentMove = &danceMoves[i];
-				update_main_coordinates();
+				compute_traj();
 			}
 
 			// find the next color to display

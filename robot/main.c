@@ -3,13 +3,14 @@
 
 #include "RTT/SEGGER_RTT.h"
 #include "exticonf.h"
-#include "compdriver.h"
 #include "pwmdriver.h"
-#include "motors.h"
 #include "asser.h"
 #include "moving.h"
-#include "test_motors.h"
 #include "led.h"
+#include "dance.h"
+#include "radiocomms.h"
+#include "battery.h"
+#include "compdriver.h"
 
 int main(void) {
 	// initialize ChibiOS
@@ -19,20 +20,17 @@ int main(void) {
 	// initialize hardware
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 	initPWM();
-	initExti();
 	initComparators();
+	initExti();
+	initBattery();
 	initAsser();
-	initLEDs();
-	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
+	//initLEDs();
+	initSequencer();
 
-    chThdSleepMilliseconds(3000);
+	//startRadio();
+	start_moving();
+	printf("C'est oui !\n");
 
-    up(0);
-    up(1);
-
-    dist_goal = 2000;
-    angle_goal = 0;
-
-    while (true)
-        chThdSleepMilliseconds(500);
+	while(1)
+		chThdSleepMilliseconds(500);
 }
