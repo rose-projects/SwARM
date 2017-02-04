@@ -24,7 +24,7 @@ void initPWM(void) {
     TIM15->PSC   = CLK_KHZ / (PWM_FREQUENCY_KHZ * PWM_MAX) - 1; // setup prescaler
     TIM15->CCR1  = 0;
     TIM15->CCR2  = 0;
-    TIM15->CCER  = 0x13;   // enable CC2 and CC1
+    TIM15->CCER  = 0x31;   // enable CC2 and CC1
     TIM15->EGR   = 0x01;   // generate an update event to load the setup values
     TIM15->CR1   = 0x81;   // enable counter
 
