@@ -13,7 +13,11 @@
 #define MAX_MOVE_POINTS 64
 #define MAX_COLOR_POINTS 110
 
+#ifndef DEBUG_ACH
 const int ADVANCE_TIME = 2; // in 0.1s
+#else
+const int ADVANCE_TIME = 0; // in 0.1s
+#endif // DEBUG_ACH
 
 // RAM buffers storing data to be written in flash
 struct move movesBuffer[MAX_MOVE_POINTS];

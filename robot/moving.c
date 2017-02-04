@@ -8,8 +8,12 @@
 #include "coordination.h"
 #include "dance.h"
 
+#ifdef DEBUG_ACH
+#include "RTT/SEGGER_RTT.h"
+#endif // DEBUG_ACH
+
 // Moving control thread working area
-static THD_WORKING_AREA(working_area_moving_thd, 128);
+static THD_WORKING_AREA(working_area_moving_thd, 512);
 
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
@@ -33,10 +37,14 @@ static THD_FUNCTION(moving_thd, arg) {
 		// dist/angle error offset to add to next commands
 #ifndef DEBUG_ACH
 		update_position();
+#else
+		printf("x_pos: %d\n", x_pos);
+		printf("y_pos: %d\n", y_pos);
+		printf("orientation: %d\n", orientation);
 #endif // DEBUG_ACH
 
 		// update distance and angle goals
-		if (npts - pt < ADVANCE_TIME) {
+		if (npts - pt > ADVANCE_TIME) {
 			update_goal();
 		}
 		// Resetting enslavement error variables
@@ -52,6 +60,7 @@ void start_moving(){
 	x_pos = 500;
 	y_pos = 300;
 	orientation = (3.1415*3)/2;
+	printf("start: x_pos: %d, y_pos: %d, orientation: %d\n");
 #endif // DEBUG_ACH
 
 	// Starting the monitoring threads

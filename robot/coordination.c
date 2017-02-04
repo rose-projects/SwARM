@@ -8,6 +8,10 @@
 #include "radiocomms.h"
 #include "dance.h"
 
+#ifdef DEBUG_ACH
+#include "RTT/SEGGER_RTT.h"
+#endif // DEBUG_ACH
+
 // return 1 if x >= 0, -1 otherwise
 #define SIGN(x) ((fabs(x)==x) ? 1 : -1)
 
@@ -16,8 +20,8 @@ volatile int angle_goal = 0;       // PID->tick diff: 0 is straigt, 246 is Pi/2
 int last_angle_error = 0;          // computed in position.c
 int last_dist_error = 0;           // computed in position.c
 
-double orientation = 0;            // orientation of the robot in rad
-int x_pos = 0, y_pos = 0;          // last measured position
+float orientation;                 // orientation of the robot in rad
+int x_pos, y_pos;                  // last measured position
 
 int pt = 0;                        // current sub point
 
@@ -53,7 +57,13 @@ int compute_traj(void)
 	int tan_cdep2[2], tan_cdest2[2];  // (cdep[] - tandep[])^2
 	int tan_dep2[2];                  // (Xdep - tandep[])^2
 	int dest_tan2[2];                 // (tandest[] - Xdest)^2
+#ifndef DEBUG_ACH
 	uint16_t date = 0;
+#else
+	volatile uint16_t date = 0;
+
+	printf("Compute trajectory\n");
+#endif // DEBUG_ACH
 
 	pt = 0;
 
@@ -76,7 +86,7 @@ int compute_traj(void)
 	 * Find the closest circle, if an error is detected at the end,
 	 * change circles.
 	 */
-	depcos = sin(M_PI_2 - orientation);
+	depcos = cos(orientation);
 	depsin = sin(orientation);
 	tmp1[0] = xdep + rdep*depsin;
 	tmp1[1] = ydep - rdep*depcos;
@@ -94,7 +104,7 @@ int compute_traj(void)
 		cdep[1] = tmp2[1];
 	}
 
-	destcos = sin(M_PI_2 - oridest);
+	destcos = cos(oridest);
 	destsin = sin(oridest);
 	tmp3[0] = xdest + rdest*destsin;
 	tmp3[1] = ydest - rdest*destcos;
@@ -246,15 +256,15 @@ int compute_traj(void)
 
 	date = getDateMs();
 	npts = (currentMove->date - date) / 50;
-	depnpts = (deplen/totlen) * npts;
+	depnpts = deplen * npts / totlen;
 	if (depnpts == 0) {
 		depnpts++;
 	}
-	straightnpts = (straightlen/totlen) * npts;
+	straightnpts = straightlen * npts / totlen;
 	if (straightnpts == 0) {
 		straightnpts++;
 	}
-	destnpts = (destlen/totlen) * npts;
+	destnpts = destlen* npts / totlen;
 	if (destnpts == 0) {
 		destnpts++;
 	}
@@ -271,10 +281,14 @@ int compute_traj(void)
 
 // Update distance and angle goals: called every 50ms
 void update_goal(void) {
+#ifdef DEBUG_ACH
+	printf("Update goal\n");
+#endif // DEBUG_ACH
 	if (pt <= depnpts) {
+#ifndef DEBUG_ACH
 		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
-#ifdef DEBUG_ACH
+#else
 		x_pos += dbcdep[0] +
 			(cos(angledep/depnpts) + sin(angledep/depnpts))*
 			depleft*(x_pos-dbcdep[0]);
@@ -284,15 +298,17 @@ void update_goal(void) {
 		orientation += depleft * (angledep/depnpts);
 #endif // DEBUG_ACH
 	} else if (pt <= depnpts + straightnpts) {
+#ifndef DEBUG_ACH
 		dist_goal += straightlen / straightnpts;
-#ifdef DEBUG_ACH
+#else
 		x_pos += straightlen * cos(orientation);
 		y_pos += straightlen * sin(orientation);
 #endif // DEBUG_ACH
 	} else {
+#ifndef DEBUG_ACH
 		angle_goal += destleft*angledest/(U_RAD*destnpts);
 		dist_goal += destlen / destnpts;
-#ifdef DEBUG_ACH
+#else
 		x_pos += dbcdest[0] +
 			(cos(angledest/destnpts) + sin(angledest/destnpts))*
 			destleft*(x_pos-dbcdest[0]);
@@ -302,9 +318,10 @@ void update_goal(void) {
 		orientation += destleft * (angledest/depnpts);
 #endif // DEBUG_ACH
 	}
-
+#ifndef DEBUG_ACH
 	angle_goal += last_angle_error;
 	dist_goal += last_dist_error;
+#endif // DEBUG_ACH
 
 	pt++;
 }

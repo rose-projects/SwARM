@@ -3,7 +3,7 @@
 
 extern int x_pos;
 extern int y_pos;
-extern double orientation;
+extern float orientation;
 
 void update_position(void);
 
