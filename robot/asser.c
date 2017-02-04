@@ -31,6 +31,7 @@ static THD_FUNCTION(asser_thd, arg) {
 	(void) arg;
 	const unsigned int ASSER_FREQ_HZ = 1000;
 	const unsigned int ASSER_THD_SLEEP_MS = (1000/ASSER_FREQ_HZ);
+    const int RAMP = 10;  // Corresponds to maximum delta between two consecutive commands
 	
 	// PID coefficients for angle and distance
 	const double P_ANGLE = 2;
@@ -44,6 +45,9 @@ static THD_FUNCTION(asser_thd, arg) {
 	int cmd_angle; // angle command calculated by enslavement
 	int angle;     // current angle
 	int distance;  // current distance
+    
+    static int last_cmd_left = 0;
+    static int last_cmd_right = 0;
 
 	// 200 Hz calculation
 	while(true){
@@ -119,6 +123,22 @@ static THD_FUNCTION(asser_thd, arg) {
 			cmd_right = 0;
 		}
 
+        if(cmd_left > (last_cmd_left + RAMP)){
+            cmd_left = last_cmd_left + RAMP;
+        }
+        else if (cmd_left < (last_cmd_left - RAMP)){
+            cmd_left = MAX(0, last_cmd_left - RAMP);
+        }
+
+        if(cmd_right > (last_cmd_right + RAMP)){
+            cmd_right = last_cmd_right + RAMP;
+        }
+        else if (cmd_right < (last_cmd_right - RAMP)){
+            cmd_right = MAX(0, last_cmd_right - RAMP);
+        }
+
+        last_cmd_left = cmd_left;
+        last_cmd_right = cmd_right;
 		// Updating PWM signals
 		setLpwm(cmd_left);
 		setRpwm(cmd_right);
