@@ -1,5 +1,4 @@
-#include <math.h>
-
+#include "trigo.h"
 #include "coordination.h"
 #include "wheel_constants.h"
 #include "asser.h"
@@ -86,8 +85,8 @@ int compute_traj(void)
 	 * Find the closest circle, if an error is detected at the end,
 	 * change circles.
 	 */
-	depcos = cos(orientation);
-	depsin = sin(orientation);
+	depcos = mcos(orientation);
+	depsin = msin(orientation);
 	tmp1[0] = xdep + rdep*depsin;
 	tmp1[1] = ydep - rdep*depcos;
 	tmp2[0] = xdep - rdep*depsin;
@@ -104,8 +103,8 @@ int compute_traj(void)
 		cdep[1] = tmp2[1];
 	}
 
-	destcos = cos(oridest);
-	destsin = sin(oridest);
+	destcos = mcos(oridest);
+	destsin = msin(oridest);
 	tmp3[0] = xdest + rdest*destsin;
 	tmp3[1] = ydest - rdest*destcos;
 	tmp4[0] = xdest - rdest*destsin;
@@ -239,12 +238,12 @@ int compute_traj(void)
 	dest_tan2[1] *= dest_tan2[1];
 
 
-	angledep = acos((dep_cdep2[0]+dep_cdep2[1] +
+	angledep = macos((dep_cdep2[0]+dep_cdep2[1] +
 	 tan_cdep2[0]+tan_cdep2[1] - tan_dep2[0]+tan_dep2[1]) /
 	 (2*sqrt(dep_cdep2[0]+dep_cdep2[1])*
 	    sqrt(tan_cdep2[0]+tan_cdep2[1])));
 
-	angledest = acos((tan_cdest2[0]+tan_cdest2[1] +
+	angledest = macos((tan_cdest2[0]+tan_cdest2[1] +
 	 dest_cdest2[0]+dest_cdest2[1] - dest_tan2[0]+dest_tan2[1]) /
 	 (2*sqrt(tan_cdest2[0] + tan_cdest2[1]) *
 	    sqrt(dest_cdest2[0] + dest_cdest2[1])));
@@ -290,10 +289,10 @@ void update_goal(void) {
 		dist_goal += deplen / depnpts;
 #else
 		x_pos += dbcdep[0] +
-			(cos(angledep/depnpts) + sin(angledep/depnpts))*
+			(mcos(angledep/depnpts) + msin(angledep/depnpts))*
 			depleft*(x_pos-dbcdep[0]);
 		y_pos += dbcdep[1] +
-			(cos(angledep/depnpts) + sin(angledep/depnpts))*
+			(mcos(angledep/depnpts) + msin(angledep/depnpts))*
 			depleft*(y_pos-dbcdep[1]);
 		orientation += depleft * (angledep/depnpts);
 #endif // DEBUG_ACH
@@ -301,8 +300,8 @@ void update_goal(void) {
 #ifndef DEBUG_ACH
 		dist_goal += straightlen / straightnpts;
 #else
-		x_pos += straightlen * cos(orientation);
-		y_pos += straightlen * sin(orientation);
+		x_pos += straightlen * mcos(orientation);
+		y_pos += straightlen * msin(orientation);
 #endif // DEBUG_ACH
 	} else {
 #ifndef DEBUG_ACH
@@ -310,10 +309,10 @@ void update_goal(void) {
 		dist_goal += destlen / destnpts;
 #else
 		x_pos += dbcdest[0] +
-			(cos(angledest/destnpts) + sin(angledest/destnpts))*
+			(mcos(angledest/destnpts) + msin(angledest/destnpts))*
 			destleft*(x_pos-dbcdest[0]);
 		y_pos += dbcdest[1] +
-			(cos(angledest/destnpts) + sin(angledest/destnpts))*
+			(mcos(angledest/destnpts) + msin(angledest/destnpts))*
 			destleft*(y_pos-dbcdest[1]);
 		orientation += destleft * (angledest/depnpts);
 #endif // DEBUG_ACH

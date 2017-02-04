@@ -44,7 +44,7 @@ static THD_FUNCTION(moving_thd, arg) {
 #else
 		printf("x_pos: %d\n", x_pos);
 		printf("y_pos: %d\n", y_pos);
-		dbori = (int) orientation;
+		dbori = orientation * 100;
 		printf("orientation: %d\n", dbori);
 #endif // DEBUG_ACH
 
@@ -65,7 +65,7 @@ void start_moving(){
 	x_pos = 500;
 	y_pos = 300;
 	orientation = (3.1415*3)/2;
-	dbori = (int) orientation;
+	dbori = orientation * 100;
 	printf("start: x_pos: %d, y_pos: %d, orientation: %d\n",
 		x_pos, y_pos, dbori);
 #endif // DEBUG_ACH

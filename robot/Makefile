@@ -125,7 +125,7 @@ CSRC = $(STARTUPSRC) \
        $(RTTSRC) \
        $(IMU) \
        $(MOVING) \
-       battery.c led.c main.c test_motors.c dance.c
+       battery.c led.c main.c test_motors.c dance.c trigo.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
