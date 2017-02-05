@@ -9,7 +9,11 @@
 #include "battery.h"
 #include "radiocomms.h"
 #include "dance.h"
+#include "position.h"
 #include "imu.h"
+#include "motors.h"
+#include "asser.h"
+#include "moving.h"
 
 int main(void) {
 	// initialize ChibiOS
@@ -25,6 +29,7 @@ int main(void) {
 	initBattery();
 	initSequencer();
 	initIMU();
+	startFusion();
 
 	// start radio thread
 	startRadio();

@@ -16,9 +16,11 @@ script:
     - make -C tests/led/
     - make -C tests/ranging/
     - make -C tests/coding_wheels/
+    - make -C tests/moving/
     - make -C tests/RTLS/beacon
     - make -C tests/RTLS/robot
     - make -C tests/imu/
+    - make -C tests/moving/
     - cd opencv
     - mkdir build && cd build
     - cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$HOME/local ..

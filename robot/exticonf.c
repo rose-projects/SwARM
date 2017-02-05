@@ -1,8 +1,13 @@
 #include "ch.h"
 #include "hal.h"
+#include "coding_wheels.h"
 
 // Events sources
 EVENTSOURCE_DECL(deca_event);
+
+/* Wheels ticks init */
+volatile int tick_l = 0;
+volatile int tick_r = 0;
 
 /* Decawave EXTI callback */
 static void decaIRQ_cb(EXTDriver *extp, expchannel_t channel) {
@@ -18,14 +23,14 @@ static void Lcoder_cb(EXTDriver *extp, expchannel_t channel) {
 	(void)extp;
 	(void)channel;
 
-	//TODO
+    tick_l++;
 }
 /* Right encoder wheel EXTI callback */
 static void Rcoder_cb(EXTDriver *extp, expchannel_t channel) {
 	(void)extp;
 	(void)channel;
 
-	//TODO
+    tick_r++;
 }
 
 // external interrupts configuration

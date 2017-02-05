@@ -17,9 +17,17 @@
 #define CALIBRATION_REPEAT 4 // how many times to repeat calibration to be sure
 #define MAGIC_REF 0xDEADBEEF
 
+// Set initial input parameters
+//#define PI 3.14159265359
+//#define NB_CALIB 1
+
+// hard coded angle diff(X, north)
+#define X_NORTH_DIFF (-0.5)
+
 // RAM buffer to save calibration during page clear
 static float magBiasRAM[3], magScaleRAM[3];
 static unsigned int magicCodeRAM;
+
 
 // non volatile data
 static float magbias[3] __attribute__((section(".flashdata")));  // mag bias calibration data
@@ -130,7 +138,8 @@ static int readMagData(int16_t * data) {
 
 // CALIBRATION PART
 static int mag_self_test(void) {
-	int16_t datas[6]; // x/y/z mag register data
+	// x/y/z mag register data
+	int16_t datas[6];
 	int ret;
 
 	// Power down magnetometer
@@ -144,6 +153,7 @@ static int mag_self_test(void) {
 
 	// get self test datas
 	ret = readMagData(datas);
+	
 	// stop self test mode
 	writeByte(AK8963_ADDRESS, AK8963_ASTC, 0x00);
 	chThdSleepMilliseconds(10);
@@ -263,6 +273,7 @@ static THD_FUNCTION(imuThread, th_data) {
 	while(1) {
 		// Read the x/y/z adc values
 		if(!readMagData(magOutput)) {
+
 			// Include factory calibration per data sheet and user environmental corrections
 			// get actual magnetometer valuez in milliGauss, this depends on scale being set
 			mx = ((float) magOutput[0])*MAG_RES*magCalibration[0] - magbias[0];
@@ -270,8 +281,7 @@ static THD_FUNCTION(imuThread, th_data) {
 			mx *= magscale[0];
 			my *= magscale[1];
 
-			// all angles are from the north
-			// they will be from the X axis of the scene in the future
+			// all angles are from the X axis
 			if(mx == 0) {
 				if(my < 0) {
 					azimuth = M_PI/2;
@@ -299,6 +309,7 @@ static THD_FUNCTION(imuThread, th_data) {
 int initIMU(void) {
 
 	initI2C();
+
 	// Read the WHO_AM_I register for MPU-9250, this is a good test of communication
 	uint8_t whoami = readByte(MPU9250_ADDRESS, WHO_AM_I_MPU9250);
 	if (whoami != 0x71) {
