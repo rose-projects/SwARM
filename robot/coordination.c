@@ -16,8 +16,6 @@
 
 volatile int dist_goal = 0;        // PID
 volatile int angle_goal = 0;       // PID->tick diff: 0 is straigt, 246 is Pi/2
-int last_angle_error = 0;          // computed in position.c
-int last_dist_error = 0;           // computed in position.c
 
 float orientation;                 // orientation of the robot in rad
 #ifndef DEBUG_ACH

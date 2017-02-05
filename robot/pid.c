@@ -13,9 +13,7 @@
 // Enslavement thread working area
 static THD_WORKING_AREA(working_area_pid_thd, 128);
 
-// Error on the last commands, shared with moving_thread
-volatile int dist_error = 0;
-volatile int angle_error = 0;
+// These counters are used to memorize the ticks' values
 volatile int tick_l_capt = 0;
 volatile int tick_r_capt = 0;
 
@@ -26,6 +24,8 @@ static int dist_error_prev;
 static int angle_error_sum;
 static int angle_error_delta;
 static int angle_error_prev;
+static int dist_error = 0;
+static int angle_error = 0;
 
 // Enslavement calculations
 static THD_FUNCTION(pid_thd, arg) {
@@ -173,7 +173,10 @@ void begin_new_pid(){
 	dist_error_sum = 0;
 	dist_error_delta = 0;
 	dist_error_delta = 0;
-	// Reset angle and distance error integrals
-	last_angle_error = 0;
-	last_dist_error = 0;
+    // Memorize tick values
+    tick_l_capt = tick_l;
+    tick_r_capt = tick_r;
+    // Move origin of the goals to current situation
+    angle_goal = 0;
+    dist_goal = 0;
 }

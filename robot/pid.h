@@ -6,8 +6,6 @@ void begin_new_pid(void);
 
 extern volatile int dist_goal;
 extern volatile int angle_goal;
-extern volatile int dist_error;
-extern volatile int angle_error;
 extern volatile int tick_l_capt;
 extern volatile int tick_r_capt;
 
