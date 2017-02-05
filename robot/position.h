@@ -13,4 +13,4 @@ extern float orientation;
 
 void update_position(void);
 
-#endif
+#endif // POSITION_H

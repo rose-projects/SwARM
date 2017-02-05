@@ -3,7 +3,7 @@
 
 #include "moving.h"
 #include "coding_wheels.h"
-#include "asser.h"
+#include "pid.h"
 #include "position.h"
 #include "coordination.h"
 #include "dance.h"
@@ -18,6 +18,7 @@ static THD_WORKING_AREA(working_area_moving_thd, 512);
 
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
+<<<<<<< HEAD
 	(void) arg;
 	// We update robot position goal every 50 milliseconds
 	const int UPDATE_GOAL_MS = 50;

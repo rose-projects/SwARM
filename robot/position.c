@@ -3,7 +3,7 @@
 
 #include "position.h"
 #include "wheel_constants.h"
-#include "asser.h"
+#include "pid.h"
 #include "coordination.h"
 #include "coding_wheels.h"
 
@@ -12,17 +12,17 @@
  * The calculation depends on wether we are rotating to the left or to the right
  */
 void update_position(){
-	static unsigned int tick_l_prev = 0; // last tick count for left wheel
-	static unsigned int tick_r_prev = 0; // last tick conut for right wheel
+	static unsigned int tick_l_prev = 0;  // last tick count for left wheel
+	static unsigned int tick_r_prev = 0;  // last tick conut for right wheel
 	unsigned int tick_l_current = tick_l; // current tick count for left wheel
 	unsigned int tick_r_current = tick_r; // current tick count for right wheel
 
 	// Calculating the distance the robot moved in the last 50ms
-	int distance_current = (tick_l_current + tick_r_current \
-			- tick_l_prev - tick_r_prev)/2;
+	int distance_current = (tick_l_current + tick_r_current
+	                        - tick_l_prev - tick_r_prev)/2;
 	// Calculating the angle the robot turned in the last 50ms
-	int angle_current = ((tick_l_current - tick_l_prev) \
-			- (tick_r_current - tick_r_prev));
+	int angle_current = ((tick_l_current - tick_l_prev)
+                             - (tick_r_current - tick_r_prev));
 
 	// Preparing next call of the function
 	tick_l_prev = tick_l_current;

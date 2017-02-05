@@ -172,17 +172,17 @@
  */
 #define VAL_GPIOA_MODER             (PIN_MODE_ANALOG(GPIOA_VBAT_PROBE) |    \
                                      PIN_MODE_OUTPUT(GPIOA_MTR_LED_L)   |   \
-                                     PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_L) |   \
-                                     PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_L)|   \
+                                     PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_L) |\
+                                     PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_L)|\
                                      PIN_MODE_INPUT(GPIOA_PIN4) |           \
-                                     PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_R) |   \
+                                     PIN_MODE_ALTERNATE(GPIOA_MTR_PHASE_R) |\
                                      PIN_MODE_ALTERNATE(GPIOA_MTR_ENABLE_R)|\
                                      PIN_MODE_ANALOG(GPIOA_MTR_TRA_L) |     \
                                      PIN_MODE_INPUT(GPIOA_PIN8) |           \
-                                     PIN_MODE_ANALOG(GPIOA_USB_VBUS) |       \
+                                     PIN_MODE_ANALOG(GPIOA_USB_VBUS) |      \
                                      PIN_MODE_OUTPUT(GPIOA_USB_CONNECT) |   \
-                                     PIN_MODE_ANALOG(GPIOA_USB_DM) |         \
-                                     PIN_MODE_ANALOG(GPIOA_USB_DP) |         \
+                                     PIN_MODE_ANALOG(GPIOA_USB_DM) |        \
+                                     PIN_MODE_ANALOG(GPIOA_USB_DP) |        \
                                      PIN_MODE_ALTERNATE(GPIOA_SWDIO) |      \
                                      PIN_MODE_ALTERNATE(GPIOA_SWCLK) |      \
                                      PIN_MODE_OUTPUT(GPIOA_DWM_SPI_CSn))
@@ -196,10 +196,10 @@
                                      PIN_PUPDR_PULLDOWN(GPIOA_MTR_ENABLE_R))
 #define VAL_GPIOA_ODR               (PIN_ODR_HIGH(GPIOA_DWM_SPI_CSn)|       \
                                      PIN_ODR_HIGH(GPIOA_MTR_LED_L))
-#define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_PHASE_L, 9U) |   \
-                                     PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
+#define VAL_GPIOA_AFRL              (PIN_AFIO_AF(GPIOA_MTR_ENABLE_L, 9U) |  \
+                                     PIN_AFIO_AF(GPIOA_MTR_PHASE_L, 9U) |   \
                                      PIN_AFIO_AF(GPIOA_MTR_PHASE_R, 1U) |   \
-                                     PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))   
+                                     PIN_AFIO_AF(GPIOA_MTR_ENABLE_R, 1U))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_SWDIO, 0U) |         \
                                      PIN_AFIO_AF(GPIOA_SWCLK, 0U))
 
@@ -224,7 +224,7 @@
  * PB15 - LED_SPI_DO                (alternate 5).
  */
 #define VAL_GPIOB_MODER             (PIN_MODE_ANALOG(GPIOB_MTR_TRA_R) |     \
-                                     PIN_MODE_OUTPUT(GPIOB_LED_IR_C) |      \
+                                     PIN_MODE_ALTERNATE(GPIOB_LED_IR_C) |   \
                                      PIN_MODE_INPUT(GPIOB_PIN2) |           \
                                      PIN_MODE_INPUT(GPIOB_DWM_WAKEUP) |    \
                                      PIN_MODE_INPUT(GPIOB_PIN4) |           \
@@ -244,7 +244,7 @@
 #define VAL_GPIOB_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOB_PUPDR             (PIN_PUPDR_PULLDOWN(GPIOB_MPU_INT))
 #define VAL_GPIOB_ODR       0x00000000
-#define VAL_GPIOB_AFRL      0x00000000
+#define VAL_GPIOB_AFRL               PIN_AFIO_AF(GPIOB_LED_IR_C, 8U) 
 #define VAL_GPIOB_AFRH              (PIN_AFIO_AF(GPIOB_MPU_I2C_SCL, 4U) |   \
                                      PIN_AFIO_AF(GPIOB_MPU_I2C_SDA, 4U) |   \
                                      PIN_AFIO_AF(GPIOB_LED_SPI_CK, 5U)  |   \
@@ -289,7 +289,7 @@
 #define VAL_GPIOC_OTYPER    0x00000000
 #define VAL_GPIOC_OSPEEDR   0xFFFFFFFF
 #define VAL_GPIOC_PUPDR     0x00000000
-#define VAL_GPIOC_ODR                PIN_ODR_HIGH(GPIOC_MTR_LED_R) 
+#define VAL_GPIOC_ODR                (PIN_ODR_HIGH(GPIOC_MTR_LED_R))
 #define VAL_GPIOC_AFRL      0x00000000
 #define VAL_GPIOC_AFRH              (PIN_AFIO_AF(GPIOC_DWM_SPI_CLK, 6U) |   \
                                      PIN_AFIO_AF(GPIOC_DWM_SPI_MISO, 6U) |  \
