@@ -24,6 +24,7 @@ float orientation;                 // orientation of the robot in rad
 int x_pos, y_pos;                  // last measured position
 #else
 volatile int x_pos, y_pos;
+int dbx, dby, dbori_;
 #endif // DEBUG_ACH
 
 int pt = 0;                        // current sub point
@@ -40,14 +41,14 @@ static int totlen, deplen, straightlen, destlen;
 
 #ifdef DEBUG_ACH
 static int dbcdep[2], dbcdest[2];
-int dbtandep[2], dbtandest[2];
 #endif // DEBUG_ACH
 
 // Called once to set the destination, return the number of points
 int compute_traj(void)
 {
 #ifdef DEBUG_ACH
-	printf("Compute trajectory\n");
+	int dbadep, dbadest;
+	int dbori = 100 * orientation;
 #endif // DEBUG_ACH
 	int j; // loop index
 	static int cdep[2], cdest[2];           // center of the circles
@@ -59,9 +60,15 @@ int compute_traj(void)
 	int tan[2];                       // tandest - tandep
 	int cdep_h[2], cdest_h[2];        // h[] - cdep[]
 	int cdep_h2[2], cdest_h2[2];      // (h[] - cdep[])^2
+#ifndef DEBUG_ACH
 	int dep_cdep2[2], dest_cdest2[2]; // (cdep[] - Xdep)^2
 	int tan_cdep2[2], tan_cdest2[2];  // (cdep[] - tandep[])^2
 	int tan_dep2[2];                  // (Xdep - tandep[])^2
+#else
+	volatile int dep_cdep2[2], dest_cdest2[2]; // (cdep[] - Xdep)^2
+	volatile int tan_cdep2[2], tan_cdest2[2];  // (cdep[] - tandep[])^2
+	volatile int tan_dep2[2];                  // (Xdep - tandep[])^2
+#endif // DEBUG_ACH
 	int dest_tan2[2];                 // (tandest[] - Xdest)^2
 
 	pt = 0;
@@ -73,6 +80,12 @@ int compute_traj(void)
 	oridest = currentMove->angle * M_PI / 128;
 	rdep = currentMove->startRadius;
 	rdest = currentMove->endRadius;
+#ifdef DEBUG_ACH
+	dbori_ = oridest * 100;
+	printf("x_pos: %d\t, y_pos: %d\t, orientation: %d\n", x_pos, y_pos, dbori);
+	printf("xdest: %d\t, ydest: %d\t, oridest: %d\t, rdep: %d\t, rdest: %d\n",
+		xdest, ydest, dbori_, rdep, rdest);
+#endif // DEBUG_ACH
 
 	/* Because of the method of the homothetic center, both circles cannot
 	 * be of the same radius, this hack solves the issue.
@@ -175,6 +188,8 @@ int compute_traj(void)
 		/* Correct the error if the wrong circle was chosen.
 		 * Happens when the direction goes through the opposite circle.
 		 */
+		tan[0] = tandest[0] - tandep[0];
+		tan[1] = tandest[1] = tandest[1];
 		if (tan[0]*depcos + tan[1]*depsin > 0 &&
 		    (tandep[0]-xdep)*depcos + (tandep[1]-ydep)*depsin < 0)
 		{
@@ -232,21 +247,27 @@ int compute_traj(void)
 	tan_cdest2[0] *= tan_cdest2[0];
 	tan_cdest2[1] *= tan_cdest2[1];
 
+	tan_dep2[0] = xdep - tandep[0];
+	tan_dep2[1] = ydep - tandep[1];
+	tan_dep2[0] *= tan_dep2[0];
+	tan_dep2[1] *= tan_dep2[1];
+
 	dest_tan2[0] = tandest[0] - xdest;
 	dest_tan2[1] = tandest[1] - ydest;
 	dest_tan2[0] *= dest_tan2[0];
 	dest_tan2[1] *= dest_tan2[1];
 
+	angledep = macos(((tan_dep2[0]+tan_dep2[1]) -
+	                  (dep_cdep2[0]+dep_cdep2[1]) -
+	                  (tan_cdep2[0]+tan_cdep2[1])) /
+	                  (2*sqrt(dep_cdep2[0]+dep_cdep2[1]) *
+	                     sqrt(tan_cdep2[0]+tan_cdep2[1])));
 
-	angledep = macos((dep_cdep2[0]+dep_cdep2[1] +
-	 tan_cdep2[0]+tan_cdep2[1] - tan_dep2[0]+tan_dep2[1]) /
-	 (2*sqrt(dep_cdep2[0]+dep_cdep2[1])*
-	    sqrt(tan_cdep2[0]+tan_cdep2[1])));
-
-	angledest = macos((tan_cdest2[0]+tan_cdest2[1] +
-	 dest_cdest2[0]+dest_cdest2[1] - dest_tan2[0]+dest_tan2[1]) /
-	 (2*sqrt(tan_cdest2[0] + tan_cdest2[1]) *
-	    sqrt(dest_cdest2[0] + dest_cdest2[1])));
+	angledest = macos(((dest_tan2[0]+dest_tan2[1]) -
+	                   (tan_cdest2[0]+tan_cdest2[1]) -
+	                   (dest_cdest2[0]+dest_cdest2[1])) /
+	                   (2*sqrt(tan_cdest2[0]+tan_cdest2[1]) *
+	                      sqrt(dest_cdest2[0]+dest_cdest2[1])));
 
 	deplen = rdep * angledep;
 	straightlen = sqrt(tan[0]*tan[0] + tan[1]*tan[1]);
@@ -267,32 +288,37 @@ int compute_traj(void)
 		destnpts++;
 	}
 
-	return npts;
-
 #ifdef DEBUG_ACH
-	dbtandep[0] = tandep[0];
-	dbtandep[1] = tandep[1];
-	dbtandest[0] = tandest[0];
-	dbtandest[1] = tandest[1];
+	dbadep = angledep * 100;
+	dbadest = angledest * 100;
+	printf("totlen: %d\t, deplen: %d\t, straightlen: %d\t, destlen: %d\n",
+		totlen, deplen, straightlen, destlen);
+	printf("npts: %d\t, depnpts: %d\t, straightnpts: %d\t, destnpts: %d\n",
+		npts, depnpts, straightnpts, destnpts);
+	printf("angledep: %d\t, angledest: %d\n", dbadep, dbadest);
 #endif // DEBUG_ACH
+
+	return npts;
 }
 
 // Update distance and angle goals: called every 50ms
 void update_goal(void) {
 #ifdef DEBUG_ACH
-	printf("Update goal\n");
+//	printf("Update goal\n");
 #endif // DEBUG_ACH
 	if (pt <= depnpts) {
 #ifndef DEBUG_ACH
 		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
 #else
+		dbx = x_pos;
+		dby = y_pos;
 		x_pos += dbcdep[0] +
-			(mcos(angledep/depnpts) + msin(angledep/depnpts))*
-			depleft*(x_pos-dbcdep[0]);
+		         mcos(angledep/depnpts)*(dbx-dbcdep[0]) +
+		         depleft*msin(angledep/depnpts)*(dbcdep[1]-dby);
 		y_pos += dbcdep[1] +
-			(mcos(angledep/depnpts) + msin(angledep/depnpts))*
-			depleft*(y_pos-dbcdep[1]);
+		         mcos(angledep/depnpts)*(dby-dbcdep[1]) +
+		         depleft*msin(angledep/depnpts)*(dbx-dbcdep[0]);
 		orientation += depleft * (angledep/depnpts);
 #endif // DEBUG_ACH
 	} else if (pt <= depnpts + straightnpts) {
@@ -307,13 +333,15 @@ void update_goal(void) {
 		angle_goal += destleft*angledest/(U_RAD*destnpts);
 		dist_goal += destlen / destnpts;
 #else
+		dbx = x_pos;
+		dby = y_pos;
 		x_pos += dbcdest[0] +
-			(mcos(angledest/destnpts) + msin(angledest/destnpts))*
-			destleft*(x_pos-dbcdest[0]);
+		         mcos(angledest/destnpts)*(dbx-dbcdest[0]) +
+		         destleft*msin(angledest/destnpts)*(dbcdest[1]-dby);
 		y_pos += dbcdest[1] +
-			(mcos(angledest/destnpts) + msin(angledest/destnpts))*
-			destleft*(y_pos-dbcdest[1]);
-		orientation += destleft * (angledest/depnpts);
+		         mcos(angledest/destnpts)*(dby-dbcdest[1]) +
+		         destleft*msin(angledest/destnpts)*(dbx-dbcdest[0]);
+		orientation += destleft * (angledest/destnpts);
 #endif // DEBUG_ACH
 	}
 #ifndef DEBUG_ACH
