@@ -20,19 +20,19 @@ It was designed and created during rose 2017 session @ Télécom ParisTech.
 ## Quick start
 
 first clone the project
-```git clone https://github.com/rose-projects/SwARM.git --recursive```
+* ```git clone https://github.com/rose-projects/SwARM.git --recursive```
 
 build robot code and flash it using gdb (there are macros at the end of Makefile)
-```cd robot && make```
+* ```cd robot && make```
 
 build beacon code and flash it using gdb (there are macros at the end of Makefile)
-```cd ..```
-```cd beacon && make```
+* ```cd ..```
+* ```cd beacon && make```
 
 use our tool to generate choreographies : read specific instructions
-```cd ..```
-```cd choregraph```
-```open README.md```
+* ```cd ..```
+* ```cd choregraph```
+* ```open README.md```
 
 ### Quoting of our master
 ```ça marchera pas```
