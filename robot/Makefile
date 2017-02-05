@@ -106,20 +106,12 @@ LDSCRIPT= ../shared/STM32F302R6.ld
 vpath %.c ../shared/decadriver/
 vpath %.c ../shared/
 
-<<<<<<< HEAD
-RADIOSRC = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
-DRIVERSRC = pwmdriver.c exticonf.c compdriver.c flash.c
-RTTSRC = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c
-IMU = my_i2c.c imu.c
-MOVING =  motors.c asser.c coordination.c moving.c position.c
-=======
 RADIOSRC  = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
 DRIVERSRC = pwmdriver.c exticonf.c adcconf.c flash.c
 RTTSRC    = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c RTT/RTT_streams.c
 IMU       = my_i2c.c imu.c
 MOVING    = pid.c coordination.c moving.c position.c
 
->>>>>>> testing_motors
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(STARTUPSRC) \
@@ -132,18 +124,12 @@ CSRC = $(STARTUPSRC) \
        $(RADIOSRC) \
        $(DRIVERSRC) \
        $(RTTSRC) \
-<<<<<<< HEAD
-       $(IMU) \
-       $(MOVING) \
-       battery.c led.c main.c test_motors.c dance.c trigo.c
-=======
 	   $(CHIBIOS)/os/various/shell.c \
 	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
 	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(IMU) \
        $(MOVING) \
-       swarmShell.c led.c dance.c main.c
->>>>>>> testing_motors
+       swarmShell.c led.c dance.c main.c battery.c trigo.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
