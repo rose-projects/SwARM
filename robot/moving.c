@@ -18,7 +18,6 @@ static THD_WORKING_AREA(working_area_moving_thd, 512);
 
 // Enslavement calculations
 static THD_FUNCTION(moving_thd, arg) {
-<<<<<<< HEAD
 	(void) arg;
 	// We update robot position goal every 50 milliseconds
 	const int UPDATE_GOAL_MS = 50;
@@ -54,7 +53,7 @@ static THD_FUNCTION(moving_thd, arg) {
 			update_goal();
 		}
 		// Resetting enslavement error variables
-		begin_new_asser();
+		begin_new_pid();
 
 		chThdSleepMilliseconds(UPDATE_GOAL_MS);
 	}

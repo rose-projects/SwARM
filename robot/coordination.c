@@ -1,6 +1,6 @@
 #include "trigo.h"
 #include "coordination.h"
-#include "wheel_constants.h"
+#include "coding_wheels.h"
 #include "pid.h"
 #include "moving.h"
 #include "position.h"

@@ -2,7 +2,6 @@
 #include "hal.h"
 
 #include "position.h"
-#include "wheel_constants.h"
 #include "pid.h"
 #include "coordination.h"
 #include "coding_wheels.h"

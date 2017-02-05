@@ -4,7 +4,6 @@
 #include "RTT/SEGGER_RTT.h"
 #include "pid.h"
 #include "coding_wheels.h"
-#include "wheel_constants.h"
 #include "pwmdriver.h"
 #include "coordination.h"
 

@@ -2,6 +2,8 @@
 #include "hal.h"
 #include "pwmdriver.h"
 
+const int PWM_MAX = 400;
+
 // approximative frequency of the PWM (in kHz)
 static const unsigned int PWM_FREQUENCY_KHZ = 60;
 static const unsigned int CLK_KHZ = 72000;

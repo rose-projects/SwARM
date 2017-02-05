@@ -1,6 +1,8 @@
 #ifndef COORDINATION_H
 #define COORDINATION_H
 
+#include <math.h>
+
 int compute_traj(void);
 void update_goal(void);
 

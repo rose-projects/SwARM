@@ -129,7 +129,7 @@ CSRC = $(STARTUPSRC) \
 	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(IMU) \
        $(MOVING) \
-       swarmShell.c led.c dance.c main.c battery.c trigo.c
+       swarmShell.c led.c dance.c main.c trigo.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

@@ -8,11 +8,10 @@
 #include "pid.h"
 #include "pwmdriver.h"
 #include "coding_wheels.h"
-#include "adcconf.h"
 #include "radiocomms.h"
 #include "led.h"
 #include "dance.h"
-#include "battery.h"
+#include "adcconf.h"
 
 volatile int cmd_left = 0;
 volatile int cmd_right = 0;
@@ -28,7 +27,6 @@ int main(void) {
 	initExti();
 	initADC();
 	initPID();
-	initBattery();
 	//initLEDs();
 	initSequencer();
 	startRadio();
