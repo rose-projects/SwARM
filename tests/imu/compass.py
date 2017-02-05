@@ -4,6 +4,7 @@ from visual import *
 
 previous_angle = 0
 angle = 0
+Pi = 3.14159265359
 
 pointer = arrow(pos=(0,-5,0), axis=(0,15,0), shaftwidth=1)
 

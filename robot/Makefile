@@ -108,9 +108,8 @@ vpath %.c ../shared/
 
 RADIOSRC  = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
 DRIVERSRC = pwmdriver.c exticonf.c adcconf.c flash.c
-RTTSRC    = RTT/SEGGER_RTT.c SEGGER_RTT_printf.c RTT/RTT_streams.c
 IMU       = my_i2c.c imu.c
-MOVING    = pid.c coordination.c moving.c position.c
+MOVING    = pid.c coordination.c moving.c position.c dance.c
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -123,14 +122,9 @@ CSRC = $(STARTUPSRC) \
        $(BOARDSRC) \
        $(RADIOSRC) \
        $(DRIVERSRC) \
-       $(RTTSRC) \
-	   $(CHIBIOS)/os/various/shell.c \
-	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
-       swarmShell.c \
        $(IMU) \
        $(MOVING) \
-       led.c dance.c main.c trigo.c
+       trigo.c led.c main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -160,9 +154,7 @@ TCPPSRC =
 ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
-         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-		 $(CHIBIOS)/os/hal/lib/streams \
-         $(CHIBIOS)/os/various .
+         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(CHIBIOS)/os/various .
 
 #
 # Project, sources and paths
@@ -234,8 +226,8 @@ ULIBS =
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
-startgdbserver:
-	JLinkGDBServer -if swd -device "STM32F302R6" -LocalhostOnly
+debugserver:
+	JLinkGDBServer -if swd -device "STM32F302R6" -LocalhostOnly -speed 4000
 
 gdb: all
 	$(GDB) build/$(PROJECT).elf

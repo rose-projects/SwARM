@@ -5,7 +5,6 @@
 
 #include "../shared/flash.h"
 #include "../shared/radioconf.h"
-#include "RTT/SEGGER_RTT.h"
 #include "radiocomms.h"
 #include "dance.h"
 #include "coordination.h"
@@ -60,9 +59,6 @@ void writeStoredData(void) {
 
 	storedMoves = 0;
 	storedColors = 0;
-
-	if(ret != 0)
-		printf("Something went wrong while flashing dance\n");
 }
 
 void storeMoves(uint8_t* buffer, int pointCnt) {
@@ -70,7 +66,7 @@ void storeMoves(uint8_t* buffer, int pointCnt) {
 
 	// check there's enough room
 	if(storedMoves+pointCnt > MAX_MOVE_POINTS) {
-		printf("too many points !\n");
+		// too many points !
 		return;
 	}
 
@@ -90,7 +86,7 @@ void storeColors(uint8_t* buffer, int pointCnt) {
 
 	// check there's enough room
 	if(storedColors+pointCnt > MAX_COLOR_POINTS) {
-		printf("too many colors points !\n");
+		// too many colors points !
 		return;
 	}
 

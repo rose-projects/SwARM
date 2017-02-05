@@ -13,6 +13,7 @@
 
 #define PI 3.14159265359
 #define NB_CALIB 0
+#define X_NORTH_DIFF (-0.5) // north around -y
 
 enum Mscale_t {
 	MFS_14BITS = 0, // 0.6 mG per LSB
@@ -342,18 +343,14 @@ void imu(void) {
 		// they will be from the X axis of the scene in the future
 		if(mx == 0) {
 			if(my < 0) {
-				azimuth = PI/2;
-			} else { // y > 0
-				azimuth = - PI/2;
+				azimuth = - PI/2 - X_NORTH_DIFF;
+			} else { // y >= 0
+				azimuth = PI/2 - X_NORTH_DIFF;
 			}
 		} else if (mx < 0) {
-			azimuth = PI - atan(my/mx); 
+			azimuth = atan(my/mx) - X_NORTH_DIFF; 
 		} else if (mx > 0) {
-			if (my < 0) {
-				azimuth = - atan(my/mx);
-			} else { // y > 0
-				azimuth = 2 * PI - atan(my/mx);
-			}
+				azimuth = - PI + atan(my/mx) - X_NORTH_DIFF;
 		}
 
 		chprintf(SERIAL, "Azimuth : %f\r\n", azimuth);

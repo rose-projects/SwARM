@@ -1,7 +1,6 @@
 #include "ch.h"
 #include "hal.h"
 
-#include "RTT/SEGGER_RTT.h"
 #include "pid.h"
 #include "coding_wheels.h"
 #include "pwmdriver.h"
@@ -14,8 +13,8 @@
 static THD_WORKING_AREA(working_area_pid_thd, 128);
 
 // These counters are used to memorize the ticks' values
-volatile int tick_l_capt = 0;
-volatile int tick_r_capt = 0;
+volatile unsigned int tick_l_capt = 0;
+volatile unsigned int tick_r_capt = 0;
 
 // Errors of the enslavement
 static int dist_error_sum;
@@ -53,12 +52,11 @@ static THD_FUNCTION(pid_thd, arg) {
     static int last_cmd_right = 0;
 
 	// 200 Hz calculation
-	while(true){
-		/*
-		 * Enslavement PID related calculations:
-		 * Calculating errors
-		 * Calculating output
-		 */
+	while(true) {
+
+		// Enslavement PID related calculations:
+		// Calculating errors
+		// Calculating output
 
 		angle = (tick_r - tick_r_capt) - (tick_l - tick_l_capt);
 		distance = ((tick_r - tick_r_capt) + (tick_l - tick_l_capt))/2;
@@ -79,22 +77,13 @@ static THD_FUNCTION(pid_thd, arg) {
 		cmd_angle = P_ANGLE*angle_error + I_ANGLE*angle_error_sum
 					+ D_ANGLE*angle_error_delta;
 
-		/*
-		 * Limiting all cmd values so that they don't exceed the maximum
-		 * value that the pwmEnableChannel can interpret without
-		 * ambiguosity. The maximmun value they can take is 200 so
-		 * PWM_MAX should be less than 200. Also if the value is
-		 * negative, the wheel they control will move in reverse
-		 */
+		// Calculating motor commands value
+		// Firt we have the basic sum and difference 
+		// Then we normalize the values so obtained so that they don't
+		// exceed PWM_MAX/2 and are above -PWM_MAX/2 and mimic the
+		// truncations so that the values are still "proportionate"
+		// after normalization 
 
-		/*
-		 * Calculating motor commands value
-		 * Firt we have the basic sum and difference 
-		 * Then we normalize the values so obtained so that they don't
-		 * exceed PWM_MAX/2 and are above -PWM_MAX/2 and mimic the
-		 * truncations so that the values are still "proportionate"
-		 * after normalization 
-		 */
 		cmd_left = cmd_dist - cmd_angle;
 		cmd_right = cmd_dist + cmd_angle;
 
@@ -142,6 +131,7 @@ static THD_FUNCTION(pid_thd, arg) {
 
         last_cmd_left = cmd_left;
         last_cmd_right = cmd_right;
+		
 		// Updating PWM signals
 		setLpwm(cmd_left);
 		setRpwm(cmd_right);
@@ -151,31 +141,33 @@ static THD_FUNCTION(pid_thd, arg) {
 }
 
 // To be called from main to start a basic enslavement
-void initPID(){
+void initPID(void) {
 	// Starting the monitoring threads
 	(void)chThdCreateStatic(working_area_pid_thd,
 			sizeof(working_area_pid_thd),
 			NORMALPRIO, pid_thd, NULL);
 }
 
-/*
- * This function resets the variables that are used to enslave the two motors of
- * the robot. It is called everytime dist_goal and angle_goal are changed
- */
-void begin_new_pid(){
+// This function resets the variables that are used to enslave the two motors of
+// the robot. It is called everytime dist_goal and angle_goal are changed
+void begin_new_pid(void) {
+	
 	// Reset angle related variables
 	angle_error = 0;
 	angle_error_sum = 0;
 	angle_error_delta = 0;
 	angle_error_delta = 0;
+	
 	// Reset distance related variables
 	dist_error = 0;
 	dist_error_sum = 0;
 	dist_error_delta = 0;
 	dist_error_delta = 0;
+    
     // Memorize tick values
     tick_l_capt = tick_l;
     tick_r_capt = tick_r;
+    
     // Move origin of the goals to current situation
     angle_goal = 0;
     dist_goal = 0;

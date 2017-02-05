@@ -4,10 +4,8 @@
 extern volatile unsigned int tick_l;
 extern volatile unsigned int tick_r;
 
-/* 
- * This file defines the constants that are used throughout the code and that 
- * are related to the coding_wheels
- */
+// This file defines the constants that are used throughout the code and that 
+// are related to the coding_wheels
 
 // Number of ticks in a complete wheel rotation
 #define TICKS_PER_ROTATION      (208)
