@@ -10,7 +10,6 @@ script:
     - make -C tests/led/
     - make -C tests/ranging/
     - make -C tests/coding_wheels/
-    - make -C tests/moving/
     - make -C tests/RTLS/beacon
     - make -C tests/RTLS/robot
     - make -C tests/imu/
