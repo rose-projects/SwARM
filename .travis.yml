@@ -1,12 +1,6 @@
 dist: trusty
 sudo: false
 
-branches:
-    except:
-    - pretest
-    - elec
-
-
 language: C
 
 script:
@@ -20,7 +14,6 @@ script:
     - make -C tests/RTLS/beacon
     - make -C tests/RTLS/robot
     - make -C tests/imu/
-    - make -C tests/moving/
 
 cache: ccache
 
