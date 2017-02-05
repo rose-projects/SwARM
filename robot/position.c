@@ -94,7 +94,7 @@ static THD_FUNCTION(fusion_thd, arg) {
 }
 
 // To be called from main to start the enslavement with some distance and goal
-void startFusion(void){
+void startFusion(void) {
 	// Starting the monitoring threads
 	(void)chThdCreateStatic(wa_fusion, sizeof(wa_fusion), NORMALPRIO, fusion_thd, NULL);
 }

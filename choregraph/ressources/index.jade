@@ -1,0 +1,48 @@
+//output:index.html, pretty:true
+
+doctype html
+html(lang="fr")
+	head
+		title Choregraph
+		link(rel='stylesheet', href='styles/style.css')
+		link(rel='stylesheet', href='styles/list.css')
+		link(rel='stylesheet', href='styles/font-awesome.css')
+	body
+		div.simu-ctrl
+			audio#player
+				source(src="audio.mp3" type="audio/mpeg")
+			span.fa.fa-stop.stop-btn
+			span.fa.fa-play.play-btn
+			input(type="range" min="0" value="0").play-slider
+			span.simu-date 0
+		div.table-layout
+		canvas#table.table-layout
+		div.serialport
+			select.serialpath
+			| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			span.beacon baudrate : &nbsp;
+			input.baudrate(type="number" value="38400")
+			| &nbsp;&nbsp;&nbsp;&nbsp;
+			a.btn.serial-btn &nbsp;&nbsp;OK&nbsp;&nbsp;
+			
+		div.tools
+			div.buttons
+				a.btn.dance-btn.disabled 
+					span.fa.fa-music
+					| Danser !
+				a.btn.shell-btn.disabled
+					span.fa.fa-terminal
+					| Shell
+			div.selector
+				a.btn.selected-btn.moves-mode Mouvements
+				a.btn.colors-mode Couleurs
+			br
+			div.robots
+		
+		div.darkscreen
+		div.flash-console
+		input.shell-input
+		script(src="../lib/sidebar.js")
+		script(src="../lib/simu.js")
+		script(src="../lib/path.js")
+		script(src="scripts/jscolor.js")
