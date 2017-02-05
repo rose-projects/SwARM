@@ -23,6 +23,10 @@ static THD_FUNCTION(moving_thd, arg) {
 	const int UPDATE_GOAL_MS = 50;
 	const int UPDATE_TRAJ = 20; // * 50ms = 1s
 	int pt = 0, npts = 1;
+    
+    x_pos = 0;
+    y_pos = 0;
+    orientation = 0;
 
 	/*
 	 * Thread routine

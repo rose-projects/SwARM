@@ -285,6 +285,11 @@ int compute_traj(void)
 	if (destnpts == 0) {
 		destnpts++;
 	}
+    npts=100;
+    depnpts = 33;
+    straightnpts = 34;
+    destnpts = 33;
+
 
 #ifdef DEBUG_ACH
 	dbadep = angledep * 100;
@@ -302,11 +307,7 @@ int compute_traj(void)
 // Update distance and angle goals: called every 50ms
 void update_goal(void) {
 	// reset state to begin a new phase of the movement
-	if (pt == 0 || pt == depnpts || pt == straightnpts) {
-		tick_l_capt = tick_l;
-		tick_r_capt = tick_r;
-		angle_goal = 0;
-		dist_goal = 0;
+	if (pt == 0 || pt == depnpts || pt == depnpts + straightnpts) {
 		begin_new_pid();
 	}
 	

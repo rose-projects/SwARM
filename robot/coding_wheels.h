@@ -16,7 +16,7 @@ extern volatile unsigned int tick_r;
 // Unitary move, equivalent to one tick on both wheels ~= 0.725mm
 #define U_MM                    (WHEEL_ROTATION_MM/TICKS_PER_ROTATION)
 // Equivalent to a one tick difference in the rotation of the two wheels in rad
-#define U_RAD                   ((3.1415926535*3.1415926535*L_MM)/(180*U_MM))
+#define U_RAD                   (L_MM/U_MM)
 // Equivalent to a one tick difference in the rotation of the two wheels
 // ~= 0.361 or 997 ticks for a complete 360
 #define U_DEGREE_ANGLE          (360*R_MM/(L_MM*TICKS_PER_ROTATION))

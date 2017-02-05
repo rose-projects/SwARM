@@ -29,13 +29,10 @@ int main(void) {
 	initPID();
 	//initLEDs();
 	initSequencer();
-	initIMU();
-
-	startRadio();
-
+    
 	chThdSleepMilliseconds(2000);
 
-	start_moving();
+    start_moving();
 
 	while(1){
 		chThdSleepMilliseconds(500);
