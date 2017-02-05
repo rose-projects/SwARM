@@ -17,6 +17,8 @@ static THD_WORKING_AREA(working_area_pid_thd, 128);
 // Error on the last commands, shared with moving_thread
 volatile int dist_error = 0;
 volatile int angle_error = 0;
+volatile int tick_l_capt = 0;
+volatile int tick_r_capt = 0;
 
 // Errors of the enslavement
 static int dist_error_sum;
@@ -31,7 +33,7 @@ static THD_FUNCTION(pid_thd, arg) {
 	(void) arg;
 	const unsigned int PID_FREQ_HZ = 1000;
 	const unsigned int PID_THD_SLEEP_MS = (1000/PID_FREQ_HZ);
-    const int RAMP = 10;  // Corresponds to maximum delta between two consecutive commands
+    const int RAMP = 7;  // Corresponds to maximum delta between two consecutive commands
 	
 	// PID coefficients for angle and distance
 	const double P_ANGLE = 2;
@@ -57,8 +59,8 @@ static THD_FUNCTION(pid_thd, arg) {
 		 * Calculating output
 		 */
 
-		angle = tick_r - tick_l;
-		distance = (tick_r + tick_l)/2;
+		angle = (tick_r - tick_r_capt) - (tick_l - tick_l_capt);
+		distance = ((tick_r - tick_r_capt) + (tick_l - tick_l_capt))/2;
 
 		// Error calculations for distance
 		dist_error = dist_goal - distance;
