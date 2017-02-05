@@ -13,42 +13,6 @@
 
 static RTTStream rttStream;  
 
-// This command sets left motor pwm
-// Ex: l 100 
-// Ex: l -100
-static void cmd_mtr_l_p(BaseSequentialStream *chp, int argc, char *argv[]) {
-
-	if ((argc == 0) || (argc > 1)){
-		chprintf(chp,"Usage: <command>\r\n");
-		return;
-	} else{
-		cmd_left = atoi(argv[0]);
-		cmd_left = (cmd_left <= 200) ? cmd_left : 200;
-		setLpwm(cmd_left);
-		chprintf(chp,"cmd_left %d\r\n", cmd_left);
-
-	}
-	return;
-}
-
-// This command sets right motor pwm
-// Ex: r 100 
-// Ex: r -100
-static void cmd_mtr_r_p(BaseSequentialStream *chp, int argc, char *argv[]) {
-
-	if ((argc == 0) || (argc > 1)){
-		chprintf(chp,"Usage: <command>\r\n");
-		return;
-	} else{
-		cmd_right = atoi(argv[0]);
-		cmd_right = (cmd_right <= 200) ? cmd_right : 200;
-		setRpwm(cmd_right);
-		chprintf(chp,"cmd_right %d\r\n", cmd_right);
-
-	}
-	return;
-}
-
 // This command prints out the status of the robot regarding the motors and the
 // wheels
 // Ex: s
@@ -62,8 +26,6 @@ static void cmd_status(BaseSequentialStream *chp, int argc, char *argv[]) {
 	} else{
 		chprintf(chp,"tick_l %d\r\n", tick_l);
 		chprintf(chp,"tick_r %d\r\n", tick_r);
-		chprintf(chp,"cmd_left %d\r\n", cmd_left);
-		chprintf(chp,"cmd_right %d\r\n", cmd_right);
 	}
 	return;
 }
@@ -94,8 +56,6 @@ static void cmd_test_ticks(BaseSequentialStream *chp, int argc, char *argv[]) {
 
 
 static const ShellCommand commands[] = {
-	{"l", cmd_mtr_l_p},
-	{"r", cmd_mtr_r_p},
 	{"s", cmd_status},
 	{"tt", cmd_test_ticks},
 	{NULL, NULL}

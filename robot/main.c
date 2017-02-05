@@ -14,9 +14,6 @@
 #include "adcconf.h"
 #include "imu.h"
 
-volatile int cmd_left = 0;
-volatile int cmd_right = 0;
-
 int main(void) {
 	// initialize ChibiOS
 	halInit();
@@ -39,9 +36,6 @@ int main(void) {
 	chThdSleepMilliseconds(2000);
 
 	start_moving();
-#ifdef DEBUG_ACH
-	printf("Started!\n");
-#endif // DEBUG_ACH
 
 	while(1){
 		chThdSleepMilliseconds(500);
