@@ -42,6 +42,8 @@ static THD_FUNCTION(pid_thd, arg) {
 	const double I_DIST = 0.0004;
 	const double D_DIST = 25;
 
+    int cmd_left;
+    int cmd_right;
 	int cmd_dist;  // distance command calculated by enslavement
 	int cmd_angle; // angle command calculated by enslavement
 	int angle;     // current angle

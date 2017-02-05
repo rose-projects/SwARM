@@ -13,16 +13,15 @@
 #include "dance.h"
 #include "adcconf.h"
 
-volatile int cmd_left = 0;
-volatile int cmd_right = 0;
-
 int main(void) {
 	// initialize ChibiOS
 	halInit();
 	chSysInit();
 
 	// initialize hardware
+#ifdef DEBUG_ACH
 	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
+#endif // DEBUG_ACH
 	initPWM();
 	initExti();
 	initADC();
@@ -34,8 +33,6 @@ int main(void) {
 	chThdSleepMilliseconds(2000);
 
 	start_moving();
-	printf("Started!\n");
-
 
 	while(1){
 		chThdSleepMilliseconds(500);
