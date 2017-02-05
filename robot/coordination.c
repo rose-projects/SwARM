@@ -303,10 +303,21 @@ int compute_traj(void)
 
 // Update distance and angle goals: called every 50ms
 void update_goal(void) {
+	// reset state to begin a new phase of the movement
+	if (pt == 0 || pt == depnpts || pt == straightnpts) {
+		tick_l_capt = tick_l;
+		tick_r_capt = tick_r;
+		angle_goal = 0;
+		dist_goal = 0;
+		begin_new_pid();
+	}
+	
 #ifdef DEBUG_ACH
 //	printf("Update goal\n");
 #endif // DEBUG_ACH
-	if (pt <= depnpts) {
+
+	if (pt < depnpts) {
+	
 #ifndef DEBUG_ACH
 		angle_goal += depleft*angledep/(U_RAD*depnpts);
 		dist_goal += deplen / depnpts;
@@ -321,14 +332,18 @@ void update_goal(void) {
 		         depleft*msin(angledep/depnpts)*(dbx-dbcdep[0]);
 		orientation += depleft * (angledep/depnpts);
 #endif // DEBUG_ACH
-	} else if (pt <= depnpts + straightnpts) {
+
+	} else if (pt < depnpts + straightnpts) {
+	
 #ifndef DEBUG_ACH
 		dist_goal += straightlen / straightnpts;
 #else
 		x_pos += straightlen * mcos(orientation);
 		y_pos += straightlen * msin(orientation);
 #endif // DEBUG_ACH
+
 	} else {
+	
 #ifndef DEBUG_ACH
 		angle_goal += destleft*angledest/(U_RAD*destnpts);
 		dist_goal += destlen / destnpts;
@@ -343,11 +358,8 @@ void update_goal(void) {
 		         destleft*msin(angledest/destnpts)*(dbx-dbcdest[0]);
 		orientation += destleft * (angledest/destnpts);
 #endif // DEBUG_ACH
+
 	}
-#ifndef DEBUG_ACH
-	angle_goal += last_angle_error;
-	dist_goal += last_dist_error;
-#endif // DEBUG_ACH
 
 	pt++;
 }

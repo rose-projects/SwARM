@@ -3,7 +3,9 @@
 #include "hal.h"
 #include "math.h"
 
+#ifdef DEBUG_ACH
 #include "RTT/SEGGER_RTT.h"
+#endif // DEBUG_ACH
 #include "my_i2c.h"
 #include "MPU9250.h"
 #include "dance.h"
@@ -221,9 +223,13 @@ static void imu_calibration(void) {
 	float magBias[3], magScale[3];
 
 	for(i = 0; i < CALIBRATION_REPEAT; i++) {
+#ifdef DEBUG_ACH
 		printf("Mag Calibration n° %d : Wave device in a figure eight until done!\n", i+1);
+#endif // DEBUG_ACH
 		mag_calibration(magBias, magScale);
+#ifdef DEBUG_ACH
 		printf("Calibration done\n");
+#endif // DEBUG_ACH
 
 		magBiasRAM[0] += magBias[0];
 		magBiasRAM[1] += magBias[1];
@@ -302,7 +308,9 @@ int initIMU(void) {
 	// Read the WHO_AM_I register for MPU-9250, this is a good test of communication
 	uint8_t whoami = readByte(MPU9250_ADDRESS, WHO_AM_I_MPU9250);
 	if (whoami != 0x71) {
+#ifdef DEBUG_ACH
 		printf("Could not connect to IMU\n");
+#endif // DEBUG_ACH
 		setColor(0, 255, 100); // turn LEDs red
 		return 3;
 	}
@@ -313,7 +321,9 @@ int initIMU(void) {
 	// Read the WHO_AM_I register for AK-8963, this is a good test of communication
 	whoami = readByte(AK8963_ADDRESS, WHO_AM_I_AK8963);
 	if(whoami != 0x48) {
+#ifdef DEBUG_ACH
 		printf("Could not connect to AK8963\n");
+#endif // DEBUG_ACH
 		setColor(0, 255, 100); // turn LEDs red
 		return 2;
 	}
@@ -322,7 +332,9 @@ int initIMU(void) {
 	resetAK8963();
 
 	if(mag_self_test()) {
+#ifdef DEBUG_ACH
 		printf("self-test fail\n");
+#endif // DEBUG_ACH
 		setColor(0, 255, 100); // turn LEDs red
 		return 1;
 	}
