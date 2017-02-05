@@ -40,34 +40,36 @@ int main(void) {
 
             printf("kieme tour %d\r\n", k);
             // 15cm straight line
-            for(i = 0; i<69; i++){
-                dist_goal += 20;
+            for(i = 0; i<17; i++){
+                dist_goal += 40;
                 printf("i ieme tour %d\r\n", i);
                 printf("dist_goal %d\r\n", dist_goal);
                 printf("tick_l %d\r\n", tick_l);
                 printf("tick_r %d\r\n", tick_r);
                 chThdSleepMilliseconds(50);
             }
+            dist_goal += 10;
+            chThdSleepMilliseconds(50);
             /*
-            printf("Now waiting for robot to finish moving\r\n");
-            chThdSleepMilliseconds(1000);
-            printf("cmd_left %d\r\n", cmd_left);
-            printf("cmd_right %d\r\n", cmd_right);
-            printf("tick_l %d\r\n", tick_l);
-            printf("tick_r %d\r\n", tick_r);
-            */
+               printf("Now waiting for robot to finish moving\r\n");
+               chThdSleepMilliseconds(1000);
+               printf("cmd_left %d\r\n", cmd_left);
+               printf("cmd_right %d\r\n", cmd_right);
+               printf("tick_l %d\r\n", tick_l);
+               printf("tick_r %d\r\n", tick_r);
+               */
 
             // 90 degrees angle
-            for(j=0; j<20; j++){
-                angle_goal -= 25;
+            for(j=0; j<11; j++){
+                angle_goal -= 21;
                 printf("j ieme tour %d\r\n", j);
                 printf("angle_goal %d\r\n", angle_goal);
                 printf("tick_l %d\r\n", tick_l);
                 printf("tick_r %d\r\n", tick_r);
                 chThdSleepMilliseconds(50);
             }
-            angle_goal-=10;
-            chThdSleepMilliseconds(50);
+                angle_goal -= 19;
+                chThdSleepMilliseconds(50);
             /*
                begin_new_pid();
                printf("Now waiting for robot to finish moving\r\n");
@@ -77,8 +79,8 @@ int main(void) {
                printf("tick_r %d\r\n", tick_r);
                */ 
     }
-       printf("tick_l %d\r\n", tick_l);
-       printf("tick_r %d\r\n", tick_r);
+    printf("tick_l %d\r\n", tick_l);
+    printf("tick_r %d\r\n", tick_r);
 
     while(1){
         chThdSleepMilliseconds(500);

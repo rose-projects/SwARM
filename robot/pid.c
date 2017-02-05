@@ -33,11 +33,11 @@ static THD_FUNCTION(pid_thd, arg) {
 	(void) arg;
 	const unsigned int PID_FREQ_HZ = 1000;
 	const unsigned int PID_THD_SLEEP_MS = (1000/PID_FREQ_HZ);
-    const int RAMP = 7;  // Corresponds to maximum delta between two consecutive commands
+    const int RAMP = 5;  // Corresponds to maximum delta between two consecutive commands
 	
 	// PID coefficients for angle and distance
 	const double P_ANGLE = 2;
-	const double I_ANGLE = 0.0004;
+	const double I_ANGLE = 0.002;
 	const double D_ANGLE = 40;
 	const double P_DIST = 1.33333333;
 	const double I_DIST = 0.0004;
