@@ -1,6 +1,8 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+#include "trigo.h"
+
 #ifndef DEBUG_ACH
 extern int x_pos;
 extern int y_pos;

@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16 -DDEBUG_ACH
+  USE_OPT = -Os -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -127,9 +127,10 @@ CSRC = $(STARTUPSRC) \
 	   $(CHIBIOS)/os/various/shell.c \
 	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
 	   $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
+       swarmShell.c \
        $(IMU) \
        $(MOVING) \
-       swarmShell.c led.c dance.c main.c trigo.c
+       led.c dance.c main.c trigo.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

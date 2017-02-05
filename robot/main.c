@@ -12,6 +12,7 @@
 #include "led.h"
 #include "dance.h"
 #include "adcconf.h"
+#include "imu.h"
 
 int main(void) {
 	// initialize ChibiOS
@@ -28,6 +29,8 @@ int main(void) {
 	initPID();
 	//initLEDs();
 	initSequencer();
+	initIMU();
+
 	startRadio();
 
 	chThdSleepMilliseconds(2000);
@@ -38,4 +41,3 @@ int main(void) {
 		chThdSleepMilliseconds(500);
 	}
 }
-
