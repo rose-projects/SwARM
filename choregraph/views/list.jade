@@ -1,0 +1,13 @@
+table.list
+    each item in list
+        tr: td(data-index="#{item.index}")
+            p(class="#{listname + '-name'} #{item.activated ? 'selected-list-element':''}").list-element    
+                input(class="#{listname + '-checkbox'}", type="checkbox", checked=(item.selected ? "checked" : undefined)).list-checkbox
+                span.list-name= item.name
+                span(class="#{listname + '-delete'}").fa.fa-trash.list-delete
+            if item.activated
+                div(class="#{listname + '-content'}").list-content
+    tr: td.list-add
+        a(class="#{listname + '-add'}").btn.add-element-btn
+            span.fa.fa-plus
+            = addMsg

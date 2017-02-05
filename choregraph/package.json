@@ -1,0 +1,29 @@
+{
+  "name": "choregraph",
+  "version": "0.1.0",
+  "description": "dance editor for SwARM project",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rose-projects/SwARM.git"
+  },
+  "author": "superpingu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rose-projects/SwARM/issues"
+  },
+  "homepage": "https://github.com/rose-projects/SwARM#readme",
+  "dependencies": {
+    "electron": "^1.4.13",
+    "jade": "^1.11.0",
+    "jquery": "^3.1.1",
+    "jsonfile": "^2.4.0",
+    "serialport": "^4.0.7"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.5.5"
+  }
+}
