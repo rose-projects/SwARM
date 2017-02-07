@@ -1,41 +1,34 @@
 #include "ch.h"
 #include "hal.h"
 
+#include "RTT/SEGGER_RTT.h"
 #include "exticonf.h"
-#include "moving.h"
-#include "pid.h"
 #include "pwmdriver.h"
-#include "coding_wheels.h"
-#include "radiocomms.h"
 #include "led.h"
-#include "dance.h"
 #include "adcconf.h"
-#include "position.h"
-#include "imu.h"
+#include "pid.h"
+#include "radiocomms.h"
+#include "dance.h"
+#include "motion.h"
 
 int main(void) {
-	
 	// initialize ChibiOS
 	halInit();
 	chSysInit();
 
 	// initialize hardware
+	SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 	initPWM();
 	initExti();
 	initADC();
-	initPID();
 	initLEDs();
-	initIMU();
-	initSequencer();
-    
-	chThdSleepMilliseconds(2000);
 
-	// start choreography
+	// start high level features
+	initPID();
 	startRadio();
-    start_moving();
-	startFusion();
+	initSequencer();
+	initMotion();
 
-	while(1) {
-		chThdSleepMilliseconds(5000);
-	}
+	chThdSleep(TIME_INFINITE);
+	return 0;
 }
