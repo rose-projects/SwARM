@@ -7,16 +7,10 @@
 #include "../shared/radioconf.h"
 #include "radiocomms.h"
 #include "dance.h"
-#include "coordination.h"
+#include "motion.h"
 
 #define MAX_MOVE_POINTS 64
 #define MAX_COLOR_POINTS 110
-
-#ifndef DEBUG_ACH
-const int ADVANCE_TIME = 2; // in 0.1s
-#else
-const int ADVANCE_TIME = 0; // in 0.1s
-#endif // DEBUG_ACH
 
 // RAM buffers storing data to be written in flash
 struct move movesBuffer[MAX_MOVE_POINTS];
@@ -65,10 +59,8 @@ void storeMoves(uint8_t* buffer, int pointCnt) {
 	int i;
 
 	// check there's enough room
-	if(storedMoves+pointCnt > MAX_MOVE_POINTS) {
-		// too many points !
+	if(storedMoves+pointCnt > MAX_MOVE_POINTS)
 		return;
-	}
 
 	// copy data
 	for(i=0; i < pointCnt; i++) {
@@ -85,10 +77,8 @@ void storeColors(uint8_t* buffer, int pointCnt) {
 	int i;
 
 	// check there's enough room
-	if(storedColors+pointCnt > MAX_COLOR_POINTS) {
-		// too many colors points !
+	if(storedColors+pointCnt > MAX_COLOR_POINTS)
 		return;
-	}
 
 	// copy data
 	for(i=0; i < pointCnt; i++) {
@@ -109,7 +99,7 @@ void saveDance(void) {
 	memcpy(colorsBuffer, danceColors, sizeof(struct color)*danceColorsCnt);
 }
 
-static THD_WORKING_AREA(waSequencer, 256);
+static THD_WORKING_AREA(waSequencer, 512);
 static THD_FUNCTION(sequencerThread, th_data) {
 	int i, date;
 
@@ -117,22 +107,21 @@ static THD_FUNCTION(sequencerThread, th_data) {
 	chRegSetThreadName("Sequencer");
 
 	while(1) {
+		date = getDate();
+
 		// if dance is enabled
 		if(radioData.flags & RB_FLAGS_DEN) {
-			date = getDate();
-
 			// find the next point to execute
 			i = 0;
-			// + ADVANCE_TIME to load the next point in advance
-			while(i < danceMovesCnt &&
-			      danceMoves[i].date + ADVANCE_TIME < date)
-			{
+			while(i < danceMovesCnt && danceMoves[i].date < date) {
 				i++;
 			}
+
 			// if found, set as the current goal
 			if(i < danceMovesCnt && &danceMoves[i] != currentMove) {
 				currentMove = &danceMoves[i];
-				compute_traj();
+				if(i != 0)
+					updateInterpoints();
 			}
 
 			// find the next color to display
@@ -140,15 +129,15 @@ static THD_FUNCTION(sequencerThread, th_data) {
 			while(i < danceColorsCnt && danceColors[i].date < date)
 				i++;
 			// if found and we have to start fading, set as the current goal
-			if(i < danceColorsCnt &&
-			   (danceColors[i].date - danceColors[i].fadeTime) <= date)
-			{
+			if(i < danceColorsCnt && (danceColors[i].date - danceColors[i].fadeTime) <= date) {
 				currentColor = &danceColors[i];
 			}
 		} else {
 			currentColor = &danceColors[0];
 			currentMove = &danceMoves[0];
+			resetPosition();
 		}
+
 		chThdSleepMilliseconds(50);
 	}
 }
