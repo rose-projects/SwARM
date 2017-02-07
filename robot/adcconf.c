@@ -6,7 +6,7 @@
 #include "coding_wheels.h"
 
 // sample to battery voltage (in 0.01V) conversion coeff
-#define PROBE_TO_VBAT (450/4096)
+#define PROBE_TO_VBAT (450.0/4096)
 
 #define BATTERY_CHANNEL ADC_CHANNEL_IN1
 #define RCODER_CHANNEL ADC_CHANNEL_IN11
