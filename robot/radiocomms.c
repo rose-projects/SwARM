@@ -11,6 +11,9 @@
 #include "led.h"
 #include "dance.h"
 #include "imu.h"
+#ifdef DEBUG_ACH
+#include "RTT/SEGGER_RTT.h"
+#endif // DEBUG_ACH
 
 // event triggered when new data has been received
 EVENTSOURCE_DECL(radioEvent);
@@ -230,18 +233,14 @@ static THD_FUNCTION(radioThread, th_data) {
 	}
 }
 
-uint16_t getDateMs(void) {
-	uint16_t dateSinceSOF;
+float getDate(void) {
+	float dateSinceSOF;
 
 	if (sofSystime == 0xFFFFFFFF)
 	 	return 0;
 
-	dateSinceSOF = chVTTimeElapsedSinceX(sofSystime)*1000/CH_CFG_ST_FREQUENCY;
-	return date*100*512/499.2 + dateSinceSOF;
-}
-
-uint16_t getDate(void) {
-	return getDate() / 100;
+	dateSinceSOF = chVTTimeElapsedSinceX(sofSystime)*10/CH_CFG_ST_FREQUENCY;
+	return date*512/499.2 + dateSinceSOF;
 }
 
 void startRadio(void) {
