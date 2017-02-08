@@ -11,9 +11,6 @@
 #include "led.h"
 #include "dance.h"
 #include "imu.h"
-#ifdef DEBUG_ACH
-#include "RTT/SEGGER_RTT.h"
-#endif // DEBUG_ACH
 
 // event triggered when new data has been received
 EVENTSOURCE_DECL(radioEvent);
