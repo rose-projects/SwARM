@@ -17,16 +17,12 @@
 #define MAG_MODE 0x06               // magnetometer at 100Hz
 
 #define CALIBRATION_REPEAT 8 // how many times to repeat calibration to be sure
-#define MAGIC_REF 0xDEADBEAF
-#define TRUST_AZIMUTH 0.95
-
-// hard coded angle diff(X, north): needs to be updated in thevenin amphitheater
-#define X_NORTH_DIFF (-0.5)
+#define MAGIC_REF 0xFA7B00B5
+#define TRUST_AZIMUTH 0.97
 
 // RAM buffer to save calibration during page clear
 static float magBiasRAM[3], magScaleRAM[3];
 static unsigned int magicCodeRAM;
-
 
 // non volatile data
 static float magbias[3] __attribute__((section(".flashdata")));  // mag bias calibration data
@@ -34,7 +30,8 @@ static float magscale[3] __attribute__((section(".flashdata"))); // mag scale ca
 static unsigned int magicCode __attribute__((section(".flashdata")));  // mismatch w/ MAGIC_REF -> need calibration
 
 static float magCalibration[3] = {0, 0, 0}; // Factory mag calibration
-
+// hard coded angle diff(X, north): needs to be updated in thevenin amphitheater
+static float AzimuthDiff = 0.0;
 volatile float azimuth = 0;
 
 // MPU 9250 & AK 8963 PART
@@ -231,6 +228,7 @@ static void imu_calibration(void) {
 
 	// Mag Calibration : Wave device in a figure eight until done !
 	printf("Mag Calibration : Wave device in a figure eight until done !\r\n");
+	setColor(0, 100, 255);
 
 	for(i = 0; i < CALIBRATION_REPEAT; i++) {
 		printf("calibration %d\r\n", i + 1);
@@ -244,6 +242,7 @@ static void imu_calibration(void) {
 		magScaleRAM[2] += magScale[2];
 	}
 	printf("calibration finished\r\n");
+	setColor(0, 200, 255);
 
 	// compute calibration mean
 	magBiasRAM[0] /= CALIBRATION_REPEAT;
@@ -260,6 +259,10 @@ static void imu_calibration(void) {
 	// write calibration
 	magicCodeRAM = MAGIC_REF;
 	writeIMUcalibration();
+}
+
+void setAzimuthDiff(float firstOrientation) {
+	AzimuthDiff = azimuth - firstOrientation;
 }
 
 // IMU thread
@@ -287,9 +290,9 @@ static THD_FUNCTION(imuThread, th_data) {
 			// all angles are from the X axis
 			if(mx == 0) {
 				if(my < 0) {
-					currentAzimuth = M_PI/2;
+					currentAzimuth = M_PI_2;
 				} else { // y > 0
-					currentAzimuth = - M_PI/2;
+					currentAzimuth = - M_PI_2;
 				}
 			} else if (mx < 0) {
 				currentAzimuth = M_PI - matan(my/mx);
@@ -303,14 +306,22 @@ static THD_FUNCTION(imuThread, th_data) {
 		}
 
 		// IIR filtration
+		currentAzimuth = M_PI * 2 - currentAzimuth;
 		azimuth = (TRUST_AZIMUTH * currentAzimuth) + ((1 - TRUST_AZIMUTH) * oldAzimuth);
 		oldAzimuth = azimuth;
-
 		// at 100 Hz ODR, new mag data is available every 10 ms
 		chThdSleepMilliseconds(10);
 	}
 }
 
+float getAzimuth(void) {
+	// apply diff between X axis and north
+	float azimuthPond = azimuth - AzimuthDiff;
+	while(azimuthPond < 0) azimuthPond += (2 * M_PI);
+	while(azimuthPond >= (2 * M_PI)) azimuthPond -= (2 * M_PI);
+
+	return azimuthPond;
+}
 // actual called function
 // print all values in loop
 int initIMU(void) {
