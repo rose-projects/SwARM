@@ -2,6 +2,7 @@
 #include "hal.h"
 #include <math.h>
 
+#include "RTT/SEGGER_RTT.h"
 #include "imu.h"
 #include "codingwheels.h"
 #include "dance.h"
@@ -9,22 +10,24 @@
 #include "radiocomms.h"
 
 #define TRUST_DWM 0.8
+#define TRUST_IMU 0.0
 
 volatile float currentX, currentY, xSinceLastRadio, ySinceLastRadio;
 
-// Update position according to the coding wheels
+int tickLprev = 0; // last tick count for left wheel
+int tickRprev = 0; // last tick count for right wheel
+
+// Update position according to the coding wheels and the IMU
 // The calculation depends on wether we are rotating to the left or to the right
 
 void updatePosition(float *currentOrientation) {
-	static int tickLprev = 0; // last tick count for left wheel
-	static int tickRprev = 0; // last tick conut for right wheel
 	int tickLcurrent = tickL; // snapshot of the current tick count for left wheel
 	int tickRcurrent = tickR; // snapshot of the current tick count for right wheel
 
 	// Calculating the distance the robot moved in the last 50ms
 	int deltaDistance = (tickLcurrent - tickLprev + tickRcurrent - tickRprev)/2;
 	// Calculating the angle the robot turned in the last 50ms
-	int deltaAngle = (tickLcurrent - tickLprev) - (tickRcurrent - tickRprev);
+	int deltaAngle = (tickRcurrent - tickRprev) - (tickLcurrent - tickLprev);
 
 	// Preparing next call of the function
 	tickLprev = tickLcurrent;
@@ -32,17 +35,17 @@ void updatePosition(float *currentOrientation) {
 
 	// Updating orientation
 	*currentOrientation += deltaAngle*TICKS_TO_RAD;
-
-	// Angle fusion
-	if(fabs(*currentOrientation - azimuth) >= 1) {
-		*currentOrientation = azimuth;
-	} else {
-		*currentOrientation += azimuth;
-		*currentOrientation /= 2;
+	if(*currentOrientation < 0) {
+		*currentOrientation += 2 * M_PI;
+	} else if (*currentOrientation >= 2 * M_PI) {
+		*currentOrientation -= 2 * M_PI;
 	}
 
+	// Angle fusion: IMU & coding wheels
+	*currentOrientation = (TRUST_IMU * getAzimuth()) + ((1 - TRUST_IMU) * (*currentOrientation));
+
 	// Calculating last coordinates of the robot
-	currentX += -deltaDistance*mcos(*currentOrientation)*TICKS_TO_CM;
+	currentX += deltaDistance*mcos(*currentOrientation)*TICKS_TO_CM;
 	currentY += deltaDistance*msin(*currentOrientation)*TICKS_TO_CM;
 }
 
@@ -76,7 +79,7 @@ static THD_FUNCTION(fusion_thd, arg) {
 
 			// position fusion : mean with decawave
 			currentX = (((TRUST_DWM * radioData.x) + ((1 - TRUST_DWM) * oldX)) / 2) + diffX;
-			currentX = (((TRUST_DWM * radioData.y) + ((1 - TRUST_DWM) * oldY)) / 2) + diffY;
+			currentY = (((TRUST_DWM * radioData.y) + ((1 - TRUST_DWM) * oldY)) / 2) + diffY;
 			
 			//chSysUnlock();
 		}

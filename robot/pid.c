@@ -3,6 +3,7 @@
 
 #include "codingwheels.h"
 #include "pwmdriver.h"
+#include "position.h"
 
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX(a,b) ((a>b) ? a : b)
@@ -151,4 +152,7 @@ void beginNewPID(void) {
 	// reset commands
 	angleGoal = 0;
 	distGoal = 0;
+
+	tickLprev = 0;
+	tickRprev = 0;
 }

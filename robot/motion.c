@@ -11,6 +11,7 @@
 #include "position.h"
 #include "radiocomms.h"
 #include "../shared/radioconf.h"
+#include "imu.h"
 
 #define SIGN(x) (x > 0 ? 1 : -1)
 
@@ -205,6 +206,7 @@ static THD_FUNCTION(motionThread, th_data) {
 			currentX = currentMove->x;
 			currentY = currentMove->y;
 			currentOrientation = currentMove->angle*M_PI/128;
+			setAzimuthDiff(currentOrientation);
 
 			beginNewPID();
 			resetPos = 0;
