@@ -188,7 +188,7 @@ static THD_FUNCTION(motionThread, th_data) {
 	chRegSetThreadName("Motion");
 
 	// current position
-	float currentX, currentY, currentOrientation;
+	float currentOrientation;
 	// PID goals
 	float dist, diff;
 	// trajectory computed results
@@ -233,7 +233,7 @@ static THD_FUNCTION(motionThread, th_data) {
 		}
 
 		// compute absolute position
-		updatePosition(&currentX, &currentY, &currentOrientation);
+		updatePosition(&currentOrientation);
 
 		chThdSleepMilliseconds(1000/GOALS_REFRESH_RATE);
 	}
