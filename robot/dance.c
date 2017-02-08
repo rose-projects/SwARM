@@ -13,18 +13,18 @@
 #define MAX_COLOR_POINTS 110
 
 // RAM buffers storing data to be written in flash
-struct move movesBuffer[MAX_MOVE_POINTS];
-struct color colorsBuffer[MAX_COLOR_POINTS];
+static struct move movesBuffer[MAX_MOVE_POINTS];
+static struct color colorsBuffer[MAX_COLOR_POINTS];
 
-int storedMoves = 0;
-int storedColors = 0;
+static unsigned int storedMoves = 0;
+static unsigned int storedColors = 0;
 
 // dance data in flash
-struct move danceMoves[MAX_MOVE_POINTS] __attribute__((section(".flashdata")));
-struct color danceColors[MAX_COLOR_POINTS] __attribute__((section(".flashdata")));
+static struct move danceMoves[MAX_MOVE_POINTS] __attribute__((section(".flashdata")));
+static struct color danceColors[MAX_COLOR_POINTS] __attribute__((section(".flashdata")));
 
-int danceMovesCnt __attribute__((section(".flashdata")));
-int danceColorsCnt __attribute__((section(".flashdata")));
+unsigned int danceMovesCnt __attribute__((section(".flashdata")));
+unsigned int danceColorsCnt __attribute__((section(".flashdata")));
 
 // pointers to the current steps in the dance
 struct move *currentMove;
@@ -56,14 +56,12 @@ void writeStoredData(void) {
 }
 
 void storeMoves(uint8_t* buffer, int pointCnt) {
-	int i;
-
 	// check there's enough room
 	if(storedMoves+pointCnt > MAX_MOVE_POINTS)
 		return;
 
 	// copy data
-	for(i=0; i < pointCnt; i++) {
+	for(int i = 0; i < pointCnt; i++) {
 		movesBuffer[storedMoves + i].date =  buffer[i*11] + (buffer[i*11 + 1] << 8);
 		movesBuffer[storedMoves + i].x =  buffer[i*11 + 2] + (buffer[i*11 + 3] << 8);
 		movesBuffer[storedMoves + i].y =  buffer[i*11 + 4] + (buffer[i*11 + 5] << 8);
@@ -73,15 +71,14 @@ void storeMoves(uint8_t* buffer, int pointCnt) {
 	}
 	storedMoves += pointCnt;
 }
-void storeColors(uint8_t* buffer, int pointCnt) {
-	int i;
 
+void storeColors(uint8_t* buffer, int pointCnt) {
 	// check there's enough room
 	if(storedColors+pointCnt > MAX_COLOR_POINTS)
 		return;
 
 	// copy data
-	for(i=0; i < pointCnt; i++) {
+	for(int i = 0; i < pointCnt; i++) {
 		colorsBuffer[storedColors + i].date =  buffer[i*6] + (buffer[i*6 + 1] << 8);
 		colorsBuffer[storedColors + i].h =  buffer[i*6 + 2];
 		colorsBuffer[storedColors + i].s =  buffer[i*6 + 3];
@@ -95,13 +92,14 @@ void saveDance(void) {
 	storedMoves = danceMovesCnt > MAX_MOVE_POINTS ? 0 : danceMovesCnt;
 	storedColors = danceColorsCnt > MAX_COLOR_POINTS ? 0 : danceColorsCnt;
 
-	memcpy(movesBuffer, danceMoves, sizeof(struct move)*danceMovesCnt);
-	memcpy(colorsBuffer, danceColors, sizeof(struct color)*danceColorsCnt);
+	memcpy(movesBuffer, danceMoves, sizeof(struct move)*storedMoves);
+	memcpy(colorsBuffer, danceColors, sizeof(struct color)*storedColors);
 }
 
 static THD_WORKING_AREA(waSequencer, 512);
 static THD_FUNCTION(sequencerThread, th_data) {
-	int i, date;
+	unsigned int i;
+	int date;
 
 	(void) th_data;
 	chRegSetThreadName("Sequencer");

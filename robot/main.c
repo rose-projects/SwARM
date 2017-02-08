@@ -10,6 +10,8 @@
 #include "radiocomms.h"
 #include "dance.h"
 #include "motion.h"
+#include "imu.h"
+#include "position.h"
 
 int main(void) {
 	// initialize ChibiOS
@@ -22,12 +24,14 @@ int main(void) {
 	initExti();
 	initADC();
 	initLEDs();
+ 	initIMU();
 
 	// start high level features
 	initPID();
 	startRadio();
 	initSequencer();
 	initMotion();
+	initFusion();
 
 	chThdSleep(TIME_INFINITE);
 	return 0;

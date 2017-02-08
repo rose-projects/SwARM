@@ -1,6 +1,9 @@
 #ifndef POSITION_H
 #define POSITION_H
 
-void updatePosition(float *currentX, float *currentY, float *currentOrientation);
+extern volatile float currentX, currentY;
+
+void updatePosition(float *currentOrientation);
+void initFusion(void);
 
 #endif // POSITION_H
