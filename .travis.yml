@@ -3,6 +3,12 @@ sudo: false
 
 language: C
 
+before_install:
+    - (cd /tmp && curl "https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/6-2016q4/gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2" | tar jxf -)
+
+env:
+    - PATH=/tmp/gcc-arm-none-eabi-6_2-2016q4/bin:$PATH
+
 script:
     - make -C robot/
     - make -C beacon/
@@ -15,9 +21,3 @@ script:
     - make -C tests/imu/
 
 cache: ccache
-
-addons:
-    apt:
-        packages:
-        - gcc-arm-none-eabi
-        - libnewlib-arm-none-eabi
