@@ -8,5 +8,6 @@ float msin(float x);
 float mcos(float x);
 float macos(float x);
 float masin(float x);
+float matan(float x);
 
 #endif

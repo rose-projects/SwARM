@@ -79,3 +79,12 @@ float masin(float x) {
 
 	return middle;
 }
+
+float matan(float x) {
+	const float b = 0.596227;
+
+	if(x < 0)
+		return -matan(-x);
+
+	return (M_PI/2)*(b*x + x*x)/(1 + 2*b*x + x*x);
+}
