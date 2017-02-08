@@ -61,11 +61,11 @@ static void updateState(int voltage) {
 
 	// set battery state flag in status
 	chSysLockFromISR(); // lock to guarantee atomicity
-//	radioData.status &= ~RB_STATUS_BATT; // TODO: HELP WTF DOES THAT DO THE MACRO DOES NOT EXIST THE UNIVERSE WILL EXPLOOODE!!!
+	radioData.status &= ~RB_STATUS_BATT;
 	radioData.status |= batteryState;
 	chSysUnlockFromISR();
 
-	// TODO: stop the robot when battery is VERY_LOW
+	// light up robots in red if battery is almost discharged
 	if(batteryState == BATTERY_VERYLOW)
 		setColor(0, 255, 40);
 }

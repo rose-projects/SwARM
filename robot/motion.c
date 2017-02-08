@@ -210,8 +210,10 @@ static THD_FUNCTION(motionThread, th_data) {
 			resetPos = 0;
 		}
 
-		// if dance is enabled, compute trajectory if required
-		if((radioData.flags & RB_FLAGS_DEN) && trajectoryUpdate) {
+		// force robot to stop if dance isn't enabled or battery is too low
+		if((radioData.flags & RB_FLAGS_DEN) == 0 || (radioData.status & RB_STATUS_BATT) == BATTERY_VERYLOW){
+			dancing = 0;
+		} else if(trajectoryUpdate) {
 			dep.x = currentX;
 			dep.y = currentY;
 			dep.angle = currentOrientation*128/M_PI;
@@ -220,11 +222,9 @@ static THD_FUNCTION(motionThread, th_data) {
 
 			currentInterpoints = computeInterpoints(&dep, currentMove);
 			dancing = 1; // allow robot to move
-		} else if((radioData.flags & RB_FLAGS_DEN) == 0){
-			dancing = 0;
 		}
 
-		// move only if the dance has started and the trajectory has been computed
+		// move only if allowed
 		if(dancing) {
 			getGoal(getDate(), &dep, currentMove, &currentInterpoints, &dist, &diff);
 
