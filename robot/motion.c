@@ -221,22 +221,24 @@ static THD_FUNCTION(motionThread, th_data) {
 		// force robot to stop if dance isn't enabled or battery is too low
 		if((radioData.flags & RB_FLAGS_DEN) == 0 || (radioData.status & RB_STATUS_BATT) == BATTERY_VERYLOW){
 			dancing = 0;
-		} else if(trajectoryUpdate && sqrt(pow(currentMove->x - currentX, 2) + pow(currentMove->y - currentY, 2)) > 10) {
-			// update the current point
-			if(sqrt(pow(currentX-dep.x, 2) + pow(currentY-dep.y, 2)) < 10) {
-				dep = dest;
-			} else {
-				dep.x = currentX;
-				dep.y = currentY;
-				dep.angle = currentOrientation*128/M_PI;
-			}
-			dep.date = getDate();
+		} else if(trajectoryUpdate) {
+			if(sqrt(pow(currentMove->x - currentX, 2) + pow(currentMove->y - currentY, 2)) > 10) {
+				// update the current point
+				if(sqrt(pow(currentX-dep.x, 2) + pow(currentY-dep.y, 2)) < 10) {
+					dep = dest;
+				} else {
+					dep.x = currentX;
+					dep.y = currentY;
+					dep.angle = currentOrientation*128/M_PI;
+				}
+				dep.date = getDate();
 
-			currentInterpoints = computeInterpoints(&dep, currentMove);
-			dancing = 1; // allow robot to move
-			dest = *currentMove;
+				currentInterpoints = computeInterpoints(&dep, currentMove);
+				dancing = 1; // allow robot to move
+				dest = *currentMove;
+			}
+			trajectoryUpdate = 0;
 		}
-		trajectoryUpdate = 0;
 		
 		// move only if allowed
 		if(dancing) {
