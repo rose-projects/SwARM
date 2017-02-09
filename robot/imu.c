@@ -307,16 +307,16 @@ static THD_FUNCTION(imuThread, th_data) {
 
 		// IIR filtration
 		currentAzimuth = 2 * M_PI - currentAzimuth;
-                float diff = currentAzimuth - oldAzimuth;
-                if (diff >= M_PI)
-                  diff -= 2 * M_PI;
-                else if (diff < -M_PI)
-                  diff += 2 * M_PI;
+		float diff = currentAzimuth - oldAzimuth;
+		if (diff >= M_PI)
+		  diff -= 2 * M_PI;
+		else if (diff < -M_PI)
+		  diff += 2 * M_PI;
 		azimuth = oldAzimuth + diff * TRUST_AZIMUTH;
-                if (azimuth >= 2 * M_PI)
-                  azimuth -= 2 * M_PI;
-                else if (azimuth < 0)
-                  azimuth += 2 * M_PI;
+		if (azimuth >= 2 * M_PI)
+		  azimuth -= 2 * M_PI;
+		else if (azimuth < 0)
+		  azimuth += 2 * M_PI;
 		oldAzimuth = azimuth;
 		// at 100 Hz ODR, new mag data is available every 10 ms
 		chThdSleepMilliseconds(10);
