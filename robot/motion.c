@@ -197,7 +197,7 @@ static THD_FUNCTION(motionThread, th_data) {
 	// 1 if robot is dancing and trajectory data is valid (allows the robot to move)
 	int dancing;
 	// departure point of the current move
-	struct move dep;
+	struct move dep, dest;
 
 	while(1) {
 		// set the robot at the origin of the dance if required
@@ -212,20 +212,34 @@ static THD_FUNCTION(motionThread, th_data) {
 			resetPos = 0;
 		}
 
+		// update trajectory every 500ms
+//		if(getDate() - dep.date > 5 && getDate() < currentMove->date &&
+//			sqrt(pow(currentMove->x - currentX, 2) + pow(currentMove->y - currentY, 2)) > currentMove->endRadius * 2) {
+//			trajectoryUpdate = 1;
+//		}
+
 		// force robot to stop if dance isn't enabled or battery is too low
 		if((radioData.flags & RB_FLAGS_DEN) == 0 || (radioData.status & RB_STATUS_BATT) == BATTERY_VERYLOW){
 			dancing = 0;
 		} else if(trajectoryUpdate) {
-			dep.x = currentX;
-			dep.y = currentY;
-			dep.angle = currentOrientation*128/M_PI;
-			dep.date = getDate();
+			if(sqrt(pow(currentMove->x - currentX, 2) + pow(currentMove->y - currentY, 2)) > 10) {
+				// update the current point
+				if(sqrt(pow(currentX-dep.x, 2) + pow(currentY-dep.y, 2)) < 10) {
+					dep = dest;
+				} else {
+					dep.x = currentX;
+					dep.y = currentY;
+					dep.angle = currentOrientation*128/M_PI;
+				}
+				dep.date = getDate();
+
+				currentInterpoints = computeInterpoints(&dep, currentMove);
+				dancing = 1; // allow robot to move
+				dest = *currentMove;
+			}
 			trajectoryUpdate = 0;
-
-			currentInterpoints = computeInterpoints(&dep, currentMove);
-			dancing = 1; // allow robot to move
 		}
-
+		
 		// move only if allowed
 		if(dancing) {
 			getGoal(getDate(), &dep, currentMove, &currentInterpoints, &dist, &diff);

@@ -68,9 +68,9 @@ static void parseSOF(int sofLength) {
 
 static void parseRadioData(void) {
 	radioData.x = radioBuffer[2];
-	radioData.x &= radioBuffer[3] << 8;
+	radioData.x |= radioBuffer[3] << 8;
 	radioData.y = radioBuffer[4];
-	radioData.y &= radioBuffer[5] << 8;
+	radioData.y |= radioBuffer[5] << 8;
 	radioData.flags = radioBuffer[6];
 
 	if(radioData.flags & RB_FLAGS_CLR) {

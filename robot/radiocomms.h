@@ -8,8 +8,8 @@
 /* container for data received/sent to master beacon */
 struct robotData {
 	// sent to the robot
-	uint16_t x;
-	uint16_t y;
+	int16_t x;
+	int16_t y;
 	uint8_t flags;
 	// sent to master beacon
 	uint8_t status;

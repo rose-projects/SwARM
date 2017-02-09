@@ -317,6 +317,7 @@ static THD_FUNCTION(imuThread, th_data) {
 		  azimuth -= 2 * M_PI;
 		else if (azimuth < 0)
 		  azimuth += 2 * M_PI;
+
 		oldAzimuth = azimuth;
 		// at 100 Hz ODR, new mag data is available every 10 ms
 		chThdSleepMilliseconds(10);
