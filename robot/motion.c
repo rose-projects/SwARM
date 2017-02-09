@@ -5,7 +5,6 @@
 #include "ch.h"
 #include "hal.h"
 #include "dance.h"
-#include "RTT/SEGGER_RTT.h"
 #include "codingwheels.h"
 #include "pid.h"
 #include "position.h"
@@ -211,12 +210,6 @@ static THD_FUNCTION(motionThread, th_data) {
 			beginNewPID();
 			resetPos = 0;
 		}
-
-		// update trajectory every 500ms
-//		if(getDate() - dep.date > 5 && getDate() < currentMove->date &&
-//			sqrt(pow(currentMove->x - currentX, 2) + pow(currentMove->y - currentY, 2)) > currentMove->endRadius * 2) {
-//			trajectoryUpdate = 1;
-//		}
 
 		// force robot to stop if dance isn't enabled or battery is too low
 		if((radioData.flags & RB_FLAGS_DEN) == 0 || (radioData.status & RB_STATUS_BATT) == BATTERY_VERYLOW){
