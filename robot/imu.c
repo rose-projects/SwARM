@@ -16,8 +16,8 @@
 #define MFS_16BITS 1 << 4           // 16 bits resolution magnetometer
 #define MAG_MODE 0x06               // magnetometer at 100Hz
 
-#define CALIBRATION_REPEAT 8 // how many times to repeat calibration to be sure
-#define MAGIC_REF 0xFA7B00B5
+#define CALIBRATION_REPEAT 5 // how many times to repeat calibration to be sure
+#define MAGIC_REF 0xDEADBEEF
 #define TRUST_AZIMUTH 0.1
 
 // RAM buffer to save calibration during page clear
@@ -312,7 +312,7 @@ static THD_FUNCTION(imuThread, th_data) {
                   diff -= 2 * M_PI;
                 else if (diff < -M_PI)
                   diff += 2 * M_PI;
-		azimuth = currentAzimuth + diff * TRUST_AZIMUTH;
+		azimuth = oldAzimuth + diff * TRUST_AZIMUTH;
                 if (azimuth >= 2 * M_PI)
                   azimuth -= 2 * M_PI;
                 else if (azimuth < 0)
