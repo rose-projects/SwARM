@@ -24,7 +24,7 @@ int main(void) {
 	initExti();
 	initADC();
 	initLEDs();
- 	initIMU();
+ 	// initIMU();
 
 	// start high level features
 	initPID();

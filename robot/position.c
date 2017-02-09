@@ -2,7 +2,6 @@
 #include "hal.h"
 #include <math.h>
 
-#include "RTT/SEGGER_RTT.h"
 #include "imu.h"
 #include "codingwheels.h"
 #include "dance.h"
@@ -55,7 +54,6 @@ static THD_FUNCTION(fusion_thd, arg) {
 	(void) arg;
 
 	float oldX, oldY, diffX, diffY;
-	int X, Y;
 	// register for radio messages datas updates
 	event_listener_t dwm_update;
 	chEvtRegisterMask(&radioEvent, &dwm_update, EVENT_MASK(0));
@@ -83,12 +81,6 @@ static THD_FUNCTION(fusion_thd, arg) {
 			oldY = currentY;
 
 			chSysUnlock();
-
-			// debug print
-			X = currentX * 100;
-			Y = currentY * 100;
-
-			printf("%d,%d\n", X, Y);
 		}
 	}
 }
