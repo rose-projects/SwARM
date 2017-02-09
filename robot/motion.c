@@ -203,8 +203,8 @@ static THD_FUNCTION(motionThread, th_data) {
 		// set the robot at the origin of the dance if required
 		// (stored at currentMove if dance isnt started)
 		if(resetPos) {
-			currentX = currentMove->x;
-			currentY = currentMove->y;
+			//currentX = currentMove->x;
+			//currentY = currentMove->y;
 			currentOrientation = currentMove->angle*M_PI/128;
 			setAzimuthDiff(currentOrientation);
 
