@@ -1,174 +1,158 @@
 #include "ch.h"
 #include "hal.h"
 
-#include "pid.h"
-#include "coding_wheels.h"
+#include "codingwheels.h"
 #include "pwmdriver.h"
-#include "coordination.h"
+#include "position.h"
 
 #define MIN(a,b) ((a>b) ? b : a)
 #define MAX(a,b) ((a>b) ? a : b)
 
-// Enslavement thread working area
-static THD_WORKING_AREA(working_area_pid_thd, 128);
+volatile int distGoal;
+volatile int angleGoal;
 
-// These counters are used to memorize the ticks' values
-volatile unsigned int tick_l_capt = 0;
-volatile unsigned int tick_r_capt = 0;
-
-// Errors of the enslavement
-static int dist_error_sum;
-static int dist_error_delta;
-static int dist_error_prev;
-static int angle_error_sum;
-static int angle_error_delta;
-static int angle_error_prev;
-static int dist_error = 0;
-static int angle_error = 0;
-
-// Enslavement calculations
-static THD_FUNCTION(pid_thd, arg) {
+static THD_WORKING_AREA(waPID, 128);
+static THD_FUNCTION(pidThread, arg) {
 	(void) arg;
+
 	const unsigned int PID_FREQ_HZ = 1000;
-	const unsigned int PID_THD_SLEEP_MS = (1000/PID_FREQ_HZ);
-    const int RAMP = 5;  // Corresponds to maximum delta between two consecutive commands
-	
+	const int RAMP = 5;  // maximum delta between two consecutive commands
+
 	// PID coefficients for angle and distance
 	const double P_ANGLE = 2;
-	const double I_ANGLE = 0.002;
-	const double D_ANGLE = 40;
-	const double P_DIST = 1.33333333;
-	const double I_DIST = 0.0004;
-	const double D_DIST = 25;
+	const double I_ANGLE = 0.02;
+	const double D_ANGLE = 4;
+	const double P_DIST = 1.3333333;
+	const double I_DIST = 0.004;
+	const double D_DIST = 2.5;
 
-    int cmd_left;
-    int cmd_right;
-	int cmd_dist;  // distance command calculated by enslavement
-	int cmd_angle; // angle command calculated by enslavement
+	// Errors of the enslavement
+	int distError;
+	int distErrorSum;
+	int distErrorDelta;
+	int distErrorPrev;
+
+	int angleError;
+	int angleErrorSum;
+	int angleErrorDelta;
+	int angleErrorPrev;
+
+	int cmdLeft;
+	int cmdRight;
+	int cmdDist;  // distance command
+	int cmdAngle; // angle command
 	int angle;     // current angle
 	int distance;  // current distance
-    
-    static int last_cmd_left = 0;
-    static int last_cmd_right = 0;
 
-	// 200 Hz calculation
+	static int lastCmdLeft = 0;
+	static int lastCmdRight = 0;
+
+	// PID related calculations:
+	// Calculating errors
+	// Calculating output
 	while(true) {
-
-		// Enslavement PID related calculations:
-		// Calculating errors
-		// Calculating output
-
-		angle = (tick_r - tick_r_capt) - (tick_l - tick_l_capt);
-		distance = ((tick_r - tick_r_capt) + (tick_l - tick_l_capt))/2;
+		angle = tickR - tickL;
+		distance = (tickR + tickL)/2;
 
 		// Error calculations for distance
-		dist_error = dist_goal - distance;
-		dist_error_sum += dist_error;
-		dist_error_delta = dist_error - dist_error_prev;
-		dist_error_prev = dist_error;
-		// Error calculations for angle
-		angle_error = angle_goal - angle;
-		angle_error_sum += angle_error;
-		angle_error_delta = angle_error - angle_error_prev;
-		angle_error_prev = angle_error;
+		distError = distGoal - distance;
+		distErrorSum += distError;
+		distErrorDelta = distError - distErrorPrev;
+		distErrorPrev = distError;
 
-		cmd_dist = P_DIST*dist_error + I_DIST*dist_error_sum
-				   + D_DIST*dist_error_delta;
-		cmd_angle = P_ANGLE*angle_error + I_ANGLE*angle_error_sum
-					+ D_ANGLE*angle_error_delta;
+		// Error calculations for angle
+		angleError = angleGoal - angle;
+		angleErrorSum += angleError;
+		angleErrorDelta = angleError - angleErrorPrev;
+		angleErrorPrev = angleError;
+
+		cmdDist = P_DIST*distError + I_DIST*distErrorSum + D_DIST*distErrorDelta;
+		cmdAngle = P_ANGLE*angleError + I_ANGLE*angleErrorSum + D_ANGLE*angleErrorDelta;
+
+		// prevent error sums from being negative
+		if(distErrorSum < 0)
+			distErrorSum = 0;
+		if(angleErrorSum < 0)
+			angleErrorSum = 0;
 
 		// Calculating motor commands value
-		// Firt we have the basic sum and difference 
+		// Firt we have the basic sum and difference
 		// Then we normalize the values so obtained so that they don't
 		// exceed PWM_MAX/2 and are above -PWM_MAX/2 and mimic the
 		// truncations so that the values are still "proportionate"
-		// after normalization 
+		// after normalization
 
-		cmd_left = cmd_dist - cmd_angle;
-		cmd_right = cmd_dist + cmd_angle;
+		cmdLeft = cmdDist - cmdAngle;
+		cmdRight = cmdDist + cmdAngle;
 
-		int cmd_max = MAX(cmd_right, cmd_left);
-		int cmd_min = MIN(cmd_right, cmd_left);
-		int offset_pos = 0;
-		int offset_neg = 0;
+		int cmdMax = MAX(cmdRight, cmdLeft);
+		int cmdMin = MIN(cmdRight, cmdLeft);
+		int offsetPos = 0;
+		int offsetNeg = 0;
 
-		if(cmd_max > 200){
-			offset_pos = cmd_max - PWM_MAX/2;
+		if(cmdMax > PWM_MAX/2){
+			offsetPos = cmdMax - PWM_MAX/2;
 		}
 
-		if(cmd_min < -200){
-			offset_neg = cmd_min + PWM_MAX/2;
+		if(cmdMin < -PWM_MAX/2){
+			offsetNeg = cmdMin + PWM_MAX/2;
 		}
 
-		cmd_left = cmd_left - offset_pos - offset_neg;
-		cmd_right = cmd_right - offset_pos - offset_neg;
+		cmdLeft = cmdLeft - offsetPos - offsetNeg;
+		cmdRight = cmdRight - offsetPos - offsetNeg;
 
-		if(cmd_left >= 0){
-			cmd_left = MIN(cmd_left, PWM_MAX/2);
+		if(cmdLeft >= 0){
+			cmdLeft = MIN(cmdLeft, PWM_MAX/2);
 		} else{
-			cmd_left = 0;
+			cmdLeft = 0;
 		}
 
-		if(cmd_right >= 0){
-			cmd_right = MIN(cmd_right, PWM_MAX/2);
+		if(cmdRight >= 0){
+			cmdRight = MIN(cmdRight, PWM_MAX/2);
 		} else{
-			cmd_right = 0;
+			cmdRight = 0;
 		}
 
-        if(cmd_left > (last_cmd_left + RAMP)){
-            cmd_left = last_cmd_left + RAMP;
-        }
-        else if (cmd_left < (last_cmd_left - RAMP)){
-            cmd_left = MAX(0, last_cmd_left - RAMP);
-        }
+		// avoid accelerating too quickly by limiting PID output variations
+		if(cmdLeft > (lastCmdLeft + RAMP)) {
+			cmdLeft = lastCmdLeft + RAMP;
+		} else if (cmdLeft < (lastCmdLeft - RAMP)) {
+			cmdLeft = MAX(0, lastCmdLeft - RAMP);
+		}
 
-        if(cmd_right > (last_cmd_right + RAMP)){
-            cmd_right = last_cmd_right + RAMP;
-        }
-        else if (cmd_right < (last_cmd_right - RAMP)){
-            cmd_right = MAX(0, last_cmd_right - RAMP);
-        }
+		if(cmdRight > (lastCmdRight + RAMP)){
+			cmdRight = lastCmdRight + RAMP;
+		} else if (cmdRight < (lastCmdRight - RAMP)) {
+			cmdRight = MAX(0, lastCmdRight - RAMP);
+		}
 
-        last_cmd_left = cmd_left;
-        last_cmd_right = cmd_right;
-		
+		lastCmdLeft = cmdLeft;
+		lastCmdRight = cmdRight;
+
 		// Updating PWM signals
-		setLpwm(cmd_left);
-		setRpwm(cmd_right);
+		setLpwm(cmdLeft);
+		setRpwm(cmdRight);
 
-		chThdSleepMilliseconds(PID_THD_SLEEP_MS);
+		chThdSleepMilliseconds(1000/PID_FREQ_HZ);
 	}
 }
 
 // To be called from main to start a basic enslavement
 void initPID(void) {
-	// Starting the monitoring threads
-	(void)chThdCreateStatic(working_area_pid_thd,
-			sizeof(working_area_pid_thd),
-			NORMALPRIO, pid_thd, NULL);
+	// Starting the monitoring thread
+	chThdCreateStatic(waPID, sizeof(waPID), NORMALPRIO, pidThread, NULL);
 }
 
 // This function resets the variables that are used to enslave the two motors of
-// the robot. It is called everytime dist_goal and angle_goal are changed
-void begin_new_pid(void) {
-	
-	// Reset angle related variables
-	angle_error = 0;
-	angle_error_sum = 0;
-	angle_error_delta = 0;
-	angle_error_delta = 0;
-	
-	// Reset distance related variables
-	dist_error = 0;
-	dist_error_sum = 0;
-	dist_error_delta = 0;
-	dist_error_delta = 0;
-    
-    // Memorize tick values
-    tick_l_capt = tick_l;
-    tick_r_capt = tick_r;
-    
-    // Move origin of the goals to current situation
-    angle_goal = 0;
-    dist_goal = 0;
+// the robot.
+void beginNewPID(void) {
+	// reset ticks
+	tickL = 0;
+	tickR = 0;
+	// reset commands
+	angleGoal = 0;
+	distGoal = 0;
+
+	tickLprev = 0;
+	tickRprev = 0;
 }

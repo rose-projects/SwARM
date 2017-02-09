@@ -13,4 +13,10 @@ void saveIMUcalibration(void);
 /* write IMU calibration data in flash */
 void writeIMUcalibration(void);
 
+/* set the difference between north and (O, x) axis */
+void setAzimuthDiff(float firstOrientation);
+
+/* get ponderated azimuth */
+float getAzimuth(void);
+
 #endif
