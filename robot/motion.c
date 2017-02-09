@@ -203,14 +203,20 @@ static THD_FUNCTION(motionThread, th_data) {
 		// set the robot at the origin of the dance if required
 		// (stored at currentMove if dance isnt started)
 		if(resetPos) {
-			//currentX = currentMove->x;
-			//currentY = currentMove->y;
+			currentX = currentMove->x;
+			currentY = currentMove->y;
 			currentOrientation = currentMove->angle*M_PI/128;
 			setAzimuthDiff(currentOrientation);
 
 			beginNewPID();
 			resetPos = 0;
 		}
+
+		// update trajectory every 500ms
+//		if(getDate() - dep.date > 5 && getDate() < currentMove->date &&
+//			sqrt(pow(currentMove->x - currentX, 2) + pow(currentMove->y - currentY, 2)) > currentMove->endRadius * 2) {
+//			trajectoryUpdate = 1;
+//		}
 
 		// force robot to stop if dance isn't enabled or battery is too low
 		if((radioData.flags & RB_FLAGS_DEN) == 0 || (radioData.status & RB_STATUS_BATT) == BATTERY_VERYLOW){
