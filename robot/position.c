@@ -9,7 +9,7 @@
 #include "trigo.h"
 #include "radiocomms.h"
 
-#define TRUST_DWM 0.1
+#define TRUST_DWM 0.0
 #define TRUST_IMU 0.0
 
 volatile float currentX, currentY, xSinceLastRadio, ySinceLastRadio;
