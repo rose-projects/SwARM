@@ -18,7 +18,7 @@
 
 #define CALIBRATION_REPEAT 8 // how many times to repeat calibration to be sure
 #define MAGIC_REF 0xFA7B00B5
-#define TRUST_AZIMUTH 0.97
+#define TRUST_AZIMUTH 0.1
 
 // RAM buffer to save calibration during page clear
 static float magBiasRAM[3], magScaleRAM[3];
@@ -306,8 +306,17 @@ static THD_FUNCTION(imuThread, th_data) {
 		}
 
 		// IIR filtration
-		currentAzimuth = M_PI * 2 - currentAzimuth;
-		azimuth = (TRUST_AZIMUTH * currentAzimuth) + ((1 - TRUST_AZIMUTH) * oldAzimuth);
+		currentAzimuth = 2 * M_PI - currentAzimuth;
+                float diff = currentAzimuth - oldAzimuth;
+                if (diff >= M_PI)
+                  diff -= 2 * M_PI;
+                else if (diff < -M_PI)
+                  diff += 2 * M_PI;
+		azimuth = currentAzimuth + diff * TRUST_AZIMUTH;
+                if (azimuth >= 2 * M_PI)
+                  azimuth -= 2 * M_PI;
+                else if (azimuth < 0)
+                  azimuth += 2 * M_PI;
 		oldAzimuth = azimuth;
 		// at 100 Hz ODR, new mag data is available every 10 ms
 		chThdSleepMilliseconds(10);
