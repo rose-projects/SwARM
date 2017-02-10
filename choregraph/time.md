@@ -10,16 +10,16 @@
 | 270 | Drum & crescendo |
 | 280 | 2nd drum & crescendo |
 | 295 | climax of crescendo |
-| 298 | Drum (right, left) |
-| 302 | ^ |
-| 305 | ^ |
-| 309 | ^ |
-| 313 | ^ |
-| 318 | ^ |
-| 323 | ^ |
-| 327 | ^ |
-| 332 | ^ |
-| 337 | ^ |
+| 298 | Drum (right, left) 1 |
+| 302 | ^ 2 |
+| 305 | ^ 1 |
+| 309 | ^ 2 |
+| 313 | ^ 1 |
+| 318 | ^ 2 |
+| 323 | ^ 1 |
+| 327 | ^ 2 |
+| 332 | ^ 1 |
+| 337 | ^ 2 |
 | 342 | last drum beat, max volume |
 | 350 | Change music, 1st violin note of Dvorak |
 | 357 | inflexion point of violin |
