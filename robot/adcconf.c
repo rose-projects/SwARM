@@ -3,7 +3,6 @@
 #include "radiocomms.h"
 #include "../shared/radioconf.h"
 #include "led.h"
-#include "coding_wheels.h"
 
 // sample to battery voltage (in 0.01V) conversion coeff
 #define PROBE_TO_VBAT (450.0/4096)
@@ -35,8 +34,7 @@ static adcsample_t samples[ADC_CHANNELS];
 
 static int batteryState = BATTERY_OK;
 
-volatile unsigned int tick_l = 0, tick_r = 0;
-
+volatile int tickL = 0, tickR = 0;
 
 static void updateState(int voltage) {
 	switch (batteryState) {
@@ -63,11 +61,11 @@ static void updateState(int voltage) {
 
 	// set battery state flag in status
 	chSysLockFromISR(); // lock to guarantee atomicity
-//	radioData.status &= ~RB_STATUS_BATT; // TODO: HELP WTF DOES THAT DO THE MACRO DOES NOT EXIST THE UNIVERSE WILL EXPLOOODE!!!
+	radioData.status &= ~RB_STATUS_BATT;
 	radioData.status |= batteryState;
 	chSysUnlockFromISR();
 
-	// TODO: stop the robot when battery is VERY_LOW
+	// light up robots in red if battery is almost discharged
 	if(batteryState == BATTERY_VERYLOW)
 		setColor(0, 255, 40);
 }
@@ -91,18 +89,18 @@ static void adcConversionCallback(ADCDriver *adcp, adcsample_t *buffer, size_t n
 
 	if(!LcoderLevel && Lcoder > CODER_HTHRES) {
 		LcoderLevel = 1;
-		tick_l++;
+		tickL++;
 	} else if(LcoderLevel && Lcoder < CODER_LTHRES) {
 		LcoderLevel = 0;
-		tick_l++;
+		tickL++;
 	}
 
 	if(!RcoderLevel && Rcoder > CODER_HTHRES) {
 		RcoderLevel = 1;
-		tick_r++;
+		tickR++;
 	} else if(RcoderLevel && Rcoder < CODER_LTHRES) {
 		RcoderLevel = 0;
-		tick_r++;
+		tickR++;
 	}
 
 	voltage += buffer[12];

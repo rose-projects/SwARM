@@ -89,6 +89,8 @@ static int mean_voltage(size_t nsamples) {
 		adcsample_t sample;
 		adcConvert(&ADCD1, &adcconf, &sample, 1);
 		total += sample;
+		// wait between samples to filter out low frequencies of noise
+		chThdSleepMilliseconds(800);
 	}
 	return total * PROBE_TO_VBAT / nsamples;
 }
@@ -97,9 +99,9 @@ static THD_WORKING_AREA(waBattery, 128);
 static THD_FUNCTION(batteryThread, th_data) {
 	(void) th_data;
 	chRegSetThreadName("Battery");
+
 	while(1) {
 		updateState(mean_voltage(16));
-		chThdSleepMilliseconds(800);
 	}
 }
 

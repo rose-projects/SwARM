@@ -158,8 +158,8 @@ INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
 
 MCU  = cortex-m4
 TRGT = arm-none-eabi-
-CC   = ccache $(TRGT)gcc
-CPPC = ccache $(TRGT)g++
+CC   = $(CCACHE) $(TRGT)gcc
+CPPC = $(CCACHE) $(TRGT)g++
 # Enable loading with g++ only if you need C++ runtime support.
 # NOTE: You can use C++ even without C++ support if you are careful. C++
 #       runtime support makes code size explode.

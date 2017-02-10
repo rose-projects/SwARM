@@ -8,8 +8,8 @@
 /* container for data received/sent to master beacon */
 struct robotData {
 	// sent to the robot
-	uint16_t x;
-	uint16_t y;
+	int16_t x;
+	int16_t y;
 	uint8_t flags;
 	// sent to master beacon
 	uint8_t status;
@@ -24,10 +24,7 @@ extern event_source_t radioEvent;
 /* initialize decawave module and start radio communication thread */
 void startRadio(void);
 
-/* get date (for dance sync) in ms (returns 0 if the radio in not synchronized) */
-uint16_t getDateMs(void);
-
 /* get date (for dance sync) in 0.1s (returns 0 if the radio in not synchronized) */
-uint16_t getDate(void);
+float getDate(void);
 
 #endif // RODIOCOMMS_H

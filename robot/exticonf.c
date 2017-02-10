@@ -1,7 +1,6 @@
 #include "ch.h"
 #include "hal.h"
 #include "pid.h"
-#include "coding_wheels.h"
 
 // Events sources
 EVENTSOURCE_DECL(deca_event);

@@ -108,8 +108,9 @@ vpath %.c ../shared/
 
 RADIOSRC  = decaplatform.c decafunctions.c deca_device.c deca_params_init.c radiocomms.c
 DRIVERSRC = pwmdriver.c exticonf.c adcconf.c flash.c
+RTTSRC    = RTT/SEGGER_RTT.c RTT/SEGGER_RTT_printf.c
 IMU       = my_i2c.c imu.c
-MOVING    = pid.c coordination.c moving.c position.c dance.c
+MOTION    = pid.c motion.c position.c
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -122,9 +123,10 @@ CSRC = $(STARTUPSRC) \
        $(BOARDSRC) \
        $(RADIOSRC) \
        $(DRIVERSRC) \
+       $(RTTSRC) \
        $(IMU) \
-       $(MOVING) \
-       trigo.c led.c main.c
+       $(MOTION) \
+       led.c dance.c main.c trigo.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -168,8 +170,8 @@ MCU  = cortex-m4
 
 #TRGT = arm-elf-
 TRGT = arm-none-eabi-
-CC   = $(TRGT)gcc
-CPPC = $(TRGT)g++
+CC   = $(CCACHE) $(TRGT)gcc
+CPPC = $(CCACHE) $(TRGT)g++
 GDB  = $(TRGT)gdb
 # Enable loading with g++ only if you need C++ runtime support.
 # NOTE: You can use C++ even without C++ support if you are careful. C++

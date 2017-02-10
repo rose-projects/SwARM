@@ -4,26 +4,25 @@
 #include "ch.h"
 #include "hal.h"
 
+#include "RTT/SEGGER_RTT.h"
 #include "my_i2c.h"
 #include "MPU9250.h"
 #include "dance.h"
 #include "led.h"
 #include "../shared/flash.h"
+#include "trigo.h"
 
 #define MAG_RES 10.0*4219.0/32760.0 // 16 bit mode magnetometer LSB to milliGauss
 #define MFS_16BITS 1 << 4           // 16 bits resolution magnetometer
 #define MAG_MODE 0x06               // magnetometer at 100Hz
 
-#define CALIBRATION_REPEAT 4 // how many times to repeat calibration to be sure
+#define CALIBRATION_REPEAT 5 // how many times to repeat calibration to be sure
 #define MAGIC_REF 0xDEADBEEF
-
-// hard coded angle diff(X, north): needs to be updated in thevenin amphitheater
-#define X_NORTH_DIFF (-0.5)
+#define TRUST_AZIMUTH 0.1
 
 // RAM buffer to save calibration during page clear
 static float magBiasRAM[3], magScaleRAM[3];
 static unsigned int magicCodeRAM;
-
 
 // non volatile data
 static float magbias[3] __attribute__((section(".flashdata")));  // mag bias calibration data
@@ -31,8 +30,9 @@ static float magscale[3] __attribute__((section(".flashdata"))); // mag scale ca
 static unsigned int magicCode __attribute__((section(".flashdata")));  // mismatch w/ MAGIC_REF -> need calibration
 
 static float magCalibration[3] = {0, 0, 0}; // Factory mag calibration
-
-volatile float azimuth;
+// hard coded angle diff(X, north): needs to be updated in thevenin amphitheater
+static float azimuthDiff = 0.0;
+volatile float azimuth = 0;
 
 // MPU 9250 & AK 8963 PART
 
@@ -226,8 +226,12 @@ static void imu_calibration(void) {
 	int i = 0;
 	float magBias[3], magScale[3];
 
+	// Mag Calibration : Wave device in a figure eight until done !
+	printf("Mag Calibration : Wave device in a figure eight until done !\r\n");
+	setColor(0, 100, 255);
+
 	for(i = 0; i < CALIBRATION_REPEAT; i++) {
-		// Mag Calibration : Wave device in a figure eight until done !
+		printf("calibration %d\r\n", i + 1);
 		mag_calibration(magBias, magScale);
 
 		magBiasRAM[0] += magBias[0];
@@ -237,6 +241,8 @@ static void imu_calibration(void) {
 		magScaleRAM[1] += magScale[1];
 		magScaleRAM[2] += magScale[2];
 	}
+	printf("calibration finished\r\n");
+	setColor(0, 200, 255);
 
 	// compute calibration mean
 	magBiasRAM[0] /= CALIBRATION_REPEAT;
@@ -255,12 +261,17 @@ static void imu_calibration(void) {
 	writeIMUcalibration();
 }
 
+void setAzimuthDiff(float firstOrientation) {
+	azimuthDiff = azimuth - firstOrientation;
+}
+
 // IMU thread
 static THD_WORKING_AREA(waIMU, 256);
 static THD_FUNCTION(imuThread, th_data) {
 	int16_t magOutput[3]; // Stores the 16-bit signed magnetometer sensor output
 	float mx, my;         // variables to hold latest sensor data values
-
+	float currentAzimuth = 0, oldAzimuth = 0;
+	
 	(void) th_data;
 	chRegSetThreadName("IMU");
 
@@ -279,26 +290,48 @@ static THD_FUNCTION(imuThread, th_data) {
 			// all angles are from the X axis
 			if(mx == 0) {
 				if(my < 0) {
-					azimuth = M_PI/2;
+					currentAzimuth = M_PI_2;
 				} else { // y > 0
-					azimuth = - M_PI/2;
+					currentAzimuth = - M_PI_2;
 				}
 			} else if (mx < 0) {
-				azimuth = M_PI - atan(my/mx);
+				currentAzimuth = M_PI - matan(my/mx);
 			} else if (mx > 0) {
 				if (my < 0) {
-					azimuth = - atan(my/mx);
+					currentAzimuth = - matan(my/mx);
 				} else { // y > 0
-					azimuth = 2 * M_PI - atan(my/mx);
+					currentAzimuth = 2 * M_PI - matan(my/mx);
 				}
 			}
 		}
 
+		// IIR filtration
+		currentAzimuth = 2 * M_PI - currentAzimuth;
+		float diff = currentAzimuth - oldAzimuth;
+		if (diff >= M_PI)
+		  diff -= 2 * M_PI;
+		else if (diff < -M_PI)
+		  diff += 2 * M_PI;
+		azimuth = oldAzimuth + diff * TRUST_AZIMUTH;
+		if (azimuth >= 2 * M_PI)
+		  azimuth -= 2 * M_PI;
+		else if (azimuth < 0)
+		  azimuth += 2 * M_PI;
+
+		oldAzimuth = azimuth;
 		// at 100 Hz ODR, new mag data is available every 10 ms
 		chThdSleepMilliseconds(10);
 	}
 }
 
+float getAzimuth(void) {
+	// apply diff between X axis and north
+	float azimuthPond = azimuth - azimuthDiff;
+	while(azimuthPond < 0) azimuthPond += (2 * M_PI);
+	while(azimuthPond >= (2 * M_PI)) azimuthPond -= (2 * M_PI);
+
+	return azimuthPond;
+}
 // actual called function
 // print all values in loop
 int initIMU(void) {

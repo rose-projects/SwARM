@@ -10,7 +10,7 @@ endif
 
 # C specific options here (added to USE_OPT).
 ifeq ($(USE_COPT),)
-  USE_COPT = -std=gnu99
+  USE_COPT =
 endif
 
 # C++ specific options here (added to USE_OPT).
@@ -121,7 +121,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
        $(DRIVERSRC) \
-	   $(RADIOSRC) \
+       $(RADIOSRC) \
        main.c battery.c led.c robot.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
@@ -168,8 +168,8 @@ MCU  = cortex-m4
 
 #TRGT = arm-elf-
 TRGT = arm-none-eabi-
-CC   = $(TRGT)gcc
-CPPC = $(TRGT)g++
+CC   = $(CCACHE) $(TRGT)gcc
+CPPC = $(CCACHE) $(TRGT)g++
 # Enable loading with g++ only if you need C++ runtime support.
 # NOTE: You can use C++ even without C++ support if you are careful. C++
 #       runtime support makes code size explode.

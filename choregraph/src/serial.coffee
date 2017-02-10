@@ -53,7 +53,7 @@ flashRobot = (id, robot) ->
 
 		cmd = "moves #{id}"
 		cmdCnt = 0
-		for mv in robot.moves when mv.index != 0
+		for mv in robot.moves
 			cmd += " #{mv.date} #{mv.x} #{mv.y} #{mv.angle} #{mv.startradius} #{mv.endradius}"
 			cmdCnt++
 			if cmdCnt == 5
