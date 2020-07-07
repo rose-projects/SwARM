@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/rose-projects/SwARM#readme",
   "dependencies": {
-    "electron": "^1.4.13",
+    "electron": "8.2.4",
     "jquery": "^3.1.1",
     "serialport": "^4.0.7"
   },
   "devDependencies": {
-    "electron-rebuild": "^1.5.5"
+    "electron-rebuild": "8.2.4"
   }
 }
